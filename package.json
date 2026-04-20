@@ -23,6 +23,7 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:a11y": "playwright test tests/e2e/a11y/",
+    "test:interaction": "playwright test tests/e2e/interaction/",
     "test:visual": "playwright test tests/e2e/visual/",
     "test:visual:update": "playwright test tests/e2e/visual/ --update-snapshots",
     "test:performance": "playwright test tests/e2e/performance/"

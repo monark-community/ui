@@ -137,7 +137,7 @@ public/
 
 ## Contributing
 
-Bug reports, component requests, and a11y corrections are welcome. Open an issue or PR at [github.com/monark-io/ui](https://github.com/monark-io/ui). When adding a component:
+Bug reports, component requests, and a11y corrections are welcome. Open an issue or PR at [github.com/monark-community/ui](https://github.com/monark-community/ui). When adding a component:
 
 1. Place the source under `components/ui/<name>.tsx`.
 2. Add a preview at `components/previews/<name>-preview.tsx`.
@@ -148,4 +148,4 @@ Bug reports, component requests, and a11y corrections are welcome. Open an issue
 
 ## License
 
-MIT.
+See [LICENSE](./LICENSE).

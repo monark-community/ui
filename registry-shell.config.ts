@@ -8,7 +8,7 @@ export default defineConfig({
     description:
       "Monark's component library — shadcn-compatible, Radix-primitive, ready for Web3 product surfaces.",
     github: {
-      owner: "monark-io",
+      owner: "monark-community",
       repo: "ui",
       label: "Github",
       showStars: true,
