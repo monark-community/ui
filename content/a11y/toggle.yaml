@@ -1,0 +1,47 @@
+component: Toggle
+wcag: AA
+standard: WAI-ARIA 1.2
+element: button
+role: null
+delegatesTo: "@radix-ui/react-toggle"
+description: >
+  Two-state pressed button (on / off). Radix renders a <button> with
+  aria-pressed reflecting the current state. Used for toolbar-style toggles
+  like Bold, Italic, or show / hide controls. Unlike Switch, it's not
+  meant for settings; it's for a visual "pressed" affordance on a control
+  that immediately changes something.
+
+keyboard:
+  - key: Tab
+    action: Moves focus to / from the toggle.
+  - key: Space / Enter
+    action: Toggles the pressed state.
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Uses focus-visible:ring-1. When pressed, data-[state=on]:bg-accent
+    provides the pressed visual.
+
+screenReader:
+  announcements:
+    - Announces as a button with "pressed" / "not pressed" state.
+    - Accessible name comes from the button's text or aria-label (icon-only toggles must add aria-label).
+  notes: >
+    Because Toggle renders a button with aria-pressed, screen readers
+    describe state in terms of pressed, not checked; that's correct for
+    toolbar toggles but may confuse users expecting a checkbox pattern.
+    Use Switch instead for settings that should read as on / off.
+
+contrast:
+  text: "Default variant uses foreground; outline variant adds a border. Pressed state uses text-accent-foreground on bg-accent. All meet WCAG AA"
+  ui: "Focus ring uses ring-ring; meets AA non-text contrast"
+
+motion:
+  reducedMotion: "Only a color transition on hover / state change; no motion-based animations"
+
+consumerResponsibilities:
+  - Provide an accessible name for icon-only toggles via aria-label.
+  - Use Toggle for visual / inline controls (toolbar buttons); use Switch for persistent settings.
+  - For mutually-exclusive sets of toggles, use ToggleGroup instead of independent Toggles; it handles the radio-like semantics.

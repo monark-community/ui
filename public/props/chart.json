@@ -1,0 +1,116 @@
+[
+  {
+    "displayName": "Chart",
+    "description": "",
+    "props": [
+      {
+        "name": "config",
+        "type": "ChartConfig",
+        "required": true,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "Tooltip",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "ChartTooltip",
+    "description": "",
+    "props": [
+      {
+        "name": "hideLabel",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": ""
+      },
+      {
+        "name": "hideIndicator",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": ""
+      },
+      {
+        "name": "indicator",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "dot",
+        "description": ""
+      },
+      {
+        "name": "nameKey",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "labelKey",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "Legend",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "componentDidMount",
+    "description": "Called immediately after a component is mounted. Setting state here will trigger re-rendering.",
+    "props": []
+  },
+  {
+    "displayName": "componentDidUpdate",
+    "description": "Called immediately after updating occurs. Not called for the initial render.\n\nThe snapshot is only present if {@link getSnapshotBeforeUpdate} is present and returns non-null.",
+    "props": []
+  },
+  {
+    "displayName": "ChartLegend",
+    "description": "",
+    "props": [
+      {
+        "name": "nameKey",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "hideIcon",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "ChartStyle",
+    "description": "",
+    "props": [
+      {
+        "name": "id",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "config",
+        "type": "ChartConfig",
+        "required": true,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  }
+]

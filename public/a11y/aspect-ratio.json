@@ -1,0 +1,30 @@
+{
+  "component": "AspectRatio",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": null,
+  "delegatesTo": "@radix-ui/react-aspect-ratio",
+  "description": "Purely a layout primitive. Wraps its children in a div whose padding reserves the requested width-to-height ratio. Carries no role, no ARIA attributes, and no interactive behavior of its own; assistive tech sees only whatever the consumer puts inside.\n",
+  "keyboard": [],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "Non-interactive, not focusable."
+  },
+  "screenReader": {
+    "announcements": [],
+    "notes": "The wrapper is semantically invisible. If the content is an image, remember to supply alt text on the <img>; if it's a video or embed, the consumer owns the accessible name.\n"
+  },
+  "contrast": {
+    "text": "N/A; AspectRatio has no text of its own",
+    "ui": "N/A; no UI chrome"
+  },
+  "motion": {
+    "reducedMotion": "No animations"
+  },
+  "consumerResponsibilities": [
+    "Provide accessible names / alt text on the content you place inside; AspectRatio does not generate any.",
+    "Pick a ratio that survives responsive breakpoints without clipping essential content."
+  ]
+}

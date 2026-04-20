@@ -1,0 +1,33 @@
+{
+  "component": "Card",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Visual container only. Card and its sub-parts (CardHeader, CardTitle, CardDescription, CardContent, CardFooter) are all plain <div>s with styling. No ARIA role, no landmarks; the accessible structure comes entirely from the content the consumer places inside.\n",
+  "keyboard": [],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "Non-interactive, not focusable."
+  },
+  "screenReader": {
+    "announcements": [
+      "No announcements from the Card itself; screen readers read child content in normal flow."
+    ],
+    "notes": "CardTitle and CardDescription are <div>s, not heading elements. If the card should contribute to the document outline, wrap CardTitle's content in an <h2> / <h3> or render a heading component inside it.\n"
+  },
+  "contrast": {
+    "text": "Foreground over bg-card meets WCAG AA in the default theme",
+    "ui": "Default border uses border token; meets AA non-text contrast against bg-background"
+  },
+  "motion": {
+    "reducedMotion": "No animations"
+  },
+  "consumerResponsibilities": [
+    "Promote CardTitle to a real heading when the card represents a section; <div> does not contribute to the document outline.",
+    "If the entire card is clickable, wrap it in a <button> or <a> (or use an inner anchor covering the card); do not attach onClick to the Card <div> alone.",
+    "Use landmark roles (role=\"region\" with aria-labelledby) only when the card is a distinct section that benefits from screen reader navigation."
+  ]
+}

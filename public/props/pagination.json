@@ -1,0 +1,82 @@
+[
+  {
+    "displayName": "Pagination",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "PaginationContent",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "PaginationLink",
+    "description": "",
+    "props": [
+      {
+        "name": "isActive",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "icon",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "PaginationItem",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "PaginationPrevious",
+    "description": "",
+    "props": [
+      {
+        "name": "isActive",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "icon",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "PaginationNext",
+    "description": "",
+    "props": [
+      {
+        "name": "isActive",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "icon",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "PaginationEllipsis",
+    "description": "",
+    "props": []
+  }
+]

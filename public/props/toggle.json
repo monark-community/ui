@@ -1,0 +1,22 @@
+[
+  {
+    "displayName": "Toggle",
+    "description": "",
+    "props": [
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  }
+]

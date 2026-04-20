@@ -1,0 +1,51 @@
+component: Form
+wcag: AA
+standard: WAI-ARIA 1.2
+element: form
+role: null
+delegatesTo: react-hook-form
+description: >
+  Wrapper around react-hook-form's FormProvider plus helper components
+  that wire label / description / error IDs automatically. FormLabel gets
+  htmlFor pointing at the control; FormControl sets id, aria-describedby
+  (linking description and/or message), and aria-invalid when the field
+  has an error. FormMessage renders the validation error when present.
+
+keyboard:
+  - key: Tab
+    action: Moves between form controls in document order.
+  - key: Shift+Tab
+    action: Moves backwards through form controls.
+  - key: Enter
+    action: Submits the form when inside a single-line input, or inserts a newline inside a textarea.
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Each control manages its own focus. On validation failure, consumers
+    typically focus the first invalid field; react-hook-form's setFocus API
+    or shouldFocusError: true (the default) handles this.
+
+screenReader:
+  announcements:
+    - Each control announces its label, current value, and (when invalid) the associated error message via aria-describedby.
+    - FormMessage content is linked via aria-describedby, so it's read with the field, not as a separate live region.
+  notes: >
+    FormMessage updates silently when the error text changes; screen
+    readers only re-read it when the user re-focuses the field. For
+    synchronous validation on blur, consider pairing with aria-live on a
+    form-level summary for long forms.
+
+contrast:
+  text: "Labels use foreground, descriptions use text-muted-foreground, messages use text-destructive; all meet WCAG AA"
+  ui: "Invalid state is conveyed via aria-invalid plus the FormMessage red text; consider adding an icon for low-vision users"
+
+motion:
+  reducedMotion: "No animations in the Form primitives themselves"
+
+consumerResponsibilities:
+  - Always wrap fields in a FormItem so FormLabel, FormControl, and FormMessage share the same generated IDs.
+  - Provide a FormDescription for non-obvious fields so screen readers can explain the constraint via aria-describedby.
+  - On submit failure, scroll to and focus the first invalid field; react-hook-form's default behavior only focuses, which may be off-screen.
+  - Use zod (or your schema library) resolvers for client-side validation; the component only wires the UI, not the rules.

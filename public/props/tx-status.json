@@ -1,0 +1,43 @@
+[
+  {
+    "displayName": "TxStatus",
+    "description": "",
+    "props": [
+      {
+        "name": "status",
+        "type": "enum",
+        "required": true,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "hash",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "explorerUrl",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "href",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  }
+]

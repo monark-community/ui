@@ -1,0 +1,36 @@
+component: NetworkBadge
+wcag: AA
+standard: WAI-ARIA 1.2
+element: span
+role: null
+delegatesTo: null
+description: >
+  Non-interactive pill displaying a chain / network name with an optional
+  icon. The icon is marked aria-hidden since the name is already the text
+  content; screen readers read "Base", not "Base Base".
+
+keyboard: []
+
+focus:
+  visible: false
+  trapped: false
+  notes: "Non-interactive, not focusable."
+
+screenReader:
+  announcements:
+    - Reads the network name only.
+  notes: >
+    If you use NetworkBadge as a trigger for a chain switcher, wrap it in
+    a button and add an aria-label that conveys the action (e.g. "Switch
+    network, currently Base").
+
+contrast:
+  text: "Meets WCAG AA on default, outline, and subtle variants against the default theme"
+  ui: "N/A"
+
+motion:
+  reducedMotion: "No animations beyond the standard color transition"
+
+consumerResponsibilities:
+  - Provide the chain icon via the `icon` slot; the component ships no chain registry.
+  - Ensure the icon itself meets contrast requirements against the badge background.

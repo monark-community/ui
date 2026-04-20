@@ -1,0 +1,43 @@
+{
+  "component": "Button",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "button",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Renders a native <button> by default, or whatever element the consumer passes via asChild (through Radix Slot). All native button semantics apply: implicit role=\"button\", disabled state with pointer-events:none and opacity-50. Variants and sizes only change the visual treatment.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to / from the button in document order."
+    },
+    {
+      "key": "Space / Enter",
+      "action": "Activates the button (native <button> behavior)."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Uses focus-visible:ring-1 so the ring only shows for keyboard focus, not mouse clicks. Disabled buttons drop pointer events and dim to 50% opacity.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Announces as \"button\" with the button's text content as its accessible name.",
+      "When disabled, announces the disabled state."
+    ],
+    "notes": "Icon-only buttons (size=\"icon\") must include an accessible name via aria-label or a visually-hidden <span>; the icon alone is not enough.\n"
+  },
+  "contrast": {
+    "text": "Every variant meets WCAG AA against its background (primary, destructive, outline, secondary, ghost, link)",
+    "ui": "Focus ring uses ring-ring which meets AA non-text contrast against bg-background"
+  },
+  "motion": {
+    "reducedMotion": "Only a color transition on hover; no motion-based animations"
+  },
+  "consumerResponsibilities": [
+    "Provide an accessible name for icon-only buttons; the inner svg is marked pointer-events-none and carries no semantics.",
+    "Use type=\"submit\" / type=\"reset\" explicitly when inside a form; the component does not set it for you.",
+    "When using asChild, the child must itself be a focusable, activatable element (e.g. <a>, another <button>), otherwise keyboard activation breaks."
+  ]
+}

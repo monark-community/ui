@@ -1,0 +1,17 @@
+[
+  {
+    "displayName": "Avatar",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "AvatarImage",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "AvatarFallback",
+    "description": "",
+    "props": []
+  }
+]

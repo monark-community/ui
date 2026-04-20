@@ -1,0 +1,53 @@
+[
+  {
+    "displayName": "Breadcrumb",
+    "description": "",
+    "props": [
+      {
+        "name": "separator",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "BreadcrumbList",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "BreadcrumbItem",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "BreadcrumbLink",
+    "description": "",
+    "props": [
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "BreadcrumbPage",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "BreadcrumbSeparator",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "BreadcrumbElipssis",
+    "description": "",
+    "props": []
+  }
+]

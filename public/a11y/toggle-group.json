@@ -1,0 +1,55 @@
+{
+  "component": "ToggleGroup",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "group",
+  "delegatesTo": "@radix-ui/react-toggle-group",
+  "description": "Collection of toggles with either single-select (type=\"single\", role=\"radiogroup\" with radio items) or multi-select (type=\"multiple\", role=\"group\" with pressed buttons) semantics. Radix implements roving tabindex so the whole group is one tab stop and arrow keys move between items.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus into the selected item (single mode) or the first item (multiple mode), and out of the group."
+    },
+    {
+      "key": "ArrowLeft / ArrowRight",
+      "action": "In single mode, moves selection between items (wraps by default). In multiple mode, moves focus without toggling."
+    },
+    {
+      "key": "ArrowUp / ArrowDown",
+      "action": "Same as Left / Right when orientation=\"vertical\"."
+    },
+    {
+      "key": "Home / End",
+      "action": "Moves to the first / last item."
+    },
+    {
+      "key": "Space / Enter",
+      "action": "In multiple mode, toggles the focused item."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Each item uses focus-visible:ring-1 via toggleVariants. Only one item in the group is a tab stop at a time (roving tabindex).\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Single mode announces as a radio group with the selected item's label.",
+      "Multiple mode announces as a group; each item announces with pressed / not pressed state."
+    ],
+    "notes": "Context provides size / variant to children so consumers don't have to pass them on each item. Icon-only items still need an aria-label.\n"
+  },
+  "contrast": {
+    "text": "Item text uses foreground; pressed state uses text-accent-foreground on bg-accent. Both meet WCAG AA",
+    "ui": "Focus ring uses ring-ring; outline variant adds border-input. Both meet AA non-text contrast"
+  },
+  "motion": {
+    "reducedMotion": "Only a color transition on hover / state change; no motion-based animations"
+  },
+  "consumerResponsibilities": [
+    "Provide an aria-label or aria-labelledby on ToggleGroup describing what's being toggled (e.g. \"Text alignment\").",
+    "Provide aria-label on icon-only items; the variant styling alone isn't enough for AT.",
+    "Pick type=\"single\" for mutually-exclusive options (e.g. alignment left vs. center vs. right) and type=\"multiple\" for independent toggles (e.g. text styling like bold, italic, underline)."
+  ]
+}

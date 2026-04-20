@@ -1,0 +1,85 @@
+[
+  {
+    "displayName": "NftCard",
+    "description": "",
+    "props": [
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "NFT display name."
+      },
+      {
+        "name": "image",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Image URL for the NFT."
+      },
+      {
+        "name": "imageAlt",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Alt text for the image. Defaults to `name`."
+      },
+      {
+        "name": "collection",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Collection name; rendered in muted text above the name."
+      },
+      {
+        "name": "collectionBadge",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Optional collection badge shown as an overlay in the top-left of the image."
+      },
+      {
+        "name": "aspectRatio",
+        "type": "number",
+        "required": false,
+        "defaultValue": "1",
+        "description": "Aspect ratio of the image; defaults to 1 (square)."
+      },
+      {
+        "name": "price",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Price label (e.g. \"0.42 ETH\"). Rendered in the footer."
+      },
+      {
+        "name": "priceSecondary",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Secondary price label (e.g. \"$1,234\"). Rendered under `price` in muted text."
+      },
+      {
+        "name": "action",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Primary action button slot; e.g. <Button>Buy</Button>."
+      },
+      {
+        "name": "traits",
+        "type": "NftTrait[]",
+        "required": false,
+        "defaultValue": null,
+        "description": "Trait list. Rendered in a 2-column grid between the header and footer."
+      },
+      {
+        "name": "maxTraits",
+        "type": "number",
+        "required": false,
+        "defaultValue": "4",
+        "description": "Cap on the number of traits shown before truncating with \"+N more\". Default: 4."
+      }
+    ]
+  }
+]

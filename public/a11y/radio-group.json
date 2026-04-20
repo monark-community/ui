@@ -1,0 +1,51 @@
+{
+  "component": "RadioGroup",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "radiogroup",
+  "delegatesTo": "@radix-ui/react-radio-group",
+  "description": "Single-select group of radio buttons. RadioGroup is role=\"radiogroup\"; each RadioGroupItem is a <button role=\"radio\"> with aria-checked. Radix implements roving tabindex so the group acts as one tab stop, and arrow keys move the selection between items.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus into the currently-checked radio (or the first radio if none is checked), and out of the group."
+    },
+    {
+      "key": "ArrowDown / ArrowRight",
+      "action": "Moves focus to and checks the next radio (wraps at the end)."
+    },
+    {
+      "key": "ArrowUp / ArrowLeft",
+      "action": "Moves focus to and checks the previous radio (wraps at the start)."
+    },
+    {
+      "key": "Space",
+      "action": "Checks the focused radio (redundant since arrow keys already check)."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Uses focus-visible:ring-1. The currently-checked item is the only tab stop; all other items are tabindex=-1 but reachable via arrows.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The group announces as a radio group with its count and label (via aria-label / aria-labelledby).",
+      "Each radio announces with its label, \"radio\" role, and checked state."
+    ],
+    "notes": "Radio items have no visible label of their own; pair each with a <Label htmlFor={id}> so the accessible name and click target both work.\n"
+  },
+  "contrast": {
+    "text": "The fill circle uses fill-primary over a white ring; meets WCAG AA",
+    "ui": "Unchecked border uses primary token; meets AA non-text contrast against bg-background"
+  },
+  "motion": {
+    "reducedMotion": "No motion animation; only a color swap between states"
+  },
+  "consumerResponsibilities": [
+    "Provide a group label via aria-label / aria-labelledby on RadioGroup, or wrap in a <fieldset><legend>; otherwise screen reader users hear an unnamed group.",
+    "Label each radio with a real <Label> linked by htmlFor; the visual circle alone has no name.",
+    "Don't pre-check an option unless it's a safe default; uncheckable radio groups require the user to make a choice, which is often preferable."
+  ]
+}

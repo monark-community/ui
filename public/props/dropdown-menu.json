@@ -1,0 +1,101 @@
+[
+  {
+    "displayName": "DropdownMenu",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuTrigger",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuContent",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuItem",
+    "description": "",
+    "props": [
+      {
+        "name": "inset",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "DropdownMenuCheckboxItem",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuRadioItem",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuLabel",
+    "description": "",
+    "props": [
+      {
+        "name": "inset",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "DropdownMenuSeparator",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuShortcut",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuGroup",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuPortal",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuSub",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuSubContent",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "DropdownMenuSubTrigger",
+    "description": "",
+    "props": [
+      {
+        "name": "inset",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "DropdownMenuRadioGroup",
+    "description": "",
+    "props": []
+  }
+]

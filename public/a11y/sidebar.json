@@ -1,0 +1,53 @@
+{
+  "component": "Sidebar",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Composite app-shell sidebar (shadcn pattern). On desktop it's a collapsible <div> structure with data-state / data-collapsible attributes; on mobile it renders inside a Sheet (Radix Dialog) so focus trapping and Escape-to- close work automatically. Includes a global Ctrl/Cmd+B keyboard shortcut to toggle the sidebar, plus a SidebarRail affordance for drag-resize.\n",
+  "keyboard": [
+    {
+      "key": "Ctrl+B / Cmd+B",
+      "action": "Toggles the sidebar open / closed (global listener registered by SidebarProvider)."
+    },
+    {
+      "key": "Tab",
+      "action": "Moves focus through SidebarMenuButton / SidebarMenuSubButton items in DOM order."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Activates the focused menu button (which is usually a link or a button)."
+    },
+    {
+      "key": "Escape",
+      "action": "On mobile (Sheet mode), closes the sidebar and returns focus to the trigger."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "On desktop the sidebar is part of the page flow; focus is not trapped. On mobile it opens in a Sheet, so Radix Dialog's focus trap applies. SidebarRail is tabIndex={-1} by design; it's a pointer-only drag affordance that also works as a click target.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "SidebarTrigger includes an sr-only \"Toggle Sidebar\" label so the icon button is named.",
+      "On mobile, the Sheet wrapper exposes a sr-only SheetTitle \"Sidebar\" and SheetDescription \"Displays the mobile sidebar.\"",
+      "Each SidebarMenuButton announces its text and active state; data-active=true sets the accent styling but consumers should also add aria-current=\"page\" for route-based active items."
+    ],
+    "notes": "When collapsed on desktop, SidebarMenuButtons can be paired with a Tooltip that appears on hover / focus. The Tooltip is hidden in the expanded state via the hidden prop on TooltipContent.\n"
+  },
+  "contrast": {
+    "text": "Menu text uses sidebar-foreground; muted variants use sidebar-foreground/70 for group labels. All meet WCAG AA",
+    "ui": "Focus ring uses ring-sidebar-ring at 2px; active state uses bg-sidebar-accent. Both meet AA non-text contrast"
+  },
+  "motion": {
+    "reducedMotion": "Width / transform transitions use duration-200 ease-linear. Gate with motion-reduce:transition-none if strict compliance matters.\n"
+  },
+  "consumerResponsibilities": [
+    "Set aria-current=\"page\" on the active SidebarMenuButton / SidebarMenuSubButton; the isActive prop only drives styling, not semantics.",
+    "Provide tooltip text on SidebarMenuButton when using collapsible=\"icon\" mode so icon-only buttons have an accessible name even when the label is hidden.",
+    "For the mobile Sheet variant, users expect Escape to close; don't override onEscapeKeyDown unintentionally.",
+    "The Ctrl/Cmd+B shortcut is global. Document it in your app's keyboard shortcuts help surface so users can discover it."
+  ]
+}

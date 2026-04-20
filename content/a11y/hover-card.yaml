@@ -1,0 +1,49 @@
+component: HoverCard
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: null
+delegatesTo: "@radix-ui/react-hover-card"
+description: >
+  Rich preview that opens on hover or focus of its trigger. Radix opens
+  after openDelay (defaults 700ms) and closes after closeDelay. The content
+  is portaled and positioned via Radix's popper; it is intentionally
+  non-modal and non-focusable by design (it's a preview, not a menu).
+
+keyboard:
+  - key: Tab
+    action: Moves focus to the trigger; after openDelay the card opens.
+  - key: Shift+Tab
+    action: Moves focus away from the trigger; closes the card.
+  - key: Escape
+    action: Closes the card when open.
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    The trigger uses its own focus ring. Content is not focusable unless
+    the consumer explicitly places interactive elements inside; doing so
+    is discouraged because the card closes on mouseleave.
+
+screenReader:
+  announcements:
+    - Hover cards are advisory only; screen readers do not always announce them on focus.
+  notes: >
+    Do not put essential information or interactive controls inside a
+    HoverCard. Assistive tech behavior varies. If the content matters,
+    use Popover (keyboard-focusable) or Dialog instead.
+
+contrast:
+  text: "Content uses foreground over bg-popover; meets WCAG AA on the default theme"
+  ui: "Border uses border token; meets AA non-text contrast against bg-background"
+
+motion:
+  reducedMotion: >
+    Uses data-[state=open]:animate-in with fade + zoom + slide utilities.
+    Gate with motion-reduce:animate-none if strict compliance matters.
+
+consumerResponsibilities:
+  - Never put primary actions in a HoverCard; keyboard-only and touch users can't reliably reach them.
+  - Keep content to previews / supplementary info that the user can get elsewhere.
+  - If touch / keyboard access is important, use Popover with a click trigger instead.

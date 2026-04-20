@@ -1,0 +1,56 @@
+component: Carousel
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: region
+delegatesTo: embla-carousel-react
+description: >
+  Slideshow container built on embla-carousel-react. The root is a
+  role="region" with aria-roledescription="carousel"; each slide is a
+  role="group" with aria-roledescription="slide". CarouselPrevious /
+  CarouselNext are real Buttons that scroll the embla instance, disabling
+  themselves when there is no more room to scroll in that direction.
+
+keyboard:
+  - key: Tab
+    action: Moves focus to the Previous / Next buttons and to any focusable content inside the current slide.
+  - key: ArrowLeft
+    action: Scrolls to the previous slide (handler is attached with onKeyDownCapture on the carousel root).
+  - key: ArrowRight
+    action: Scrolls to the next slide.
+  - key: Enter / Space
+    action: Activates the focused Previous / Next button.
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Focus is not trapped. The Prev / Next buttons use the standard Button
+    focus ring; arrow-key scrolling works whenever focus is inside the
+    carousel region.
+
+screenReader:
+  announcements:
+    - The region announces with the "carousel" role description.
+    - Each slide announces with the "slide" role description; consumers can add aria-label for position ("Slide 2 of 5").
+    - Prev / Next buttons have sr-only labels "Previous slide" and "Next slide".
+  notes: >
+    Auto-playing carousels should be paused on focus / hover; this component
+    does not pause automatically. If you use autoplay plugins, wire
+    stopOnInteraction / stopOnFocusIn so keyboard users aren't racing the
+    animation.
+
+contrast:
+  text: "Slide content inherits from consumer markup; Prev / Next use Button outline variant which meets WCAG AA"
+  ui: "Button focus ring meets AA; disabled buttons dim to 50% opacity as a visual-only state"
+
+motion:
+  reducedMotion: >
+    Embla uses programmatic transform animations. Consumers needing strict
+    reduced-motion behavior should pass `duration: 0` via opts or swap
+    embla's transition with a motion-safe alternative.
+
+consumerResponsibilities:
+  - Add aria-label="<slide position>" to each CarouselItem for screen reader users; the component only supplies the roledescription.
+  - Pause autoplay on user interaction (hover, focus, keyboard). Use the appropriate embla plugin.
+  - If slides contain essential content (not just marketing), consider exposing them as a list below the carousel so keyboard-only users can scan without scrolling.

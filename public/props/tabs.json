@@ -1,0 +1,22 @@
+[
+  {
+    "displayName": "Tabs",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "TabsList",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "TabsTrigger",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "TabsContent",
+    "description": "",
+    "props": []
+  }
+]

@@ -1,0 +1,38 @@
+component: TokenAmount
+wcag: AA
+standard: WAI-ARIA 1.2
+element: span
+role: null
+delegatesTo: null
+description: >
+  Pure text component. Renders a formatted amount with an optional symbol
+  and an optional fiat second line. No interactive behavior; screen readers
+  read it in normal flow.
+
+keyboard: []
+
+focus:
+  visible: false
+  trapped: false
+  notes: "Non-interactive, not focusable."
+
+screenReader:
+  announcements:
+    - Reads the formatted amount, symbol, and fiat value in that order.
+  notes: >
+    Numeric formatting uses Intl.NumberFormat with the caller's locale, so
+    thousand separators and decimal separators are localized. Symbols are
+    rendered as plain text; consumers who need currency-style announcements
+    (e.g. "1.23 ether") should wrap with their own aria-label.
+
+contrast:
+  text: "Primary amount uses foreground; symbol and fiat line use text-muted-foreground; both meet WCAG AA on the default theme"
+  ui: "N/A"
+
+motion:
+  reducedMotion: "No animations"
+
+consumerResponsibilities:
+  - Convert on-chain units to the component's base-unit input yourself; the component does not know about token registries.
+  - When showing fiat, pass a recent usdValue; the component never fetches prices.
+  - If the amount is extremely large or small, consider formatting with scientific notation outside the component and passing a string; Intl.NumberFormat shows the full integer part.

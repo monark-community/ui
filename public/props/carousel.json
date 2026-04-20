@@ -1,0 +1,100 @@
+[
+  {
+    "displayName": "Carousel",
+    "description": "",
+    "props": [
+      {
+        "name": "opts",
+        "type": "Partial<OptionsType>",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "plugins",
+        "type": "CreatePluginType<LoosePluginType, {}>[]",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "orientation",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "horizontal",
+        "description": ""
+      },
+      {
+        "name": "setApi",
+        "type": "(api: EmblaCarouselType) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "CarouselContent",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "CarouselItem",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "CarouselPrevious",
+    "description": "",
+    "props": [
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "outline",
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "icon",
+        "description": ""
+      },
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "CarouselNext",
+    "description": "",
+    "props": [
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "outline",
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "icon",
+        "description": ""
+      },
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  }
+]

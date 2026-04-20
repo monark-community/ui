@@ -1,0 +1,49 @@
+component: Switch
+wcag: AA
+standard: WAI-ARIA 1.2
+element: button
+role: switch
+delegatesTo: "@radix-ui/react-switch"
+description: >
+  On / off toggle. Radix renders a <button role="switch"> with
+  aria-checked reflecting the current state. The visual thumb slides via
+  data-[state=checked]:translate-x-4. Unlike Checkbox, there is no
+  indeterminate state.
+
+keyboard:
+  - key: Tab
+    action: Moves focus to / from the switch.
+  - key: Space / Enter
+    action: Toggles the switch.
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Uses focus-visible:ring-2 with ring-offset-2. Disabled switches show
+    cursor-not-allowed and opacity-50 but remain in the tab order unless
+    tabIndex={-1} is added.
+
+screenReader:
+  announcements:
+    - Announces as "switch" with its accessible name and current on / off state.
+  notes: >
+    Switch has no visible label of its own. Always pair with a <Label
+    htmlFor> or wrap in a <label>, or provide aria-label / aria-labelledby.
+    For settings with an immediate effect, Switch is usually the right
+    choice over Checkbox because users perceive it as a live toggle.
+
+contrast:
+  text: "N/A; no text"
+  ui: "Checked state uses bg-primary; unchecked uses bg-input. Thumb uses bg-background. All meet AA non-text contrast"
+
+motion:
+  reducedMotion: >
+    Thumb uses transition-transform. Gate with motion-reduce:transition-none
+    if you need strict reduced-motion compliance; the state is still
+    conveyed by position + color.
+
+consumerResponsibilities:
+  - Provide an accessible name via a linked <Label> or aria-label; the switch alone has none.
+  - Use Switch for settings that take effect immediately (autoSave, notifications). Use Checkbox for form fields that require a Submit.
+  - Don't rely on color alone to convey state; Radix already uses position (thumb left / right) as a secondary indicator, which works for color-blind users.

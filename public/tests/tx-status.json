@@ -1,0 +1,31 @@
+{
+  "component": "tx-status",
+  "hasUnitTests": true,
+  "hasInteractionTests": false,
+  "hasVisualTests": false,
+  "hasA11yTests": false,
+  "hasPerformanceTests": false,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/unit/components/tx-status.test.tsx",
+      "type": "unit",
+      "tests": [
+        "truncates long hashes to start+ellipsis+end",
+        "returns short strings unchanged",
+        "honors custom start/end lengths",
+        "renders the default label for each status",
+        "renders the truncated hash",
+        "renders hash as a plain span when no explorerUrl is provided",
+        "builds an explorer link from explorerUrl + /tx/{hash}",
+        "prefers an explicit href over explorerUrl composition",
+        "strips a trailing slash from explorerUrl before composing",
+        "honors a custom label override",
+        "exposes the status via data-status for styling hooks"
+      ]
+    }
+  ],
+  "totalTests": 11
+}

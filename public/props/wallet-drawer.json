@@ -1,0 +1,120 @@
+[
+  {
+    "displayName": "WalletDrawer",
+    "description": "",
+    "props": [
+      {
+        "name": "status",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "disconnected",
+        "description": "Current connection state. Drives both the trigger and the drawer body."
+      },
+      {
+        "name": "address",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "The connected account's address. Required when status=\"connected\"."
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Optional display name (ENS, handle). Rendered above the address."
+      },
+      {
+        "name": "chainName",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Chain name (e.g. \"Base\"). Shown as a NetworkBadge in the drawer."
+      },
+      {
+        "name": "chainIcon",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Optional chain icon; forwarded to NetworkBadge."
+      },
+      {
+        "name": "balance",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Balance block rendered below the header; pass a <TokenAmount> or your own."
+      },
+      {
+        "name": "transactions",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Transaction list slot rendered below the balance; e.g. <TxStatus> items."
+      },
+      {
+        "name": "actions",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Extra actions rendered in the footer above the Disconnect row."
+      },
+      {
+        "name": "onConnect",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user clicks the disconnected-state Connect button."
+      },
+      {
+        "name": "onDisconnect",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Called when the user clicks the Disconnect button."
+      },
+      {
+        "name": "title",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": "Wallet",
+        "description": "Title for the drawer; defaults to \"Wallet\"."
+      },
+      {
+        "name": "description",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Description text under the title in the drawer header."
+      },
+      {
+        "name": "withTrigger",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": "Controls whether the drawer renders its own trigger; set false when you\nwant to wire the open state from outside."
+      },
+      {
+        "name": "open",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": "Controlled open state."
+      },
+      {
+        "name": "onOpenChange",
+        "type": "(open: boolean) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Open-state change callback (pairs with `open`)."
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  }
+]

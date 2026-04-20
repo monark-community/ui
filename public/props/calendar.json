@@ -1,0 +1,20 @@
+[
+  {
+    "displayName": "Calendar",
+    "description": "",
+    "props": [
+      {
+        "name": "buttonVariant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "ghost",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "CalendarDayButton",
+    "description": "",
+    "props": []
+  }
+]

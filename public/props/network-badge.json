@@ -1,0 +1,29 @@
+[
+  {
+    "displayName": "NetworkBadge",
+    "description": "",
+    "props": [
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "ReactNode",
+        "required": true,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "icon",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  }
+]

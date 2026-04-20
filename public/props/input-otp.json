@@ -1,0 +1,30 @@
+[
+  {
+    "displayName": "InputOTP",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "InputOTPGroup",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "InputOTPSlot",
+    "description": "",
+    "props": [
+      {
+        "name": "index",
+        "type": "number",
+        "required": true,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "InputOTPSeparator",
+    "description": "",
+    "props": []
+  }
+]

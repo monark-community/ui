@@ -1,0 +1,233 @@
+---
+title: Web3 Integration
+description: Wire Monark's web3 components to wagmi, viem, or your connector of choice.
+order: 3
+---
+
+# Web3 Integration
+
+Monark's web3 components (`Wallet`, `ConnectWallet`, `WalletDrawer`, `TokenAmount`, `NetworkBadge`, `TxStatus`, `SwapForm`) are intentionally presentational. They accept props and emit callbacks; they do not fetch, sign, broadcast, or hold connection state. Wiring them to a real stack is your job, which keeps the registry connector-agnostic.
+
+This page shows the canonical wiring for [wagmi v2](https://wagmi.sh) + [viem](https://viem.sh). The same pattern adapts to RainbowKit, Reown AppKit, or a hand-rolled connector.
+
+## ConnectWallet
+
+```tsx
+"use client"
+
+import { ConnectWallet } from "@/components/ui/connect-wallet"
+import {
+  useAccount,
+  useConnect,
+  useDisconnect,
+  useEnsName,
+} from "wagmi"
+
+export function ConnectButton() {
+  const { address, status } = useAccount()
+  const { connect, connectors, status: connectStatus } = useConnect()
+  const { disconnect } = useDisconnect()
+  const { data: ensName } = useEnsName({ address })
+
+  const derivedStatus =
+    status === "connected"
+      ? "connected"
+      : connectStatus === "pending"
+        ? "connecting"
+        : "disconnected"
+
+  return (
+    <ConnectWallet
+      status={derivedStatus}
+      address={address}
+      name={ensName ?? undefined}
+      onConnect={() => connect({ connector: connectors[0] })}
+      onDisconnect={() => disconnect()}
+    />
+  )
+}
+```
+
+The component only cares about `status`, `address`, and two callbacks. Derive them however your connector exposes them.
+
+## TokenAmount from a balance hook
+
+```tsx
+import { TokenAmount } from "@/components/ui/token-amount"
+import { useBalance } from "wagmi"
+
+export function EthBalance({ address }: { address: `0x${string}` }) {
+  const { data, isLoading } = useBalance({ address })
+
+  if (isLoading || !data) return <TokenAmount value={0n} symbol="ETH" />
+
+  return (
+    <TokenAmount
+      value={data.value}
+      decimals={data.decimals}
+      symbol={data.symbol}
+      fractionDigits={4}
+    />
+  )
+}
+```
+
+For fiat conversion, compose your own price hook (CoinGecko, Chainlink, Pyth) and pass the result as `usdValue`; the component never fetches prices.
+
+## NetworkBadge from chain state
+
+```tsx
+import { NetworkBadge } from "@/components/ui/network-badge"
+import { useChainId, useChains } from "wagmi"
+
+export function ChainPill() {
+  const chainId = useChainId()
+  const chains = useChains()
+  const chain = chains.find((c) => c.id === chainId)
+
+  if (!chain) return null
+
+  return (
+    <NetworkBadge
+      name={chain.name}
+      icon={<ChainIcon id={chain.id} />} // your own icon component
+    />
+  )
+}
+```
+
+## TxStatus from a write-contract flow
+
+```tsx
+import { TxStatus } from "@/components/ui/tx-status"
+import { useWaitForTransactionReceipt, useWriteContract } from "wagmi"
+
+export function MintButton() {
+  const { data: hash, writeContract, isPending } = useWriteContract()
+  const { isLoading, isSuccess, isError } = useWaitForTransactionReceipt({ hash })
+
+  const status =
+    !hash ? undefined
+    : isError ? "failed"
+    : isSuccess ? "confirmed"
+    : "pending"
+
+  return (
+    <>
+      <button
+        onClick={() =>
+          writeContract({
+            address: "0x...",
+            abi: erc721Abi,
+            functionName: "mint",
+          })
+        }
+        disabled={isPending}
+      >
+        {isPending ? "Confirming in wallet..." : "Mint"}
+      </button>
+      {hash && status && (
+        <TxStatus
+          status={status}
+          hash={hash}
+          explorerUrl="https://etherscan.io"
+        />
+      )}
+    </>
+  )
+}
+```
+
+## WalletDrawer as the full account surface
+
+`WalletDrawer` composes `ConnectWallet`, `Wallet`, `NetworkBadge`, and whatever you pass into the `balance` / `transactions` slots. A minimal wiring:
+
+```tsx
+import { WalletDrawer } from "@/registry/new-york/blocks/wallet-drawer/wallet-drawer"
+import { TokenAmount } from "@/components/ui/token-amount"
+import { TxStatus } from "@/components/ui/tx-status"
+import {
+  useAccount,
+  useBalance,
+  useChainId,
+  useChains,
+  useConnect,
+  useDisconnect,
+} from "wagmi"
+
+export function Account() {
+  const { address, status } = useAccount()
+  const { connect, connectors, status: connectStatus } = useConnect()
+  const { disconnect } = useDisconnect()
+  const { data: balance } = useBalance({ address })
+  const chainId = useChainId()
+  const chain = useChains().find((c) => c.id === chainId)
+  const recentTxs = useRecentTransactions(address) // your own hook
+
+  const derivedStatus =
+    status === "connected" ? "connected"
+    : connectStatus === "pending" ? "connecting"
+    : "disconnected"
+
+  return (
+    <WalletDrawer
+      status={derivedStatus}
+      address={address}
+      chainName={chain?.name}
+      onConnect={() => connect({ connector: connectors[0] })}
+      onDisconnect={() => disconnect()}
+      balance={
+        balance && (
+          <TokenAmount
+            value={balance.value}
+            decimals={balance.decimals}
+            symbol={balance.symbol}
+          />
+        )
+      }
+      transactions={recentTxs.map((tx) => (
+        <TxStatus
+          key={tx.hash}
+          status={tx.status}
+          hash={tx.hash}
+          explorerUrl={chain?.blockExplorers?.default.url}
+        />
+      ))}
+    />
+  )
+}
+```
+
+## SwapForm with a real quote
+
+The form is controlled; drive `fromAmount` / `toAmount` from a debounced quote query (viem's `readContract` against a DEX router, 1inch API, CoW Protocol, etc.):
+
+```tsx
+const debouncedFromAmount = useDebounce(fromAmount, 300)
+
+const { data: quote, isLoading: isQuoting } = useQuery({
+  queryKey: ["quote", fromToken, toToken, debouncedFromAmount],
+  queryFn: () => fetchQuote(fromToken, toToken, debouncedFromAmount),
+  enabled: Boolean(debouncedFromAmount),
+})
+
+useEffect(() => {
+  if (quote) setToAmount(quote.outAmount)
+}, [quote])
+
+const status =
+  !fromAmount ? "idle"
+  : isQuoting ? "quoting"
+  : quote ? "ready"
+  : "error"
+```
+
+Then pass `status` into `<SwapForm status={status} ... />`. The submit button disables and shows "Fetching quote..." automatically.
+
+## Anti-patterns
+
+**Don't** mutate `address` locally to strip it or reformat. Pass the raw checksummed value; `WalletAddress` truncates for display and exposes the full address via `title`.
+
+**Don't** embed signing logic in the components. Keep `onSwap`, `onConnect`, `onDisconnect` as thin delegators; your state machine (wagmi's pending / success / error) decides what happens.
+
+**Don't** fetch prices inside `TokenAmount`. The component is a formatter; price is an input.

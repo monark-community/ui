@@ -1,0 +1,57 @@
+[
+  {
+    "displayName": "AlertDialog",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "AlertDialogPortal",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "AlertDialogOverlay",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "AlertDialogTrigger",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "AlertDialogContent",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "AlertDialogHeader",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "AlertDialogFooter",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "AlertDialogTitle",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "AlertDialogDescription",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "AlertDialogAction",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "AlertDialogCancel",
+    "description": "",
+    "props": []
+  }
+]

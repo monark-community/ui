@@ -1,0 +1,38 @@
+component: Separator
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: separator
+delegatesTo: "@radix-ui/react-separator"
+description: >
+  Thin horizontal or vertical divider. When decorative={true} (the default),
+  Radix renders role="none" so assistive tech ignores it. When
+  decorative={false}, it renders role="separator" with aria-orientation
+  so screen readers can announce the boundary.
+
+keyboard: []
+
+focus:
+  visible: false
+  trapped: false
+  notes: "Non-interactive, not focusable."
+
+screenReader:
+  announcements:
+    - With decorative={true}: silent.
+    - With decorative={false}: announces as a separator with its orientation.
+  notes: >
+    Use decorative={false} only when the separator carries real semantic
+    meaning (e.g. between two unrelated lists or sections); purely visual
+    lines should stay decorative to avoid clutter in the AT output.
+
+contrast:
+  text: "N/A; no text"
+  ui: "Uses bg-border; meets AA non-text contrast against bg-background"
+
+motion:
+  reducedMotion: "No animations"
+
+consumerResponsibilities:
+  - Keep decorative={true} unless the separator meaningfully divides content; otherwise screen reader users hear extra noise.
+  - Prefer semantic headings over separators when grouping content; separators complement headings but don't replace them.

@@ -1,0 +1,85 @@
+[
+  {
+    "displayName": "ConnectWallet",
+    "description": "",
+    "props": [
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "status",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "disconnected",
+        "description": ""
+      },
+      {
+        "name": "address",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "onConnect",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "onDisconnect",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "connectLabel",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": "Connect wallet",
+        "description": ""
+      },
+      {
+        "name": "connectingLabel",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": "Connecting…",
+        "description": ""
+      },
+      {
+        "name": "disconnectLabel",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": "Disconnect",
+        "description": ""
+      }
+    ]
+  }
+]

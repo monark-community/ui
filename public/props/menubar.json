@@ -1,0 +1,106 @@
+[
+  {
+    "displayName": "Menubar",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "MenubarMenu",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "MenubarTrigger",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "MenubarContent",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "MenubarItem",
+    "description": "",
+    "props": [
+      {
+        "name": "inset",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "MenubarSeparator",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "MenubarLabel",
+    "description": "",
+    "props": [
+      {
+        "name": "inset",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "MenubarCheckboxItem",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "MenubarRadioGroup",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "MenubarRadioItem",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "MenubarPortal",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "MenubarSubContent",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "MenubarSubTrigger",
+    "description": "",
+    "props": [
+      {
+        "name": "inset",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "MenubarGroup",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "MenubarSub",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "MenubarShortcut",
+    "description": "",
+    "props": []
+  }
+]

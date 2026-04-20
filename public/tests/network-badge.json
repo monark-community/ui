@@ -1,0 +1,26 @@
+{
+  "component": "network-badge",
+  "hasUnitTests": true,
+  "hasInteractionTests": false,
+  "hasVisualTests": false,
+  "hasA11yTests": false,
+  "hasPerformanceTests": false,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/unit/components/network-badge.test.tsx",
+      "type": "unit",
+      "tests": [
+        "renders the network name",
+        "renders an icon slot when provided",
+        "marks the icon container aria-hidden so screen readers only read the name once",
+        "applies data-slot on the root",
+        "accepts variant=",
+        "does not render the icon wrapper when icon is omitted"
+      ]
+    }
+  ],
+  "totalTests": 6
+}

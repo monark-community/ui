@@ -1,0 +1,48 @@
+{
+  "component": "Sonner",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "ol",
+  "role": "region",
+  "delegatesTo": "sonner",
+  "description": "Toast notification surface built on the sonner library. The Toaster renders an ordered list of toasts inside a region labelled \"Notifications\". Each toast is role=\"status\" (or role=\"alert\" for error-level), so they're announced via polite / assertive live regions without stealing focus. Theme is mirrored from next-themes.\n",
+  "keyboard": [
+    {
+      "key": "F6",
+      "action": "Moves focus to the toast region (sonner default, user-dismissible focus target)."
+    },
+    {
+      "key": "Tab",
+      "action": "When focus is in the toast region, moves to the toast's action / cancel buttons."
+    },
+    {
+      "key": "Escape",
+      "action": "Dismisses the focused toast (sonner default)."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Toasts do not steal focus. When the user presses F6, focus moves into the toast region so keyboard users can reach action / dismiss buttons.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Each toast is announced via role=\"status\" (polite) by default, or role=\"alert\" (assertive) for error toasts.",
+      "The action button and cancel button carry their own labels."
+    ],
+    "notes": "Sonner's default announcements are concise. For long messages, provide a description that keeps the primary message short, since live regions can be interrupted if the user acts quickly.\n"
+  },
+  "contrast": {
+    "text": "Uses group-[.toaster]:bg-background / text-foreground; description uses text-muted-foreground. All meet WCAG AA",
+    "ui": "Border uses border-border; action button uses primary tokens. Both meet AA non-text contrast"
+  },
+  "motion": {
+    "reducedMotion": "Sonner animates enter / exit with slide + fade. The library respects prefers-reduced-motion natively, collapsing animations to a plain fade when the user opts out.\n"
+  },
+  "consumerResponsibilities": [
+    "Use toast.error for destructive / error states so the assertive live region is used.",
+    "Keep messages short; toasts auto-dismiss, so long text gets cut off before AT finishes reading.",
+    "For actions that require a decision (not a confirmation), use a Dialog / AlertDialog instead; toasts can be missed.",
+    "Mount <Toaster /> once at the app root; additional Toasters will double-render toasts."
+  ]
+}

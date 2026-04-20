@@ -1,0 +1,60 @@
+{
+  "component": "NavigationMenu",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "nav",
+  "role": null,
+  "delegatesTo": "@radix-ui/react-navigation-menu",
+  "description": "Site-level navigation with optional mega-menu content panels. Radix renders a <nav> landmark; triggers are <button>s with aria-expanded and aria-controls pointing at their content panels. NavigationMenuLink is a plain <a> you can mark as aria-current=\"page\" for the active route.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to / from the menu (and into open content panels)."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Opens the focused trigger's content panel."
+    },
+    {
+      "key": "ArrowDown / ArrowUp",
+      "action": "Moves focus within an open content panel."
+    },
+    {
+      "key": "ArrowLeft / ArrowRight",
+      "action": "Moves focus between top-level triggers."
+    },
+    {
+      "key": "Escape",
+      "action": "Closes the open panel and returns focus to its trigger."
+    },
+    {
+      "key": "Home / End",
+      "action": "Moves focus to the first / last top-level trigger."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Unlike Menubar, focus is not scoped inside the open panel; users can Tab out of the menu at any point. Radix restores focus to the trigger when the panel is closed via Escape.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The root announces as a nav landmark.",
+      "Each trigger announces as a button with its expanded state.",
+      "Links inside panels announce normally; consumers should mark the current page with aria-current=\"page\"."
+    ],
+    "notes": "The ChevronDown icon inside NavigationMenuTrigger is aria-hidden so it isn't read as \"down arrow\"; the trigger's expanded state is conveyed via aria-expanded.\n"
+  },
+  "contrast": {
+    "text": "Trigger text and links use foreground; hover / focus / open states swap to text-accent-foreground on bg-accent. All meet WCAG AA",
+    "ui": "Indicator arrow and viewport border use border token; meet AA non-text contrast"
+  },
+  "motion": {
+    "reducedMotion": "Viewport and indicator animate with data-[motion] / data-[state] slide + fade + zoom utilities. Gate with motion-reduce:animate-none if strict compliance matters.\n"
+  },
+  "consumerResponsibilities": [
+    "Mark the active route with aria-current=\"page\" on the relevant NavigationMenuLink; Radix does not infer it.",
+    "Use NavigationMenu for site navigation; use Menubar for app-style menu bars and DropdownMenu for per-element action menus.",
+    "Keep top-level labels short; the mega-menu panel is where detail belongs."
+  ]
+}

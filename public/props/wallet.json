@@ -1,0 +1,117 @@
+[
+  {
+    "displayName": "Wallet",
+    "description": "",
+    "props": [
+      {
+        "name": "address",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "md",
+        "description": ""
+      },
+      {
+        "name": "showCopy",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "WalletAvatar",
+    "description": "",
+    "props": [
+      {
+        "name": "address",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "number",
+        "required": false,
+        "defaultValue": "32",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "WalletAddress",
+    "description": "",
+    "props": [
+      {
+        "name": "address",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "start",
+        "type": "number",
+        "required": false,
+        "defaultValue": "6",
+        "description": ""
+      },
+      {
+        "name": "end",
+        "type": "number",
+        "required": false,
+        "defaultValue": "4",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "WalletCopyButton",
+    "description": "",
+    "props": [
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "address",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  }
+]

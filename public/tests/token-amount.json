@@ -1,0 +1,34 @@
+{
+  "component": "token-amount",
+  "hasUnitTests": true,
+  "hasInteractionTests": false,
+  "hasVisualTests": false,
+  "hasA11yTests": false,
+  "hasPerformanceTests": false,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/unit/components/token-amount.test.tsx",
+      "type": "unit",
+      "tests": [
+        "formats 1 ETH from wei",
+        "truncates fractional digits and strips trailing zeros",
+        "drops the entire fractional part when fractionDigits is 0",
+        "renders a negative sign for negative values",
+        "accepts string and number inputs",
+        "includes thousand separators for whole integers",
+        "returns 0 when frac is zero and value is 0",
+        "formats with currency and 2 fraction digits by default",
+        "respects currency override",
+        "renders amount with symbol",
+        "renders the USD line when usdValue is a number",
+        "hides the USD line when usdValue is undefined",
+        "hides the symbol when not provided",
+        "applies data-slot on the root for styling hooks"
+      ]
+    }
+  ],
+  "totalTests": 14
+}

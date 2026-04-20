@@ -1,0 +1,45 @@
+component: ScrollArea
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: null
+delegatesTo: "@radix-ui/react-scroll-area"
+description: >
+  Custom-styled scroll container. Radix renders a viewport that actually
+  scrolls (preserving native keyboard and wheel behavior) and overlays a
+  custom-styled scrollbar track / thumb. Because the underlying element
+  is a real scroll container, screen readers and keyboard users interact
+  with it exactly as they would a native overflow:auto div.
+
+keyboard: []
+
+focus:
+  visible: false
+  trapped: false
+  notes: >
+    The ScrollArea itself is not focusable by default. Interactive content
+    inside scrolls into view normally when it receives focus via Tab.
+
+screenReader:
+  announcements:
+    - No announcements from the ScrollArea wrapper; child content is read in normal flow.
+  notes: >
+    The custom ScrollBar is visual chrome; screen readers interact with
+    the actual scroll container, not the bar. Keyboard users still scroll
+    with ArrowUp / ArrowDown / PageUp / PageDown / Space when focus is
+    inside scrollable content.
+
+contrast:
+  text: "Inherits from child content; no default text tokens"
+  ui: "Scrollbar thumb uses bg-border; meets AA non-text contrast against bg-background"
+
+motion:
+  reducedMotion: >
+    Scrolling uses native browser behavior. Any smooth-scroll behavior
+    comes from the consumer's CSS (scroll-behavior: smooth) and should be
+    gated on prefers-reduced-motion.
+
+consumerResponsibilities:
+  - Ensure all focusable children inside the scroll area can receive focus; Radix does not interfere with tab order.
+  - For very long content, consider pagination or virtualization instead; ScrollArea does not virtualize.
+  - If content updates asynchronously (e.g. log stream), handle aria-live announcements separately; ScrollArea has none.

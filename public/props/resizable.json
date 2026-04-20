@@ -1,0 +1,25 @@
+[
+  {
+    "displayName": "ResizablePanelGroup",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "ResizablePanel",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "ResizableHandle",
+    "description": "",
+    "props": [
+      {
+        "name": "withHandle",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  }
+]

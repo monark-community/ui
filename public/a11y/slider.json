@@ -1,0 +1,63 @@
+{
+  "component": "Slider",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "span",
+  "role": "slider",
+  "delegatesTo": "@radix-ui/react-slider",
+  "description": "Single or multi-thumb range input. Radix renders each SliderThumb as a <span role=\"slider\"> with aria-valuemin, aria-valuemax, aria-valuenow, and aria-orientation. For multi-thumb ranges, Radix adds aria-valuetext so AT reads \"minimum\" / \"maximum\" context for each thumb.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to / from each thumb (each thumb is its own tab stop)."
+    },
+    {
+      "key": "ArrowLeft / ArrowDown",
+      "action": "Decreases the focused thumb's value by step."
+    },
+    {
+      "key": "ArrowRight / ArrowUp",
+      "action": "Increases the focused thumb's value by step."
+    },
+    {
+      "key": "PageDown",
+      "action": "Decreases by a larger increment (typically 10 * step)."
+    },
+    {
+      "key": "PageUp",
+      "action": "Increases by a larger increment."
+    },
+    {
+      "key": "Home",
+      "action": "Sets the focused thumb to its minimum."
+    },
+    {
+      "key": "End",
+      "action": "Sets the focused thumb to its maximum."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Each thumb uses focus-visible:ring-1. In multi-thumb mode, thumbs can't cross each other (Radix enforces a minStepsBetweenThumbs gap, default 0).\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Each thumb announces as a slider with its current, min, and max values.",
+      "Multi-thumb sliders announce aria-valuetext (\"minimum\" / \"maximum\") so users can tell which thumb they're adjusting."
+    ],
+    "notes": "The track and range are decorative; all ARIA lives on the thumbs. Provide an accessible label via aria-label / aria-labelledby on the SliderPrimitive.Root so AT knows what the value represents.\n"
+  },
+  "contrast": {
+    "text": "N/A; no text unless the consumer renders labels / tooltips",
+    "ui": "Thumb uses border-primary/50 on bg-background; track uses bg-primary/20 with bg-primary range. All meet AA non-text contrast"
+  },
+  "motion": {
+    "reducedMotion": "Thumb uses transition-colors only; no motion-based animation"
+  },
+  "consumerResponsibilities": [
+    "Provide an aria-label or aria-labelledby on the Slider root describing what the value represents (e.g. \"Volume\", \"Price range\").",
+    "For discrete sliders, pair with a visible value label or tooltip so users don't have to rely on aria-valuenow announcements.",
+    "Set step appropriately; very small steps with arrow-key navigation become tedious, so consider pairing with PageUp / PageDown for bigger jumps."
+  ]
+}

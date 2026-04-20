@@ -1,0 +1,117 @@
+---
+title: Theming
+description: Remap the default Monark theme to your brand using CSS variables.
+order: 2
+---
+
+# Theming
+
+Monark ships a single `theme` item that configures every color, radius, and font used by the rest of the registry. It's the first thing the `npx shadcn add` flow installs, and it sets defaults you can override at any layer.
+
+## How the theme is delivered
+
+When you ran `npx shadcn add @monark/theme`, shadcn wrote a `@theme inline` block into your global CSS plus a `:root` + `.dark` pair of CSS variables. Every Monark component reads those variables; nothing is hardcoded.
+
+```css title="app/globals.css (excerpt)"
+@theme inline {
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  /* ... */
+}
+
+:root {
+  --primary: oklch(0.705 0.213 47.604); /* Monark orange */
+  --primary-foreground: oklch(0.98 0.016 73.684);
+  --radius: 0.5rem;
+  --font-sans: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
+  /* ... */
+}
+
+.dark {
+  --primary: oklch(0.646 0.222 41.116); /* deeper orange in dark mode */
+  /* ... */
+}
+```
+
+## Remapping a color
+
+To change the accent from Monark orange to, say, teal, override `--primary` and `--primary-foreground` on `:root` (and `.dark` if the dark-mode variant differs):
+
+```css title="app/globals.css"
+:root {
+  --primary: oklch(0.75 0.15 180); /* teal */
+  --primary-foreground: oklch(0.98 0 0);
+}
+
+.dark {
+  --primary: oklch(0.68 0.14 180);
+  --primary-foreground: oklch(0.98 0 0);
+}
+```
+
+Every component that uses `primary` (Button's default variant, rings, chart colors) updates without touching a single component file.
+
+## Available tokens
+
+Monark exposes the full shadcn token set plus a few sidebar-specific ones:
+
+| Token | Used by |
+|---|---|
+| `--background` / `--foreground` | Page body |
+| `--card` / `--card-foreground` | Card, Wallet, Dialog content |
+| `--popover` / `--popover-foreground` | Popover, Dropdown, Select |
+| `--primary` / `--primary-foreground` | Button default, link, focus ring |
+| `--secondary` / `--secondary-foreground` | Button secondary, Badge secondary |
+| `--muted` / `--muted-foreground` | Placeholder text, dimmed UI |
+| `--accent` / `--accent-foreground` | Hover states, menu highlights |
+| `--destructive` | Destructive button, error text |
+| `--border` / `--input` / `--ring` | All borders, form inputs, focus ring |
+| `--chart-1` ... `--chart-5` | Recharts palette |
+| `--sidebar*` | Sidebar block backgrounds and borders |
+| `--radius` | All rounded utilities (`rounded-md`, `rounded-lg`) |
+| `--font-sans` / `--font-mono` | Everything |
+
+## Changing the radius
+
+```css
+:root {
+  --radius: 0.75rem; /* softer; default is 0.5rem */
+}
+```
+
+## Changing the font
+
+Monark uses Nunito Sans via a Google Fonts `@import`. To swap:
+
+1. Replace the `@import url(...)` at the top of your globals CSS (or use `next/font`).
+2. Update `--font-sans` to match the new family.
+
+```css
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap");
+
+:root {
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+}
+```
+
+## Dark mode
+
+Toggle dark mode with the `.dark` class on `<html>`. Monark's components don't care how you toggle it; pair with [next-themes](https://github.com/pacocoursey/next-themes) or roll your own. Every token has a dark-mode counterpart.
+
+## Chart palette
+
+The five `--chart-*` tokens drive the Chart block's default color ramp. Monark's defaults are warm tones tuned to pair with the orange primary; remap if you want a cooler palette:
+
+```css
+:root {
+  --chart-1: oklch(0.75 0.15 220); /* blue */
+  --chart-2: oklch(0.7 0.18 280);  /* purple */
+  --chart-3: oklch(0.75 0.12 160); /* mint */
+  --chart-4: oklch(0.85 0.1 90);   /* yellow */
+  --chart-5: oklch(0.65 0.2 0);    /* red */
+}
+```
+
+## When to fork vs override
+
+Override via CSS variables when you want to re-skin. Fork (edit `components/ui/*.tsx`) when you need structural changes: different Radix primitives, additional slots, different accessibility semantics. Monark's components sit in your repo after install, so either path is yours to take.

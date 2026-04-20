@@ -1,0 +1,41 @@
+component: Progress
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: progressbar
+delegatesTo: "@radix-ui/react-progress"
+description: >
+  Determinate progress bar. Radix renders a <div role="progressbar"> with
+  aria-valuemin / aria-valuemax / aria-valuenow reflecting the current
+  value (0–100). The visual bar is a child <div> whose translateX is
+  animated based on value.
+
+keyboard: []
+
+focus:
+  visible: false
+  trapped: false
+  notes: "Non-interactive, not focusable."
+
+screenReader:
+  announcements:
+    - Announces as a progress bar with its current value as a percentage.
+  notes: >
+    For long-running operations, screen readers may not re-announce value
+    changes automatically. Consider wrapping the operation's status in an
+    aria-live region that reports milestones ("25% complete", "50% complete").
+
+contrast:
+  text: "N/A; progress bar has no text unless the consumer overlays a label"
+  ui: "Fill uses bg-primary, track uses bg-primary/20; meets AA non-text contrast"
+
+motion:
+  reducedMotion: >
+    The fill uses transition-all. Gate with motion-reduce:transition-none
+    if you need strict reduced-motion compliance; the end value is visible
+    immediately either way.
+
+consumerResponsibilities:
+  - Provide an accessible label (aria-label / aria-labelledby) describing what is loading.
+  - For indeterminate progress (unknown duration), pass value={null} to let Radix omit aria-valuenow; consider swapping to a Skeleton or spinner instead.
+  - Don't use Progress as the sole indicator of a time-sensitive action; pair with a text status that updates.

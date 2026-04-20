@@ -1,0 +1,25 @@
+[
+  {
+    "displayName": "Alert",
+    "description": "",
+    "props": [
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "AlertTitle",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "AlertDescription",
+    "description": "",
+    "props": []
+  }
+]

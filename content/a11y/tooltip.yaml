@@ -1,0 +1,55 @@
+component: Tooltip
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: tooltip
+delegatesTo: "@radix-ui/react-tooltip"
+description: >
+  Short label that appears on hover or focus. TooltipTrigger is whatever
+  element the consumer passes (typically a button); TooltipContent is
+  portaled and marked role="tooltip". Radix wires aria-describedby from
+  the trigger to the content so screen readers announce the tip when the
+  trigger is focused. TooltipProvider configures delayDuration and other
+  defaults for the whole tree.
+
+keyboard:
+  - key: Tab
+    action: Moves focus to the trigger; tooltip opens immediately (or after Provider's delayDuration).
+  - key: Shift+Tab
+    action: Moves focus away from the trigger; tooltip closes.
+  - key: Escape
+    action: Closes the open tooltip without moving focus.
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    The trigger keeps its own focus ring. TooltipContent is not focusable;
+    users cannot tab into it. This is intentional; tooltips must not
+    contain interactive content.
+
+screenReader:
+  announcements:
+    - When the trigger is focused, the tooltip content is announced via aria-describedby.
+    - On hover only (no focus), screen readers do not announce the tooltip; consumers relying on this should use a different pattern.
+  notes: >
+    Tooltips must be short, non-essential supplements to an already-visible
+    label. Never put the only description of a control inside a tooltip;
+    touchscreen users can't hover, and screen reader behavior on hover is
+    inconsistent.
+
+contrast:
+  text: "Content uses text-primary-foreground on bg-primary; meets WCAG AA"
+  ui: "No border; relies on the high-contrast solid background for separation"
+
+motion:
+  reducedMotion: >
+    Uses animate-in fade-in-0 zoom-in-95 plus data-[side]:slide-in
+    utilities. Gate with motion-reduce:animate-none if strict compliance
+    matters.
+
+consumerResponsibilities:
+  - Wrap your tree in a single TooltipProvider (often at the app root); each Tooltip reads its config from the nearest provider.
+  - Keep content short (a few words); long tooltips are cut off and can't be interacted with.
+  - Do not put buttons, links, or form fields inside a tooltip; use Popover for interactive floating content.
+  - Ensure the trigger has its own accessible name (text or aria-label); tooltip content supplements, it doesn't replace.

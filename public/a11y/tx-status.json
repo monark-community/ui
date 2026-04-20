@@ -1,0 +1,42 @@
+{
+  "component": "TxStatus",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "group",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Transaction status row. Displays a status icon (spinner for pending, check for confirmed, X for failed), a label, and a truncated hash that optionally links to a block explorer. The hash link, when present, is the only interactive element.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the explorer link (if explorerUrl or href is provided)."
+    },
+    {
+      "key": "Enter",
+      "action": "Activates the link, opening the explorer in a new tab."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "The link uses the default browser focus ring. Opens in a new tab via target=\"_blank\" with rel=\"noopener noreferrer\".\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Reads the status label, then the truncated hash."
+    ],
+    "notes": "Status changes (pending → confirmed) are not announced automatically; the component re-renders silently when the `status` prop changes. If you need live announcements, wrap the page-level transaction flow in an aria-live region or dispatch a toast on status transitions.\n"
+  },
+  "contrast": {
+    "text": "Status label uses tone-specific colors (muted-foreground / emerald-600 / destructive) all of which meet WCAG AA on the default theme",
+    "ui": "Link underline on hover ensures the link is distinguishable beyond color"
+  },
+  "motion": {
+    "reducedMotion": "Pending spinner animates continuously; consider pairing with prefers-reduced-motion handling at the app level if that matters for your audience"
+  },
+  "consumerResponsibilities": [
+    "Pass the correct explorer URL for the chain; the component does not resolve it.",
+    "For long-running flows, pair TxStatus with a toast or live region so screen reader users are informed when the status changes.",
+    "Validate the hash format on your side; TxStatus renders whatever string you give it."
+  ]
+}

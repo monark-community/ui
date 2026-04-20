@@ -1,0 +1,42 @@
+component: Alert
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: alert
+delegatesTo: null
+description: >
+  Non-interactive status banner. The root Alert renders a <div> with
+  role="alert", so assistive tech announces its content as a live region
+  when it mounts or its text changes. AlertTitle is an <h5> and
+  AlertDescription is a <div>; neither is wired to aria-labelledby /
+  aria-describedby automatically.
+
+keyboard: []
+
+focus:
+  visible: false
+  trapped: false
+  notes: "Non-interactive, not focusable."
+
+screenReader:
+  announcements:
+    - Content inside role="alert" is announced when the element appears or its text changes, without moving focus.
+  notes: >
+    Because role="alert" implies aria-live="assertive", keep the message
+    short and avoid nesting heavy interactive UI; for flows where the user
+    must take action, prefer AlertDialog instead.
+
+contrast:
+  text: "Foreground over bg-background meets WCAG AA; destructive variant uses text-destructive which also meets AA"
+  ui: "Border and icon color follow the same tokens as the text and meet AA"
+
+motion:
+  reducedMotion: >
+    No animations are applied by the component itself. Any enter transition
+    comes from the consumer's animation wrapper, which should gate on
+    prefers-reduced-motion when strict compliance matters.
+
+consumerResponsibilities:
+  - Mount the Alert only when there is something to announce; re-rendering the same text will not re-trigger the announcement.
+  - Use the destructive variant for errors so the color tone matches the semantic weight.
+  - Avoid putting form fields or dialogs inside an Alert; use Dialog / AlertDialog for actionable interruptions.

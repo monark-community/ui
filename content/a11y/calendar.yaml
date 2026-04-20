@@ -1,0 +1,59 @@
+component: Calendar
+wcag: AA
+standard: WAI-ARIA 1.2
+element: table
+role: grid
+delegatesTo: react-day-picker
+description: >
+  Date picker built on react-day-picker. Renders a grid of day buttons with
+  month / year navigation. Each day is a real <button>, focus is managed
+  by react-day-picker so arrow keys move through the grid, and an effect
+  in CalendarDayButton syncs DOM focus with the focused modifier.
+
+keyboard:
+  - key: Tab
+    action: Moves focus into the calendar (to the focused day) and back out.
+  - key: ArrowLeft / ArrowRight
+    action: Moves focus to the previous / next day.
+  - key: ArrowUp / ArrowDown
+    action: Moves focus to the same weekday in the previous / next week.
+  - key: Home / End
+    action: Moves to the first / last day of the current week.
+  - key: PageUp / PageDown
+    action: Jumps one month (Shift+PageUp / Shift+PageDown jumps one year).
+  - key: Enter / Space
+    action: Selects the focused day.
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Only one day in the grid is a tab stop at a time (roving tabindex).
+    The focused day gets a ring via group-data-[focused=true]. Nav buttons
+    and dropdowns are normal tab stops.
+
+screenReader:
+  announcements:
+    - Each day button announces its date; selected state is read when the Selected modifier is active.
+    - Navigation buttons announce as "Previous month" / "Next month" via react-day-picker defaults.
+    - Weekday headers are read at the top of the grid.
+  notes: >
+    Today's date gets a subtle background but no ARIA marker; if your users
+    rely on "today" specifically, pair the calendar with a live region
+    that confirms the current selection.
+
+contrast:
+  text: "Day numbers use foreground; muted-foreground on outside / disabled days. Selected days use primary-foreground on primary; all meet WCAG AA"
+  ui: "Focus ring uses ring-ring at 3px with 50% opacity; meets AA as a non-text indicator"
+
+motion:
+  reducedMotion: >
+    Month transitions are driven by react-day-picker and use CSS animation
+    via the rdp classnames. Consumers that need strict reduced-motion
+    compliance should override those keyframes with a motion-safe media
+    query in their theme.
+
+consumerResponsibilities:
+  - Localize the calendar by passing react-day-picker's locale / weekStartsOn props; the component only sets a formatMonthDropdown default.
+  - When used inside a Popover (for a date field), ensure the trigger has an accessible label like "Choose date" and reflects the current value.
+  - For date ranges, pair with a visible preview of the selected range so screen reader users can confirm their selection.

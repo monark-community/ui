@@ -1,0 +1,48 @@
+{
+  "component": "Textarea",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "textarea",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Thin style wrapper over the native <textarea> element. All accessibility characteristics come from the native textarea: implicit role=\"textbox\" with aria-multiline, built-in keyboard behavior, and native disabled semantics.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to / from the textarea (Tab does NOT insert a tab character by default)."
+    },
+    {
+      "key": "Enter",
+      "action": "Inserts a newline."
+    },
+    {
+      "key": "Text editing keys",
+      "action": "Native multi-line text editing (arrows / Home / End / selection / etc.)."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Uses focus-visible:ring-1. Disabled textareas show cursor-not-allowed and opacity-50 and are skipped by Tab.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Announces with its label, \"edit, multi-line\" (or similar) role, and current value.",
+      "Placeholder text is announced as a hint, not the value.",
+      "When aria-invalid is true, announces the invalid state and linked error via aria-describedby."
+    ],
+    "notes": "Never rely on placeholder as a label. Always provide a real label via <Label htmlFor> or aria-label.\n"
+  },
+  "contrast": {
+    "text": "Value uses foreground, placeholder uses text-muted-foreground. Both meet WCAG AA",
+    "ui": "Border uses border-input; focus ring uses ring-ring. Both meet AA non-text contrast"
+  },
+  "motion": {
+    "reducedMotion": "No animations"
+  },
+  "consumerResponsibilities": [
+    "Provide a real label via <Label htmlFor> or aria-label; placeholder alone is not accessible.",
+    "Set a sensible min-height (the default is min-h-[60px]) so users can see their input without scrolling inside the textarea.",
+    "Consider maxLength and showing remaining-character hints via aria-describedby for length-limited fields."
+  ]
+}

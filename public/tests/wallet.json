@@ -1,0 +1,37 @@
+{
+  "component": "wallet",
+  "hasUnitTests": true,
+  "hasInteractionTests": false,
+  "hasVisualTests": false,
+  "hasA11yTests": false,
+  "hasPerformanceTests": true,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/unit/components/wallet.test.tsx",
+      "type": "unit",
+      "tests": [
+        "renders the truncated address",
+        "renders the display name when provided",
+        "shows the copy button by default",
+        "hides the copy button when showCopy=false",
+        "sets data-slot on the root for styling hooks",
+        "marks the avatar aria-hidden so the address is the only announced identity",
+        "honors the size prop via inline style",
+        "exposes the full address via title for hover-reveal",
+        "honors custom start/end truncation",
+        "swaps its aria-label to "
+      ]
+    },
+    {
+      "file": "tests/e2e/performance/mount-time.spec.ts",
+      "type": "performance",
+      "tests": [
+        "wallet mounts under threshold"
+      ]
+    }
+  ],
+  "totalTests": 11
+}

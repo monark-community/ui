@@ -1,0 +1,58 @@
+{
+  "component": "Accordion",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "button",
+  "role": null,
+  "delegatesTo": "@radix-ui/react-accordion",
+  "description": "Vertically stacked, expandable panels. Each AccordionTrigger is a real <button> with aria-expanded and aria-controls wired to its AccordionContent region. Single-open and multi-open behaviors are supported via the type prop; Radix keeps aria-expanded in sync with visibility either way.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the next trigger (or out of the accordion)."
+    },
+    {
+      "key": "Space / Enter",
+      "action": "Toggles the focused panel."
+    },
+    {
+      "key": "ArrowDown",
+      "action": "Moves focus to the next trigger; wraps to first at the end."
+    },
+    {
+      "key": "ArrowUp",
+      "action": "Moves focus to the previous trigger; wraps to last at the start."
+    },
+    {
+      "key": "Home",
+      "action": "Moves focus to the first trigger."
+    },
+    {
+      "key": "End",
+      "action": "Moves focus to the last trigger."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Panels and their contents share the same tab sequence as the rest of the page; focus is never trapped inside an open panel.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Each trigger is announced as a button with its current expanded state.",
+      "Content regions are announced as \"region\" labelled by their trigger."
+    ],
+    "notes": "If you replace AccordionTrigger with a custom element via asChild, keep it a <button> so the implicit role survives; non-button triggers must add role=\"button\" and tabIndex={0}.\n"
+  },
+  "contrast": {
+    "text": "Trigger label uses foreground; meets WCAG AA on the default theme",
+    "ui": "Chevron icon uses muted-foreground; still meets WCAG AA on bg-background"
+  },
+  "motion": {
+    "reducedMotion": "Expand / collapse uses a CSS height transition driven by Radix's data-state attributes. Consumers can gate the transition behind @media (prefers-reduced-motion: reduce) to skip the animation.\n"
+  },
+  "consumerResponsibilities": [
+    "Provide a clear, descriptive label for each AccordionTrigger; it's the only text a screen reader has to convey what's inside.",
+    "When embedding interactive content inside a panel, ensure its tab order flows naturally after the trigger."
+  ]
+}

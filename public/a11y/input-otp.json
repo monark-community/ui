@@ -1,0 +1,55 @@
+{
+  "component": "InputOTP",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "input",
+  "role": null,
+  "delegatesTo": "input-otp",
+  "description": "One-time-passcode input built on the input-otp library. Under the hood it renders a single real <input> (for IME / autofill / paste support) visually split into per-character slots. Browsers autocomplete the code when the user taps an SMS autofill prompt because the input accepts a standard autocomplete=\"one-time-code\".\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to / from the underlying input (the slots are visual only)."
+    },
+    {
+      "key": "Digit / letter keys",
+      "action": "Fills the active slot and advances to the next."
+    },
+    {
+      "key": "Backspace",
+      "action": "Clears the active slot and moves focus back."
+    },
+    {
+      "key": "ArrowLeft / ArrowRight",
+      "action": "Moves the active slot indicator without clearing."
+    },
+    {
+      "key": "Paste",
+      "action": "Distributes the pasted value across the remaining slots."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "The visible ring lives on the active slot (isActive flag from OTPInputContext adds ring-1 ring-ring). The underlying input itself is visually invisible but still receives DOM focus, which is what assistive tech latches onto.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The underlying <input> announces as a text field; consumers should give it an accessible name via aria-label (e.g. \"Verification code\").",
+      "Individual slots have no separate semantics; AT reads the input's current value as a string."
+    ],
+    "notes": "Provide an accessible label on the InputOTP root; screen readers would otherwise announce an unnamed text field. The Minus separator (InputOTPSeparator) has role=\"separator\" for visual grouping.\n"
+  },
+  "contrast": {
+    "text": "Characters use foreground over bg-transparent; meets WCAG AA",
+    "ui": "Slot borders use border-input; active slot adds ring-ring; the caret uses bg-foreground. All meet AA"
+  },
+  "motion": {
+    "reducedMotion": "The fake caret uses animate-caret-blink. Under prefers-reduced-motion consumers can override that utility to remove the blink.\n"
+  },
+  "consumerResponsibilities": [
+    "Give the InputOTP root an aria-label describing the code's purpose (\"Verification code\", \"One-time password\").",
+    "Set autoComplete=\"one-time-code\" on the underlying input so SMS autofill works on mobile browsers.",
+    "Validate length / digits-only constraints via the library's pattern prop; do not rely on visual slot count alone."
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "component": "SwapForm",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "form",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Two-sided swap UI rendered as a real <form>. Each amount is a native <input inputMode=\"decimal\"> bound to a <Label>; the token pickers are Radix Selects; the submit button reflects a status prop (idle / quoting / ready / confirming / error). Errors are announced via a role=\"alert\" region under the submit button.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus through \"You pay\" amount, token select, reverse button, \"You receive\" amount, token select, submit button."
+    },
+    {
+      "key": "ArrowDown / ArrowUp",
+      "action": "Moves between options when a token Select is open."
+    },
+    {
+      "key": "Space / Enter",
+      "action": "Opens the focused Select, activates the reverse button, or submits the form from the submit button."
+    },
+    {
+      "key": "Escape",
+      "action": "Closes an open token Select without changing the selection."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Focus order matches the visual reading order (from field, reverse, to field, submit). The reverse button is a single Tab stop; the native form submission is triggered on Enter from any input when status is \"ready\".\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Each amount input is labelled by its \"You pay\" / \"You receive\" <Label>.",
+      "The reverse button has aria-label \"Reverse swap direction\"; the settings button has aria-label \"Swap settings\".",
+      "Rate / network fee / minimum received appear in a definition list (dt / dd) so the relationship is announced.",
+      "Error messages are rendered with role=\"alert\" and announced when status transitions to \"error\"."
+    ],
+    "notes": "The \"to\" amount is typically read-only (quote-driven); keep it read-only in consumer wiring so screen readers announce it as \"read only\". If you let users type into the \"to\" field to request an exact-out quote, drop the readOnly prop; the field remains accessible either way.\n"
+  },
+  "contrast": {
+    "text": "Labels use text-muted-foreground; amounts use foreground; both meet WCAG AA on bg-card and bg-background",
+    "ui": "Select triggers, reverse button, and submit button inherit shadcn tokens (AA). Error text uses text-destructive (AA on bg-card)"
+  },
+  "motion": {
+    "reducedMotion": "No animations beyond the Select's open / close (Radix data-[state=open]:animate-in)"
+  },
+  "consumerResponsibilities": [
+    "Drive the `status` prop from your quote / execution state machine. The submit button is disabled for \"idle\" / \"quoting\" / \"confirming\"; only activate on \"ready\".",
+    "Always provide a meaningful `errorMessage` when status=\"error\"; screen readers read it via role=\"alert\".",
+    "Slippage is displayed in basis points (divide by 100 for a percentage). Expose a real slippage editor in `onOpenSettings`; the form only reflects the current value.",
+    "Validate amounts before setting status=\"ready\". Native inputMode=\"decimal\" hints at a numeric keypad on mobile but does not reject invalid input.",
+    "Don't build execution logic into the block. Keep the form presentational and let your handler in `onSwap` do the signing / broadcasting."
+  ]
+}

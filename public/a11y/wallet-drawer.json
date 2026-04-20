@@ -1,0 +1,53 @@
+{
+  "component": "WalletDrawer",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "dialog",
+  "role": "dialog",
+  "delegatesTo": "@radix-ui/react-dialog",
+  "description": "Sheet-based wallet surface composed of ConnectWallet (trigger), Sheet (drawer container), and the Wallet / NetworkBadge / TokenAmount / TxStatus primitives inside. When connected, the trigger opens the drawer; when disconnected, the trigger fires onConnect and the drawer stays closed.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the ConnectWallet trigger, then (when the drawer is open) through each focusable element inside the drawer in reading order."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Activates the connect trigger or the focused action inside the drawer (e.g. Disconnect)."
+    },
+    {
+      "key": "Escape",
+      "action": "Closes the open drawer and returns focus to the trigger."
+    },
+    {
+      "key": "Shift+Tab",
+      "action": "Cycles focus backwards. Focus is trapped inside the drawer while open (Sheet behavior)."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": true,
+    "notes": "Focus trapping is delegated to Radix Dialog (which Sheet wraps). The trigger element itself is only focusable when the drawer is closed; while open, focus lives inside the drawer.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Trigger announces its connect state (same as ConnectWallet).",
+      "On open, the drawer announces its role, title, and description in reading order.",
+      "Connected-state sections (address, balance, transactions) are announced as a flat region; consider wrapping each section in a labelled heading if you need landmarks.",
+      "The Disconnect button announces \"Disconnect\" and fires onDisconnect on activation."
+    ]
+  },
+  "contrast": {
+    "text": "All labels, balance, and address text use foreground or text-muted-foreground; both meet WCAG AA on the default theme over bg-background",
+    "ui": "Sheet backdrop, NetworkBadge, and separators all meet 3:1 non-text contrast on the default theme"
+  },
+  "motion": {
+    "reducedMotion": "Sheet's slide-in animation is driven by Radix data-state attributes. To honor prefers-reduced-motion, wire motion-reduce:animate-none on the Sheet's className in your theme layer.\n"
+  },
+  "consumerResponsibilities": [
+    "Own the connection state machine; WalletDrawer is presentational. Derive `status`, `address`, `name`, `chainName` from your connector (wagmi / viem / etc.).",
+    "Populate the `balance` slot with a live value; WalletDrawer never fetches balances.",
+    "Populate the `transactions` slot with recent TxStatus entries or leave it undefined; the drawer renders a compact empty section when absent.",
+    "Handle errors (user rejected, wrong network) outside the drawer; show them in a toast or inline alert. The drawer's job is to present state, not diagnose it."
+  ]
+}

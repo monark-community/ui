@@ -1,0 +1,57 @@
+[
+  {
+    "displayName": "TokenAmount",
+    "description": "",
+    "props": [
+      {
+        "name": "value",
+        "type": "string | number | bigint",
+        "required": true,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "decimals",
+        "type": "number",
+        "required": false,
+        "defaultValue": "18",
+        "description": ""
+      },
+      {
+        "name": "symbol",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "fractionDigits",
+        "type": "number",
+        "required": false,
+        "defaultValue": "4",
+        "description": ""
+      },
+      {
+        "name": "locale",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "usdValue",
+        "type": "number",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "usdCurrency",
+        "type": "string",
+        "required": false,
+        "defaultValue": "USD",
+        "description": ""
+      }
+    ]
+  }
+]

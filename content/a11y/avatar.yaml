@@ -1,0 +1,39 @@
+component: Avatar
+wcag: AA
+standard: WAI-ARIA 1.2
+element: span
+role: null
+delegatesTo: "@radix-ui/react-avatar"
+description: >
+  Renders a profile image with an automatic text / initials fallback when
+  the image fails to load or is still loading. Radix manages the load
+  state so the DOM swaps between AvatarImage and AvatarFallback without
+  a flash. Neither slot is interactive.
+
+keyboard: []
+
+focus:
+  visible: false
+  trapped: false
+  notes: "Non-interactive, not focusable."
+
+screenReader:
+  announcements:
+    - If AvatarImage has alt text, it's announced as an image.
+    - If the fallback renders, screen readers read its text content (typically initials).
+  notes: >
+    When the avatar is purely decorative (e.g. alongside a name that's
+    already displayed), pass alt="" on AvatarImage so screen readers skip
+    it rather than announcing a filename.
+
+contrast:
+  text: "Fallback text uses foreground over bg-muted; meets WCAG AA"
+  ui: "The avatar itself has no border by default; contrast of the image depends on the consumer's asset"
+
+motion:
+  reducedMotion: "No animations"
+
+consumerResponsibilities:
+  - Provide meaningful alt text on AvatarImage when the avatar is the primary identifier; use alt="" when it's decorative.
+  - Ensure the fallback text (initials) is enough to disambiguate users; consider a generated color paired with initials.
+  - If the avatar is used as a button / link trigger, wrap it in that element; Avatar itself is not interactive.

@@ -1,0 +1,62 @@
+component: Menubar
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: menubar
+delegatesTo: "@radix-ui/react-menubar"
+description: >
+  Desktop-style menu bar (File / Edit / View...). The root is role="menubar";
+  each MenubarTrigger is role="menuitem" that opens a role="menu" dropdown.
+  Menus support sub-menus, checkbox items, radio items, labels, and
+  separators, all with correct ARIA wiring via Radix.
+
+keyboard:
+  - key: ArrowLeft / ArrowRight
+    action: Moves focus between top-level menu triggers.
+  - key: ArrowDown / Enter / Space
+    action: Opens the focused menu and moves focus to its first item.
+  - key: ArrowUp / ArrowDown
+    action: Within an open menu, moves between items.
+  - key: ArrowRight
+    action: Opens a submenu when the focused item is a SubTrigger.
+  - key: ArrowLeft
+    action: Closes the current submenu (or moves to the previous top-level menu if already at the menu's root).
+  - key: Escape
+    action: Closes the open menu and returns focus to its trigger.
+  - key: Tab
+    action: Moves focus out of the menubar entirely.
+  - key: A–Z
+    action: Type-ahead jumps to the first item whose label starts with that letter.
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Roving tabindex: only one trigger in the menubar is a tab stop at a
+    time. While a menu is open focus stays inside it; closing returns focus
+    to the relevant trigger.
+
+screenReader:
+  announcements:
+    - The root announces as a menu bar with its item count.
+    - Each trigger announces with the "menu" popup affordance.
+    - Items announce with their role, label, checked state, and submenu indicator where applicable.
+  notes: >
+    MenubarShortcut renders a decorative label for keyboard shortcuts. The
+    consumer must register the actual hotkey separately; Menubar only
+    shows the hint.
+
+contrast:
+  text: "Trigger text uses foreground; focused / open state uses text-accent-foreground on bg-accent. Both meet WCAG AA"
+  ui: "Separator uses bg-muted; focus highlight meets AA non-text contrast"
+
+motion:
+  reducedMotion: >
+    Dropdown content uses data-[state=open]:animate-in with fade + slide
+    utilities. Gate with motion-reduce:animate-none if strict compliance
+    matters.
+
+consumerResponsibilities:
+  - Use Menubar only in app-like interfaces (e.g. editors, dashboards). For a simple site nav bar, NavigationMenu or a plain nav with links is more appropriate.
+  - Register keyboard shortcuts globally; MenubarShortcut is a visual hint, not a binding.
+  - Keep labels short and match common desktop conventions (File, Edit, View) so users can predict contents.

@@ -1,0 +1,47 @@
+{
+  "component": "Breadcrumb",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "nav",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Semantic breadcrumb navigation. The root is a <nav aria-label=\"breadcrumb\"> containing an <ol> of items. BreadcrumbLink is a real <a>; BreadcrumbPage marks the current location with aria-current=\"page\" and aria-disabled. Separators and ellipsis are role=\"presentation\" / aria-hidden so screen readers skip them.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the next breadcrumb link (separators and the current page are not focusable)."
+    },
+    {
+      "key": "Shift+Tab",
+      "action": "Moves focus to the previous breadcrumb link."
+    },
+    {
+      "key": "Enter",
+      "action": "Activates the focused link."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Links use the default browser focus ring. BreadcrumbPage is rendered as a <span role=\"link\" aria-disabled=\"true\"> and is intentionally skipped by Tab.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The landmark announces as \"breadcrumb, navigation\" thanks to the aria-label.",
+      "Each link reads as \"link\" with its text; the current page reads with aria-current=\"page\" so it's marked as the user's location."
+    ],
+    "notes": "Separators are aria-hidden, so they aren't read aloud; the accessible output is just the list of crumb names.\n"
+  },
+  "contrast": {
+    "text": "Inactive crumbs use text-muted-foreground; hover bumps to foreground. Both meet WCAG AA on the default theme",
+    "ui": "Chevron separator uses the same muted token; decorative only, so contrast is informational"
+  },
+  "motion": {
+    "reducedMotion": "Only a color transition on hover; no motion-based animations"
+  },
+  "consumerResponsibilities": [
+    "Use BreadcrumbPage for the current page and BreadcrumbLink for every other crumb; don't render a plain <span> for the last item.",
+    "Keep crumb labels concise and match the page's <title> / <h1> so users aren't confused.",
+    "If you compose BreadcrumbLink with a routing library via asChild, ensure the underlying element is still an <a>."
+  ]
+}

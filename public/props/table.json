@@ -1,0 +1,42 @@
+[
+  {
+    "displayName": "Table",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "TableHeader",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "TableBody",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "TableFooter",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "TableHead",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "TableRow",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "TableCell",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "TableCaption",
+    "description": "",
+    "props": []
+  }
+]

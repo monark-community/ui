@@ -1,0 +1,55 @@
+{
+  "component": "Resizable",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "separator",
+  "delegatesTo": "react-resizable-panels",
+  "description": "Resizable split layout built on react-resizable-panels. ResizableHandle renders a PanelResizeHandle, which under the hood is a focusable <div> with role=\"separator\" and aria-valuenow reflecting the panel size. The library handles keyboard resize via arrow keys automatically.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to / from the resize handle."
+    },
+    {
+      "key": "ArrowLeft / ArrowRight",
+      "action": "On a horizontal handle, decreases / increases the left panel's size by a step."
+    },
+    {
+      "key": "ArrowUp / ArrowDown",
+      "action": "On a vertical handle, decreases / increases the top panel's size by a step."
+    },
+    {
+      "key": "Home / End",
+      "action": "Collapses / expands the panel to its minimum / maximum (when collapsible)."
+    },
+    {
+      "key": "Enter",
+      "action": "Toggles collapsed state for collapsible panels."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Handle uses focus-visible:ring-1 ring-ring with ring-offset-1. Panels themselves are not focusable; only the handle between them.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Each handle announces as a separator with its current aria-valuenow (panel size percentage).",
+      "The library updates aria-valuenow as the user resizes, so AT can read the live size."
+    ],
+    "notes": "When withHandle is true, a visible grip icon (GripVertical) is rendered inside the handle; it's decorative (pointer-events-none implicitly via the SVG). The grip does not change the accessible name.\n"
+  },
+  "contrast": {
+    "text": "N/A; no text",
+    "ui": "Handle uses bg-border; grip container adds a subtle border. Both meet AA non-text contrast"
+  },
+  "motion": {
+    "reducedMotion": "Size changes apply instantly (no transition by default). Consumers who add their own animation should gate it on prefers-reduced-motion.\n"
+  },
+  "consumerResponsibilities": [
+    "Set min / max / default sizes on each ResizablePanel so the layout can't collapse into unusable states.",
+    "Provide an accessible label on ResizableHandle via aria-label (e.g. \"Resize sidebar\"); the default has no descriptive name.",
+    "For layouts where resize isn't critical, consider using a non-resizable grid instead; keyboard resize is a niche interaction."
+  ]
+}

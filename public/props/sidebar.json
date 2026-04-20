@@ -1,0 +1,280 @@
+[
+  {
+    "displayName": "Sidebar",
+    "description": "",
+    "props": [
+      {
+        "name": "side",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "left",
+        "description": ""
+      },
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default",
+        "description": ""
+      },
+      {
+        "name": "collapsible",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "offcanvas",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "SidebarContent",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SidebarFooter",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SidebarGroup",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SidebarGroupAction",
+    "description": "",
+    "props": [
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "SidebarGroupContent",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SidebarGroupLabel",
+    "description": "",
+    "props": [
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "SidebarHeader",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SidebarInput",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SidebarInset",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SidebarMenu",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SidebarMenuAction",
+    "description": "",
+    "props": [
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": ""
+      },
+      {
+        "name": "showOnHover",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "SidebarMenuBadge",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SidebarMenuButton",
+    "description": "",
+    "props": [
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default",
+        "description": ""
+      },
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "md",
+        "description": ""
+      },
+      {
+        "name": "tooltip",
+        "type": "string | (Omit<TooltipContentProps & RefAttributes<HTMLDivElement>, \"ref\"> & RefAttributes<HTMLDivElement>)",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "isActive",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "SidebarMenuItem",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SidebarMenuSkeleton",
+    "description": "",
+    "props": [
+      {
+        "name": "showIcon",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "SidebarMenuSub",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SidebarMenuSubButton",
+    "description": "",
+    "props": [
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "md",
+        "description": ""
+      },
+      {
+        "name": "isActive",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "SidebarMenuSubItem",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SidebarProvider",
+    "description": "",
+    "props": [
+      {
+        "name": "defaultOpen",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "true",
+        "description": ""
+      },
+      {
+        "name": "open",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "onOpenChange",
+        "type": "(open: boolean) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "SidebarRail",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SidebarSeparator",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SidebarTrigger",
+    "description": "",
+    "props": [
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default",
+        "description": ""
+      },
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": "false",
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "md",
+        "description": ""
+      }
+    ]
+  }
+]

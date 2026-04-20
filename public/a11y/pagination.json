@@ -1,0 +1,50 @@
+{
+  "component": "Pagination",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "nav",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Page navigation landmark. The root is a <nav role=\"navigation\" aria-label=\"pagination\"> containing an <ul> of PaginationItem elements. PaginationLink is an <a> styled as a button; the current page is marked with aria-current=\"page\". PaginationPrevious and PaginationNext add descriptive aria-labels (\"Go to previous page\" / \"Go to next page\").\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the next pagination link."
+    },
+    {
+      "key": "Shift+Tab",
+      "action": "Moves focus to the previous pagination link."
+    },
+    {
+      "key": "Enter",
+      "action": "Activates the focused link (navigates to that page)."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Uses the Button component's focus-visible ring (since PaginationLink applies buttonVariants). Ellipsis elements are aria-hidden and not focusable.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The landmark announces as \"pagination, navigation\".",
+      "Each page link announces its number; the current page is marked aria-current=\"page\".",
+      "Previous / Next links announce their aria-labels for context.",
+      "Ellipsis items render an sr-only \"More pages\" so screen readers don't jump from 5 to 42 without warning."
+    ],
+    "notes": "The component does not track page state; it only renders the UI. Wire the active page via the isActive prop on the relevant PaginationLink.\n"
+  },
+  "contrast": {
+    "text": "Link text uses the Button ghost / outline variants; both meet WCAG AA",
+    "ui": "Active link's outline variant meets AA non-text contrast against bg-background"
+  },
+  "motion": {
+    "reducedMotion": "Only the standard color transition on hover; no motion-based animations"
+  },
+  "consumerResponsibilities": [
+    "Set isActive on the current page's PaginationLink so aria-current is emitted.",
+    "Provide real href values so links work without JS; if you use a router, compose via asChild / the router's Link component.",
+    "For long ranges, use PaginationEllipsis between non-adjacent pages; don't render all 200 page numbers.",
+    "Consider a visible \"Page X of Y\" summary nearby; the component does not generate one."
+  ]
+}

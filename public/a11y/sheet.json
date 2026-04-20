@@ -1,0 +1,51 @@
+{
+  "component": "Sheet",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "dialog",
+  "delegatesTo": "@radix-ui/react-dialog",
+  "description": "Side-anchored modal panel. Despite the distinct name, Sheet is built on Radix Dialog; it is the same primitive as Dialog, with variants that slide in from the top, bottom, left, or right. Focus trapping, aria-labelledby / aria-describedby, and Escape-to-close behavior are all identical to Dialog.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Cycles focus through the sheet's focusable elements."
+    },
+    {
+      "key": "Shift+Tab",
+      "action": "Cycles focus backwards within the sheet."
+    },
+    {
+      "key": "Escape",
+      "action": "Closes the sheet."
+    },
+    {
+      "key": "Enter",
+      "action": "Activates the focused button / submits the focused form."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": true,
+    "notes": "Focus is trapped inside the sheet while open and restored to the triggering element on close. A built-in close button with sr-only \"Close\" label is rendered in the top-right corner.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Announced with its role, SheetTitle, and SheetDescription in reading order.",
+      "The close button announces \"Close\" via its sr-only label."
+    ],
+    "notes": "Always render a SheetTitle (use VisuallyHidden if you don't want it on screen); Radix Dialog warns otherwise and screen readers announce an unnamed dialog.\n"
+  },
+  "contrast": {
+    "text": "Title uses foreground, description uses text-muted-foreground. Both meet WCAG AA on bg-background",
+    "ui": "Overlay uses bg-black/80; border on the entering side uses border token. Meets AA non-text contrast"
+  },
+  "motion": {
+    "reducedMotion": "Sheets slide in via data-[state=open]:slide-in-from-* utilities with 300–500ms durations. Gate with motion-reduce:animate-none if strict compliance matters; the result is a plain fade.\n"
+  },
+  "consumerResponsibilities": [
+    "Always render SheetTitle; use VisuallyHidden when you don't want it visible.",
+    "Pick a side that doesn't cover the primary page content unless full-width is intended; bottom sheets work well on mobile.",
+    "For non-modal side panels that should let users interact with the page, use a custom layout rather than Sheet."
+  ]
+}

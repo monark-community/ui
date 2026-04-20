@@ -1,0 +1,56 @@
+{
+  "component": "Command",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": null,
+  "delegatesTo": "cmdk",
+  "description": "Command palette built on cmdk. cmdk renders an accessible combobox: CommandInput is a text input with aria-autocomplete=\"list\" and aria-controls pointing at CommandList (role=\"listbox\"); each CommandItem is role=\"option\". CommandDialog wraps the whole thing inside a modal Dialog so the typical invocation is a keyboard-shortcut-opened palette.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "When inside CommandDialog, focus stays trapped in the dialog. Tab cycles through the input and any dialog chrome."
+    },
+    {
+      "key": "ArrowDown",
+      "action": "Moves the highlighted option down the list (wraps at the end)."
+    },
+    {
+      "key": "ArrowUp",
+      "action": "Moves the highlighted option up the list (wraps at the start)."
+    },
+    {
+      "key": "Enter",
+      "action": "Activates the highlighted option."
+    },
+    {
+      "key": "Escape",
+      "action": "Closes the dialog (when used as CommandDialog); returns focus to the trigger."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": true,
+    "notes": "Focus stays in the CommandInput throughout navigation; cmdk uses aria-activedescendant to move the virtual cursor through the list without stealing DOM focus from the input. When wrapped in CommandDialog, Radix Dialog traps focus inside the popup.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The input announces as a combobox with its current typed value.",
+      "Each CommandItem announces as an option; the active descendant is announced as the user arrows through the list.",
+      "CommandEmpty content is announced when the list is empty after filtering."
+    ],
+    "notes": "cmdk uses aria-activedescendant, which most modern screen readers handle well but some older AT combos read less fluidly. Keep item labels self-contained (don't rely on icons alone to convey meaning).\n"
+  },
+  "contrast": {
+    "text": "Item text uses foreground over bg-popover; muted-foreground for group headings and the search icon. All meet WCAG AA",
+    "ui": "Selected item uses bg-accent / text-accent-foreground which meets AA"
+  },
+  "motion": {
+    "reducedMotion": "When wrapped in CommandDialog, the dialog's enter / exit animations apply (see Dialog). cmdk itself does not animate.\n"
+  },
+  "consumerResponsibilities": [
+    "Provide a clear placeholder on CommandInput so users understand what to type.",
+    "Use CommandGroup headings to organize long lists; screen reader users benefit from the structure.",
+    "Ensure the palette is reachable via an obvious keyboard shortcut (e.g. Cmd / Ctrl + K) and document it."
+  ]
+}

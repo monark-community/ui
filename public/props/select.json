@@ -1,0 +1,52 @@
+[
+  {
+    "displayName": "Select",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SelectGroup",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SelectValue",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SelectTrigger",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SelectContent",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SelectLabel",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SelectItem",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SelectSeparator",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SelectScrollUpButton",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "SelectScrollDownButton",
+    "description": "",
+    "props": []
+  }
+]

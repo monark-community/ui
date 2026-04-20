@@ -1,0 +1,43 @@
+{
+  "component": "Checkbox",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "button",
+  "role": "checkbox",
+  "delegatesTo": "@radix-ui/react-checkbox",
+  "description": "Tri-state checkbox (checked / unchecked / indeterminate). Radix renders a <button role=\"checkbox\"> with aria-checked reflecting the current state, plus a hidden native input for form integration. The Check icon inside CheckboxPrimitive.Indicator only renders when state is \"checked\" or \"indeterminate\".\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to / from the checkbox."
+    },
+    {
+      "key": "Space",
+      "action": "Toggles between checked and unchecked (from indeterminate it becomes checked)."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Uses focus-visible:ring-1. Disabled checkboxes show cursor-not-allowed and opacity-50 but remain focusable for screen reader review unless the consumer adds tabIndex={-1}.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Announces as \"checkbox\" with its accessible name and current checked state.",
+      "Indeterminate state is announced as \"mixed\"."
+    ],
+    "notes": "The checkbox has no visible label; always pair it with a <Label htmlFor> or wrap it inside a <label>, or provide aria-label / aria-labelledby.\n"
+  },
+  "contrast": {
+    "text": "The Check icon uses primary-foreground on primary bg when checked; meets WCAG AA",
+    "ui": "Unchecked border uses primary token; meets AA non-text contrast against bg-background"
+  },
+  "motion": {
+    "reducedMotion": "No motion animation; only a color swap between states"
+  },
+  "consumerResponsibilities": [
+    "Provide an accessible name via a linked <Label> or aria-label; the visual box alone has none.",
+    "Use the `checked=\"indeterminate\"` prop for partially-selected states (e.g. select-all in a list), not a custom icon.",
+    "Group related checkboxes under a <fieldset><legend> or role=\"group\" with aria-labelledby so the relationship is exposed."
+  ]
+}

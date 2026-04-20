@@ -1,0 +1,37 @@
+{
+  "component": "connect-wallet",
+  "hasUnitTests": true,
+  "hasInteractionTests": false,
+  "hasVisualTests": false,
+  "hasA11yTests": false,
+  "hasPerformanceTests": true,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/unit/components/connect-wallet.test.tsx",
+      "type": "unit",
+      "tests": [
+        "renders a connect button with the default label",
+        "fires onConnect when clicked",
+        "honors a custom connectLabel",
+        "renders a disabled button with the connecting label",
+        "does not fire onConnect when clicked while connecting",
+        "renders the truncated address as the trigger",
+        "renders the name above the address when provided",
+        "opens a menu with the disconnect item on trigger click",
+        "fires onDisconnect when the menu item is selected",
+        "falls back to the disconnected button when status="
+      ]
+    },
+    {
+      "file": "tests/e2e/performance/mount-time.spec.ts",
+      "type": "performance",
+      "tests": [
+        "connect-wallet mounts under threshold"
+      ]
+    }
+  ],
+  "totalTests": 11
+}

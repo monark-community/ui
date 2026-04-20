@@ -1,0 +1,54 @@
+component: Popover
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: dialog
+delegatesTo: "@radix-ui/react-popover"
+description: >
+  Non-modal popup anchored to a trigger. PopoverTrigger is a real <button>
+  with aria-haspopup="dialog" and aria-expanded; PopoverContent renders as
+  role="dialog" in a portal and is keyboard-focusable (unlike HoverCard).
+  Unlike Dialog, it does not darken the page and does not prevent
+  interaction with elements outside.
+
+keyboard:
+  - key: Enter / Space
+    action: Opens the popover when the trigger is focused.
+  - key: Tab
+    action: Moves focus through the popover's focusable contents.
+  - key: Shift+Tab
+    action: Moves focus backwards within the popover.
+  - key: Escape
+    action: Closes the popover and returns focus to the trigger.
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Focus is moved into the popover on open (first focusable element) and
+    restored to the trigger on close. Focus is NOT trapped; Tab at the end
+    of the popover moves to the next tabbable element on the page, which
+    also dismisses the popover.
+
+screenReader:
+  announcements:
+    - Trigger announces as a button with the "dialog" popup affordance and its expanded state.
+    - Popover content is read as a dialog; consumers should provide an aria-label / aria-labelledby for the dialog if it contains a form or meaningful section.
+  notes: >
+    Because Popover is non-modal, screen reader users may not realize the
+    popover is open if they swipe past the trigger. Pair with a visible
+    label or title so the relationship is obvious.
+
+contrast:
+  text: "Content uses foreground over bg-popover; meets WCAG AA on the default theme"
+  ui: "Border uses border token; meets AA non-text contrast against bg-background"
+
+motion:
+  reducedMotion: >
+    Uses data-[state=open]:animate-in with fade + zoom + slide utilities.
+    Gate with motion-reduce:animate-none if strict compliance matters.
+
+consumerResponsibilities:
+  - Provide an accessible name for the popover content when it's a distinct section (form, date picker). Use aria-label on PopoverContent or wrap its first child in a heading.
+  - Use Popover for UI that should remain clickable alongside the rest of the page; use Dialog for interruptions that demand the user's attention.
+  - Consider where initial focus should land. Radix focuses the first tabbable child by default, which may not be ideal (e.g. an "X" close button); use ref-based focus for precision.

@@ -1,0 +1,21 @@
+{
+  "component": "button",
+  "hasUnitTests": false,
+  "hasInteractionTests": false,
+  "hasVisualTests": false,
+  "hasA11yTests": false,
+  "hasPerformanceTests": true,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/e2e/performance/mount-time.spec.ts",
+      "type": "performance",
+      "tests": [
+        "button mounts under threshold"
+      ]
+    }
+  ],
+  "totalTests": 1
+}

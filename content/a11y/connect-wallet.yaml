@@ -1,0 +1,53 @@
+component: ConnectWallet
+wcag: AA
+standard: WAI-ARIA 1.2
+element: button
+role: null
+delegatesTo: button, dropdown-menu
+description: >
+  Three-state wallet connection control. In the disconnected / connecting
+  states it renders a Button; so it inherits Button's focus, keyboard, and
+  screen reader behavior. In the connected state it becomes a DropdownMenu
+  whose trigger is a button containing the jazzicon, optional name, and
+  truncated address; the menu hosts the disconnect action.
+
+keyboard:
+  - key: Tab
+    action: Moves focus to the control (single tab stop in every state).
+  - key: Enter / Space
+    action: In disconnected state, fires onConnect. In connected state, opens the menu. Inside the menu, activates the focused item.
+  - key: Arrow Up / Arrow Down
+    action: Moves focus between menu items when the connected-state menu is open.
+  - key: Escape
+    action: Closes the open menu and returns focus to the trigger.
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Focus is visibly ringed on the trigger in every state. The menu uses
+    Radix DropdownMenu's focus management; focus is scoped inside while
+    open, restored to the trigger on close.
+
+screenReader:
+  announcements:
+    - Disconnected button announces its label (default "Connect wallet").
+    - Connecting button announces "Connecting…" and its disabled state, so assistive tech waits for the next change.
+    - Connected trigger announces the name and address in reading order, then menu-open state.
+  notes: >
+    The connecting label is plain text rather than an aria-live region,
+    because the state transition is driven by user action; the user
+    already knows it's happening. If your connector flow surfaces errors
+    asynchronously, pair ConnectWallet with a separate toast / live region.
+
+contrast:
+  text: "Uses Button's default tokens; meets WCAG AA"
+  ui: "Meets WCAG AA when used with the default theme tokens"
+
+motion:
+  reducedMotion: "The connecting spinner respects prefers-reduced-motion only if the consumer overrides it; the animate-spin utility is always on. Consider swapping to a static dots icon under reduced motion if that matters for your audience."
+
+consumerResponsibilities:
+  - Own the status state; ConnectWallet is purely presentational. Derive status from wagmi / viem / your connector and pass it in.
+  - Handle errors outside the component (e.g. user rejected the connect request). A toast or inline alert is the usual pattern.
+  - If you expose multiple wallets (MetaMask, WalletConnect, Coinbase), wrap ConnectWallet in your own picker; the disconnected state is a single button by design.

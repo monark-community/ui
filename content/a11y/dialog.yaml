@@ -1,0 +1,55 @@
+component: Dialog
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: dialog
+delegatesTo: "@radix-ui/react-dialog"
+description: >
+  Modal dialog for focused interactions (forms, confirmations, details).
+  DialogContent renders with role="dialog" and aria-modal="true"; Radix
+  automatically wires aria-labelledby / aria-describedby to DialogTitle
+  and DialogDescription. A close button with an sr-only "Close" label is
+  rendered in the top-right corner.
+
+keyboard:
+  - key: Tab
+    action: Cycles focus through the dialog's focusable elements.
+  - key: Shift+Tab
+    action: Cycles focus backwards within the dialog.
+  - key: Escape
+    action: Closes the dialog (can be prevented via onEscapeKeyDown).
+  - key: Enter
+    action: Activates the focused button / submits the focused form.
+
+focus:
+  visible: true
+  trapped: true
+  notes: >
+    Radix traps focus inside the dialog while open and restores it to the
+    triggering element on close. If no focusable child exists, Radix
+    focuses the Content element itself.
+
+screenReader:
+  announcements:
+    - The dialog is announced with its role, title, and description in reading order.
+    - The close button announces "Close" via its sr-only label.
+  notes: >
+    Always render a DialogTitle and (when the dialog's purpose isn't obvious
+    from the title alone) a DialogDescription. If you intentionally want to
+    hide the title visually, wrap it with a VisuallyHidden component rather
+    than omitting it; Radix warns in the console when a title is missing.
+
+contrast:
+  text: "Title uses foreground, description uses text-muted-foreground; both meet WCAG AA on bg-background"
+  ui: "Overlay uses bg-black/80 for clear separation from the page content; close button's focus ring meets AA"
+
+motion:
+  reducedMotion: >
+    DialogContent uses data-[state=open]:animate-in with fade + zoom
+    utilities. Wire motion-reduce:animate-none on the dialog's className if
+    strict reduced-motion compliance matters.
+
+consumerResponsibilities:
+  - Always render DialogTitle (visually or via VisuallyHidden); Radix logs a warning otherwise and screen readers announce an unnamed dialog.
+  - Include a DialogDescription when the title alone does not convey the dialog's purpose.
+  - Pick the element that should receive initial focus. Radix picks the first focusable element by default, which may not be the right one for your flow (consider autoFocus on the primary action).

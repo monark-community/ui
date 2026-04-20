@@ -1,0 +1,118 @@
+---
+title: Anatomy of a Monark Component
+description: What ships when you install a Monark component, and where to find each artifact.
+order: 4
+---
+
+# Anatomy of a Monark Component
+
+When you run `npx shadcn add @monark/wallet`, several things land in your project at once. This page walks through each artifact and where it lives, so you know what to customize and what to keep untouched.
+
+## What the CLI installs
+
+Given `@monark/wallet` has `registryDependencies: ["button"]`, the CLI writes:
+
+```
+components/
+  ui/
+    button.tsx       ← resolved from the @monark/button dependency
+    wallet.tsx       ← the component itself
+lib/
+  utils.ts           ← cn() helper (if not already present)
+```
+
+Plus any npm packages declared in the component's `dependencies` array (here: `react-jazzicon`, `lucide-react`) get added to your `package.json`.
+
+That's it. No runtime wrapper, no provider, no CSS import beyond the theme you already installed.
+
+## What ships in a typical component file
+
+Every Monark component follows a shape that makes it easy to read, customize, or swap out. Using `wallet.tsx` as the reference:
+
+### 1. Directive + imports
+
+```tsx
+"use client"
+
+import * as React from "react"
+import Jazzicon, { jsNumberForAddress } from "react-jazzicon"
+import { CheckIcon, CopyIcon } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
+```
+
+- `"use client"` because jazzicon uses SVG generated in the browser and the copy button needs `navigator.clipboard`. Non-interactive components like `NetworkBadge` omit it.
+- Imports from `@/lib/utils` and `@/components/ui/*` assume your `tsconfig.json` has the `@/*` path alias. The shadcn `init` step sets this up; if you have a different alias, the CLI prompts you to map it.
+
+### 2. Exports
+
+```tsx
+export { Wallet, WalletAvatar, WalletAddress, WalletCopyButton }
+```
+
+Compound components are exported as separate functions, not as `Wallet.Avatar`. This keeps the import list honest in your own code (you see exactly what you're pulling in) and makes tree-shaking trivial.
+
+### 3. Data attributes
+
+```tsx
+<div data-slot="wallet" ...>
+```
+
+Every root and slot gets a `data-slot="<name>"` attribute. Use it in your own CSS or Tailwind overrides:
+
+```tsx
+<Wallet
+  address="0x..."
+  className="[&[data-slot=wallet]]:border-primary"
+/>
+```
+
+Slot names mirror the shadcn convention; they're stable across minor versions.
+
+### 4. `cn` for className composition
+
+```tsx
+className={cn(
+  "inline-flex items-center gap-3 ...",
+  className
+)}
+```
+
+Monark never spreads user `className` raw. It uses `cn()` (the standard shadcn `clsx + tailwind-merge` wrapper) so user classes win tie-breakers without duplicating utilities.
+
+### 5. No built-in state beyond UI ephemera
+
+Components hold state only for UI concerns (e.g. `WalletCopyButton`'s "just copied" flash). Business state (connection status, address, chain) is passed in via props. This is why the web3 components are pure adapters of your connector, not wrappers around one.
+
+## What doesn't ship
+
+- **No provider setup.** No `<MonarkProvider>`, no `<ThemeProvider>`. The theme is pure CSS variables; components read them automatically.
+- **No runtime CSS.** All styling is Tailwind utility classes. If you remove Tailwind, the components become unstyled; there's no runtime-injected stylesheet to fall back on.
+- **No telemetry, no network requests.** Monark components render what you give them and call back when the user acts. Zero fetch calls.
+
+## Customizing a component
+
+Since everything lives in your repo after install, customization is just editing the file. Common patterns:
+
+**Add a slot.** Open `components/ui/wallet.tsx`, add a prop + render target. The existing tests (if you copied those too) will still pass; add new ones for the new prop.
+
+**Replace the underlying primitive.** The web3 components use `Button` and `DropdownMenu` from `@/components/ui/*`. Swap them for your own or a different primitive library if you've already standardized on one.
+
+**Fork the styling.** Strip `cn()` calls, go class-less, rewrite in `styled-components`. The components are plain React; the structure doesn't impose a styling system.
+
+## When to update
+
+Monark ships a versioned registry (`@monark/ui` on npm). When a component changes in a later version, you won't get the update automatically; that's the core shadcn contract. To pull a newer version:
+
+```bash
+npx shadcn@latest add @monark/wallet --overwrite
+```
+
+Review the diff, merge your local customizations back in, test, commit. Monark tries to avoid breaking changes within a major version, but the diff review is always the honest signal.
+
+## Blocks vs primitives
+
+Primitives (`Button`, `Wallet`, `TokenAmount`) ship as single files under `components/ui/`. Blocks (`WalletDrawer`, `SwapForm`, `NftCard`) ship under `registry/new-york/blocks/<name>/` and compose multiple primitives into a pattern. Installing a block pulls its dependency primitives automatically.
+
+For more on when to build blocks vs primitives, see the [component guidelines](/docs/component-guidelines) (coming soon).

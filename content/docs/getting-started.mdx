@@ -1,0 +1,62 @@
+---
+title: Getting Started
+description: Install Monark UI components via the shadcn CLI.
+order: 1
+---
+
+# Getting Started
+
+Monark UI is a shadcn-compatible component registry. Every component is
+copied into your codebase; no runtime dependency, no version pinning.
+
+## Install
+
+```bash
+# 1. Initialize shadcn in your project (if you haven't)
+npx shadcn@latest init
+
+# 2. Apply the Monark theme (tokens, radius, fonts)
+npx shadcn@latest add https://ui.monark.io/r/theme.json
+```
+
+## Register the `@monark` source
+
+Add Monark UI once to your `components.json` under `registries`. After this,
+you can install any component by its short name instead of a full URL.
+
+```json title="components.json"
+{
+  "registries": {
+    "@monark": "https://ui.monark.io/r/{name}.json"
+  }
+}
+```
+
+## Add components
+
+With the alias in place, installs collapse to a short form:
+
+```bash
+# Shorthand (recommended); uses the @monark alias from components.json
+npx shadcn@latest add @monark/button
+npx shadcn@latest add @monark/wallet @monark/connect-wallet @monark/tx-status
+
+# Direct URL; still works if you skipped the alias step
+npx shadcn@latest add https://ui.monark.io/r/button.json
+```
+
+## Use
+
+```tsx
+import { Button } from "@/components/ui/button"
+import { Wallet } from "@/components/ui/wallet"
+
+export default function Page() {
+  return (
+    <>
+      <Button>Ship it</Button>
+      <Wallet address="0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045" name="vitalik.eth" />
+    </>
+  )
+}
+```

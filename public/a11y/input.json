@@ -1,0 +1,48 @@
+{
+  "component": "Input",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "input",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Thin style wrapper over the native <input> element. All accessibility characteristics come from the native input: implicit role based on type (textbox, searchbox, checkbox-like for type=\"file\", etc.), built-in keyboard behavior, and native disabled semantics.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to / from the input."
+    },
+    {
+      "key": "Text keys",
+      "action": "Native text editing (insert / delete / select)."
+    },
+    {
+      "key": "Home / End",
+      "action": "Jump to start / end of the value."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Uses focus-visible:ring-1 for keyboard focus. Disabled inputs show cursor-not-allowed and opacity-50; they remain in the accessibility tree but are skipped by Tab.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Announces with its label (via <Label htmlFor> or wrapping <label>), type-derived role, and current value.",
+      "Placeholder text is announced as a hint by most modern AT, not as the value.",
+      "When aria-invalid is true, announces \"invalid\" with the linked aria-describedby error message."
+    ],
+    "notes": "Never rely on placeholder as a label; it disappears once the user starts typing and is not reliably announced. Use the Label component or aria-label / aria-labelledby.\n"
+  },
+  "contrast": {
+    "text": "Value uses foreground, placeholder uses text-muted-foreground. Both meet WCAG AA against bg-transparent",
+    "ui": "Border uses border-input; focus ring uses ring-ring. Both meet AA non-text contrast"
+  },
+  "motion": {
+    "reducedMotion": "Only a color transition on focus / blur; no motion-based animations"
+  },
+  "consumerResponsibilities": [
+    "Always provide a real label via <Label htmlFor> or aria-label; placeholder alone is not accessible.",
+    "Set type correctly (email, tel, url, search, number) so mobile keyboards and AT match the expected input.",
+    "Pair with aria-describedby when you show helper text or errors; the component does not wire this automatically (use FormControl for that)."
+  ]
+}

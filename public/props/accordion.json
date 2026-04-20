@@ -1,0 +1,22 @@
+[
+  {
+    "displayName": "Accordion",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "AccordionItem",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "AccordionTrigger",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "AccordionContent",
+    "description": "",
+    "props": []
+  }
+]

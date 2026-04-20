@@ -1,0 +1,45 @@
+component: Table
+wcag: AA
+standard: WAI-ARIA 1.2
+element: table
+role: null
+delegatesTo: null
+description: >
+  Styled wrappers around native table elements. Table renders a <table>
+  wrapped in a scroll container; TableHeader / TableBody / TableFooter are
+  <thead> / <tbody> / <tfoot>; TableHead is <th>; TableCell is <td>;
+  TableRow is <tr>; TableCaption is <caption>. All native table semantics
+  apply, so screen readers can navigate cell-by-cell with AT-specific
+  keystrokes.
+
+keyboard: []
+
+focus:
+  visible: false
+  trapped: false
+  notes: >
+    The table itself is not focusable. Interactive content inside cells
+    (buttons, links, checkboxes) retains its own focus behavior.
+
+screenReader:
+  announcements:
+    - Announces as a table with its row / column count.
+    - Each TableHead (<th>) is used as a column header reference when cells are navigated.
+    - TableCaption (if present) is read at the start of the table.
+  notes: >
+    TableHead does not set scope="col" by default; for complex tables
+    (multi-level headers, row headers) add scope / headers / id attributes
+    yourself. Simple tables work fine with the defaults.
+
+contrast:
+  text: "Header text uses text-muted-foreground; cell text uses foreground. Both meet WCAG AA on bg-background"
+  ui: "Row borders use border token; selected / hover states use bg-muted/50. All meet AA non-text contrast"
+
+motion:
+  reducedMotion: "Only a color transition on row hover; no motion-based animations"
+
+consumerResponsibilities:
+  - Use a TableCaption or aria-label / aria-labelledby to name the table; unnamed tables are hard to navigate for screen reader users.
+  - Set scope="col" on TableHead (or scope="row" on row headers) for tables with complex header relationships.
+  - Don't use <Table> for layout; it implies a data grid to assistive tech. Use <div> + CSS grid for visual layouts.
+  - For sortable / selectable tables, wire aria-sort on the relevant TableHead and aria-selected on rows yourself; the primitives don't add these automatically.

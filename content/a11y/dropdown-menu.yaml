@@ -1,0 +1,63 @@
+component: DropdownMenu
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: menu
+delegatesTo: "@radix-ui/react-dropdown-menu"
+description: >
+  Menu attached to a button trigger. DropdownMenuTrigger is a real <button>
+  with aria-haspopup="menu" and aria-expanded; the portaled content is
+  role="menu" with items as role="menuitem", menuitemcheckbox, or
+  menuitemradio. Supports sub-menus, radio groups, checkbox items, labels,
+  and separators, all with correct ARIA wiring via Radix.
+
+keyboard:
+  - key: Enter / Space / ArrowDown
+    action: Opens the menu and moves focus to the first item.
+  - key: ArrowUp / ArrowDown
+    action: Moves focus between items.
+  - key: ArrowRight
+    action: Opens a submenu when the focused item is a SubTrigger.
+  - key: ArrowLeft
+    action: Closes the current submenu and returns focus to its trigger.
+  - key: Enter / Space
+    action: Activates the focused item (toggles checkbox / radio items).
+  - key: Escape
+    action: Closes the menu and returns focus to the trigger.
+  - key: Tab
+    action: Closes the menu and moves focus to the next tabbable element on the page.
+  - key: A–Z
+    action: Type-ahead jumps to the first item whose label starts with that letter.
+
+focus:
+  visible: true
+  trapped: true
+  notes: >
+    Focus is scoped inside the menu while open. The trigger keeps its
+    focus ring; items get focus-bg-accent when focused. Disabled items are
+    skipped by keyboard navigation.
+
+screenReader:
+  announcements:
+    - The trigger announces as a button with "menu" popup.
+    - Each item announces with its label, role, and checked state where applicable.
+    - Keyboard shortcuts rendered via DropdownMenuShortcut are decorative visual only; consumers should also wire the actual key handler.
+  notes: >
+    DropdownMenuShortcut renders as a <span>; it does not bind the shortcut
+    itself. Register the hotkey in your page-level handler and mirror its
+    label in the shortcut span.
+
+contrast:
+  text: "Item text uses foreground over bg-popover; focused item swaps to bg-accent / text-accent-foreground. Both meet WCAG AA"
+  ui: "Separator uses bg-muted; check / dot indicators use foreground. All meet AA"
+
+motion:
+  reducedMotion: >
+    Content uses data-[state=open]:animate-in with fade + slide utilities.
+    Gate with motion-reduce:animate-none in your theme if strict compliance
+    matters.
+
+consumerResponsibilities:
+  - Provide an accessible name on the trigger (text label or aria-label); the menu's options are not a substitute.
+  - Keep menus short and grouped; long flat lists are hard to scan with the keyboard.
+  - For destructive actions, consider confirming with an AlertDialog instead of firing immediately on menu item click.

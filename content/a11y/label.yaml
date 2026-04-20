@@ -1,0 +1,40 @@
+component: Label
+wcag: AA
+standard: WAI-ARIA 1.2
+element: label
+role: null
+delegatesTo: "@radix-ui/react-label"
+description: >
+  Accessible <label> wrapper. Radix's Label primitive adds a click handler
+  that focuses the associated control even when the control is a custom
+  widget (not just a native input), which fixes browser inconsistencies
+  with non-input form controls.
+
+keyboard: []
+
+focus:
+  visible: false
+  trapped: false
+  notes: >
+    Not focusable itself. Clicking the label transfers focus to its
+    associated control via htmlFor or by wrapping the control.
+
+screenReader:
+  announcements:
+    - The label's text is announced when its associated control receives focus.
+  notes: >
+    Radix Label is not a landmark; it only exists to associate text with a
+    control. For purely decorative or non-control text, use a regular
+    <span> or <p> instead.
+
+contrast:
+  text: "Uses foreground; peer-disabled:opacity-70 dims it when the associated control is disabled. Meets WCAG AA"
+  ui: "N/A; no UI chrome"
+
+motion:
+  reducedMotion: "No animations"
+
+consumerResponsibilities:
+  - Always link Label to exactly one control via htmlFor or by wrapping; Radix does not prevent you from associating with multiple.
+  - Keep label text concise and descriptive; avoid punctuation-only labels (e.g. ":") as they don't convey the control's purpose.
+  - For required fields, include the required indicator in the label text or via aria-required on the control rather than as a separate element screen readers might miss.

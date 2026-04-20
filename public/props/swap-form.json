@@ -1,0 +1,148 @@
+[
+  {
+    "displayName": "SwapForm",
+    "description": "",
+    "props": [
+      {
+        "name": "tokens",
+        "type": "SwapToken[]",
+        "required": true,
+        "defaultValue": null,
+        "description": "Tokens available in both the from-token and to-token selects."
+      },
+      {
+        "name": "fromToken",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Controlled \"from\" token symbol."
+      },
+      {
+        "name": "toToken",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Controlled \"to\" token symbol."
+      },
+      {
+        "name": "fromAmount",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Controlled \"from\" amount (as a string so consumers can pass wei / base units)."
+      },
+      {
+        "name": "toAmount",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Controlled \"to\" amount; typically derived from a quote."
+      },
+      {
+        "name": "slippageBps",
+        "type": "number",
+        "required": false,
+        "defaultValue": "50",
+        "description": "Slippage tolerance in basis points (e.g. 50 = 0.5%)."
+      },
+      {
+        "name": "rate",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Estimated exchange rate label; e.g. \"1 ETH = 2,342 USDC\"."
+      },
+      {
+        "name": "networkFee",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Estimated network fee; e.g. \"$1.23\"."
+      },
+      {
+        "name": "minimumReceived",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Minimum received after slippage; e.g. \"2,318 USDC\"."
+      },
+      {
+        "name": "status",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "idle",
+        "description": "Button state: \"idle\" | \"quoting\" | \"ready\" | \"confirming\" | \"error\"."
+      },
+      {
+        "name": "errorMessage",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Optional error message rendered under the form."
+      },
+      {
+        "name": "onFromTokenChange",
+        "type": "(symbol: string) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "onToTokenChange",
+        "type": "(symbol: string) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "onFromAmountChange",
+        "type": "(value: string) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "onToAmountChange",
+        "type": "(value: string) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "onSlippageChange",
+        "type": "(bps: number) => void",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "onReverse",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "User reversed the from / to direction."
+      },
+      {
+        "name": "onSwap",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "User triggered the swap."
+      },
+      {
+        "name": "onOpenSettings",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Clicked the settings icon; consumer renders the slippage UI."
+      },
+      {
+        "name": "swapLabel",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Button label; defaults depend on status."
+      }
+    ]
+  }
+]

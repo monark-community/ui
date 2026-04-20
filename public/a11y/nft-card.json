@@ -1,0 +1,43 @@
+{
+  "component": "NftCard",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Presentational NFT tile built on Card + AspectRatio + Badge. The only interactive element is whatever the consumer passes via the `action` prop (typically a Button); the card itself is a non-interactive container.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the action button (when one is provided via the `action` slot)."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Activates the action button."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Focus visibility and keyboard behavior come from the action element itself; NftCard adds no focus styling of its own.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Collection, then name, then trait list, then price, then the action's accessible name."
+    ],
+    "notes": "Consider wrapping a list of NftCards in a <ul> and each card in a <li> so assistive tech can report card count and position. The card's image uses `imageAlt` as its alt text; if you omit it, NftCard falls back to the `name` prop, which is usually the right choice.\n"
+  },
+  "contrast": {
+    "text": "Name uses foreground, collection + traits use text-muted-foreground; both meet WCAG AA on the default theme over bg-card",
+    "ui": "Collection badge inherits Badge variant colors; default and secondary variants meet AA against the image overlay"
+  },
+  "motion": {
+    "reducedMotion": "No animations"
+  },
+  "consumerResponsibilities": [
+    "Always provide a meaningful `imageAlt` when the image itself conveys information beyond the name (e.g. trait artwork).",
+    "Use the `action` slot to expose purchase / bid / view affordances; don't make the whole card a link, as that hides the traits from screen readers behind a single accessible name.",
+    "If you render a grid of cards, keep their heights consistent by passing the same `maxTraits` value; otherwise taller cards reflow the grid unpredictably.",
+    "Traits sit inside the card as plain divs. If you need them to be independently focusable (e.g. filter by trait), wrap each trait in a button and expose a separate `onTraitClick` prop in your own variant."
+  ]
+}

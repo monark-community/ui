@@ -1,0 +1,33 @@
+{
+  "component": "Skeleton",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Loading placeholder shape. A plain <div> with an animate-pulse background and no ARIA role. Conveys visually that content is loading, but provides no semantic signal to assistive tech on its own.\n",
+  "keyboard": [],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "Non-interactive, not focusable."
+  },
+  "screenReader": {
+    "announcements": [
+      "Silent by default; the pulsing div has no role or accessible name."
+    ],
+    "notes": "Wrap the page region you're skeletonizing in an aria-live=\"polite\" container and add an aria-busy=\"true\" attribute while loading so screen reader users know content is coming. The Skeleton primitive does none of this for you.\n"
+  },
+  "contrast": {
+    "text": "N/A; no text",
+    "ui": "Uses bg-primary/10; visually subtle by design, so it may fall below 3:1 non-text contrast. This is acceptable for transient loading UI but not a substitute for real content contrast"
+  },
+  "motion": {
+    "reducedMotion": "animate-pulse is always on. For strict reduced-motion compliance, override the animation in your theme: motion-reduce:animate-none on the Skeleton utility or globally.\n"
+  },
+  "consumerResponsibilities": [
+    "Pair with aria-busy / aria-live on the parent region so screen reader users are informed that content is loading.",
+    "Shape skeletons to roughly match the final content dimensions so the layout doesn't jump when data arrives.",
+    "Remove Skeletons as soon as data is ready; leaving them on the page indefinitely confuses all users."
+  ]
+}

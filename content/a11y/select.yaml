@@ -1,0 +1,60 @@
+component: Select
+wcag: AA
+standard: WAI-ARIA 1.2
+element: button
+role: combobox
+delegatesTo: "@radix-ui/react-select"
+description: >
+  Custom single-select dropdown. SelectTrigger is a <button role="combobox">
+  with aria-expanded and aria-controls; SelectContent is role="listbox" in
+  a portal, and each SelectItem is role="option". Radix manages full
+  keyboard support, type-ahead, and scrolling for long lists.
+
+keyboard:
+  - key: Enter / Space / ArrowDown / ArrowUp
+    action: Opens the listbox and moves focus to the selected (or first) option.
+  - key: ArrowDown / ArrowUp
+    action: Moves focus between options.
+  - key: Home / End
+    action: Moves to the first / last option.
+  - key: Enter / Space
+    action: Selects the focused option and closes the listbox.
+  - key: Escape
+    action: Closes the listbox without changing the selection.
+  - key: Tab
+    action: Closes the listbox and moves focus to the next tabbable element.
+  - key: A–Z
+    action: Type-ahead jumps to the first option whose label starts with that letter.
+
+focus:
+  visible: true
+  trapped: true
+  notes: >
+    Focus is scoped inside the listbox while open (aria-activedescendant
+    model) and restored to the trigger on close. Disabled options are
+    skipped by keyboard navigation.
+
+screenReader:
+  announcements:
+    - Trigger announces with its SelectValue (or placeholder if nothing is selected), the combobox role, and its expanded state.
+    - Each option announces with its label and selected state.
+    - The listbox announces its option count.
+  notes: >
+    SelectValue is a text placeholder; consumers should set a descriptive
+    placeholder and/or wrap the trigger with a Label. SelectItem's Check
+    indicator is decorative; aria-selected carries the real selection state.
+
+contrast:
+  text: "Trigger text uses foreground; placeholder uses text-muted-foreground. Option text uses foreground; focused option uses text-accent-foreground on bg-accent. All meet WCAG AA"
+  ui: "Trigger border uses border-input; focus ring uses ring-ring. Both meet AA non-text contrast"
+
+motion:
+  reducedMotion: >
+    Content uses data-[state=open]:animate-in with fade + zoom + slide
+    utilities. Gate with motion-reduce:animate-none if strict compliance
+    matters.
+
+consumerResponsibilities:
+  - Always provide a Label linked to the Select trigger, or an aria-label; the visual placeholder is not enough.
+  - Use SelectGroup with SelectLabel for long lists so users can scan by category.
+  - For multi-select, use a different pattern (Radix does not provide a multi-select primitive); consider Command or a combobox library.

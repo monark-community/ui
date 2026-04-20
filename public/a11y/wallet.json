@@ -1,0 +1,42 @@
+{
+  "component": "Wallet",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "group",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Wallet is a non-interactive identity row composed of a decorative jazzicon, an optional display name, a truncated on-chain address, and a copy-to-clipboard button. The avatar is marked aria-hidden because it encodes no information beyond the address itself, which is already rendered as text.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the copy button (the only interactive element)."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Activates the copy button and copies the full address to the clipboard."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Only the copy button is focusable. The row itself is not a tab stop, so embedding Wallet inside a list, menu, or button is safe.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The copy button's aria-label toggles between \"Copy address\" and \"Address copied\" so a screen reader announces the success of the copy action."
+    ],
+    "notes": "Use the `name` prop when possible; screen readers will read the name, then the address, which matches the visual order. When only the address is shown, consider wrapping the component in a region with a heading so the context (e.g. \"Connected wallet\") is clear.\n"
+  },
+  "contrast": {
+    "text": "Address text uses text-muted-foreground; meets WCAG AA over bg-card in the default theme",
+    "ui": "Copy button icon meets WCAG AA via the Button ghost variant"
+  },
+  "motion": {
+    "reducedMotion": "No animations beyond the 1.5s copy-confirmation icon swap"
+  },
+  "consumerResponsibilities": [
+    "Provide a real wallet address; the jazzicon seed is derived from its hex bytes, so consistent capitalization keeps the avatar stable across renders.",
+    "When displaying multiple wallets in a list, wrap them in a <ul>/<li> structure so assistive tech can report the count and position.",
+    "The full address is exposed via the `title` attribute on WalletAddress; for users who can't hover, pair Wallet with a visible \"Show full address\" affordance if the full value matters."
+  ]
+}

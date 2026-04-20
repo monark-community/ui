@@ -1,0 +1,56 @@
+{
+  "component": "Tabs",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "tablist",
+  "delegatesTo": "@radix-ui/react-tabs",
+  "description": "Tabbed panels. TabsList is role=\"tablist\"; each TabsTrigger is role=\"tab\" with aria-selected and aria-controls pointing at its TabsContent (role=\"tabpanel\", labelled by the trigger). Radix implements the WAI-ARIA tabs pattern with roving tabindex and optional automatic activation.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the active tab trigger, then into its panel, then out."
+    },
+    {
+      "key": "ArrowLeft / ArrowRight",
+      "action": "Moves focus between triggers in a horizontal tablist (and activates the tab if activationMode is \"automatic\", the default)."
+    },
+    {
+      "key": "ArrowUp / ArrowDown",
+      "action": "Same as Left / Right when orientation=\"vertical\"."
+    },
+    {
+      "key": "Home / End",
+      "action": "Moves focus to the first / last trigger."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Activates the focused trigger when activationMode is \"manual\"."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Only the active trigger is in the tab sequence (roving tabindex); other triggers are tabindex=-1 but reachable via arrow keys. Both TabsTrigger and TabsContent have focus-visible:ring-2 rings.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Tablist announces as a tab list with its count.",
+      "Each trigger announces as a tab with its selected state.",
+      "Switching to a new tab moves the \"selected\" state and (if activationMode=\"automatic\") shows the new panel immediately."
+    ],
+    "notes": "For panels with heavy content, set activationMode=\"manual\" so arrow keys move focus without switching panels; the user presses Enter / Space to commit. This avoids loading / rendering delays as users scan.\n"
+  },
+  "contrast": {
+    "text": "Active trigger uses text-foreground on bg-background; inactive uses text-muted-foreground. Both meet WCAG AA",
+    "ui": "Active trigger gains a shadow; focus ring uses ring-ring. Meets AA non-text contrast"
+  },
+  "motion": {
+    "reducedMotion": "Only a background transition on active state; no motion-based animations"
+  },
+  "consumerResponsibilities": [
+    "Keep trigger labels concise; they're read in a list and long labels get truncated visually.",
+    "Consider activationMode=\"manual\" for tabs that load expensive content, so arrow-key browsing doesn't thrash.",
+    "Don't nest Tabs more than one level; nested tabs are confusing for keyboard and screen reader users alike."
+  ]
+}

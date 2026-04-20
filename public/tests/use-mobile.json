@@ -1,0 +1,13 @@
+{
+  "component": "use-mobile",
+  "hasUnitTests": false,
+  "hasInteractionTests": false,
+  "hasVisualTests": false,
+  "hasA11yTests": false,
+  "hasPerformanceTests": false,
+  "hasProps": false,
+  "hasA11yDocs": false,
+  "hasPreview": false,
+  "testFiles": [],
+  "totalTests": 0
+}

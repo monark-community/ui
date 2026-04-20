@@ -1,0 +1,53 @@
+component: Drawer
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: dialog
+delegatesTo: vaul
+description: >
+  Bottom sheet / drawer built on vaul. Internally uses Radix Dialog
+  primitives so role="dialog" with aria-modal, aria-labelledby, and
+  aria-describedby all work the same way. Vaul layers drag-to-dismiss
+  gestures on top: pulling the sheet down past a threshold closes it, and
+  the page scales slightly in the background when shouldScaleBackground
+  is true.
+
+keyboard:
+  - key: Tab
+    action: Cycles focus through the drawer's focusable elements.
+  - key: Shift+Tab
+    action: Cycles focus backwards within the drawer.
+  - key: Escape
+    action: Closes the drawer.
+
+focus:
+  visible: true
+  trapped: true
+  notes: >
+    Focus is trapped while the drawer is open; vaul uses Radix Dialog's
+    focus management, so focus returns to the trigger on close.
+
+screenReader:
+  announcements:
+    - Announced as a dialog with its DrawerTitle / DrawerDescription in reading order.
+  notes: >
+    Vaul adds a visual drag handle (the small muted bar at the top). It's
+    decorative; keyboard and screen reader users close the drawer via
+    Escape or an explicit Close button. Ensure you render a DrawerClose if
+    you don't want to rely on Escape alone.
+
+contrast:
+  text: "Title uses foreground, description uses muted-foreground; meets WCAG AA on bg-background"
+  ui: "Drag handle uses bg-muted; overlay uses bg-black/80. Meets AA as visual-only cues"
+
+motion:
+  reducedMotion: >
+    Vaul drives the slide / scale animation via transforms on the drawer
+    and the page scaler. Users with prefers-reduced-motion benefit from
+    setting shouldScaleBackground={false} and / or disabling the snap-point
+    transition in your theme.
+
+consumerResponsibilities:
+  - Always render DrawerTitle (use VisuallyHidden if you don't want it on screen).
+  - Provide an explicit DrawerClose button for users who don't know Escape is supported; don't rely on the drag handle alone.
+  - On small screens, be mindful of the drawer covering critical page UI; offer a way back via keyboard.

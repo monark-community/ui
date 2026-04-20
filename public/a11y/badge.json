@@ -1,0 +1,33 @@
+{
+  "component": "Badge",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Small inline label used for status, counts, and categories. Rendered as a plain <div> with no ARIA role; the text content is the entire accessible name. Variants (default, secondary, destructive, outline) change only the visual treatment.\n",
+  "keyboard": [],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "Not focusable by default. The component class includes focus:ring styles in case it is rendered as a link / button via className reuse, but the base <div> has no tabindex.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Reads the badge's text content in flow."
+    ],
+    "notes": "When the badge's color carries meaning (e.g. destructive for errors), pair it with text that conveys the same meaning; screen readers do not announce color.\n"
+  },
+  "contrast": {
+    "text": "All four variants meet WCAG AA against their own backgrounds in the default theme",
+    "ui": "Outline variant uses the default border; still meets AA as a non-text UI element"
+  },
+  "motion": {
+    "reducedMotion": "Only the standard color transition on hover; no motion-based animations"
+  },
+  "consumerResponsibilities": [
+    "Keep badge text short; it's read in flow and not announced as a separate region.",
+    "Do not rely on color alone to convey status; include text (e.g. \"Draft\", \"Failed\").",
+    "If the badge is actionable (opens a filter, removes a tag), wrap it in a Button so it becomes a real interactive target."
+  ]
+}

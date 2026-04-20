@@ -1,0 +1,48 @@
+component: Chart
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: null
+delegatesTo: recharts
+description: >
+  Wrapper around recharts that injects a theme-aware CSS variable map and
+  a ResponsiveContainer. The chart itself is an SVG drawn by recharts,
+  which is not a keyboard-navigable structure by default. ChartTooltipContent
+  and ChartLegendContent are presentational <div>s that recharts positions
+  over hovered data points.
+
+keyboard: []
+
+focus:
+  visible: false
+  trapped: false
+  notes: >
+    Not focusable out of the box. Recharts SVG shapes are inert to the
+    keyboard unless the consumer enables its accessibilityLayer prop, which
+    this wrapper does not set by default.
+
+screenReader:
+  announcements:
+    - The SVG is not announced as a structured region; individual shapes have no accessible name.
+  notes: >
+    Charts are inherently visual. Pair every Chart with a textual summary
+    (e.g. "Revenue grew 12% month over month") and/or a <table> containing
+    the underlying data so assistive tech users get the same information.
+
+contrast:
+  text: "Axis tick text uses fill-muted-foreground; still meets AA on bg-background"
+  ui: >
+    Series colors come from the consumer's ChartConfig; contrast depends on
+    the palette. The wrapper does nothing to enforce contrast between
+    adjacent series.
+
+motion:
+  reducedMotion: >
+    Recharts animates data entry / updates. Pass `isAnimationActive={false}`
+    on the chart primitives (Line, Bar, etc.) to disable animations, or
+    gate it on a prefers-reduced-motion check.
+
+consumerResponsibilities:
+  - Provide a text alternative for every chart (summary paragraph, data table, or aria-describedby).
+  - Pick series colors with sufficient contrast against each other and the background; the ChartConfig schema does not validate this.
+  - Consider passing recharts' accessibilityLayer prop for richer keyboard / screen reader support if the chart is interactive.

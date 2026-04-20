@@ -1,0 +1,63 @@
+component: ContextMenu
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: menu
+delegatesTo: "@radix-ui/react-context-menu"
+description: >
+  Right-click / long-press menu. ContextMenuTrigger wraps any element and
+  opens the menu on contextmenu events; the portaled content is role="menu"
+  with items as role="menuitem", menuitemcheckbox, or menuitemradio. Sub-menus,
+  checkbox items, radio items, labels, and separators all carry correct
+  ARIA roles via Radix.
+
+keyboard:
+  - key: Shift+F10
+    action: Opens the context menu on the focused trigger element (standard OS behavior).
+  - key: ContextMenu key
+    action: Opens the menu (on keyboards that have a dedicated context-menu key).
+  - key: ArrowDown / ArrowUp
+    action: Moves focus between items.
+  - key: ArrowRight
+    action: Opens a submenu when the focused item is a SubTrigger.
+  - key: ArrowLeft
+    action: Closes the current submenu and returns focus to its trigger.
+  - key: Enter / Space
+    action: Activates the focused item (toggles checkbox / radio items).
+  - key: Escape
+    action: Closes the menu and restores focus to the trigger.
+  - key: A–Z
+    action: Type-ahead jumps to the first item whose label starts with that letter.
+
+focus:
+  visible: true
+  trapped: true
+  notes: >
+    Focus is scoped inside the menu while open; clicking outside or pressing
+    Escape closes it and returns focus to the triggering element. Disabled
+    items are skipped by keyboard navigation.
+
+screenReader:
+  announcements:
+    - The menu opens with its role and count announced.
+    - Each item announces with its label, role (menuitem / menuitemcheckbox / menuitemradio), and checked state where applicable.
+    - SubTrigger items announce "submenu" to indicate the ArrowRight affordance.
+  notes: >
+    ContextMenu replaces the browser's native right-click menu on its
+    trigger. Do not use it for primary actions; those should also be
+    reachable via a visible button or keyboard shortcut.
+
+contrast:
+  text: "Item text uses foreground over bg-popover; focused item swaps to bg-accent / text-accent-foreground. Both meet WCAG AA"
+  ui: "Separator uses border token; check / dot indicators use foreground. All meet AA"
+
+motion:
+  reducedMotion: >
+    Content uses data-[state=open]:animate-in / slide-in utilities. Gate
+    with motion-reduce:animate-none in your theme if strict compliance
+    matters.
+
+consumerResponsibilities:
+  - Never put an action in a context menu that isn't also reachable another way; discoverability is low.
+  - Keep menus short; long context menus are hard to navigate with the keyboard.
+  - Provide an accessible label on the trigger element (the thing the user right-clicks) so screen reader users know what the menu applies to.

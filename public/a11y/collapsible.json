@@ -1,0 +1,43 @@
+{
+  "component": "Collapsible",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "button",
+  "role": null,
+  "delegatesTo": "@radix-ui/react-collapsible",
+  "description": "Generic show / hide primitive. CollapsibleTrigger is a real <button> with aria-expanded and aria-controls pointing at the CollapsibleContent region; Radix keeps them in sync. Unlike Accordion, there is no roving tabindex, arrow-key navigation, or group context.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the trigger and then into the revealed content when expanded."
+    },
+    {
+      "key": "Space / Enter",
+      "action": "Toggles the open state."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "The trigger uses whatever focus ring the consumer supplies (it's an unstyled <button> until styled). Focus is never trapped inside the content.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The trigger announces its current expanded / collapsed state.",
+      "Content appears / disappears in the accessibility tree as it mounts / unmounts."
+    ],
+    "notes": "Collapsible exposes no role for its content by default; consumers who need \"region\" semantics should add role=\"region\" and aria-labelledby themselves.\n"
+  },
+  "contrast": {
+    "text": "Inherits from consumer-provided children; no default text tokens",
+    "ui": "No chrome; consumer supplies all visuals"
+  },
+  "motion": {
+    "reducedMotion": "Radix exposes --radix-collapsible-content-height / -width CSS variables but does not animate by default. Any transition is authored by the consumer and should be gated behind prefers-reduced-motion.\n"
+  },
+  "consumerResponsibilities": [
+    "Style the trigger as a real button; pair it with an icon (chevron) whose rotation mirrors the open state.",
+    "When the collapsed content is a distinct section (FAQ answer, optional panel), add role=\"region\" and aria-labelledby so screen readers can navigate to it.",
+    "Avoid nesting interactive focusables that are visually hidden when collapsed; Radix unmounts the content, so they leave the tab order cleanly."
+  ]
+}

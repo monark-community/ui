@@ -1,0 +1,101 @@
+[
+  {
+    "displayName": "ContextMenu",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuTrigger",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuContent",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuItem",
+    "description": "",
+    "props": [
+      {
+        "name": "inset",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "ContextMenuCheckboxItem",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuRadioItem",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuLabel",
+    "description": "",
+    "props": [
+      {
+        "name": "inset",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "ContextMenuSeparator",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuShortcut",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuGroup",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuPortal",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuSub",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuSubContent",
+    "description": "",
+    "props": []
+  },
+  {
+    "displayName": "ContextMenuSubTrigger",
+    "description": "",
+    "props": [
+      {
+        "name": "inset",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "ContextMenuRadioGroup",
+    "description": "",
+    "props": []
+  }
+]
