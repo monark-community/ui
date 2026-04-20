@@ -80,7 +80,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
     "@playwright/test": "^1.51.1",
-    "@sntlr/registry-shell": "2.5.0",
+    "@sntlr/registry-shell": "2.5.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
