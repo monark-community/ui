@@ -61,7 +61,6 @@ const map: Record<string, ComponentType> = {
   "network-badge": dynamic(() => import("./network-badge-preview").then((m) => m.NetworkBadgePreview)),
   "tx-status": dynamic(() => import("./tx-status-preview").then((m) => m.TxStatusPreview)),
   "nft-card": dynamic(() => import("./nft-card-preview").then((m) => m.NftCardPreview)),
-  "wallet-drawer": dynamic(() => import("./wallet-drawer-preview").then((m) => m.WalletDrawerPreview)),
   "swap-form": dynamic(() => import("./swap-form-preview").then((m) => m.SwapFormPreview)),
 }
 

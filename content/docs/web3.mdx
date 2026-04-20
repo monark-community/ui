@@ -138,66 +138,6 @@ export function MintButton() {
 }
 ```
 
-## WalletDrawer as the full account surface
-
-`WalletDrawer` composes `ConnectWallet`, `Wallet`, `NetworkBadge`, and whatever you pass into the `balance` / `transactions` slots. A minimal wiring:
-
-```tsx
-import { WalletDrawer } from "@/registry/new-york/blocks/wallet-drawer/wallet-drawer"
-import { TokenAmount } from "@/components/ui/token-amount"
-import { TxStatus } from "@/components/ui/tx-status"
-import {
-  useAccount,
-  useBalance,
-  useChainId,
-  useChains,
-  useConnect,
-  useDisconnect,
-} from "wagmi"
-
-export function Account() {
-  const { address, status } = useAccount()
-  const { connect, connectors, status: connectStatus } = useConnect()
-  const { disconnect } = useDisconnect()
-  const { data: balance } = useBalance({ address })
-  const chainId = useChainId()
-  const chain = useChains().find((c) => c.id === chainId)
-  const recentTxs = useRecentTransactions(address) // your own hook
-
-  const derivedStatus =
-    status === "connected" ? "connected"
-    : connectStatus === "pending" ? "connecting"
-    : "disconnected"
-
-  return (
-    <WalletDrawer
-      status={derivedStatus}
-      address={address}
-      chainName={chain?.name}
-      onConnect={() => connect({ connector: connectors[0] })}
-      onDisconnect={() => disconnect()}
-      balance={
-        balance && (
-          <TokenAmount
-            value={balance.value}
-            decimals={balance.decimals}
-            symbol={balance.symbol}
-          />
-        )
-      }
-      transactions={recentTxs.map((tx) => (
-        <TxStatus
-          key={tx.hash}
-          status={tx.status}
-          hash={tx.hash}
-          explorerUrl={chain?.blockExplorers?.default.url}
-        />
-      ))}
-    />
-  )
-}
-```
-
 ## SwapForm with a real quote
 
 The form is controlled; drive `fromAmount` / `toAmount` from a debounced quote query (viem's `readContract` against a DEX router, 1inch API, CoW Protocol, etc.):

@@ -891,29 +891,6 @@
       ]
     },
     {
-      "name": "wallet-drawer",
-      "type": "registry:block",
-      "title": "Wallet Drawer",
-      "description": "Sheet-based wallet surface; connect button as trigger, connected-state body with identity, chain, balance, and transactions. Agnostic of connector and price feeds.",
-      "dependencies": [
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "button",
-        "connect-wallet",
-        "network-badge",
-        "separator",
-        "sheet",
-        "wallet"
-      ],
-      "files": [
-        {
-          "path": "registry/new-york/blocks/wallet-drawer/wallet-drawer.tsx",
-          "type": "registry:block"
-        }
-      ]
-    },
-    {
       "name": "swap-form",
       "type": "registry:block",
       "title": "Swap Form",

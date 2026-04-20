@@ -51,7 +51,6 @@ And install components with the short form:
 ```bash
 npx shadcn@latest add @monark/button
 npx shadcn@latest add @monark/wallet @monark/connect-wallet @monark/tx-status
-npx shadcn@latest add @monark/wallet-drawer
 ```
 
 Each component lands in `components/ui/` (or `registry/new-york/blocks/<name>/` for blocks) and brings its dependencies with it. Nothing else is installed, nothing else phones home.
@@ -116,7 +115,7 @@ components/
   previews/       preview wrappers rendered on each component page
 registry/
   new-york/
-    blocks/       composed patterns (wallet-drawer, swap-form, nft-card)
+    blocks/       composed patterns (swap-form, nft-card)
 content/
   docs/           MDX docs (getting started, theming, web3, anatomy)
   a11y/           per-component accessibility YAML
