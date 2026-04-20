@@ -6,7 +6,7 @@ order: 3
 
 # Web3 Integration
 
-Monark's web3 components (`Wallet`, `ConnectWallet`, `WalletDrawer`, `TokenAmount`, `NetworkBadge`, `TxStatus`, `SwapForm`) are intentionally presentational. They accept props and emit callbacks; they do not fetch, sign, broadcast, or hold connection state. Wiring them to a real stack is your job, which keeps the registry connector-agnostic.
+Monark's web3 components (`Wallet`, `ConnectWallet`, `TokenAmount`, `NetworkBadge`, `TxStatus`, `SwapForm`) are intentionally presentational. They accept props and emit callbacks; they do not fetch, sign, broadcast, or hold connection state. Wiring them to a real stack is your job, which keeps the registry connector-agnostic.
 
 This page shows the canonical wiring for [wagmi v2](https://wagmi.sh) + [viem](https://viem.sh). The same pattern adapts to RainbowKit, Reown AppKit, or a hand-rolled connector.
 

@@ -20,7 +20,6 @@ It ships the full set of shadcn primitives (buttons, inputs, dialogs, data table
 
 **Blocks**
 
-- `WalletDrawer`: the full account surface; identity, chain, balance, recent transactions, disconnect
 - `SwapForm`: two-sided token swap UI with reverse, slippage, and a status-driven submit
 - `NftCard`: NFT tile with image, collection tag, trait grid, price, and action slot
 
