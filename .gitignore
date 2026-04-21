@@ -2,6 +2,12 @@ node_modules
 .next
 out
 *.tsbuildinfo
+
+# Incremental-build manifests written by scripts/generate-{props,a11y,tests}.ts.
+# Regenerated on every `pnpm generate:*` run; tracking them creates churn.
+public/props/.hashes.json
+public/a11y/.hashes.json
+public/tests/.hashes.json
 .eslintcache
 coverage
 test-results
