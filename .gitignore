@@ -3,6 +3,11 @@ node_modules
 out
 *.tsbuildinfo
 
+# `shadcn build` output. Treating these as build artifacts (regenerated on
+# every `pnpm registry:build` / Vercel deploy) so palette edits in
+# `registry.json` can never silently ship the previous build's `theme.json`.
+public/r/
+
 # Incremental-build manifests written by scripts/generate-{props,a11y,tests}.ts.
 # Regenerated on every `pnpm generate:*` run; tracking them creates churn.
 public/props/.hashes.json
