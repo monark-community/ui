@@ -923,6 +923,69 @@
       ]
     },
     {
+      "name": "role-chip",
+      "type": "registry:ui",
+      "title": "Role Chip",
+      "description": "Tinted pill with a colour-derived background, matching dot, and optional remove button. Use for roles, tags, labels, or any categorical badge that needs colour coding.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "components/ui/role-chip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "trusted-device-card",
+      "type": "registry:ui",
+      "title": "Trusted Device Card",
+      "description": "Device session card showing device-type icon, label, metadata (last seen, IP, country), current-device badge, and optional revoke action. Schema-agnostic; pass formatted primitives as props.",
+      "dependencies": [
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "components/ui/trusted-device-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "password-strength-meter",
+      "type": "registry:ui",
+      "title": "Password Strength Meter",
+      "description": "Five-segment strength indicator compatible with zxcvbn scoring (0-4). Colour-coded segments with a text label. Fully controlled; consumer owns the scoring logic.",
+      "files": [
+        {
+          "path": "components/ui/password-strength-meter.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "image-crop-dialog",
+      "type": "registry:ui",
+      "title": "Image Crop Dialog",
+      "description": "Client-side image crop dialog built on react-easy-crop. Supports any aspect ratio (1:1 avatar, 3:1 banner, etc.). Outputs a cropped File preserving the source MIME type.",
+      "dependencies": [
+        "react-easy-crop",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "button",
+        "dialog",
+        "slider"
+      ],
+      "files": [
+        {
+          "path": "components/ui/image-crop-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "use-mobile",
       "type": "registry:hook",
       "title": "use-mobile",
