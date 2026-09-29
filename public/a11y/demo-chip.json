@@ -1,0 +1,33 @@
+{
+  "component": "DemoChip",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "span",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Non-interactive pill that marks a site as a simulated demo. The dot is aria-hidden; screen readers read the label only.\n",
+  "keyboard": [],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "Non-interactive, not focusable."
+  },
+  "screenReader": {
+    "announcements": [
+      "Reads the label, e.g. \"Demo\"."
+    ],
+    "notes": "The optional title (\"Demo · simulated data\") is a mouse tooltip only. The persistent \"Demo · simulated data\" notice belongs in the footer as visible text; don't rely on the chip's title for it.\n"
+  },
+  "contrast": {
+    "text": "Uses text-primary-ink on a 15% primary tint: about 4.5:1 or better on cream and white (primary-ink is the primary darkened to L 0.55), and the primary itself on espresso in dark mode.",
+    "ui": "N/A"
+  },
+  "motion": {
+    "reducedMotion": "No animation."
+  },
+  "consumerResponsibilities": [
+    "Translate the label (\"Démo\" is optional in French; \"Demo\" reads in both).",
+    "Keep a visible \"Demo · simulated data\" notice elsewhere on the page, such as the footer.",
+    "The chip needs the --primary-ink token; installing demo-chip (or theme-2026) adds it."
+  ]
+}

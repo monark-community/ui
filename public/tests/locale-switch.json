@@ -1,0 +1,25 @@
+{
+  "component": "locale-switch",
+  "hasUnitTests": true,
+  "hasInteractionTests": false,
+  "hasVisualTests": false,
+  "hasA11yTests": false,
+  "hasPerformanceTests": false,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/unit/components/locale-switch.test.tsx",
+      "type": "unit",
+      "tests": [
+        "renders one link per locale with hrefFor",
+        "shows upper-case codes by default and custom short labels when given",
+        "marks only the current locale with aria-current",
+        "sets lang and hreflang on each segment",
+        "labels the nav and the segments"
+      ]
+    }
+  ],
+  "totalTests": 5
+}

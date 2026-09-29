@@ -1,0 +1,44 @@
+component: SiteBrand
+wcag: AA
+standard: WAI-ARIA 1.2
+element: a
+role: link
+delegatesTo: null
+description: >
+  A single home link holding the colour Monark butterfly and the product
+  name. The mark is an inline SVG marked aria-hidden (it is decorative next
+  to the name), so the link has one accessible name: by default
+  "{Product}, by Monark: home", which starts with the visible product name.
+
+keyboard:
+  - key: Tab
+    action: Moves focus to the brand link.
+  - key: Enter
+    action: Follows the link to the site's home page.
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    A 2px ring in the ring colour shows on keyboard focus (focus-visible)
+    only, around the whole brand.
+
+screenReader:
+  announcements:
+    - 'Reads "Splitflow, by Monark: home, link".'
+  notes: >
+    The product name stays real text, so it is translatable, selectable and
+    read correctly. MonarkMark on its own becomes role="img" when you pass a
+    title; without one it is hidden from assistive tech.
+
+contrast:
+  text: "The product name uses text-foreground (18:1 on the Monark cream background, 17:1 on espresso)."
+  ui: "The butterfly is decorative; its red-to-orange gradient is fixed by the brand."
+
+motion:
+  reducedMotion: "No animation."
+
+consumerResponsibilities:
+  - Pass a translated aria-label on non-English pages (e.g. "Splitflow, par Monark : accueil").
+  - Point href at the locale root on localised sites (/fr, not /).
+  - Keep clear space around the mark; don't place other logos or text inside the brand link.

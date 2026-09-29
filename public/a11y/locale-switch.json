@@ -1,0 +1,43 @@
+{
+  "component": "LocaleSwitch",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "nav",
+  "role": "navigation",
+  "delegatesTo": null,
+  "description": "A labelled navigation landmark holding one link per locale. The active locale is marked aria-current=\"true\" as well as being visually inverted, so the state is not conveyed by colour alone. Each link carries lang and hreflang so screen readers pronounce the language name correctly.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves through the locale links in order."
+    },
+    {
+      "key": "Enter",
+      "action": "Follows the link to the same page in that locale."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Each segment shows a 2px ring on keyboard focus."
+  },
+  "screenReader": {
+    "announcements": [
+      "Reads \"Language, navigation\", then each segment, e.g. \"Français, link\" (with names) or \"FR, link\".",
+      "The active segment is announced as current."
+    ],
+    "notes": "Pass labels.names with the language names written in their own language (\"English\", \"Français\") so they read correctly whatever the page locale.\n"
+  },
+  "contrast": {
+    "text": "Active: background on foreground (inverted, 17:1+). Inactive: muted-foreground on background (6.5:1 on cream).",
+    "ui": "The pill outline uses the border token (decorative)."
+  },
+  "motion": {
+    "reducedMotion": "150ms colour transition only."
+  },
+  "consumerResponsibilities": [
+    "Make hrefFor keep the current page (swap the locale segment of the pathname), not jump to the home page.",
+    "Translate labels.label (\"Language\" / \"Langue\").",
+    "Segments are 32px tall; on touch layouts give them more room (the mobile sheet has space for it)."
+  ]
+}

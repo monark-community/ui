@@ -1,0 +1,28 @@
+{
+  "component": "site-header",
+  "hasUnitTests": true,
+  "hasInteractionTests": false,
+  "hasVisualTests": false,
+  "hasA11yTests": false,
+  "hasPerformanceTests": false,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/unit/components/site-header.test.tsx",
+      "type": "unit",
+      "tests": [
+        "renders a banner landmark with the brand, links and actions",
+        "marks the section link active on nested pages",
+        "marks an exact link active only on its own path",
+        "does not treat a shared prefix as a parent path",
+        "opens the mobile sheet with the links and actions, and closes it",
+        "closes the sheet when a link inside it is followed",
+        "uses mobileActions in the sheet when given",
+        "accepts translated labels"
+      ]
+    }
+  ],
+  "totalTests": 8
+}

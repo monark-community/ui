@@ -986,6 +986,92 @@
       ]
     },
     {
+      "name": "site-brand",
+      "type": "registry:ui",
+      "title": "Site Brand",
+      "description": "The Monark product brand for a site header: the colour butterfly mark (28px, inlined SVG), a 10px gap, and the product name in Nunito Sans 800. Links home; takes any link component (plain <a>, Next.js Link, i18n links).",
+      "files": [
+        {
+          "path": "components/ui/site-brand.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "demo-chip",
+      "type": "registry:ui",
+      "title": "Demo Chip",
+      "description": "Pill with a small dot marking a site as a simulated demo: primary tint at low opacity, primary-ink text. Adds the --primary-ink token (primary darkened for text on light backgrounds).",
+      "cssVars": {
+        "light": {
+          "primary-ink": "oklch(from var(--primary) min(l, 0.55) c h)"
+        },
+        "dark": {
+          "primary-ink": "var(--primary)"
+        }
+      },
+      "files": [
+        {
+          "path": "components/ui/demo-chip.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "locale-switch",
+      "type": "registry:ui",
+      "title": "Locale Switch",
+      "description": "Bordered pill of locale segments (EN | FR) with the active one inverted. You pass the locales, the current one and hrefFor(locale), so it keeps the current page with any router or i18n library.",
+      "files": [
+        {
+          "path": "components/ui/locale-switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "theme-toggle",
+      "type": "registry:ui",
+      "title": "Theme Toggle",
+      "description": "36px ghost icon button switching light and dark with next-themes: moon in light, sun in dark, swapped with CSS so nothing flashes on hydration. Ships a ThemeProvider with the Monark defaults.",
+      "dependencies": [
+        "next-themes",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@monark/button"
+      ],
+      "files": [
+        {
+          "path": "components/ui/theme-toggle.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "site-header",
+      "type": "registry:ui",
+      "title": "Site Header",
+      "description": "The standard Monark site header: sticky 64px bar with a translucent blurred background, brand + page links on the left and actions on the right; below lg, the brand and a menu button opening a full-height sheet. Installs site-brand, demo-chip, locale-switch and theme-toggle with it.",
+      "dependencies": [
+        "@radix-ui/react-dialog",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@monark/button",
+        "@monark/site-brand",
+        "@monark/demo-chip",
+        "@monark/locale-switch",
+        "@monark/theme-toggle"
+      ],
+      "files": [
+        {
+          "path": "components/ui/site-header.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "use-mobile",
       "type": "registry:hook",
       "title": "use-mobile",

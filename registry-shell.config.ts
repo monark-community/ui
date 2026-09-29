@@ -37,6 +37,14 @@ export default defineConfig({
       "network-badge",
       "tx-status",
     ],
+    // The standard header pieces every Monark-branded site shares.
+    "Site shell": [
+      "site-header",
+      "site-brand",
+      "demo-chip",
+      "locale-switch",
+      "theme-toggle",
+    ],
   },
 
   // Docs live under content/docs/{locale}/ once you add translations. With

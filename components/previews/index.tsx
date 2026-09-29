@@ -62,6 +62,11 @@ const map: Record<string, ComponentType> = {
   "tx-status": dynamic(() => import("./tx-status-preview").then((m) => m.TxStatusPreview)),
   "nft-card": dynamic(() => import("./nft-card-preview").then((m) => m.NftCardPreview)),
   "swap-form": dynamic(() => import("./swap-form-preview").then((m) => m.SwapFormPreview)),
+  "site-brand": dynamic(() => import("./site-brand-preview").then((m) => m.SiteBrandPreview)),
+  "demo-chip": dynamic(() => import("./demo-chip-preview").then((m) => m.DemoChipPreview)),
+  "locale-switch": dynamic(() => import("./locale-switch-preview").then((m) => m.LocaleSwitchPreview)),
+  "theme-toggle": dynamic(() => import("./theme-toggle-preview").then((m) => m.ThemeTogglePreview)),
+  "site-header": dynamic(() => import("./site-header-preview").then((m) => m.SiteHeaderPreview)),
 }
 
 export const previewLoader: PreviewLoader = {

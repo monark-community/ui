@@ -1,0 +1,141 @@
+---
+title: Site Shell
+description: The standard header every Monark-branded site shares, and how to wire it into a Next.js App Router site.
+order: 5
+---
+
+# Site Shell
+
+Every Monark-branded product site uses the same header, so the family reads as one:
+
+```
+[mark] Product   Link  Link  Link  Link              (• Demo) (EN|FR) (☾) [Primary action]
+```
+
+It is split into five registry items. Install the header and the other four come with it:
+
+```bash
+npx shadcn@latest add @monark/site-header
+```
+
+| Item | What it is |
+|-|-|
+| `site-header` | The shell: sticky 64px bar, translucent background with a blur, bottom border. Brand and links on the left, actions pushed right with 10px gaps. Below `lg`, the brand and a menu button that opens a full-height sheet with the links and the actions. |
+| `site-brand` | The product brand: the colour Monark butterfly (28px, inline SVG), a 10px gap, and the product name in Nunito Sans 800 at 18px. Links home. No "by Monark" here; that credit belongs in the footer. |
+| `demo-chip` | "Demo" pill that marks the site as a simulated demo. Drop it once the product is live. Adds the `--primary-ink` token. |
+| `locale-switch` | EN/FR pill; the active locale is inverted. Keeps the current page. |
+| `theme-toggle` | 36px ghost icon button: moon in light, sun in dark. Uses next-themes and ships a `ThemeProvider`. |
+
+The items take plain props (`href`, `LinkComponent`, `pathname`, `hrefFor`, translated labels). They don't import `next/link` or an i18n library, so they work in any React app; the wiring below is all Next.js needs.
+
+## Next.js App Router
+
+**1. Theme provider.** Wrap the root layout with the exported provider (class strategy, system default), and add `suppressHydrationWarning` to `<html>`:
+
+```tsx
+// app/[locale]/layout.tsx
+import { ThemeProvider } from "@/components/ui/theme-toggle"
+
+export default async function LocaleLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode
+  params: Promise<{ locale: string }>
+}) {
+  const { locale } = await params
+  return (
+    <html lang={locale} suppressHydrationWarning>
+      <body>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
+    </html>
+  )
+}
+```
+
+**2. A small client wrapper.** `SiteHeader` is a client component, and link components and functions can't cross from a server component into it, so put the wiring in one `"use client"` file. Pass it plain translated strings from the server.
+
+```tsx
+// components/site/header.tsx
+"use client"
+
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+
+import { Button } from "@/components/ui/button"
+import { DemoChip } from "@/components/ui/demo-chip"
+import { LocaleSwitch } from "@/components/ui/locale-switch"
+import { SiteBrand } from "@/components/ui/site-brand"
+import { SiteHeader } from "@/components/ui/site-header"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
+
+const locales = ["en", "fr"] as const
+type Locale = (typeof locales)[number]
+
+export function Header({ locale, t }: { locale: Locale; t: HeaderMessages }) {
+  const pathname = usePathname() ?? `/${locale}`
+  // Same page, other locale: swap the first path segment.
+  const hrefFor = (next: Locale) => pathname.replace(/^\/[a-z]{2}(?=\/|$)/, `/${next}`)
+
+  const localeSwitch = (
+    <LocaleSwitch
+      locales={locales}
+      current={locale}
+      hrefFor={hrefFor}
+      labels={{ label: t.language, names: { en: "English", fr: "Français" } }}
+      LinkComponent={Link}
+      linkProps={{ prefetch: false }}
+    />
+  )
+  const action = (className?: string) => (
+    <Button asChild className={className ?? "rounded-full px-4 font-bold"}>
+      <Link href={`/${locale}/app`}>{t.openApp}</Link>
+    </Button>
+  )
+
+  return (
+    <SiteHeader
+      pathname={pathname}
+      LinkComponent={Link}
+      brand={<SiteBrand name="Splitflow" href={`/${locale}`} aria-label={t.homeLabel} LinkComponent={Link} />}
+      links={[
+        { href: `/${locale}`, label: t.overview, exact: true },
+        { href: `/${locale}/how-it-works`, label: t.howItWorks },
+        { href: `/${locale}/faq`, label: t.faq },
+      ]}
+      labels={{ nav: t.nav, openMenu: t.openMenu, closeMenu: t.closeMenu, menu: t.menu }}
+      actions={
+        <>
+          <DemoChip label={t.demo} />
+          {localeSwitch}
+          <ThemeToggle label={t.theme} />
+          {action()}
+        </>
+      }
+      mobileActions={
+        <div className="flex w-full flex-col gap-4">
+          <div className="flex items-center justify-between gap-3">
+            <DemoChip label={t.demo} />
+            <div className="flex items-center gap-2.5">
+              {localeSwitch}
+              <ThemeToggle label={t.theme} className="size-11" />
+            </div>
+          </div>
+          {action("h-12 w-full rounded-full font-bold")}
+        </div>
+      }
+    />
+  )
+}
+```
+
+With `next-intl`, pass its `Link` as `LinkComponent` and build `hrefFor` with its `getPathname`; any link component that renders an `<a>` from `href` works.
+
+## Rules the shell follows
+
+- **Brand:** mark 28px, 10px gap, product name in Nunito Sans 800 18px with `-0.02em` tracking, in `foreground`. The accessible name defaults to "{Product}, by Monark: home"; pass a translated one on other locales.
+- **Links:** at most four, 28px after the brand, Nunito Sans 600 14px in `muted-foreground`, the current page in `foreground`. Set `exact` on the home link.
+- **Actions, in order:** Demo chip, EN/FR switch, theme toggle, one primary action ("Open the app", or `connect-wallet` inside the app).
+- **Mobile (below `lg`):** only the brand and the menu button. The sheet holds the links, then `mobileActions` (or `actions` when you don't pass it). Following a link inside the sheet closes it.
+- The Demo chip's text uses `--primary-ink`, the primary darkened enough for text on light backgrounds. Installing `demo-chip` adds it; `theme-2026` defines it too.

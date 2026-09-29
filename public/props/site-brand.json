@@ -1,0 +1,49 @@
+[
+  {
+    "displayName": "SiteBrand",
+    "description": "The Monark product brand for a site header: the colour butterfly mark\n(28px), a 10px gap, then the product name in Nunito Sans 800 at 18px.\nNo \"by Monark\" here; that credit belongs in the footer.",
+    "props": [
+      {
+        "name": "name",
+        "type": "ReactNode",
+        "required": true,
+        "defaultValue": null,
+        "description": "The product name, e.g. \"Splitflow\". Set in text, never as an image."
+      },
+      {
+        "name": "href",
+        "type": "string",
+        "required": false,
+        "defaultValue": "/",
+        "description": "The site's home page. Default `/`; pass the locale root (`/fr`) on localised sites."
+      },
+      {
+        "name": "aria-label",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "The link's accessible name. Defaults to `\"{name}, by Monark: home\"`\nwhen `name` is a string; pass a translated label on non-English pages."
+      },
+      {
+        "name": "LinkComponent",
+        "type": "SiteLinkComponent",
+        "required": false,
+        "defaultValue": "a",
+        "description": "Link component used for the home link. Default: a plain `<a>`."
+      }
+    ]
+  },
+  {
+    "displayName": "MonarkMark",
+    "description": "The Monark butterfly, colour version (`logo-branded-standalone.svg` from\nthe brand kit), inlined so it needs no static file. Works on light and\ndark backgrounds. Don't recolour or redraw it: the red-to-orange gradient\nis part of the logo.",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Accessible name. Omit it (the default) when the mark sits next to text\nthat already names the product: the mark is then decorative."
+      }
+    ]
+  }
+]

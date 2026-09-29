@@ -1,0 +1,50 @@
+component: SiteHeader
+wcag: AA
+standard: WAI-ARIA 1.2
+element: header
+role: banner
+delegatesTo: "@radix-ui/react-dialog"
+description: >
+  The page's banner landmark. On desktop it holds the brand, a labelled
+  navigation landmark with the page links (the current page marked
+  aria-current="page"), and the actions. Below lg, a menu button opens a
+  modal dialog (Radix Dialog) holding the same links and the actions.
+
+keyboard:
+  - key: Tab
+    action: Moves through the brand, links and actions in visual order.
+  - key: Enter / Space (menu button)
+    action: Opens the menu sheet and moves focus into it.
+  - key: Escape
+    action: Closes the menu sheet and returns focus to the menu button.
+  - key: Tab (sheet open)
+    action: Cycles focus within the sheet (focus is trapped while it is open).
+
+focus:
+  visible: true
+  trapped: true
+  notes: >
+    Focus is trapped only while the mobile sheet is open. Following any link
+    inside the sheet closes it, and so does a pathname change.
+
+screenReader:
+  announcements:
+    - 'The sheet is announced as a dialog named by its title ("Menu").'
+    - 'The active link is announced as "current page".'
+  notes: >
+    The desktop links and the sheet links share one label (labels.nav), and
+    only one set is rendered visibly at a time; the other is display:none,
+    so it is hidden from assistive tech too.
+
+contrast:
+  text: "Links: muted-foreground (6.5:1 on cream), active and hover foreground."
+  ui: "The bottom border is decorative. The bar background is 90% opaque, so text behind it never shows through at a contrast-affecting level."
+
+motion:
+  reducedMotion: "The sheet slides in over 200ms; the slide is disabled under prefers-reduced-motion."
+
+consumerResponsibilities:
+  - Pass pathname (usePathname() in Next.js) so the active link and sheet closing work.
+  - Keep to at most four links; set exact on the home link.
+  - Translate labels (nav, openMenu, closeMenu, menu).
+  - Don't nest another banner landmark; render SiteHeader once, outside <main>.
