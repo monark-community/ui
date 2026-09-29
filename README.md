@@ -102,6 +102,8 @@ pnpm install
 pnpm shell            # runs the registry-shell viewer at localhost:3000
 pnpm shell:build      # static build under ./out
 pnpm test             # vitest unit suite
+pnpm registry:check   # every item declares the npm packages and @monark/* items it imports
+pnpm registry:build   # registry:check, then shadcn build into public/r/
 pnpm test:e2e         # playwright a11y + visual + mount-time suites
 pnpm generate:all     # regenerates props + a11y + test docs from source
 ```
