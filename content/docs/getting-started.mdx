@@ -19,6 +19,20 @@ npx shadcn@latest init
 npx shadcn@latest add https://ui.monark.io/r/theme.json
 ```
 
+### Opt-in: the 2026 theme
+
+`theme-2026` is an alternative to `theme`; install one or the other. It
+matches the Monark app: warm cream in light mode, espresso in dark mode, dark
+text on the orange primary, a 1rem radius, and Nunito Sans. Surfaces follow
+`--primary` via `--surface-tint` (`0` gives neutral surfaces). See
+[Theming](/docs/theming#the-2026-theme) for details.
+
+```bash
+npx shadcn@latest add https://ui.monark.io/r/theme-2026.json
+```
+
+It relies on CSS relative color syntax: Chrome 119+, Safari 16.4+, Firefox 128+.
+
 ## Register the `@monark` source
 
 Add Monark UI once to your `components.json` under `registries`. After this,

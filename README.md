@@ -35,6 +35,14 @@ npx shadcn@latest init
 npx shadcn@latest add https://ui.monark.io/r/theme.json
 ```
 
+**Opt-in: the 2026 theme.** `theme-2026` is an alternative to `theme` (install one or the other). It matches the Monark app: a warm cream light mode and an espresso dark mode, dark text on the orange primary, a 1rem radius, and Nunito Sans. Every surface, border, and text token is derived from `--primary` with CSS relative color syntax, so the surfaces follow the primary; `--surface-tint` scales how much (`1` is the Monark standard, `0` gives neutral surfaces). It also adds `--primary-ink` for orange-family text and links on light backgrounds.
+
+```bash
+npx shadcn@latest add https://ui.monark.io/r/theme-2026.json
+```
+
+Relative color syntax needs Chrome 119+, Safari 16.4+, or Firefox 128+; older browsers drop the derived tokens. Use `theme` if you have to support them.
+
 Then register Monark as a named source in your `components.json`:
 
 ```json
@@ -84,7 +92,7 @@ Every component page on [ui.monark.io](https://ui.monark.io) includes:
 
 ## Theming
 
-Tokens live in [`styles/theme.css`](styles/theme.css) and ship to consumers as the `theme` registry item. Remap a color, radius, or font by overriding the CSS variable; no component edits needed.
+Tokens live in [`styles/theme.css`](styles/theme.css) and ship to consumers as the `theme` registry item; the opt-in `theme-2026` item lives in [`registry.json`](registry.json). Remap a color, radius, or font by overriding the CSS variable; no component edits needed.
 
 ```css
 :root {

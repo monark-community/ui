@@ -6,7 +6,7 @@ order: 2
 
 # Theming
 
-Monark ships a single `theme` item that configures every color, radius, and font used by the rest of the registry. It's the first thing the `npx shadcn add` flow installs, and it sets defaults you can override at any layer.
+Monark ships a `theme` item that configures every color, radius, and font used by the rest of the registry. It's the first thing the `npx shadcn add` flow installs, and it sets defaults you can override at any layer. An opt-in alternative, [`theme-2026`](#the-2026-theme), carries the newer Monark app look; install one or the other.
 
 ## How the theme is delivered
 
@@ -32,6 +32,41 @@ When you ran `npx shadcn add @monark/theme`, shadcn wrote a `@theme inline` bloc
   /* ... */
 }
 ```
+
+## The 2026 theme
+
+`theme-2026` is the look of the Monark app: a warm cream light mode, an espresso dark mode, flat Monark orange (`#f88d10`) as the primary with dark text on it, a 1rem radius, and Nunito Sans. It is opt-in; `theme` stays the default and is unchanged.
+
+```bash
+npx shadcn@latest add https://ui.monark.io/r/theme-2026.json
+```
+
+Instead of fixed values, every surface, border, and text token is computed from `--primary` with CSS relative color syntax. Each token keeps its own lightness (so contrast doesn't move), takes the primary's hue, and a small share of its chroma, scaled by `--surface-tint`:
+
+```css title="app/globals.css (excerpt)"
+:root {
+  --surface-tint: 1;
+  --primary: #f88d10;
+  --background: oklch(from var(--primary) 0.985 calc(c * 0.06 * var(--surface-tint)) h); /* cream */
+  --primary-foreground: var(--foreground); /* dark text on orange */
+  --primary-ink: oklch(from var(--primary) min(l, 0.55) c h); /* orange-family text */
+  /* ... */
+}
+
+.dark {
+  --background: oklch(from var(--primary) 0.17 calc(c * 0.2 * var(--surface-tint)) h); /* espresso */
+  /* ... */
+}
+```
+
+What this means in practice:
+
+- **Change `--primary` and the surfaces follow.** A teal primary gives faintly teal surfaces with the same contrast.
+- **`--surface-tint` sets how much.** `1` is the Monark standard; `0` gives neutral (untinted) surfaces while keeping the primary.
+- **`--primary-ink`** is the primary darkened enough to read as text or a link on light backgrounds (orange itself is too light for text on cream). In dark mode it equals `--primary`.
+- **Chart colors after `--chart-1` are fixed**, so they stay distinguishable from the primary.
+
+Relative color syntax needs **Chrome 119+, Safari 16.4+, or Firefox 128+**. Older browsers drop the derived tokens, so stay on `theme` if you have to support them.
 
 ## Remapping a color
 
@@ -70,6 +105,8 @@ Monark exposes the full shadcn token set plus a few sidebar-specific ones:
 | `--sidebar*` | Sidebar block backgrounds and borders |
 | `--radius` | All rounded utilities (`rounded-md`, `rounded-lg`) |
 | `--font-sans` / `--font-mono` | Everything |
+| `--surface-tint` | `theme-2026` only: how strongly surfaces follow the primary |
+| `--primary-ink` | `theme-2026` only: orange-family text and links |
 
 ## Changing the radius
 
