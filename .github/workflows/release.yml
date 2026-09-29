@@ -1,0 +1,67 @@
+# Releases with Changesets. The registry is not published to npm: a release is
+# a version bump + CHANGELOG entry, a `v<version>` git tag and a GitHub release.
+#
+# On every push to main:
+# - pending changesets  -> open/update the "Version packages" PR
+# - that PR was merged  -> tag `v<version>` and create the GitHub release
+#
+# Tagging only runs when the push changed the package.json version, so merging
+# unrelated work never tags the current version retroactively.
+name: Release
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    name: Version PR / tag
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # push the version commit, tags and releases
+      pull-requests: write # open/update the "Version packages" PR
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # tags + history, so existing tags are detected
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Detect a version bump in this push
+        id: bump
+        env:
+          BEFORE: ${{ github.event.before }}
+        run: |
+          current=$(node -p "require('./package.json').version")
+          previous=$(git show "$BEFORE:package.json" 2>/dev/null | node -p "JSON.parse(require('fs').readFileSync(0, 'utf8')).version" 2>/dev/null || true)
+          echo "previous=${previous:-<none>} current=$current"
+          if [ -n "$previous" ] && [ "$previous" != "$current" ]; then
+            echo "bumped=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "bumped=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: changesets/action@v2
+        with:
+          pr-title: Version packages
+          commit-message: "chore: version packages"
+          # Only set when the version changed, i.e. the "Version packages" PR
+          # was merged. `changeset git-tag` creates `v<version>` (no npm
+          # publish); the action pushes it and creates the GitHub release from
+          # the CHANGELOG entry.
+          publish-script: ${{ steps.bump.outputs.bumped == 'true' && 'pnpm release' || '' }}
+          create-github-releases: true

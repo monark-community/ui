@@ -143,6 +143,11 @@ Bug reports, component requests, and a11y corrections are welcome. Open an issue
 4. Write a real a11y YAML at `content/a11y/<name>.yaml`; no TODO stubs.
 5. Run `pnpm generate:all` and include the updated JSON in your PR.
 6. Add unit tests under `tests/unit/components/` for anything beyond plain styling.
+7. Add a changeset with `pnpm changeset` (major = visual or API breaking, minor = new component or prop, patch = fix). See [Releases](CONTRIBUTING.md#3-releases).
+
+## Releases
+
+Releases are managed with [Changesets](https://changesets.dev); see [`CHANGELOG.md`](CHANGELOG.md) for what changed in each version. Every PR that changes the registry adds a changeset, merged changesets collect in a **Version packages** PR, and merging it tags `v<version>` and creates the GitHub release. The registry is not published to npm.
 
 ## License
 
