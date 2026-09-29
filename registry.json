@@ -93,6 +93,93 @@
       }
     },
     {
+      "name": "theme-2026",
+      "type": "registry:theme",
+      "title": "Monark Theme (2026)",
+      "description": "Monark 2026 brand tokens: cream light and espresso dark surfaces derived from the flat orange primary (CSS relative color, scaled by --surface-tint), dark text on orange, large radius, Nunito Sans. Same derivation as the Monark app. Opt-in alternative to theme; needs Chrome 119+, Safari 16.4+ or Firefox 128+.",
+      "cssVars": {
+        "theme": {
+          "radius": "1rem",
+          "font-sans": "\"Nunito Sans\", ui-sans-serif, system-ui, -apple-system, sans-serif",
+          "font-mono": "ui-monospace, SFMono-Regular, Menlo, Monaco, \"Cascadia Mono\", monospace"
+        },
+        "light": {
+          "surface-tint": "1",
+          "primary": "#f88d10",
+          "background": "oklch(from var(--primary) 0.985 calc(c * 0.06 * var(--surface-tint)) h)",
+          "foreground": "oklch(from var(--primary) 0.18 calc(c * 0.05 * var(--surface-tint)) h)",
+          "card": "oklch(from var(--primary) 0.998 calc(c * 0.02 * var(--surface-tint)) h)",
+          "card-foreground": "var(--foreground)",
+          "popover": "var(--card)",
+          "popover-foreground": "var(--foreground)",
+          "primary-foreground": "var(--foreground)",
+          "secondary": "oklch(from var(--primary) 0.95 calc(c * 0.09 * var(--surface-tint)) h)",
+          "secondary-foreground": "var(--foreground)",
+          "muted": "var(--secondary)",
+          "muted-foreground": "oklch(from var(--primary) 0.47 calc(c * 0.09 * var(--surface-tint)) h)",
+          "accent": "var(--secondary)",
+          "accent-foreground": "var(--foreground)",
+          "destructive": "#c81e0b",
+          "border": "oklch(from var(--primary) 0.91 calc(c * 0.09 * var(--surface-tint)) h)",
+          "input": "oklch(from var(--primary) 0.6 calc(c * 0.06 * var(--surface-tint)) h)",
+          "ring": "var(--primary)",
+          "primary-ink": "oklch(from var(--primary) min(l, 0.55) c h)",
+          "chart-1": "var(--primary)",
+          "chart-2": "#ef3620",
+          "chart-3": "#7a5c3e",
+          "chart-4": "#c8a27a",
+          "chart-5": "#424242",
+          "sidebar": "oklch(from var(--primary) 0.975 calc(c * 0.07 * var(--surface-tint)) h / 0.85)",
+          "sidebar-foreground": "var(--foreground)",
+          "sidebar-primary": "var(--primary)",
+          "sidebar-primary-foreground": "var(--foreground)",
+          "sidebar-accent": "var(--secondary)",
+          "sidebar-accent-foreground": "var(--foreground)",
+          "sidebar-border": "var(--border)",
+          "sidebar-ring": "var(--primary)"
+        },
+        "dark": {
+          "background": "oklch(from var(--primary) 0.17 calc(c * 0.2 * var(--surface-tint)) h)",
+          "foreground": "oklch(from var(--primary) 0.965 calc(c * 0.14 * var(--surface-tint)) h)",
+          "card": "oklch(from var(--primary) 0.22 calc(c * 0.19 * var(--surface-tint)) h)",
+          "card-foreground": "var(--foreground)",
+          "popover": "var(--card)",
+          "popover-foreground": "var(--foreground)",
+          "primary-foreground": "var(--background)",
+          "secondary": "oklch(from var(--primary) 0.29 calc(c * 0.17 * var(--surface-tint)) h)",
+          "secondary-foreground": "var(--foreground)",
+          "muted": "var(--secondary)",
+          "muted-foreground": "oklch(from var(--primary) 0.74 calc(c * 0.16 * var(--surface-tint)) h)",
+          "accent": "var(--secondary)",
+          "accent-foreground": "var(--foreground)",
+          "destructive": "#fc452f",
+          "border": "oklch(from var(--primary) 0.34 calc(c * 0.17 * var(--surface-tint)) h)",
+          "input": "oklch(from var(--primary) 0.52 calc(c * 0.16 * var(--surface-tint)) h)",
+          "primary-ink": "var(--primary)",
+          "chart-2": "#fc452f",
+          "chart-3": "#c8a27a",
+          "chart-4": "#8a7a66",
+          "chart-5": "var(--foreground)",
+          "sidebar": "oklch(from var(--primary) 0.22 calc(c * 0.19 * var(--surface-tint)) h / 0.85)",
+          "sidebar-foreground": "var(--foreground)",
+          "sidebar-primary-foreground": "var(--background)",
+          "sidebar-accent": "var(--secondary)",
+          "sidebar-accent-foreground": "var(--foreground)",
+          "sidebar-border": "var(--border)"
+        }
+      },
+      "css": {
+        "@layer base": {
+          "*": {
+            "@apply": "border-border outline-ring/50"
+          },
+          "body": {
+            "@apply": "bg-background text-foreground"
+          }
+        }
+      }
+    },
+    {
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion",
