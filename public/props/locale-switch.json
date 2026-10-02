@@ -1,0 +1,50 @@
+[
+  {
+    "displayName": "LocaleSwitch",
+    "description": "Compact language switch: a bordered pill of locale segments, the active\none inverted (foreground on background). Sits next to the theme toggle.",
+    "props": [
+      {
+        "name": "locales",
+        "type": "readonly L[]",
+        "required": true,
+        "defaultValue": null,
+        "description": "The locales to offer, in display order, e.g. `[\"en\", \"fr\"]`."
+      },
+      {
+        "name": "current",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "The active locale; its segment is inverted and marked `aria-current`."
+      },
+      {
+        "name": "hrefFor",
+        "type": "(locale: L) => string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Where each segment links to. To keep the visitor on the same page,\nbuild it from the current pathname, e.g. `/fr/how-it-works` for `fr`."
+      },
+      {
+        "name": "labels",
+        "type": "LocaleSwitchLabels<L>",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "LinkComponent",
+        "type": "LocaleLinkComponent",
+        "required": false,
+        "defaultValue": "a",
+        "description": "Link component for each segment. Default: a plain `<a>`."
+      },
+      {
+        "name": "linkProps",
+        "type": "Record<string, unknown>",
+        "required": false,
+        "defaultValue": null,
+        "description": "Extra props for every segment link, e.g. `{ prefetch: false }` for Next.js `Link`."
+      }
+    ]
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "component": "ThemeToggle",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "button",
+  "role": "button",
+  "delegatesTo": "Button",
+  "description": "A 36px icon-only button that switches between light and dark. Both icons are rendered and swapped with the dark: variant, so the right icon shows before hydration; both are aria-hidden and the button is named by its label.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the toggle."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Switches to the other theme."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Uses the Button focus ring."
+  },
+  "screenReader": {
+    "announcements": [
+      "Reads \"Toggle theme, button\"."
+    ],
+    "notes": "The label describes the action, not the current state, so it stays correct in both themes without re-rendering. The visible icon shows the theme you will switch to (moon in light, sun in dark).\n"
+  },
+  "contrast": {
+    "text": "N/A",
+    "ui": "The icon uses the foreground colour on the background (well above 3:1); the hover fill uses the accent token."
+  },
+  "motion": {
+    "reducedMotion": "No animation; next-themes disables transitions during the switch."
+  },
+  "consumerResponsibilities": [
+    "Wrap the app in a next-themes provider with attribute=\"class\" (ThemeProvider is exported for this).",
+    "Pass a translated label.",
+    "Use className=\"size-11\" in touch layouts such as the mobile menu for a 44px target."
+  ]
+}

@@ -1,0 +1,105 @@
+[
+  {
+    "displayName": "SiteHeader",
+    "description": "The standard Monark site header: sticky, 64px, translucent background\nwith a blur and a bottom border. Desktop (`lg` and up): brand, links,\nthen the actions pushed right. Below `lg`: the brand and a menu button\nthat opens a full-height sheet with the links and the actions.",
+    "props": [
+      {
+        "name": "brand",
+        "type": "ReactNode",
+        "required": true,
+        "defaultValue": null,
+        "description": "Left slot: the product brand, usually `<SiteBrand />`."
+      },
+      {
+        "name": "links",
+        "type": "SiteNavLink[]",
+        "required": false,
+        "defaultValue": "[]",
+        "description": "Up to four links to the site's own pages, shown 28px after the brand."
+      },
+      {
+        "name": "pathname",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Current pathname, used to mark the active link (e.g. `usePathname()`)."
+      },
+      {
+        "name": "LinkComponent",
+        "type": "SiteHeaderLinkComponent",
+        "required": false,
+        "defaultValue": "a",
+        "description": "Link component for the page links. Default: a plain `<a>`."
+      },
+      {
+        "name": "actions",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "Right slot, in this order: `<DemoChip />`, `<LocaleSwitch />`,\n`<ThemeToggle />`, then one primary action."
+      },
+      {
+        "name": "mobileActions",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": null,
+        "description": "What the mobile sheet shows under the links. Defaults to `actions`."
+      },
+      {
+        "name": "labels",
+        "type": "SiteHeaderLabels",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "containerClassName",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Classes for the inner row (max width, side padding)."
+      }
+    ]
+  },
+  {
+    "displayName": "SiteNavLinks",
+    "description": "The site's own page links: Nunito Sans 600 at 14px in `muted-foreground`,\nthe current page in `foreground` with `aria-current=\"page\"`.",
+    "props": [
+      {
+        "name": "links",
+        "type": "SiteNavLink[]",
+        "required": true,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "pathname",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "LinkComponent",
+        "type": "SiteHeaderLinkComponent",
+        "required": false,
+        "defaultValue": "a",
+        "description": ""
+      },
+      {
+        "name": "className",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "itemClassName",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  }
+]

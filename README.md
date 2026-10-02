@@ -23,6 +23,14 @@ It ships the full set of shadcn primitives (buttons, inputs, dialogs, data table
 - `SwapForm`: two-sided token swap UI with reverse, slippage, and a status-driven submit
 - `NftCard`: NFT tile with image, collection tag, trait grid, price, and action slot
 
+**Site shell** (the standard header of Monark-branded product sites; see the [Site Shell guide](https://ui.monark.io/docs/site-shell))
+
+- `SiteHeader`: sticky 64px header with brand, page links and actions; a full-height menu sheet below `lg`
+- `SiteBrand`: the colour Monark butterfly plus the product name, linking home
+- `DemoChip`: "Demo" pill for simulated demo sites
+- `LocaleSwitch`: EN/FR pill that keeps the current page
+- `ThemeToggle`: light/dark icon button for next-themes
+
 All web3 components are presentational. They accept props, emit callbacks, and never fetch, sign, or broadcast; you wire them to wagmi, viem, RainbowKit, or whatever connector stack you already run.
 
 ## Install

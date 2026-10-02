@@ -1,0 +1,15 @@
+[
+  {
+    "displayName": "DemoChip",
+    "description": "Marks a whole site as a simulated demo: a pill with a small dot, tinted\nwith the primary at low opacity and `primary-ink` text. Sits first in\nthe site header's actions. Drop it once the product is live.",
+    "props": [
+      {
+        "name": "label",
+        "type": "ReactNode",
+        "required": false,
+        "defaultValue": "Demo",
+        "description": "Visible text. Default \"Demo\"; pass the translated word on other locales."
+      }
+    ]
+  }
+]

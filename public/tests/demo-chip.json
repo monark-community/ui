@@ -1,0 +1,24 @@
+{
+  "component": "demo-chip",
+  "hasUnitTests": true,
+  "hasInteractionTests": false,
+  "hasVisualTests": false,
+  "hasA11yTests": false,
+  "hasPerformanceTests": false,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/unit/components/demo-chip.test.tsx",
+      "type": "unit",
+      "tests": [
+        "renders ",
+        "renders a custom label",
+        "hides the dot from assistive tech",
+        "forwards title and className"
+      ]
+    }
+  ],
+  "totalTests": 4
+}

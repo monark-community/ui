@@ -1,0 +1,27 @@
+{
+  "component": "site-brand",
+  "hasUnitTests": true,
+  "hasInteractionTests": false,
+  "hasVisualTests": false,
+  "hasA11yTests": false,
+  "hasPerformanceTests": false,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/unit/components/site-brand.test.tsx",
+      "type": "unit",
+      "tests": [
+        "links home with the product name and the default accessible label",
+        "does not render ",
+        "accepts a custom href and a translated aria-label",
+        "renders through a custom LinkComponent",
+        "renders the mark as a decorative SVG",
+        "gives each instance its own gradient ids",
+        "becomes an image with a title when one is given"
+      ]
+    }
+  ],
+  "totalTests": 7
+}

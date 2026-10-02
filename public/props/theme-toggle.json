@@ -1,0 +1,41 @@
+[
+  {
+    "displayName": "ThemeToggle",
+    "description": "36px ghost icon button that flips between light and dark. The moon shows\nin light mode and the sun in dark mode; the swap is pure CSS (`dark:`),\nso the server-rendered icon is already right and nothing flashes on\nhydration. Needs a next-themes provider with `attribute=\"class\"`.",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Toggle theme",
+        "description": "Accessible name (and tooltip). Default \"Toggle theme\"."
+      },
+      {
+        "name": "variant",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      },
+      {
+        "name": "asChild",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "displayName": "ThemeProvider",
+    "description": "next-themes provider with the Monark defaults: the `.dark` class on\n`<html>`, following the system preference until the visitor picks one.\nWrap your root layout's `<body>` content in it (and add\n`suppressHydrationWarning` to `<html>`), or use your own provider.",
+    "props": []
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "component": "theme-toggle",
+  "hasUnitTests": true,
+  "hasInteractionTests": false,
+  "hasVisualTests": false,
+  "hasA11yTests": false,
+  "hasPerformanceTests": false,
+  "hasProps": true,
+  "hasA11yDocs": true,
+  "hasPreview": true,
+  "testFiles": [
+    {
+      "file": "tests/unit/components/theme-toggle.test.tsx",
+      "type": "unit",
+      "tests": [
+        "has an accessible name, defaulting to ",
+        "accepts a translated label",
+        "switches light to dark",
+        "switches dark to light",
+        "renders both icons, swapped by the dark: variant, so nothing depends on hydration"
+      ]
+    }
+  ],
+  "totalTests": 5
+}
