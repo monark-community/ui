@@ -42,14 +42,36 @@ git push origin feature/my-feature
 
 ---
 
-## 3. Reporting Issues
+## 3. Releases
+
+The registry is versioned with [Changesets](https://changesets.dev). It is not published to npm: a release is a version bump, a [CHANGELOG](./CHANGELOG.md) entry, a `v<version>` git tag and a GitHub release.
+
+**Every PR that changes what the registry ships** (a component, block, hook, the theme, or a registry item's files or dependencies) must include a changeset:
+
+```bash
+pnpm changeset
+```
+
+Pick the bump and write one or two lines for consumers; commit the generated `.changeset/*.md` file with your PR. Docs-only, test-only and tooling changes don't need one.
+
+What each bump means for a component registry:
+
+- **major**: breaking, visually or in the API. A renamed or removed component, prop or CSS variable; a change to the theme tokens or defaults that alters how existing installs look.
+- **minor**: backwards-compatible additions. A new component, block or hook; a new prop, variant or token.
+- **patch**: fixes that keep the API and intended look. Bug, a11y and typing fixes; small style corrections.
+
+Merged changesets accumulate in a **Version packages** PR opened by the release workflow. Merging that PR bumps the version, updates `CHANGELOG.md`, and tags and releases `v<version>`.
+
+---
+
+## 4. Reporting Issues
 
 - Use the **Issues** tab to report bugs or request features.
 - Include steps to reproduce, expected behavior, and screenshots if applicable.
 
 ---
 
-## 4. Legal Considerations
+## 5. Legal Considerations
 
 - By contributing, you agree that your contributions will be licensed under the terms of the [LICENSE](./LICENSE).
 - Your contributions become part of **16918140 Canada Inc. (Monark Inc.)**’s project.  
@@ -67,7 +89,7 @@ git push origin feature/my-feature
 
 ---
 
-## 5. Code of Conduct
+## 6. Code of Conduct
 
 We expect all contributors to follow a respectful and collaborative approach. Please see `CODE\_OF\_CONDUCT.md` for details.
 
