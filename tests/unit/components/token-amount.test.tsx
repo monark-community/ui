@@ -39,6 +39,49 @@ describe("formatBaseUnits", () => {
   it("returns 0 when frac is zero and value is 0", () => {
     expect(formatBaseUnits(0n, 18, 4, "en-US")).toBe("0")
   })
+
+  it("truncates toward zero instead of rounding", () => {
+    // 1.99999 ETH shows 1.9999, never 2: a balance is not overstated.
+    expect(formatBaseUnits(1_999_990_000_000_000_000n, 18, 4, "en-US")).toBe("1.9999")
+    expect(formatBaseUnits(-1_999_990_000_000_000_000n, 18, 4, "en-US")).toBe("-1.9999")
+  })
+
+  it("keeps every digit of values far beyond Number.MAX_SAFE_INTEGER", () => {
+    // 123,456,789,012.123456789012345678 ETH, all 18 decimals requested
+    expect(
+      formatBaseUnits(123_456_789_012_123_456_789_012_345_678n, 18, 18, "en-US")
+    ).toBe("123,456,789,012.123456789012345678")
+    expect(
+      formatBaseUnits("123456789012123456789012345678", 18, 18, "en-US")
+    ).toBe("123,456,789,012.123456789012345678")
+  })
+
+  it("keeps leading zeros of the fraction", () => {
+    // 0.000123 USDC (6 decimals) => 0.0001 at 4 digits
+    expect(formatBaseUnits(123n, 6, 4, "en-US")).toBe("0.0001")
+    expect(formatBaseUnits(123n, 6, 6, "en-US")).toBe("0.000123")
+  })
+
+  it("never renders a negative zero when the value truncates to zero", () => {
+    expect(formatBaseUnits(-1n, 18, 4, "en-US")).toBe("0")
+    expect(formatBaseUnits(-1n, 18, 0, "en-US")).toBe("0")
+    expect(formatBaseUnits(-500_000n, 6, 0, "en-US")).toBe("0")
+  })
+
+  it("handles decimals = 0 (integer tokens)", () => {
+    expect(formatBaseUnits(1234n, 0, 4, "en-US")).toBe("1,234")
+  })
+
+  it("uses the locale's decimal separator, not a hardcoded dot", () => {
+    // Before: de-DE rendered "1.234.5" (grouping and decimal both a dot).
+    expect(formatBaseUnits(1_234_500_000_000_000_000_000n, 18, 4, "de-DE")).toBe("1.234,5")
+    expect(formatBaseUnits(1_500_000n, 6, 4, "fr-FR")).toBe("1,5")
+  })
+
+  it("localizes the fraction digits along with the whole part", () => {
+    const expected = new Intl.NumberFormat("ar-EG").format(1.25)
+    expect(formatBaseUnits(1_250_000n, 6, 4, "ar-EG")).toBe(expected)
+  })
 })
 
 describe("formatUsd", () => {

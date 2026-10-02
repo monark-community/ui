@@ -98,7 +98,8 @@
       "title": "Accordion",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-accordion"
+        "@radix-ui/react-accordion",
+        "lucide-react"
       ],
       "files": [
         {
@@ -112,6 +113,9 @@
       "type": "registry:ui",
       "title": "Alert",
       "description": "",
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "files": [
         {
           "path": "components/ui/alert.tsx",
@@ -128,7 +132,7 @@
         "@radix-ui/react-alert-dialog"
       ],
       "registryDependencies": [
-        "button"
+        "@monark/button"
       ],
       "files": [
         {
@@ -173,7 +177,8 @@
       "title": "Badge",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-slot"
+        "@radix-ui/react-slot",
+        "class-variance-authority"
       ],
       "files": [
         {
@@ -188,7 +193,8 @@
       "title": "Breadcrumb",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-slot"
+        "@radix-ui/react-slot",
+        "lucide-react"
       ],
       "files": [
         {
@@ -203,7 +209,8 @@
       "title": "Button",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-slot"
+        "@radix-ui/react-slot",
+        "class-variance-authority"
       ],
       "files": [
         {
@@ -218,11 +225,12 @@
       "title": "Calendar",
       "description": "",
       "dependencies": [
-        "react-day-picker@latest",
-        "date-fns"
+        "react-day-picker@^9.14.0",
+        "date-fns",
+        "lucide-react"
       ],
       "registryDependencies": [
-        "button"
+        "@monark/button"
       ],
       "files": [
         {
@@ -249,10 +257,11 @@
       "title": "Carousel",
       "description": "",
       "dependencies": [
-        "embla-carousel-react"
+        "embla-carousel-react",
+        "lucide-react"
       ],
       "registryDependencies": [
-        "button"
+        "@monark/button"
       ],
       "files": [
         {
@@ -271,7 +280,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "card"
+        "@monark/card"
       ],
       "files": [
         {
@@ -286,7 +295,8 @@
       "title": "Checkbox",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-checkbox"
+        "@radix-ui/react-checkbox",
+        "lucide-react"
       ],
       "files": [
         {
@@ -316,10 +326,12 @@
       "title": "Command",
       "description": "",
       "dependencies": [
-        "cmdk"
+        "cmdk",
+        "@radix-ui/react-dialog",
+        "lucide-react"
       ],
       "registryDependencies": [
-        "dialog"
+        "@monark/dialog"
       ],
       "files": [
         {
@@ -334,7 +346,8 @@
       "title": "Context Menu",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-context-menu"
+        "@radix-ui/react-context-menu",
+        "lucide-react"
       ],
       "files": [
         {
@@ -349,7 +362,8 @@
       "title": "Dialog",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-dialog"
+        "@radix-ui/react-dialog",
+        "lucide-react"
       ],
       "files": [
         {
@@ -380,7 +394,8 @@
       "title": "Dropdown Menu",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-dropdown-menu"
+        "@radix-ui/react-dropdown-menu",
+        "lucide-react"
       ],
       "files": [
         {
@@ -402,8 +417,8 @@
         "react-hook-form"
       ],
       "registryDependencies": [
-        "button",
-        "label"
+        "@monark/button",
+        "@monark/label"
       ],
       "files": [
         {
@@ -445,7 +460,8 @@
       "title": "Input Otp",
       "description": "",
       "dependencies": [
-        "input-otp"
+        "input-otp",
+        "lucide-react"
       ],
       "files": [
         {
@@ -460,7 +476,8 @@
       "title": "Label",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-label"
+        "@radix-ui/react-label",
+        "class-variance-authority"
       ],
       "files": [
         {
@@ -475,7 +492,8 @@
       "title": "Menubar",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-menubar"
+        "@radix-ui/react-menubar",
+        "lucide-react"
       ],
       "files": [
         {
@@ -490,7 +508,9 @@
       "title": "Navigation Menu",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-navigation-menu"
+        "@radix-ui/react-navigation-menu",
+        "class-variance-authority",
+        "lucide-react"
       ],
       "files": [
         {
@@ -504,8 +524,11 @@
       "type": "registry:ui",
       "title": "Pagination",
       "description": "",
+      "dependencies": [
+        "lucide-react"
+      ],
       "registryDependencies": [
-        "button"
+        "@monark/button"
       ],
       "files": [
         {
@@ -550,7 +573,8 @@
       "title": "Radio Group",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-radio-group"
+        "@radix-ui/react-radio-group",
+        "lucide-react"
       ],
       "files": [
         {
@@ -565,7 +589,8 @@
       "title": "Resizable",
       "description": "",
       "dependencies": [
-        "react-resizable-panels"
+        "react-resizable-panels",
+        "lucide-react"
       ],
       "files": [
         {
@@ -595,7 +620,8 @@
       "title": "Select",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-select"
+        "@radix-ui/react-select",
+        "lucide-react"
       ],
       "files": [
         {
@@ -625,7 +651,9 @@
       "title": "Sheet",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-dialog"
+        "@radix-ui/react-dialog",
+        "class-variance-authority",
+        "lucide-react"
       ],
       "files": [
         {
@@ -645,13 +673,13 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button",
-        "separator",
-        "sheet",
-        "tooltip",
-        "input",
-        "use-mobile",
-        "skeleton"
+        "@monark/button",
+        "@monark/separator",
+        "@monark/sheet",
+        "@monark/tooltip",
+        "@monark/input",
+        "@monark/use-mobile",
+        "@monark/skeleton"
       ],
       "files": [
         {
@@ -763,7 +791,8 @@
       "title": "Toggle",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-toggle"
+        "@radix-ui/react-toggle",
+        "class-variance-authority"
       ],
       "files": [
         {
@@ -781,7 +810,7 @@
         "@radix-ui/react-toggle-group"
       ],
       "registryDependencies": [
-        "toggle"
+        "@monark/toggle"
       ],
       "files": [
         {
@@ -815,7 +844,7 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button"
+        "@monark/button"
       ],
       "files": [
         {
@@ -833,9 +862,9 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button",
-        "dropdown-menu",
-        "wallet"
+        "@monark/button",
+        "@monark/dropdown-menu",
+        "@monark/wallet"
       ],
       "files": [
         {
@@ -861,6 +890,9 @@
       "type": "registry:ui",
       "title": "Network Badge",
       "description": "Small chain / network pill with an icon slot and a name. Agnostic of chain registries — pass the icon and name yourself.",
+      "dependencies": [
+        "class-variance-authority"
+      ],
       "files": [
         {
           "path": "components/ui/network-badge.tsx",
@@ -889,9 +921,9 @@
       "title": "NFT Card",
       "description": "Presentational NFT tile; image with aspect ratio, collection tag, name, trait grid, price, and action slot. No data layer; pass metadata as props.",
       "registryDependencies": [
-        "aspect-ratio",
-        "badge",
-        "card"
+        "@monark/aspect-ratio",
+        "@monark/badge",
+        "@monark/card"
       ],
       "files": [
         {
@@ -909,11 +941,11 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button",
-        "input",
-        "label",
-        "select",
-        "separator"
+        "@monark/button",
+        "@monark/input",
+        "@monark/label",
+        "@monark/select",
+        "@monark/separator"
       ],
       "files": [
         {
@@ -974,9 +1006,9 @@
         "lucide-react"
       ],
       "registryDependencies": [
-        "button",
-        "dialog",
-        "slider"
+        "@monark/button",
+        "@monark/dialog",
+        "@monark/slider"
       ],
       "files": [
         {

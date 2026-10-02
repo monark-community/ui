@@ -2,14 +2,14 @@
 
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { AspectRatio } from "../../../../components/ui/aspect-ratio"
-import { Badge } from "../../../../components/ui/badge"
+import { AspectRatio } from "@/components/ui/aspect-ratio"
+import { Badge } from "@/components/ui/badge"
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
-} from "../../../../components/ui/card"
+} from "@/components/ui/card"
 
 export interface NftTrait {
   /** Trait category; e.g. "Background", "Body". */
