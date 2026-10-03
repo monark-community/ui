@@ -19,7 +19,12 @@ export function SwapFormPreview() {
       options: ["idle", "quoting", "ready", "confirming", "error"],
       default: "ready",
     },
-    slippageBps: { type: "number", default: 50 },
+    slippageBps: { type: "number", default: 50, min: 0, max: 5000 },
+    errorMessage: { type: "text", default: "Insufficient liquidity." },
+    showRate: { type: "boolean", default: true },
+    showNetworkFee: { type: "boolean", default: true },
+    showMinimumReceived: { type: "boolean", default: true },
+    swapLabel: { type: "text", default: "" },
   })
 
   const [fromToken, setFromToken] = useState("ETH")
@@ -44,10 +49,15 @@ export function SwapFormPreview() {
         toAmount={toAmount}
         slippageBps={values.slippageBps}
         status={values.status as "ready"}
-        rate={`1 ${fromToken} = 2,342.15 ${toToken}`}
-        networkFee="$1.23"
-        minimumReceived={`${(Number(toAmount) * (1 - values.slippageBps / 10000)).toFixed(2)} ${toToken}`}
-        errorMessage={values.status === "error" ? "Insufficient liquidity." : undefined}
+        rate={values.showRate ? `1 ${fromToken} = 2,342.15 ${toToken}` : undefined}
+        networkFee={values.showNetworkFee ? "$1.23" : undefined}
+        minimumReceived={
+          values.showMinimumReceived
+            ? `${(Number(toAmount) * (1 - values.slippageBps / 10000)).toFixed(2)} ${toToken}`
+            : undefined
+        }
+        errorMessage={values.status === "error" ? values.errorMessage || undefined : undefined}
+        swapLabel={values.swapLabel || undefined}
         onFromTokenChange={setFromToken}
         onToTokenChange={setToToken}
         onFromAmountChange={setFromAmount}

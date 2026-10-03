@@ -16,11 +16,17 @@ export function AccordionPreview() {
       options: ["single", "multiple"],
       default: "single",
     },
+    collapsible: { type: "boolean", default: true },
   })
 
   return (
     <PreviewLayout controls={entries}>
-      <Accordion type={values.type as "single"} collapsible className="w-80">
+      <Accordion
+        key={values.type}
+        type={values.type as "single"}
+        collapsible={values.collapsible}
+        className="w-80"
+      >
         <AccordionItem value="item-1">
           <AccordionTrigger>Is it accessible?</AccordionTrigger>
           <AccordionContent>

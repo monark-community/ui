@@ -21,6 +21,7 @@ export function TxStatusPreview() {
       options: ["none", "https://etherscan.io", "https://basescan.org"],
       default: "https://etherscan.io",
     },
+    label: { type: "text", default: "" },
   })
 
   return (
@@ -28,6 +29,7 @@ export function TxStatusPreview() {
       <TxStatus
         status={values.status as "confirmed"}
         hash={values.hash}
+        label={values.label || undefined}
         explorerUrl={values.explorer === "none" ? undefined : values.explorer}
       />
     </PreviewLayout>

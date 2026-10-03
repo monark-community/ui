@@ -23,6 +23,7 @@ export function CarouselPreview() {
       options: ["3", "5", "8"],
       default: "5",
     },
+    loop: { type: "boolean", default: false },
   })
 
   const count = parseInt(values.slides, 10)
@@ -31,6 +32,8 @@ export function CarouselPreview() {
   return (
     <PreviewLayout controls={entries}>
       <Carousel
+        key={`${values.orientation}-${values.loop}`}
+        opts={{ loop: values.loop }}
         orientation={values.orientation as "horizontal" | "vertical"}
         className={isVertical ? "w-48" : "w-full max-w-xs"}
       >

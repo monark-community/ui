@@ -14,6 +14,7 @@ export function ToggleGroupPreview() {
       default: "default",
     },
     size: { type: "select", options: ["sm", "default", "lg"], default: "default" },
+    disabled: { type: "boolean", default: false },
   })
 
   return (
@@ -22,6 +23,7 @@ export function ToggleGroupPreview() {
         type={values.type as "single"}
         variant={values.variant as "default"}
         size={values.size as "default"}
+        disabled={values.disabled}
       >
         <ToggleGroupItem value="bold" aria-label="Bold">
           <Bold className="size-4" />

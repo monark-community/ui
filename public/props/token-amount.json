@@ -53,5 +53,10 @@
         "description": ""
       }
     ]
+  },
+  {
+    "displayName": "formatBaseUnits",
+    "description": "Formats an integer amount of base units (wei, satoshi, ...) as a decimal\nstring. The fraction is truncated toward zero to `maxFractionDigits`, never\nrounded, so a balance is never displayed as more than it is. All arithmetic\nstays in bigint, so no precision is lost however large the value.\n\nThe whole part, the decimal separator and the fraction digits all follow\n`locale` (e.g. \"1.234,5\" in de-DE).",
+    "props": []
   }
 ]

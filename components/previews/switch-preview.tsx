@@ -16,6 +16,8 @@ export function SwitchPreview() {
     <PreviewLayout controls={entries}>
       <div className="flex items-center gap-2">
         <Switch
+          // defaultChecked only applies on mount; remount when it changes.
+          key={String(values.defaultChecked)}
           id="switch-preview"
           disabled={values.disabled}
           defaultChecked={values.defaultChecked}

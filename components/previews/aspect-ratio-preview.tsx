@@ -19,7 +19,7 @@ export function AspectRatioPreview() {
 
   return (
     <PreviewLayout controls={entries}>
-      <div className="w-full max-w-sm">
+      <div className="w-[360px] max-w-full">
         <AspectRatio ratio={RATIOS[values.ratio]} className="bg-muted rounded-md">
           <div className="h-full w-full flex items-center justify-center text-sm text-muted-foreground">
             {values.ratio}

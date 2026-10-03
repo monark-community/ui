@@ -1,0 +1,48 @@
+component: ImageCropDialog
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: dialog
+delegatesTo: "@radix-ui/react-dialog, react-easy-crop"
+description: >
+  Modal dialog (built on Dialog) that opens while `file` is set: title,
+  description, a react-easy-crop area, a zoom slider and Cancel / Apply.
+  Dragging the image repositions the crop; the wheel or the slider zooms.
+
+keyboard:
+  - key: Tab / Shift+Tab
+    action: Cycles through the focusable elements inside the dialog (focus is trapped).
+  - key: Arrow keys
+    action: On the zoom slider, change the zoom (step 0.05).
+  - key: Escape
+    action: Closes the dialog and calls onCancel.
+  - key: Enter / Space
+    action: Activates Cancel or Apply.
+
+focus:
+  visible: true
+  trapped: true
+  notes: >
+    Radix moves focus into the dialog on open and returns it to the trigger
+    on close. Repositioning the crop needs a pointer: react-easy-crop has no
+    keyboard panning, so keyboard users can only zoom around the center.
+
+screenReader:
+  announcements:
+    - Announces a dialog with the title and description.
+  notes: >
+    Known issue: the zoom label is an sr-only <label> that isn't associated
+    with the slider (no htmlFor / aria-labelledby), so the slider has no
+    accessible name. Apply is disabled until the crop area is computed.
+
+contrast:
+  text: "Inherits Dialog and Button tokens (AA)."
+  ui: "Slider and buttons use theme tokens; the crop frame is drawn by react-easy-crop in white over a dark overlay."
+
+motion:
+  reducedMotion: "Dialog open/close animations come from Dialog; the crop area moves only with the pointer."
+
+consumerResponsibilities:
+  - Offer another way to frame the image for keyboard-only users (for example a centered crop by default, which Apply produces without dragging).
+  - Translate title, description, confirmLabel, cancelLabel and zoomLabel.
+  - Validate the file type and size before passing it in.
