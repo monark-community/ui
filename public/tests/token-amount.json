@@ -20,6 +20,13 @@
         "accepts string and number inputs",
         "includes thousand separators for whole integers",
         "returns 0 when frac is zero and value is 0",
+        "truncates toward zero instead of rounding",
+        "keeps every digit of values far beyond Number.MAX_SAFE_INTEGER",
+        "keeps leading zeros of the fraction",
+        "never renders a negative zero when the value truncates to zero",
+        "handles decimals = 0 (integer tokens)",
+        "uses the locale",
+        "localizes the fraction digits along with the whole part",
         "formats with currency and 2 fraction digits by default",
         "respects currency override",
         "renders amount with symbol",
@@ -30,5 +37,5 @@
       ]
     }
   ],
-  "totalTests": 14
+  "totalTests": 21
 }

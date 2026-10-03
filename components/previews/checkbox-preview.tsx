@@ -9,12 +9,18 @@ export function CheckboxPreview() {
   const { values, entries } = useControls({
     label: { type: "text", default: "Accept terms and conditions" },
     disabled: { type: "boolean", default: false },
+    defaultChecked: { type: "boolean", default: false },
   })
 
   return (
     <PreviewLayout controls={entries}>
       <div className="flex items-center gap-2">
-        <Checkbox id="preview" disabled={values.disabled} />
+        <Checkbox
+          key={String(values.defaultChecked)}
+          id="preview"
+          disabled={values.disabled}
+          defaultChecked={values.defaultChecked}
+        />
         <Label htmlFor="preview">{values.label}</Label>
       </div>
     </PreviewLayout>

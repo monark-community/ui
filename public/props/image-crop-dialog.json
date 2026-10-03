@@ -1,0 +1,71 @@
+[
+  {
+    "displayName": "ImageCropDialog",
+    "description": "Client-side image crop dialog built on `react-easy-crop`. The user\npicks a focal point and zoom level; the output is a new File with\nthe cropped region, preserving the source MIME type where possible.\n\nDesigned for avatar (aspect=1) and banner (aspect=3) use cases but\naccepts any numeric aspect ratio.",
+    "props": [
+      {
+        "name": "file",
+        "type": "File",
+        "required": true,
+        "defaultValue": null,
+        "description": "The source File to crop. Dialog is open while non-null."
+      },
+      {
+        "name": "aspect",
+        "type": "number",
+        "required": true,
+        "defaultValue": null,
+        "description": "Aspect ratio for the crop area (1 for square, 3 for 3:1 banner)."
+      },
+      {
+        "name": "onCancel",
+        "type": "() => void",
+        "required": true,
+        "defaultValue": null,
+        "description": "Closes the dialog without producing output."
+      },
+      {
+        "name": "onCrop",
+        "type": "(cropped: File) => void",
+        "required": true,
+        "defaultValue": null,
+        "description": "Receives the cropped File ready for upload."
+      },
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Crop image",
+        "description": "Dialog title."
+      },
+      {
+        "name": "description",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Drag to reposition. Scroll or use the slider to zoom.",
+        "description": "Dialog description."
+      },
+      {
+        "name": "confirmLabel",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Apply",
+        "description": "Label for the confirm button."
+      },
+      {
+        "name": "cancelLabel",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Cancel",
+        "description": "Label for the cancel button."
+      },
+      {
+        "name": "zoomLabel",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Zoom",
+        "description": "Label for the zoom slider."
+      }
+    ]
+  }
+]

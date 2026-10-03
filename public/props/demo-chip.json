@@ -1,7 +1,7 @@
 [
   {
     "displayName": "DemoChip",
-    "description": "Marks a whole site as a simulated demo: a pill with a small dot, tinted\nwith the primary at low opacity and `primary-ink` text. Sits first in\nthe site header's actions. Drop it once the product is live.",
+    "description": "Marks a whole site as a simulated demo: a pill with a small dot, tinted\nwith the primary at low opacity and `primary-ink` text. Sits first in\nthe site header's actions. Drop it once the product is live.\n\nThe light tint stays at 8%: at 12px bold, primary-ink needs 4.5:1, and\na stronger tint drops it below that on the cream background.",
     "props": [
       {
         "name": "label",

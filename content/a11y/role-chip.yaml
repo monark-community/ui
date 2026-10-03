@@ -1,0 +1,45 @@
+component: RoleChip
+wcag: AA
+standard: WAI-ARIA 1.2
+element: span
+role: null
+delegatesTo: null
+description: >
+  Pill showing a role or tag name. With a color, the background is a 15%
+  tint of that color and a matching dot precedes the label; the dot is
+  aria-hidden, so the color is decoration and the name carries the meaning.
+  With onRemove, a small remove button follows the label.
+
+keyboard:
+  - key: Tab
+    action: Moves focus to the remove button, when there is one. The chip itself is not focusable.
+  - key: Enter / Space
+    action: Activates the remove button.
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    The remove button uses the browser's default focus outline (no custom
+    ring). When removeDisabled is set it is disabled and leaves the tab
+    order.
+
+screenReader:
+  announcements:
+    - Reads the name as plain text.
+    - 'The remove button announces as "Remove <name>" (or removeAriaLabel).'
+  notes: >
+    Don't rely on the color alone to distinguish roles: the name must be
+    meaningful on its own.
+
+contrast:
+  text: "text-foreground on a 15% tint of the chosen color over the page background; keep the color mid-to-dark so the tint stays light. Without a color, text-muted-foreground on bg-muted."
+  ui: "The remove icon is drawn at 60% opacity; it passes 3:1 on light tints but check it on saturated colors."
+
+motion:
+  reducedMotion: "Only a color/opacity transition on hover."
+
+consumerResponsibilities:
+  - Pass removeAriaLabel when "Remove <name>" isn't the right wording or language.
+  - Move focus somewhere sensible after a chip is removed (for example to the next chip or the input that adds chips).
+  - The remove button is 14px; give it room or a larger hit area in dense lists (WCAG 2.5.8 target size).

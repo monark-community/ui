@@ -12,13 +12,14 @@ import { PreviewLayout } from "@sntlr/registry-shell/shell/components/preview-la
 export function InputOtpPreview() {
   const { values, entries } = useControls({
     maxLength: { type: "number", default: 6, min: 4, max: 8 },
+    disabled: { type: "boolean", default: false },
   })
 
   const half = Math.floor(values.maxLength / 2)
 
   return (
     <PreviewLayout controls={entries}>
-      <InputOTP maxLength={values.maxLength}>
+      <InputOTP maxLength={values.maxLength} disabled={values.disabled}>
         <InputOTPGroup>
           {Array.from({ length: half }).map((_, i) => (
             <InputOTPSlot key={i} index={i} />

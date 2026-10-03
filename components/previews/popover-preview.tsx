@@ -12,6 +12,8 @@ import { PreviewLayout } from "@sntlr/registry-shell/shell/components/preview-la
 export function PopoverPreview() {
   const { values, entries } = useControls({
     content: { type: "text", default: "This is a popover. It can contain any content." },
+    side: { type: "select", options: ["bottom", "top", "left", "right"], default: "bottom" },
+    align: { type: "select", options: ["center", "start", "end"], default: "center" },
   })
 
   return (
@@ -20,7 +22,11 @@ export function PopoverPreview() {
         <PopoverTrigger asChild>
           <Button variant="outline">Open Popover</Button>
         </PopoverTrigger>
-        <PopoverContent className="w-64">
+        <PopoverContent
+          side={values.side as "bottom"}
+          align={values.align as "center"}
+          className="w-64"
+        >
           <p className="text-sm">{values.content}</p>
         </PopoverContent>
       </Popover>

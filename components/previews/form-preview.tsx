@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -14,6 +15,7 @@ import {
 } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { useControls } from "@sntlr/registry-shell/shell/hooks/use-controls"
 import { PreviewLayout } from "@sntlr/registry-shell/shell/components/preview-layout"
 
 const schema = z.object({
@@ -29,8 +31,25 @@ export function FormPreview() {
     defaultValues: { username: "" },
   })
 
+  const { values, entries } = useControls({
+    label: { type: "text", default: "Username" },
+    placeholder: { type: "text", default: "shadcn" },
+    description: { type: "text", default: "This is your public display name." },
+    showError: { type: "boolean", default: false },
+    disabled: { type: "boolean", default: false },
+  })
+
+  // Show the error state without making the visitor submit an invalid value.
+  useEffect(() => {
+    if (values.showError) {
+      form.setError("username", { message: "Username must be at least 2 characters" })
+    } else {
+      form.clearErrors("username")
+    }
+  }, [values.showError, form])
+
   return (
-    <PreviewLayout>
+    <PreviewLayout controls={entries}>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit((v) => alert(JSON.stringify(v, null, 2)))}
@@ -39,20 +58,21 @@ export function FormPreview() {
           <FormField
             control={form.control}
             name="username"
+            disabled={values.disabled}
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
+                <FormLabel>{values.label}</FormLabel>
                 <FormControl>
-                  <Input placeholder="shadcn" {...field} />
+                  <Input placeholder={values.placeholder} {...field} />
                 </FormControl>
-                <FormDescription>
-                  This is your public display name.
-                </FormDescription>
+                {values.description && <FormDescription>{values.description}</FormDescription>}
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit">Submit</Button>
+          <Button type="submit" disabled={values.disabled}>
+            Submit
+          </Button>
         </form>
       </Form>
     </PreviewLayout>

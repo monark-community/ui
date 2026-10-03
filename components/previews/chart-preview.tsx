@@ -34,6 +34,7 @@ const config = {
 export function ChartPreview() {
   const { values, entries } = useControls({
     type: { type: "select", options: ["bar", "line"], default: "bar" },
+    indicator: { type: "select", options: ["dot", "line", "dashed"], default: "dot" },
   })
 
   return (
@@ -43,7 +44,7 @@ export function ChartPreview() {
           <BarChart data={DATA}>
             <CartesianGrid vertical={false} />
             <XAxis dataKey="month" tickLine={false} tickMargin={10} axisLine={false} />
-            <ChartTooltip content={<ChartTooltipContent />} />
+            <ChartTooltip content={<ChartTooltipContent indicator={values.indicator as "dot"} />} />
             <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
             <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
           </BarChart>
@@ -51,7 +52,7 @@ export function ChartPreview() {
           <LineChart data={DATA}>
             <CartesianGrid vertical={false} />
             <XAxis dataKey="month" tickLine={false} tickMargin={10} axisLine={false} />
-            <ChartTooltip content={<ChartTooltipContent />} />
+            <ChartTooltip content={<ChartTooltipContent indicator={values.indicator as "dot"} />} />
             <Line type="monotone" dataKey="desktop" stroke="var(--color-desktop)" strokeWidth={2} dot={false} />
             <Line type="monotone" dataKey="mobile" stroke="var(--color-mobile)" strokeWidth={2} dot={false} />
           </LineChart>

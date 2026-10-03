@@ -1,13 +1,23 @@
 {
   "component": "swap-form",
   "hasUnitTests": false,
-  "hasInteractionTests": false,
+  "hasInteractionTests": true,
   "hasVisualTests": false,
   "hasA11yTests": false,
   "hasPerformanceTests": false,
   "hasProps": true,
   "hasA11yDocs": true,
   "hasPreview": true,
-  "testFiles": [],
-  "totalTests": 0
+  "testFiles": [
+    {
+      "file": "tests/e2e/interaction/swap-form.spec.ts",
+      "type": "interaction",
+      "tests": [
+        "reverse button swaps from/to amounts",
+        "renders the Swap label when status=ready",
+        "settings button is accessible via its aria-label"
+      ]
+    }
+  ],
+  "totalTests": 3
 }
