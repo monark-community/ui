@@ -1,7 +1,7 @@
 {
   "component": "connect-wallet",
   "hasUnitTests": true,
-  "hasInteractionTests": false,
+  "hasInteractionTests": true,
   "hasVisualTests": false,
   "hasA11yTests": false,
   "hasPerformanceTests": true,
@@ -26,6 +26,15 @@
       ]
     },
     {
+      "file": "tests/e2e/interaction/connect-wallet.spec.ts",
+      "type": "interaction",
+      "tests": [
+        "connected trigger opens a dropdown with Disconnect",
+        "selecting Disconnect fires onDisconnect",
+        "Escape closes the open menu"
+      ]
+    },
+    {
       "file": "tests/e2e/performance/mount-time.spec.ts",
       "type": "performance",
       "tests": [
@@ -33,5 +42,5 @@
       ]
     }
   ],
-  "totalTests": 11
+  "totalTests": 14
 }

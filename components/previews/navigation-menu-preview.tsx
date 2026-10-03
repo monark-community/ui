@@ -9,12 +9,26 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import { useControls } from "@sntlr/registry-shell/shell/hooks/use-controls"
 import { PreviewLayout } from "@sntlr/registry-shell/shell/components/preview-layout"
 
+const componentLinks = [
+  { title: "Wallet", description: "Address with avatar, name and copy action." },
+  { title: "Token Amount", description: "Formats on-chain integers with decimals." },
+  { title: "Network Badge", description: "Chain name with its brand icon." },
+  { title: "Tx Status", description: "Pending, confirmed or failed transaction." },
+]
+
 export function NavigationMenuPreview() {
+  const { values, entries } = useControls({
+    showComponentsMenu: { type: "boolean", default: false },
+    showDocsLink: { type: "boolean", default: true },
+    delayDuration: { type: "number", default: 200, min: 0, max: 1000 },
+  })
+
   return (
-    <PreviewLayout>
-      <NavigationMenu>
+    <PreviewLayout controls={entries}>
+      <NavigationMenu delayDuration={values.delayDuration}>
         <NavigationMenuList>
           <NavigationMenuItem>
             <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
@@ -56,11 +70,32 @@ export function NavigationMenuPreview() {
               </ul>
             </NavigationMenuContent>
           </NavigationMenuItem>
-          <NavigationMenuItem>
-            <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
-              <a href="#">Docs</a>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
+          {values.showComponentsMenu && (
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-3 p-4 md:w-[400px] md:grid-cols-2">
+                  {componentLinks.map((link) => (
+                    <li key={link.title}>
+                      <NavigationMenuLink asChild>
+                        <a className="block rounded-md p-3 hover:bg-accent" href="#">
+                          <div className="text-sm font-medium">{link.title}</div>
+                          <p className="text-xs text-muted-foreground">{link.description}</p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          )}
+          {values.showDocsLink && (
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild className={navigationMenuTriggerStyle()}>
+                <a href="#">Docs</a>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          )}
         </NavigationMenuList>
       </NavigationMenu>
     </PreviewLayout>

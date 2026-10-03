@@ -25,7 +25,7 @@ export function ButtonPreview() {
     },
     size: {
       type: "select",
-      options: ["default", "sm", "lg", "icon", "icon-xs", "icon-sm", "icon-lg"],
+      options: ["default", "sm", "lg", "icon"],
       default: "default",
     },
     icon: {

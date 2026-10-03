@@ -7,11 +7,12 @@ import { PreviewLayout } from "@sntlr/registry-shell/shell/components/preview-la
 export function DemoChipPreview() {
   const { values, entries } = useControls({
     label: { type: "text", default: "Demo" },
+    title: { type: "text", default: "Demo · simulated data" },
   })
 
   return (
     <PreviewLayout controls={entries}>
-      <DemoChip label={values.label || "Demo"} title="Demo · simulated data" />
+      <DemoChip label={values.label || "Demo"} title={values.title || undefined} />
     </PreviewLayout>
   )
 }

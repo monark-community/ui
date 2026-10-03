@@ -14,6 +14,7 @@ import { PreviewLayout } from "@sntlr/registry-shell/shell/components/preview-la
 export function DropdownMenuPreview() {
   const { values, entries } = useControls({
     triggerLabel: { type: "text", default: "Open Menu" },
+    align: { type: "select", options: ["center", "start", "end"], default: "center" },
   })
 
   return (
@@ -22,7 +23,7 @@ export function DropdownMenuPreview() {
         <DropdownMenuTrigger asChild>
           <Button variant="outline">{values.triggerLabel}</Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
+        <DropdownMenuContent align={values.align as "center"}>
           <DropdownMenuItem>Profile</DropdownMenuItem>
           <DropdownMenuItem>Settings</DropdownMenuItem>
           <DropdownMenuSeparator />

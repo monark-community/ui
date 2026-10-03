@@ -1,0 +1,43 @@
+{
+  "component": "TrustedDeviceCard",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Card describing a signed-in device: icon (decorative), label, optional \"Current device\" badge, vendor/model, user agent, last seen, IP, country and first seen. With onRevoke, and only when the device isn't the current one, a Revoke button sits on the right.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the Revoke button, when there is one."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Activates Revoke."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "The Revoke button uses the browser's default focus outline. While revokePending is true it's disabled and leaves the tab order, so focus is lost; move it somewhere sensible when the request settles.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Reads the label, the badge text, then the metadata lines in order.",
+      "The button reads revokeLabel (\"Revoke\") only, without the device name."
+    ],
+    "notes": "In a list of devices every button reads \"Revoke\". Pass a revokeLabel that names the device, or render the cards in a list with a heading per device, so the action is unambiguous.\n"
+  },
+  "contrast": {
+    "text": "Label in text-card-foreground and metadata in text-muted-foreground pass 4.5:1. Known issue: the \"Current device\" badge uses text-primary on a 15% primary tint, about 2.3:1 with the orange primary on cream; it doesn't meet 4.5:1 for small text.",
+    "ui": "The Revoke button's destructive border is decorative; its text-destructive label passes 4.5:1 on the light tint."
+  },
+  "motion": {
+    "reducedMotion": "Only a background-color transition on the Revoke button."
+  },
+  "consumerResponsibilities": [
+    "Give each Revoke button a device-specific accessible name (revokeLabel such as \"Revoke Chrome on Windows\").",
+    "Confirm before revoking, and announce the result (for example with a toast).",
+    "Pass formatDate for localized dates; the default uses toLocaleDateString()."
+  ]
+}

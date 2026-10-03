@@ -1,0 +1,134 @@
+[
+  {
+    "displayName": "TrustedDeviceCard",
+    "description": "Trusted device card showing device type icon, label, metadata, and\nan optional revoke action. Schema-agnostic; the caller passes\nalready-formatted primitives so this is portable across projects.",
+    "props": [
+      {
+        "name": "label",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Primary device label, e.g. \"Chrome on macOS\"."
+      },
+      {
+        "name": "userAgent",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Raw User-Agent string (displayed as secondary text in default size)."
+      },
+      {
+        "name": "deviceType",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "ua-parser-js `device.type` value (\"mobile\" | \"tablet\" | \"console\" |\n\"smarttv\" | \"wearable\" | \"embedded\" | \"xr\" | undefined).\nEmpty / undefined falls back to desktop."
+      },
+      {
+        "name": "deviceVendor",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Manufacturer / OEM, e.g. \"Apple\", \"Samsung\"."
+      },
+      {
+        "name": "deviceModel",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Model name, e.g. \"Pixel 7\", \"iPhone\"."
+      },
+      {
+        "name": "lastSeenAt",
+        "type": "string | Date",
+        "required": true,
+        "defaultValue": null,
+        "description": "Last-seen timestamp; accepts Date or ISO string."
+      },
+      {
+        "name": "lastSeenIp",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "IP address of the last session."
+      },
+      {
+        "name": "country",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Country code or name for geo display."
+      },
+      {
+        "name": "firstSeenAt",
+        "type": "string | Date",
+        "required": false,
+        "defaultValue": null,
+        "description": "First-seen timestamp; accepts Date or ISO string."
+      },
+      {
+        "name": "isCurrent",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": "Marks this as the current session device."
+      },
+      {
+        "name": "onRevoke",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Callback to revoke the device. Renders a revoke button when provided."
+      },
+      {
+        "name": "revokeLabel",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Revoke",
+        "description": "Label for the revoke button."
+      },
+      {
+        "name": "revokePending",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": "Disables the revoke button during pending operations."
+      },
+      {
+        "name": "size",
+        "type": "enum",
+        "required": false,
+        "defaultValue": "default",
+        "description": "\"default\" for the full card; \"compact\" for tighter surfaces."
+      },
+      {
+        "name": "lastSeenLabel",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Last seen",
+        "description": "Localized \"Last seen\" label."
+      },
+      {
+        "name": "firstSeenLabel",
+        "type": "string",
+        "required": false,
+        "defaultValue": "First seen",
+        "description": "Localized \"First seen\" label."
+      },
+      {
+        "name": "currentLabel",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Current device",
+        "description": "Localized \"Current device\" label."
+      },
+      {
+        "name": "formatDate",
+        "type": "(date: Date) => string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Formatter for dates. Receives a Date and returns a display string.\nDefaults to `toLocaleDateString()`."
+      }
+    ]
+  }
+]

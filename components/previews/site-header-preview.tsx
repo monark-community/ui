@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { DemoChip } from "@/components/ui/demo-chip"
 import { LocaleSwitch } from "@/components/ui/locale-switch"
@@ -40,12 +40,22 @@ const copy = {
 export function SiteHeaderPreview() {
   const { values, entries } = useControls({
     product: { type: "text", default: "Splitflow" },
+    links: { type: "number", default: 4, min: 0, max: 4 },
+    page: {
+      type: "select",
+      options: ["/en", "/en/how-it-works", "/en/use-cases", "/en/faq", "/fr/how-it-works"],
+      default: "/en/how-it-works",
+    },
     demo: { type: "boolean", default: true },
+    localeSwitch: { type: "boolean", default: true },
+    themeToggle: { type: "boolean", default: true },
+    action: { type: "boolean", default: true },
   })
 
   // A tiny in-memory router so the preview's links, locale switch and
-  // active state work without leaving the page.
-  const [pathname, setPathname] = useState("/en/how-it-works")
+  // active state work without leaving the page. The "page" control moves it.
+  const [pathname, setPathname] = useState(values.page)
+  useEffect(() => setPathname(values.page), [values.page])
   const locale: Locale = pathname.startsWith("/fr") ? "fr" : "en"
   const t = copy[locale]
   const product = values.product || "Splitflow"
@@ -71,7 +81,7 @@ export function SiteHeaderPreview() {
     []
   )
 
-  const localeSwitch = (
+  const localeSwitch = values.localeSwitch ? (
     <LocaleSwitch
       locales={locales}
       current={locale}
@@ -82,7 +92,7 @@ export function SiteHeaderPreview() {
       }}
       LinkComponent={PreviewLink}
     />
-  )
+  ) : null
   const demoChip = values.demo ? (
     <DemoChip label="Demo" title={locale === "fr" ? "Démo · données simulées" : "Demo · simulated data"} />
   ) : null
@@ -108,7 +118,7 @@ export function SiteHeaderPreview() {
               LinkComponent={PreviewLink}
             />
           }
-          links={t.links}
+          links={t.links.slice(0, values.links)}
           labels={
             locale === "fr"
               ? { nav: "Principal", openMenu: "Ouvrir le menu", closeMenu: "Fermer le menu", menu: "Menu" }
@@ -118,8 +128,8 @@ export function SiteHeaderPreview() {
             <>
               {demoChip}
               {localeSwitch}
-              <ThemeToggle label={themeLabel} />
-              {action()}
+              {values.themeToggle && <ThemeToggle label={themeLabel} />}
+              {values.action && action()}
             </>
           }
           mobileActions={
@@ -128,10 +138,10 @@ export function SiteHeaderPreview() {
                 {demoChip ?? <span />}
                 <div className="flex items-center gap-2.5">
                   {localeSwitch}
-                  <ThemeToggle label={themeLabel} className="size-11" />
+                  {values.themeToggle && <ThemeToggle label={themeLabel} className="size-11" />}
                 </div>
               </div>
-              {action("h-12 w-full rounded-full font-bold")}
+              {values.action && action("h-12 w-full rounded-full font-bold")}
             </div>
           }
         />

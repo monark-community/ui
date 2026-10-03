@@ -19,7 +19,7 @@
     "notes": "The optional title (\"Demo · simulated data\") is a mouse tooltip only. The persistent \"Demo · simulated data\" notice belongs in the footer as visible text; don't rely on the chip's title for it.\n"
   },
   "contrast": {
-    "text": "Uses text-primary-ink on a 15% primary tint: about 4.5:1 or better on cream and white (primary-ink is the primary darkened to L 0.55), and the primary itself on espresso in dark mode.",
+    "text": "text-primary-ink on an 8% primary tint in light mode: 4.5:1 on the Monark cream background and 4.7:1 on white (a 15% tint would drop to 4.3:1 on cream). In dark mode, the primary on a 15% tint over espresso, well above 4.5:1.",
     "ui": "N/A"
   },
   "motion": {

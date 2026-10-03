@@ -12,10 +12,16 @@ import { useControls } from "@sntlr/registry-shell/shell/hooks/use-controls"
 import { PreviewLayout } from "@sntlr/registry-shell/shell/components/preview-layout"
 
 export function CollapsiblePreview() {
-  const [open, setOpen] = useState(false)
   const { values, entries } = useControls({
     disabled: { type: "boolean", default: false },
+    defaultOpen: { type: "boolean", default: false },
   })
+  const [open, setOpen] = useState(values.defaultOpen)
+  const [lastDefault, setLastDefault] = useState(values.defaultOpen)
+  if (lastDefault !== values.defaultOpen) {
+    setLastDefault(values.defaultOpen)
+    setOpen(values.defaultOpen)
+  }
 
   return (
     <PreviewLayout controls={entries}>
@@ -28,7 +34,7 @@ export function CollapsiblePreview() {
         <div className="flex items-center justify-between rounded-md border px-4 py-2">
           <span className="text-sm font-semibold">3 items</span>
           <CollapsibleTrigger asChild>
-            <Button variant="ghost" size="icon-sm">
+            <Button variant="ghost" size="icon" className="size-8">
               <ChevronsUpDown className="size-4" />
             </Button>
           </CollapsibleTrigger>

@@ -1,0 +1,43 @@
+[
+  {
+    "displayName": "RoleChip",
+    "description": "Role / tag pill with a tinted background derived from a hex colour.\nWhen `color` is provided the chip uses a 15 % alpha fill and a\nmatching dot; when absent it falls back to a neutral muted style.\n\nOptional `onRemove` renders a small ✕ button inside the pill.",
+    "props": [
+      {
+        "name": "color",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Hex colour (`#RGB` or `#RRGGBB`) for the tinted background."
+      },
+      {
+        "name": "name",
+        "type": "string",
+        "required": true,
+        "defaultValue": null,
+        "description": "Visible label."
+      },
+      {
+        "name": "onRemove",
+        "type": "() => void",
+        "required": false,
+        "defaultValue": null,
+        "description": "Callback when the remove button is clicked. Renders the ✕ when provided."
+      },
+      {
+        "name": "removeAriaLabel",
+        "type": "string",
+        "required": false,
+        "defaultValue": null,
+        "description": "Accessible label for the remove button."
+      },
+      {
+        "name": "removeDisabled",
+        "type": "boolean",
+        "required": false,
+        "defaultValue": null,
+        "description": "Disables the remove button without hiding it."
+      }
+    ]
+  }
+]

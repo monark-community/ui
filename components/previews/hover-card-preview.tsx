@@ -8,16 +8,29 @@ import {
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { CalendarDays } from "lucide-react"
+import { useControls } from "@sntlr/registry-shell/shell/hooks/use-controls"
 import { PreviewLayout } from "@sntlr/registry-shell/shell/components/preview-layout"
 
 export function HoverCardPreview() {
+  const { values, entries } = useControls({
+    trigger: { type: "text", default: "@monark" },
+    side: { type: "select", options: ["bottom", "top", "right", "left"], default: "bottom" },
+    align: { type: "select", options: ["center", "start", "end"], default: "center" },
+    openDelay: { type: "number", default: 700, min: 0, max: 2000 },
+    closeDelay: { type: "number", default: 300, min: 0, max: 2000 },
+  })
+
   return (
-    <PreviewLayout>
-      <HoverCard>
+    <PreviewLayout controls={entries}>
+      <HoverCard openDelay={values.openDelay} closeDelay={values.closeDelay}>
         <HoverCardTrigger asChild>
-          <Button variant="link">@monark</Button>
+          <Button variant="link">{values.trigger}</Button>
         </HoverCardTrigger>
-        <HoverCardContent className="w-80">
+        <HoverCardContent
+          className="w-80"
+          side={values.side as "bottom"}
+          align={values.align as "center"}
+        >
           <div className="flex gap-3">
             <Avatar>
               <AvatarImage src="https://api.dicebear.com/7.x/notionists/svg?seed=monark" alt="" />

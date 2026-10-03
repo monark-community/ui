@@ -7,6 +7,7 @@ import { PreviewLayout } from "@sntlr/registry-shell/shell/components/preview-la
 export function SiteBrandPreview() {
   const { values, entries } = useControls({
     name: { type: "text", default: "Splitflow" },
+    title: { type: "text", default: "" },
   })
 
   return (
@@ -14,6 +15,7 @@ export function SiteBrandPreview() {
       <SiteBrand
         name={values.name || "Splitflow"}
         href="#"
+        title={values.title || undefined}
         onClick={(event) => event.preventDefault()}
       />
     </PreviewLayout>
