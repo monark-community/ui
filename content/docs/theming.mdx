@@ -8,74 +8,94 @@ order: 2
 
 Monark ships a single `theme` item that configures every color, radius, and font used by the rest of the registry. It's the first thing the `npx shadcn add` flow installs, and it sets defaults you can override at any layer.
 
+The theme is the Monark 2026 brand: a warm cream light mode, an espresso dark mode, flat Monark orange (`#f88d10`) as the primary with dark text on it, a 1rem radius, and Nunito Sans. To try it with your own brand color before installing, open the theme panel from the sun/moon button in this site's header.
+
 ## How the theme is delivered
 
-When you ran `npx shadcn add @monark/theme`, shadcn wrote a `@theme inline` block into your global CSS plus a `:root` + `.dark` pair of CSS variables. Every Monark component reads those variables; nothing is hardcoded.
+When you ran `npx shadcn add @monark/theme`, shadcn wrote a `@theme inline` block into your global CSS, a `:root` + `.dark` pair of CSS variables, and an `@supports` block. Every Monark component reads those variables; nothing is hardcoded.
 
 ```css title="app/globals.css (excerpt)"
-@theme inline {
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  /* ... */
-}
-
 :root {
-  --primary: oklch(0.705 0.213 47.604); /* Monark orange */
-  --primary-foreground: oklch(0.98 0.016 73.684);
-  --radius: 0.5rem;
-  --font-sans: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
+  --surface-tint: 1;
+  --primary: #f88d10;
+  --background: #fff9f3; /* cream */
+  --primary-foreground: var(--foreground); /* dark text on orange */
+  --radius: 1rem;
   /* ... */
 }
 
 .dark {
-  --primary: oklch(0.646 0.222 41.116); /* deeper orange in dark mode */
+  --background: #1a0b02; /* espresso */
   /* ... */
 }
+
+@supports (color: oklch(from red l c h)) {
+  :root {
+    --background: oklch(from var(--primary) 0.985 calc(c * 0.06 * var(--surface-tint)) h);
+    /* ... */
+  }
+  .dark {
+    --background: oklch(from var(--primary) 0.17 calc(c * 0.2 * var(--surface-tint)) h);
+    /* ... */
+  }
+}
 ```
+
+## Surfaces follow the primary
+
+Inside `@supports`, every surface, border, and text token is computed from `--primary` with CSS relative color syntax. Each token keeps its own lightness (so contrast doesn't move), takes the primary's hue, and a small share of its chroma, scaled by `--surface-tint`.
+
+- **Change `--primary` and the surfaces follow.** A teal primary gives faintly teal surfaces with the same contrast.
+- **`--surface-tint` sets how much.** `1` is the Monark standard; `0` gives neutral (untinted) surfaces while keeping the primary; up to `2` tints them more.
+- **`--primary-ink`** is the primary darkened enough to read as text or a link on light backgrounds (orange itself is too light for text on cream). In dark mode it equals `--primary`.
+
+Relative color syntax needs Chrome 119+, Safari 16.4+, or Firefox 128+. Older browsers skip the `@supports` block and use the fixed values above it, which are the Monark colors precomputed from the same formulas; there, surfaces don't follow a changed `--primary`.
 
 ## Remapping a color
 
-To change the accent from Monark orange to, say, teal, override `--primary` and `--primary-foreground` on `:root` (and `.dark` if the dark-mode variant differs):
+To change the accent from Monark orange to, say, teal, override `--primary` on `:root`. The surfaces, borders, and `--primary-ink` follow in both modes:
 
 ```css title="app/globals.css"
 :root {
-  --primary: oklch(0.75 0.15 180); /* teal */
-  --primary-foreground: oklch(0.98 0 0);
-}
-
-.dark {
-  --primary: oklch(0.68 0.14 180);
-  --primary-foreground: oklch(0.98 0 0);
+  --primary: #14b8a6; /* teal */
+  --surface-tint: 1;  /* 0 for neutral surfaces */
 }
 ```
 
-Every component that uses `primary` (Button's default variant, rings, chart colors) updates without touching a single component file.
+The theme panel's "Copy CSS" button gives you exactly this block. Text on the primary stays dark (`--primary-foreground` is `--foreground` in light mode, `--background` in dark); if you pick a dark primary, set `--primary-foreground` to a light color too.
+
+Every component that uses `primary` (Button's default variant, links, chart colors) updates without touching a single component file.
 
 ## Available tokens
 
-Monark exposes the full shadcn token set plus a few sidebar-specific ones:
+Monark exposes the full shadcn token set plus a few of its own:
 
 | Token | Used by |
 |---|---|
 | `--background` / `--foreground` | Page body |
 | `--card` / `--card-foreground` | Card, Wallet, Dialog content |
 | `--popover` / `--popover-foreground` | Popover, Dropdown, Select |
-| `--primary` / `--primary-foreground` | Button default, link, focus ring |
+| `--primary` / `--primary-foreground` | Button default, links |
+| `--primary-ink` | Orange-family text and links on light surfaces |
+| `--surface-tint` | How strongly surfaces follow the primary (`0`–`2`) |
 | `--secondary` / `--secondary-foreground` | Button secondary, Badge secondary |
 | `--muted` / `--muted-foreground` | Placeholder text, dimmed UI |
 | `--accent` / `--accent-foreground` | Hover states, menu highlights |
-| `--destructive` | Destructive button, error text |
+| `--destructive` / `--destructive-foreground` | Destructive button, error text |
+| `--success` / `--warning` | Status colors, always paired with a label or icon |
 | `--border` / `--input` / `--ring` | All borders, form inputs, focus ring |
 | `--chart-1` ... `--chart-5` | Recharts palette |
 | `--sidebar*` | Sidebar block backgrounds and borders |
 | `--radius` | All rounded utilities (`rounded-md`, `rounded-lg`) |
 | `--font-sans` / `--font-mono` | Everything |
 
+`--ring` is `--primary-ink` in light mode: flat orange is only 2.3:1 on cream, under the 3:1 minimum for focus indicators. In dark mode it's the primary itself.
+
 ## Changing the radius
 
 ```css
 :root {
-  --radius: 0.75rem; /* softer; default is 0.5rem */
+  --radius: 0.5rem; /* tighter; default is 1rem */
 }
 ```
 
@@ -100,7 +120,7 @@ Toggle dark mode with the `.dark` class on `<html>`. Monark's components don't c
 
 ## Chart palette
 
-The five `--chart-*` tokens drive the Chart block's default color ramp. Monark's defaults are warm tones tuned to pair with the orange primary; remap if you want a cooler palette:
+The five `--chart-*` tokens drive the Chart block's default color ramp. `--chart-1` is the primary; the other four are fixed warm tones (red, brown, tan, and a neutral) so they stay distinguishable from it. Remap if you want a cooler palette:
 
 ```css
 :root {
@@ -110,6 +130,14 @@ The five `--chart-*` tokens drive the Chart block's default color ramp. Monark's
   --chart-4: oklch(0.85 0.1 90);   /* yellow */
   --chart-5: oklch(0.65 0.2 0);    /* red */
 }
+```
+
+## The previous theme
+
+Versions before 1.0.0 shipped a zinc and orange theme with a 0.5rem radius. It stays installable from its frozen release:
+
+```bash
+npx shadcn@latest add https://ui.monark.io/r/v0.1.0/theme.json
 ```
 
 ## When to fork vs override

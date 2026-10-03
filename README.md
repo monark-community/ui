@@ -39,7 +39,7 @@ All web3 components are presentational. They accept props, emit callbacks, and n
 # 1. Initialize shadcn in your project (once)
 npx shadcn@latest init
 
-# 2. Apply the Monark theme (zinc base, orange primary, Nunito Sans)
+# 2. Apply the Monark theme (cream and espresso, orange primary, Nunito Sans)
 npx shadcn@latest add https://ui.monark.io/r/theme.json
 ```
 
@@ -92,14 +92,16 @@ Every component page on [ui.monark.io](https://ui.monark.io) includes:
 
 ## Theming
 
-Tokens live in [`styles/theme.css`](styles/theme.css) and ship to consumers as the `theme` registry item. Remap a color, radius, or font by overriding the CSS variable; no component edits needed.
+Tokens live in [`styles/theme.css`](styles/theme.css) and ship to consumers as the `theme` registry item: the Monark 2026 brand, with a warm cream light mode and an espresso dark mode. Surfaces, borders, and text are derived from `--primary` with CSS relative color, so changing the primary re-tints them; `--surface-tint` sets how much (`0` gives neutral surfaces). Browsers without relative color get the same colors as fixed values. Remap a color, radius, or font by overriding the CSS variable; no component edits needed.
 
 ```css
 :root {
-  --primary: oklch(0.75 0.15 180); /* teal instead of orange */
-  --radius: 0.75rem;
+  --primary: #14b8a6; /* teal instead of orange; surfaces follow */
+  --radius: 0.5rem;
 }
 ```
+
+The docs site has a theme panel (the sun/moon button) to try a primary color and tint live and copy the resulting CSS. The pre-1.0 zinc theme stays installable from `https://ui.monark.io/r/v0.1.0/theme.json`.
 
 See the [Theming guide](https://ui.monark.io/docs/theming) for the full token list.
 
@@ -138,7 +140,7 @@ public/
 ## Stack
 
 - **Shell**: [`@sntlr/registry-shell`](https://www.npmjs.com/package/@sntlr/registry-shell), a static-exported Next.js app that renders the docs + preview site.
-- **Style**: shadcn `new-york`, Tailwind CSS v4, zinc base + orange theme, 0.5rem radius.
+- **Style**: shadcn `new-york`, Tailwind CSS v4, Monark 2026 theme (cream and espresso, orange primary), 1rem radius.
 - **Fonts**: Nunito Sans for body and headings; JetBrains Mono for code.
 - **Icons**: [Lucide](https://lucide.dev).
 - **Jazzicons**: [`react-jazzicon`](https://github.com/marcusmolchany/react-jazzicon) for wallet avatars (MetaMask's deterministic palette).

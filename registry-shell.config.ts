@@ -47,6 +47,18 @@ export default defineConfig({
     ],
   },
 
+  // Versioned docs: every v* tag gets a frozen site at /v/<version>/ and
+  // frozen registry JSON at /r/v<version>/; the latest stays at / and /r/.
+  // Each tag is built with its own registry:build (check + shadcn build).
+  versions: {
+    registryBuildCommand: "pnpm registry:build",
+  },
+
+  // The header theme button becomes a panel (mode, primary color, surface
+  // tint, Copy CSS). Only from 1.0.0: older themes don't derive their
+  // surfaces from --primary and --surface-tint.
+  themePanel: { since: "1.0.0" },
+
   // Docs live under content/docs/{locale}/ once you add translations. With
   // multilocale off (default), MDX lives directly under content/docs/.
 })
