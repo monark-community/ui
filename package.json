@@ -12,7 +12,7 @@
   "scripts": {
     "shell": "registry-shell dev",
     "shell:build": "registry-shell build",
-    "vercel-build": "(git fetch --force --tags --unshallow origin || git fetch --force --tags origin || echo \"registry-shell: no git tags fetched, building latest only\") && pnpm registry:build && registry-shell build",
+    "vercel-build": "node scripts/fetch-release-tags.mjs && pnpm registry:build && registry-shell build",
     "registry:check": "tsx scripts/check-registry.ts",
     "registry:build": "pnpm registry:check && shadcn build",
     "generate:props": "tsx scripts/generate-prop-docs.ts",
