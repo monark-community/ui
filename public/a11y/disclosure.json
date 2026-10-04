@@ -1,0 +1,42 @@
+{
+  "component": "Disclosure",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "button",
+  "role": null,
+  "delegatesTo": "radix-ui (Collapsible)",
+  "description": "A \"show details\" toggle built on Radix Collapsible, following the WAI-ARIA disclosure pattern. The summary row is a real <button> with aria-expanded and aria-controls pointing at the content; the content is unmounted while closed.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the toggle, then into the revealed content when open."
+    },
+    {
+      "key": "Space / Enter",
+      "action": "Toggles the content open / closed."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "The toggle uses focus-visible:ring-3 focus-visible:ring-ring/50 and is at least 44px tall (min-h-11) in both variants. Focus stays on the toggle when it opens or closes.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The toggle announces its summary text, \"button\", and expanded / collapsed."
+    ],
+    "notes": "The chevron and the optional leading icon are aria-hidden, so the button's name is the summary text only. The content has no landmark role.\n"
+  },
+  "contrast": {
+    "text": "Summary uses foreground in font-bold; content inherits foreground. Both meet WCAG AA",
+    "ui": "The card and pill borders are decorative (the button's text is the affordance); the focus ring is a 3px ring-ring/50 halo"
+  },
+  "motion": {
+    "reducedMotion": "The chevron rotation uses a 200ms transform that is disabled under prefers-reduced-motion; content appears without animation"
+  },
+  "consumerResponsibilities": [
+    "Write a summary that says what is inside (\"How this score is calculated\"), not just \"More\".",
+    "If the hidden content is a distinct section, give it a heading inside the content so screen reader users can navigate to it.",
+    "Don't hide information that's needed to complete the task; keep it for secondary detail."
+  ]
+}

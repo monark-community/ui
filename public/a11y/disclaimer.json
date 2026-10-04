@@ -1,0 +1,34 @@
+{
+  "component": "Disclaimer",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "p",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Static notice that the demo is simulated and moves no real funds. The inline variant is a <p>; the banner variant is a full-width <div> wrapping a <p>. The warning icon is aria-hidden, so only the text is read. No role by default: it is part of the reading order, not an alert.\n",
+  "keyboard": [],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "Non-interactive, not focusable."
+  },
+  "screenReader": {
+    "announcements": [
+      "Reads the text, e.g. \"Testnet demo · not financial advice · no real funds\", in document order."
+    ],
+    "notes": "If the banner is inserted after page load (for example a storage warning), pass role=\"status\" so it is announced. Pass role=\"note\" to expose a static banner as a note.\n"
+  },
+  "contrast": {
+    "text": "Inline: muted-foreground at 12px on card or background, 4.5:1 and above. Banner: foreground at 14px on muted/60.",
+    "ui": "The icon uses the warning token and is decorative (aria-hidden), so it does not need 3:1."
+  },
+  "motion": {
+    "reducedMotion": "No animation."
+  },
+  "consumerResponsibilities": [
+    "Write product-specific text and translate it (\"not tax or accounting advice\" where it applies).",
+    "Show it once per value-moving transaction (the wallet prompt), not on every screen; the footer carries the persistent \"Demo · simulated data\" notice.",
+    "Don't rely on the icon's colour to convey the warning; the text carries the meaning.",
+    "The icon uses the --warning token; theme-2026 defines it."
+  ]
+}

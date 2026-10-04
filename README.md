@@ -30,6 +30,22 @@ It ships the full set of shadcn primitives (buttons, inputs, dialogs, data table
 - `DemoChip`: "Demo" pill for simulated demo sites
 - `LocaleSwitch`: EN/FR pill that keeps the current page
 - `ThemeToggle`: light/dark icon button for next-themes
+- `HeaderAction`: "Launch demo" outside the app, `ConnectWallet` inside it
+- `SiteFooter`: three-band footer (product, Monark, legal)
+- `SectionHeading`, `SectionDivider`: landing-section title and the branded separator
+
+**Demo app**
+
+- `AppTabs`, `AppLoading`: the app's sub-bar and loading skeleton
+- `WalletPrompt`: simulated confirm-in-wallet dialog
+- `TxFeedback`: signing, pending, confirmed and failed feedback around `TxStatus`
+- `DemoControls`: slow network, fail next, extra toggles and a two-step reset
+- `Disclaimer`: the "testnet demo, no real funds" notice
+
+**Patterns**
+
+- `InfoTip`, `Stat`, `Empty`, `Disclosure`, `FieldError`, `NativeSelect`
+- Variants on primitives: `ToggleGroup` `pill` and `chip`, `RadioGroup` `card`, `Accordion` `plus`
 
 All web3 components are presentational. They accept props, emit callbacks, and never fetch, sign, or broadcast; you wire them to wagmi, viem, RainbowKit, or whatever connector stack you already run.
 

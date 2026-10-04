@@ -1,0 +1,41 @@
+component: AppLoading
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: status
+delegatesTo: skeleton
+description: >
+  Loading skeleton for the demo app before its client store hydrates. A
+  polite status region holding an sr-only label and Skeleton shapes (a
+  title pill, stat tiles, panels). The shapes have no role or name; only
+  the label is announced.
+
+keyboard: []
+
+focus:
+  visible: false
+  trapped: false
+  notes: "Non-interactive, not focusable."
+
+screenReader:
+  announcements:
+    - 'Announces the label politely, e.g. "Loading the demo…".'
+  notes: >
+    When the real content replaces the skeleton, the status region
+    unmounts; the new content is not announced, which is the expected
+    behaviour for a page load.
+
+contrast:
+  text: "N/A; the only text is sr-only."
+  ui: "Skeleton shapes use bg-muted; they are decorative and transient, so 3:1 does not apply."
+
+motion:
+  reducedMotion: >
+    The Skeleton pulse is always on. Override it with
+    motion-reduce:animate-none in your theme if you need strict
+    reduced-motion compliance.
+
+consumerResponsibilities:
+  - Translate label.
+  - Pick stats and panels (or pass children) to roughly match the screen that loads, so the layout doesn't jump.
+  - Render it inside the app's content container; it brings no max width or padding of its own.

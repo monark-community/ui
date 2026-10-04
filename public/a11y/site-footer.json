@@ -1,0 +1,46 @@
+{
+  "component": "SiteFooter",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "footer",
+  "role": "contentinfo",
+  "delegatesTo": null,
+  "description": "The page's contentinfo landmark in three bands. The product band holds the product name, a one-line description and a labelled navigation landmark with the site's pages. The Monark band holds the \"built by\" line, the Monark logo link (named by labels.monarkHome), the project and repo links, and a labelled list of icon-only social links. The legal band holds the copyright, the demo notice and the credits link.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves through the page links, the Monark logo, the resource links, the social links and the legal links in visual order."
+    },
+    {
+      "key": "Enter",
+      "action": "Follows the focused link."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Every link shows the shared focus ring (ring-3 ring-ring/50). The \"·\" separators in the legal band are aria-hidden and never focusable.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The product links are announced as a navigation landmark named by labels.productNav (\"Site pages\").",
+      "Each social link is announced by its label, e.g. \"Monark on GitHub\"; the icon is aria-hidden.",
+      "The social links are a list named by labels.socials (\"Monark on social media\").",
+      "The Monark logo link is announced by labels.monarkHome (\"Monark home page\")."
+    ],
+    "notes": "The default logo is the butterfly mark (aria-hidden) and the word \"Monark\"; the link's aria-label replaces both. A custom monarkLogo image needs no alt text of its own for the same reason.\n"
+  },
+  "contrast": {
+    "text": "Product name, page links and resource links in foreground; description, tagline and legal text in muted-foreground, which keeps 4.5:1 on secondary in light mode and on the background 5% darker in dark mode.",
+    "ui": "Band borders are decorative. Social icons use foreground at 24px, above 3:1 on both band surfaces."
+  },
+  "motion": {
+    "reducedMotion": "No animation; hover only changes colour and underline."
+  },
+  "consumerResponsibilities": [
+    "Render one SiteFooter per page, outside <main>, so there is a single contentinfo landmark.",
+    "Translate labels (productNav, builtBy, monarkHome, tagline, socials), the social labels (map over MONARK_SOCIALS) and demoNotice.",
+    "Keep the visible \"Demo · simulated data\" notice while the site is a demo; drop it (demoNotice={null}) once the product is live.",
+    "Give any extra navigation passed as children its own aria-label (e.g. \"The Monark DeFi family\")."
+  ]
+}

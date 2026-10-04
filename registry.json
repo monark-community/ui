@@ -1320,6 +1320,289 @@
       ]
     },
     {
+      "name": "info-tip",
+      "type": "registry:ui",
+      "title": "Info Tip",
+      "description": "A round \"i\" button that opens a small popover with extra context on click, tap or keyboard, in place of a hint paragraph.",
+      "files": [
+        {
+          "path": "components/ui/info-tip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "cn"
+      ],
+      "registryDependencies": [
+        "@monark/popover"
+      ]
+    },
+    {
+      "name": "stat",
+      "type": "registry:ui",
+      "title": "Stat",
+      "description": "A label over a large tabular figure, with an optional hint and delta, as a tile or plain; StatGroup lays several out as a description list.",
+      "files": [
+        {
+          "path": "components/ui/stat.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react",
+        "cn"
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "A dashed placeholder for an empty list, table or panel, with an icon, title, description and an action slot.",
+      "files": [
+        {
+          "path": "components/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "cn"
+      ]
+    },
+    {
+      "name": "section-divider",
+      "type": "registry:ui",
+      "title": "Section Divider",
+      "description": "monark.io's branded separator: a thin orange line with an outlined ring at either or both ends, horizontal or vertical.",
+      "files": [
+        {
+          "path": "components/ui/section-divider.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn"
+      ]
+    },
+    {
+      "name": "section-heading",
+      "type": "registry:ui",
+      "title": "Section Heading",
+      "description": "A landing-section header: optional eyebrow, a display title at a configurable heading level, an optional lead and an action on the right.",
+      "files": [
+        {
+          "path": "components/ui/section-heading.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "cn"
+      ]
+    },
+    {
+      "name": "native-select",
+      "type": "registry:ui",
+      "title": "Native Select",
+      "description": "A native <select> styled as the Monark pill trigger, with an inset chevron, for OS pickers and no-JS forms.",
+      "files": [
+        {
+          "path": "components/ui/native-select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn",
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "disclosure",
+      "type": "registry:ui",
+      "title": "Disclosure",
+      "description": "A collapsible \"show details\" row that folds secondary detail behind a card header or an inline pill.",
+      "files": [
+        {
+          "path": "components/ui/disclosure.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn",
+        "radix-ui",
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "field-error",
+      "type": "registry:ui",
+      "title": "Field Error",
+      "description": "The inline form error: an alert message with an icon, referenced from its control through aria-describedby.",
+      "files": [
+        {
+          "path": "components/ui/field-error.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn",
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "site-footer",
+      "type": "registry:ui",
+      "title": "Site Footer",
+      "description": "The standard Monark three-band footer: product band, Monark band with links and socials, and a darker legal band.",
+      "files": [
+        {
+          "path": "components/ui/site-footer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "@monark/site-brand"
+      ]
+    },
+    {
+      "name": "header-action",
+      "type": "registry:ui",
+      "title": "Header Action",
+      "description": "The site header's one primary action: a Launch demo link outside the demo app, ConnectWallet inside it, with a placeholder until the wallet state loads.",
+      "files": [
+        {
+          "path": "components/ui/header-action.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "@monark/button",
+        "@monark/connect-wallet",
+        "@monark/skeleton"
+      ]
+    },
+    {
+      "name": "disclaimer",
+      "type": "registry:ui",
+      "title": "Disclaimer",
+      "description": "The \"testnet demo, not financial advice, no real funds\" notice, as a small muted line or a full-width banner.",
+      "files": [
+        {
+          "path": "components/ui/disclaimer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn",
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "app-tabs",
+      "type": "registry:ui",
+      "title": "App Tabs",
+      "description": "The demo app's sub-bar: a scrollable row of pill links with aria-current on the current section, optional icons and counts, and an actions slot.",
+      "files": [
+        {
+          "path": "components/ui/app-tabs.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn"
+      ]
+    },
+    {
+      "name": "app-loading",
+      "type": "registry:ui",
+      "title": "App Loading",
+      "description": "The demo app's loading skeleton (title, stat tiles, panels) in a polite status region with a screen-reader label.",
+      "files": [
+        {
+          "path": "components/ui/app-loading.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "@monark/skeleton"
+      ]
+    },
+    {
+      "name": "wallet-prompt",
+      "type": "registry:ui",
+      "title": "Wallet Prompt",
+      "description": "A simulated wallet confirmation dialog with summary rows, network and fee, a disclaimer, confirm and reject, and a signing state.",
+      "files": [
+        {
+          "path": "components/ui/wallet-prompt.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "cn"
+      ],
+      "registryDependencies": [
+        "@monark/button",
+        "@monark/dialog",
+        "@monark/network-badge",
+        "@monark/wallet"
+      ]
+    },
+    {
+      "name": "tx-feedback",
+      "type": "registry:ui",
+      "title": "Tx Feedback",
+      "description": "Inline transaction feedback: a signing message, pending and confirmed TxStatus with an explorer link, and a failure alert with retry.",
+      "files": [
+        {
+          "path": "components/ui/tx-feedback.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "cn"
+      ],
+      "registryDependencies": [
+        "@monark/button",
+        "@monark/tx-status"
+      ]
+    },
+    {
+      "name": "demo-controls",
+      "type": "registry:ui",
+      "title": "Demo Controls",
+      "description": "The demo control panel: slow-network and fail-next switches, a slot for extra toggles, and a two-step reset.",
+      "files": [
+        {
+          "path": "components/ui/demo-controls.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "cn"
+      ],
+      "registryDependencies": [
+        "@monark/button",
+        "@monark/dialog",
+        "@monark/label",
+        "@monark/switch"
+      ]
+    },
+    {
       "name": "use-mobile",
       "type": "registry:hook",
       "title": "use-mobile",

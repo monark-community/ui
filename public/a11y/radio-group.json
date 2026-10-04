@@ -5,7 +5,7 @@
   "element": "div",
   "role": "radiogroup",
   "delegatesTo": "radix-ui (RadioGroup)",
-  "description": "Single-select group of radio buttons. RadioGroup is role=\"radiogroup\"; each RadioGroupItem is a <button role=\"radio\"> with aria-checked. Radix implements roving tabindex so the group acts as one tab stop, and arrow keys move the selection between items.\n",
+  "description": "Single-select group of radio buttons. RadioGroup is role=\"radiogroup\"; each RadioGroupItem is a <button role=\"radio\"> with aria-checked. Radix implements roving tabindex so the group acts as one tab stop, and arrow keys move the selection between items. variant=\"card\" renders each item as a selectable bordered card (RadioGroupItemTitle + optional RadioGroupItemDescription inside the item); the card itself is the role=\"radio\" button, named by its title and described by its description.\n",
   "keyboard": [
     {
       "key": "Tab",
@@ -27,25 +27,26 @@
   "focus": {
     "visible": true,
     "trapped": false,
-    "notes": "Uses focus-visible:ring-3 focus-visible:ring-ring/50 with focus-visible:border-ring. Each size-4 (16px) radio has an invisible ::after hit area extending 12px sideways and 8px vertically. The currently-checked item is the only tab stop; all other items are tabindex=-1 but reachable via arrows.\n"
+    "notes": "Uses focus-visible:ring-3 focus-visible:ring-ring/50 with focus-visible:border-ring. Each size-4 (16px) radio has an invisible ::after hit area extending 12px sideways and 8px vertically. The currently-checked item is the only tab stop; all other items are tabindex=-1 but reachable via arrows. In the card variant the whole card (min-h-14) is the target and carries the focus ring.\n"
   },
   "screenReader": {
     "announcements": [
       "The group announces as a radio group with its count and label (via aria-label / aria-labelledby).",
       "Each radio announces with its label, \"radio\" role, and checked state."
     ],
-    "notes": "Radio items have no visible label of their own; pair each with a <Label htmlFor={id}> so the accessible name and click target both work.\n"
+    "notes": "Default radio items have no visible label of their own; pair each with a <Label htmlFor={id}> so the accessible name and click target both work. Card items get aria-labelledby (title) and aria-describedby (description) wired automatically.\n"
   },
   "contrast": {
     "text": "Checked radios fill with bg-primary and show a bg-primary-foreground dot (dark on orange, 7.9:1); meets WCAG AA",
-    "ui": "Unchecked border uses the input token (3.9:1); meets AA non-text contrast against bg-background"
+    "ui": "Unchecked border uses the input token (3.9:1); meets AA non-text contrast against bg-background. A checked card switches to a primary border and primary/10 tint and keeps the filled radio dot, so the state doesn't rely on the tint alone"
   },
   "motion": {
     "reducedMotion": "No motion animation; only a color swap between states"
   },
   "consumerResponsibilities": [
     "Provide a group label via aria-label / aria-labelledby on RadioGroup, or wrap in a <fieldset><legend>; otherwise screen reader users hear an unnamed group.",
-    "Label each radio with a real <Label> linked by htmlFor; the visual circle alone has no name.",
+    "Label each radio with a real <Label> linked by htmlFor; the visual circle alone has no name. In the card variant, always include a RadioGroupItemTitle.",
+    "Keep card content non-interactive (no links or buttons inside a card); the card is a single button.",
     "Don't pre-check an option unless it's a safe default; uncheckable radio groups require the user to make a choice, which is often preferable."
   ]
 }

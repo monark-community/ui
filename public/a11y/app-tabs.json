@@ -1,0 +1,45 @@
+{
+  "component": "AppTabs",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "nav",
+  "role": "navigation",
+  "delegatesTo": null,
+  "description": "The demo app's section links. A labelled navigation landmark with a list of links, styled as pills; the current section is marked aria-current=\"page\". These are page links, not an ARIA tablist: each one navigates to its own URL, so there is no roving tabindex or arrow key handling. The row scrolls horizontally on narrow screens, and the current link is scrolled into view.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves through the section links, then the actions slot, in visual order. A link scrolled out of view scrolls back in when it gets focus."
+    },
+    {
+      "key": "Enter",
+      "action": "Follows the focused link."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "Each link shows the shared focus ring (ring-3 ring-ring/50), which replaces the hairline ring on the current link while it is focused.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The landmark is announced by label (\"App sections\").",
+      "The current section is announced as \"current page\".",
+      "A count badge is read after the label, e.g. \"Ledger (3 to review)\" when countLabel is set; otherwise just the number."
+    ],
+    "notes": "Icons are aria-hidden; the label always carries the name, even where the icon is hidden below sm (iconDesktopOnly).\n"
+  },
+  "contrast": {
+    "text": "Inactive links in muted-foreground (4.5:1 and above on the secondary/40 tint); the current link in foreground on card. Count badge: primary-foreground on primary.",
+    "ui": "The current link is marked by its card background and a ring-border hairline as well as the text colour change, and by aria-current for assistive tech."
+  },
+  "motion": {
+    "reducedMotion": "Colour transitions only (150ms); the scroll-into-view is an instant jump."
+  },
+  "consumerResponsibilities": [
+    "Pass pathname (usePathname()) so the current link is marked; set exact on the app's root tab.",
+    "Translate label and each tab's label and countLabel.",
+    "Keep labels short so the row fits a phone without much scrolling.",
+    "Render one AppTabs per page, under the site header and outside <main> or as its first child."
+  ]
+}

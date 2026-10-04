@@ -1,0 +1,34 @@
+{
+  "component": "SectionHeading",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Section header for landing pages: optional uppercase eyebrow, a display title rendered as h1, h2 (default) or h3 via `as`, an optional lead paragraph and an optional action slot. Visual `size` is independent of the heading level so the outline stays correct. The eyebrow is a <p> before the heading, not part of the heading's accessible name.\n",
+  "keyboard": [],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "Not focusable itself. Links or buttons passed to `action` keep their own focus rings."
+  },
+  "screenReader": {
+    "announcements": [
+      "The eyebrow is read as plain text, then the heading at its level, then the lead.",
+      "Pass `titleId` and point the parent section's aria-labelledby at it to name the region."
+    ],
+    "notes": "The eyebrow is uppercased with CSS (text-transform), so screen readers read the source text, not shouted capitals. Write it in sentence case.\n"
+  },
+  "contrast": {
+    "text": "Title is foreground (18:1). Lead and the muted eyebrow are muted-foreground (6.5:1 light, 7.5:1 dark); the primary eyebrow uses primary-ink (4.9:1 light, 8.1:1 dark). The eyebrow is 12px bold, so it needs and meets 4.5:1.\n",
+    "ui": "N/A"
+  },
+  "motion": {
+    "reducedMotion": "No animation."
+  },
+  "consumerResponsibilities": [
+    "Choose `as` from the page outline (one h1 per page, sections h2, sub-sections h3); use `size` for looks.",
+    "Use `titleId` with aria-labelledby on the surrounding <section>.",
+    "Keep the eyebrow short; it is a label, not a sentence."
+  ]
+}

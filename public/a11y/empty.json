@@ -1,0 +1,35 @@
+{
+  "component": "Empty",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Dashed placeholder for a list, table or panel with nothing in it. A plain container with optional media (icon), title, description and an action slot. It has no role by default; pass role=\"status\" when it appears in response to a user action (filtering, search) so the change is announced.\n",
+  "keyboard": [],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "The container is not focusable. Buttons or links placed in EmptyContent keep their own focus rings."
+  },
+  "screenReader": {
+    "announcements": [
+      "Reads the title, description and action in DOM order.",
+      "EmptyMedia is aria-hidden, so the icon is never announced.",
+      "With role=\"status\", the text is announced politely when it appears."
+    ],
+    "notes": "EmptyTitle is a <p>, not a heading, because empty states usually sit inside a section that already has one. If the empty state is the main content of a page, render your own heading element in its place.\n"
+  },
+  "contrast": {
+    "text": "Title is foreground on the surface behind it; description is muted-foreground (6.5:1 light, 7.5:1 dark).",
+    "ui": "The dashed border uses the border token and is decorative (below 3:1); nothing depends on it."
+  },
+  "motion": {
+    "reducedMotion": "No animation."
+  },
+  "consumerResponsibilities": [
+    "Write a title that says what is empty and, when filters caused it, how to get results back.",
+    "Put a clear next step in EmptyContent (create, clear filters) when there is one.",
+    "Add role=\"status\" (or an aria-live wrapper) when the empty state replaces results the user just filtered away."
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "component": "SectionDivider",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": null,
+  "delegatesTo": null,
+  "description": "monark.io's branded separator: a 1px flat orange line with an outlined ring at either or both ends, horizontal or vertical. Decorative by default (aria-hidden=\"true\"). With decorative={false} it renders role=\"separator\" with aria-orientation instead.\n",
+  "keyboard": [],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "Non-interactive, not focusable."
+  },
+  "screenReader": {
+    "announcements": [
+      "Decorative (default) - nothing is announced.",
+      "decorative={false} - announced as a separator (horizontal or vertical) where the screen reader exposes separators."
+    ],
+    "notes": "Most uses sit between landing-page sections that already have their own headings, so the divider adds nothing for screen readers; keep it decorative there.\n"
+  },
+  "contrast": {
+    "text": "N/A",
+    "ui": "The line and rings are the flat orange primary, about 2.3:1 on cream in light mode, below the 3:1 non-text minimum. That is acceptable only because the divider is decorative; do not make it the sole cue that separates content that must be told apart.\n"
+  },
+  "motion": {
+    "reducedMotion": "No animation."
+  },
+  "consumerResponsibilities": [
+    "Keep it decorative unless the separation carries meaning; when it does, also separate the content with headings or landmarks.",
+    "Give a vertical divider a height through its parent (it stretches to h-full, min 2rem).",
+    "Spacing around it (pt-16, my-8) is yours to set via className."
+  ]
+}

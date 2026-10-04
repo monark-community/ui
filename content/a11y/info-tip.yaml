@@ -1,0 +1,51 @@
+component: InfoTip
+wcag: AA
+standard: WAI-ARIA 1.2
+element: button
+role: button
+delegatesTo: "radix-ui (Popover) via @monark/popover"
+description: >
+  Round "i" icon button that opens a small non-modal popover with extra
+  context. The trigger is a real button named by `label` (default "More
+  information"); Radix sets aria-expanded, aria-haspopup="dialog" and
+  aria-controls pointing at the portaled panel. It opens on click, tap,
+  Enter or Space, so unlike a tooltip it works on touch screens and the
+  panel may contain a link.
+
+keyboard:
+  - key: Tab
+    action: Moves focus to the trigger.
+  - key: Enter / Space
+    action: Toggles the popover. Focus moves into the panel while it is open.
+  - key: Escape
+    action: Closes the popover and returns focus to the trigger.
+  - key: Tab (while open)
+    action: Moves through any links in the panel; tabbing past the end leaves it.
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    The trigger shows the shared ring-3 ring-ring/50 focus ring. The panel is
+    non-modal: focus is not trapped and clicking outside closes it.
+
+screenReader:
+  announcements:
+    - 'Trigger: "<label>, button, collapsed / expanded".'
+    - The panel content is read when focus moves into it on open.
+  notes: >
+    The icon is aria-hidden; the accessible name comes only from `label`.
+    Make the label say what the tip explains ("How the fee works"), not
+    just "Info", when several tips sit on one screen.
+
+contrast:
+  text: "Panel text is popover-foreground on popover (about 18:1 light, 17:1 dark)."
+  ui: "Icon is muted-foreground on the surface behind it (6.5:1 light, 7.5:1 dark), above the 3:1 minimum for UI components."
+
+motion:
+  reducedMotion: "Inherits the popover's fade / zoom-in, which the theme's prefers-reduced-motion reset shortens to near zero."
+
+consumerResponsibilities:
+  - Pass a `label` that names the topic; the default "More information" is ambiguous when repeated.
+  - Keep the content short. Anything essential to complete a task belongs in visible text, not behind the icon.
+  - The trigger is 32px (size-8), above the 24px WCAG 2.2 AA minimum but under 44px. On dense touch layouts, leave space around it or enlarge it with className.
