@@ -3,7 +3,7 @@ wcag: AA
 standard: WAI-ARIA 1.2
 element: label
 role: null
-delegatesTo: "@radix-ui/react-label"
+delegatesTo: "radix-ui (Label)"
 description: >
   Accessible <label> wrapper. Radix's Label primitive adds a click handler
   that focuses the associated control even when the control is a custom
@@ -28,7 +28,7 @@ screenReader:
     <span> or <p> instead.
 
 contrast:
-  text: "Uses foreground; peer-disabled:opacity-70 dims it when the associated control is disabled. Meets WCAG AA"
+  text: "Uses foreground; peer-disabled:opacity-50 (or a data-disabled group) dims it when the associated control is disabled. Meets WCAG AA"
   ui: "N/A; no UI chrome"
 
 motion:

@@ -36,8 +36,8 @@ screenReader:
     live regions can be interrupted if the user acts quickly.
 
 contrast:
-  text: "Uses group-[.toaster]:bg-background / text-foreground; description uses text-muted-foreground. All meet WCAG AA"
-  ui: "Border uses border-border; action button uses primary tokens. Both meet AA non-text contrast"
+  text: "Toasts use the popover / popover-foreground tokens (via --normal-bg / --normal-text). Meets WCAG AA"
+  ui: "Border uses the border token (via --normal-border), which is decorative; status icons (success, info, warning, error, loading) are lucide icons in the text colour"
 
 motion:
   reducedMotion: >

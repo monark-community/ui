@@ -28,7 +28,7 @@ focus:
   trapped: false
   notes: >
     The visible ring lives on the active slot (isActive flag from
-    OTPInputContext adds ring-1 ring-ring). The underlying input itself
+    OTPInputContext adds border-ring plus ring-3 ring-ring/50). The underlying input itself
     is visually invisible but still receives DOM focus, which is what
     assistive tech latches onto.
 
@@ -42,8 +42,8 @@ screenReader:
     (InputOTPSeparator) has role="separator" for visual grouping.
 
 contrast:
-  text: "Characters use foreground over bg-transparent; meets WCAG AA"
-  ui: "Slot borders use border-input; active slot adds ring-ring; the caret uses bg-foreground. All meet AA"
+  text: "Characters use foreground over bg-card; meets WCAG AA"
+  ui: "Slot borders use border-input; active slot switches to border-ring with a ring-ring/50 halo; the caret uses bg-foreground. All meet AA"
 
 motion:
   reducedMotion: >

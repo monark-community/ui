@@ -3,7 +3,7 @@ wcag: AA
 standard: WAI-ARIA 1.2
 element: div
 role: tooltip
-delegatesTo: "@radix-ui/react-tooltip"
+delegatesTo: "radix-ui (Tooltip)"
 description: >
   Short label that appears on hover or focus. TooltipTrigger is whatever
   element the consumer passes (typically a button); TooltipContent is
@@ -39,7 +39,7 @@ screenReader:
     inconsistent.
 
 contrast:
-  text: "Content uses text-primary-foreground on bg-primary; meets WCAG AA"
+  text: "Content uses text-background on bg-foreground (inverted); meets WCAG AA"
   ui: "No border; relies on the high-contrast solid background for separation"
 
 motion:

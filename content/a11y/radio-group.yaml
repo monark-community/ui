@@ -3,7 +3,7 @@ wcag: AA
 standard: WAI-ARIA 1.2
 element: div
 role: radiogroup
-delegatesTo: "@radix-ui/react-radio-group"
+delegatesTo: "radix-ui (RadioGroup)"
 description: >
   Single-select group of radio buttons. RadioGroup is role="radiogroup";
   each RadioGroupItem is a <button role="radio"> with aria-checked. Radix
@@ -24,8 +24,11 @@ focus:
   visible: true
   trapped: false
   notes: >
-    Uses focus-visible:ring-1. The currently-checked item is the only tab
-    stop; all other items are tabindex=-1 but reachable via arrows.
+    Uses focus-visible:ring-3 focus-visible:ring-ring/50 with
+    focus-visible:border-ring. Each size-4 (16px) radio has an invisible
+    ::after hit area extending 12px sideways and 8px vertically. The
+    currently-checked item is the only tab stop; all other items are
+    tabindex=-1 but reachable via arrows.
 
 screenReader:
   announcements:
@@ -36,8 +39,8 @@ screenReader:
     <Label htmlFor={id}> so the accessible name and click target both work.
 
 contrast:
-  text: "The fill circle uses fill-primary over a white ring; meets WCAG AA"
-  ui: "Unchecked border uses primary token; meets AA non-text contrast against bg-background"
+  text: "Checked radios fill with bg-primary and show a bg-primary-foreground dot (dark on orange, 7.9:1); meets WCAG AA"
+  ui: "Unchecked border uses the input token (3.9:1); meets AA non-text contrast against bg-background"
 
 motion:
   reducedMotion: "No motion animation; only a color swap between states"

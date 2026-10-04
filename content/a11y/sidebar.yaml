@@ -9,7 +9,8 @@ description: >
   <div> structure with data-state / data-collapsible attributes; on mobile
   it renders inside a Sheet (Radix Dialog) so focus trapping and Escape-to-
   close work automatically. Includes a global Ctrl/Cmd+B keyboard shortcut
-  to toggle the sidebar, plus a SidebarRail affordance for drag-resize.
+  to toggle the sidebar, plus a SidebarRail edge button that toggles it on
+  click. In Sheet mode the Sheet's own close button is hidden.
 
 keyboard:
   - key: Ctrl+B / Cmd+B
@@ -27,8 +28,8 @@ focus:
   notes: >
     On desktop the sidebar is part of the page flow; focus is not trapped.
     On mobile it opens in a Sheet, so Radix Dialog's focus trap applies.
-    SidebarRail is tabIndex={-1} by design; it's a pointer-only drag
-    affordance that also works as a click target.
+    SidebarRail is tabIndex={-1} by design; it's a pointer-only click
+    target (aria-label "Toggle Sidebar") that duplicates SidebarTrigger.
 
 screenReader:
   announcements:

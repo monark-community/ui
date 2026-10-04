@@ -4,7 +4,7 @@
   "standard": "WAI-ARIA 1.2",
   "element": "div",
   "role": "tablist",
-  "delegatesTo": "@radix-ui/react-tabs",
+  "delegatesTo": "radix-ui (Tabs)",
   "description": "Tabbed panels. TabsList is role=\"tablist\"; each TabsTrigger is role=\"tab\" with aria-selected and aria-controls pointing at its TabsContent (role=\"tabpanel\", labelled by the trigger). Radix implements the WAI-ARIA tabs pattern with roving tabindex and optional automatic activation.\n",
   "keyboard": [
     {
@@ -31,7 +31,7 @@
   "focus": {
     "visible": true,
     "trapped": false,
-    "notes": "Only the active trigger is in the tab sequence (roving tabindex); other triggers are tabindex=-1 but reachable via arrow keys. Both TabsTrigger and TabsContent have focus-visible:ring-2 rings.\n"
+    "notes": "Only the active trigger is in the tab sequence (roving tabindex); other triggers are tabindex=-1 but reachable via arrow keys. TabsTrigger shows focus-visible:ring-[3px] focus-visible:ring-ring/50 with focus-visible:border-ring and a 1px outline-ring. TabsContent is focusable (Radix tabIndex 0) and shows the same ring-3 ring-ring/50 on focus-visible.\n"
   },
   "screenReader": {
     "announcements": [
@@ -42,11 +42,11 @@
     "notes": "For panels with heavy content, set activationMode=\"manual\" so arrow keys move focus without switching panels; the user presses Enter / Space to commit. This avoids loading / rendering delays as users scan.\n"
   },
   "contrast": {
-    "text": "Active trigger uses text-foreground on bg-background; inactive uses text-muted-foreground. Both meet WCAG AA",
-    "ui": "Active trigger gains a shadow; focus ring uses ring-ring. Meets AA non-text contrast"
+    "text": "Active trigger uses text-foreground on a bg-card pill; inactive uses text-foreground/60 (text-muted-foreground in dark mode). Both meet WCAG AA",
+    "ui": "Default variant: the active pill is bg-card inside a bg-muted, h-11 pill list (no shadow). Line variant: the active tab gets a 2px bg-foreground underline"
   },
   "motion": {
-    "reducedMotion": "Only a background transition on active state; no motion-based animations"
+    "reducedMotion": "Only colour / background transitions and the line variant's underline fade; no motion-based animations"
   },
   "consumerResponsibilities": [
     "Keep trigger labels concise; they're read in a list and long labels get truncated visually.",

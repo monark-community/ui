@@ -122,7 +122,7 @@ pnpm generate:all     # regenerates props + a11y + test docs from source
 
 ```
 components/
-  ui/             component sources (mirrored from shadcn's new-york style)
+  ui/             component sources (shadcn's radix-nova style with the Monark look)
   previews/       preview wrappers rendered on each component page
 registry/
   new-york/
@@ -140,7 +140,7 @@ public/
 ## Stack
 
 - **Shell**: [`@sntlr/registry-shell`](https://www.npmjs.com/package/@sntlr/registry-shell), a static-exported Next.js app that renders the docs + preview site.
-- **Style**: shadcn `new-york`, Tailwind CSS v4, Monark 2026 theme (cream and espresso, orange primary), 1rem radius.
+- **Style**: shadcn `radix-nova` (function components, the `radix-ui` package, `cn`), Tailwind CSS v4, Monark 2026 theme (cream and espresso, orange primary), 1rem radius.
 - **Fonts**: Nunito Sans for body and headings; JetBrains Mono for code.
 - **Icons**: [Lucide](https://lucide.dev).
 - **Jazzicons**: [`react-jazzicon`](https://github.com/marcusmolchany/react-jazzicon) for wallet avatars (MetaMask's deterministic palette).

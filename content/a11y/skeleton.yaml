@@ -27,7 +27,7 @@ screenReader:
 
 contrast:
   text: "N/A; no text"
-  ui: "Uses bg-primary/10; visually subtle by design, so it may fall below 3:1 non-text contrast. This is acceptable for transient loading UI but not a substitute for real content contrast"
+  ui: "Uses bg-muted; visually subtle by design, so it may fall below 3:1 non-text contrast. This is acceptable for transient loading UI but not a substitute for real content contrast"
 
 motion:
   reducedMotion: >

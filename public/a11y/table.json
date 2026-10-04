@@ -21,8 +21,8 @@
     "notes": "TableHead does not set scope=\"col\" by default; for complex tables (multi-level headers, row headers) add scope / headers / id attributes yourself. Simple tables work fine with the defaults.\n"
   },
   "contrast": {
-    "text": "Header text uses text-muted-foreground; cell text uses foreground. Both meet WCAG AA on bg-background",
-    "ui": "Row borders use border token; selected / hover states use bg-muted/50. All meet AA non-text contrast"
+    "text": "Header and cell text use foreground; the caption uses text-muted-foreground. All meet WCAG AA on bg-background",
+    "ui": "Row borders use the decorative border token; hover uses bg-muted/50 and data-[state=selected] uses bg-muted, so selection must also be exposed via aria-selected or a checkbox"
   },
   "motion": {
     "reducedMotion": "Only a color transition on row hover; no motion-based animations"

@@ -22,7 +22,8 @@ focus:
   visible: true
   trapped: false
   notes: >
-    Uses focus-visible:ring-1. Disabled textareas show cursor-not-allowed
+    Uses focus-visible:ring-3 focus-visible:ring-ring/50 with
+    focus-visible:border-ring. Disabled textareas show cursor-not-allowed
     and opacity-50 and are skipped by Tab.
 
 screenReader:
@@ -36,12 +37,12 @@ screenReader:
 
 contrast:
   text: "Value uses foreground, placeholder uses text-muted-foreground. Both meet WCAG AA"
-  ui: "Border uses border-input; focus ring uses ring-ring. Both meet AA non-text contrast"
+  ui: "Border uses border-input (3.9:1), which meets AA non-text contrast; focus swaps it to border-ring and adds a ring-ring/50 halo"
 
 motion:
   reducedMotion: "No animations"
 
 consumerResponsibilities:
   - Provide a real label via <Label htmlFor> or aria-label; placeholder alone is not accessible.
-  - Set a sensible min-height (the default is min-h-[60px]) so users can see their input without scrolling inside the textarea.
+  - Set a sensible min-height (the default is min-h-24, 96px, and field-sizing-content grows it with the text) so users can see their input without scrolling inside the textarea.
   - Consider maxLength and showing remaining-character hints via aria-describedby for length-limited fields.

@@ -52,6 +52,7 @@ const map: Record<string, ComponentType> = {
   "table": dynamic(() => import("./table-preview").then((m) => m.TablePreview)),
   "tabs": dynamic(() => import("./tabs-preview").then((m) => m.TabsPreview)),
   "textarea": dynamic(() => import("./textarea-preview").then((m) => m.TextareaPreview)),
+  "input-group": dynamic(() => import("./input-group-preview").then((m) => m.InputGroupPreview)),
   "toggle": dynamic(() => import("./toggle-preview").then((m) => m.TogglePreview)),
   "toggle-group": dynamic(() => import("./toggle-group-preview").then((m) => m.ToggleGroupPreview)),
   "tooltip": dynamic(() => import("./tooltip-preview").then((m) => m.TooltipPreview)),

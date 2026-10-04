@@ -4,7 +4,7 @@
   "standard": "WAI-ARIA 1.2",
   "element": "div",
   "role": "menu",
-  "delegatesTo": "@radix-ui/react-dropdown-menu",
+  "delegatesTo": "radix-ui (DropdownMenu)",
   "description": "Menu attached to a button trigger. DropdownMenuTrigger is a real <button> with aria-haspopup=\"menu\" and aria-expanded; the portaled content is role=\"menu\" with items as role=\"menuitem\", menuitemcheckbox, or menuitemradio. Supports sub-menus, radio groups, checkbox items, labels, and separators, all with correct ARIA wiring via Radix.\n",
   "keyboard": [
     {
@@ -43,7 +43,7 @@
   "focus": {
     "visible": true,
     "trapped": true,
-    "notes": "Focus is scoped inside the menu while open. The trigger keeps its focus ring; items get focus-bg-accent when focused. Disabled items are skipped by keyboard navigation.\n"
+    "notes": "Focus is scoped inside the menu while open. The trigger keeps its focus ring; items get focus:bg-accent when focused. Disabled items are skipped by keyboard navigation.\n"
   },
   "screenReader": {
     "announcements": [
@@ -55,10 +55,10 @@
   },
   "contrast": {
     "text": "Item text uses foreground over bg-popover; focused item swaps to bg-accent / text-accent-foreground. Both meet WCAG AA",
-    "ui": "Separator uses bg-muted; check / dot indicators use foreground. All meet AA"
+    "ui": "Separator uses bg-border; checkbox and radio items both show a check indicator in the item's text colour. All meet AA"
   },
   "motion": {
-    "reducedMotion": "Content uses data-[state=open]:animate-in with fade + slide utilities. Gate with motion-reduce:animate-none in your theme if strict compliance matters.\n"
+    "reducedMotion": "Content uses data-open:animate-in with fade, zoom and slide utilities. Gate with motion-reduce:animate-none in your theme if strict compliance matters.\n"
   },
   "consumerResponsibilities": [
     "Provide an accessible name on the trigger (text label or aria-label); the menu's options are not a substitute.",

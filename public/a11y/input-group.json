@@ -1,0 +1,47 @@
+{
+  "component": "InputGroup",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "group",
+  "delegatesTo": null,
+  "description": "A bordered wrapper that puts an input or textarea and its addons (icons, text, buttons) in one field. The wrapper itself is a role=\"group\" div; the control inside is a native <input> or <textarea> and keeps all of its own semantics. Clicking an addon (anywhere but a button in it) focuses an <input> control; a textarea is not focused this way.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the control, then to any InputGroupButton in an addon."
+    },
+    {
+      "key": "Text editing keys",
+      "action": "Native text editing inside the control."
+    },
+    {
+      "key": "Enter / Space",
+      "action": "Activates a focused InputGroupButton."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "The whole group shows the focus ring (border-ring + ring-3 ring-ring/50) while the control inside has focus. Buttons in addons draw their own ring.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The control announces with its label, role and value, as a plain input would.",
+      "InputGroupText and icons are not announced unless they are part of the label or description."
+    ],
+    "notes": "A unit or currency suffix shown in InputGroupText is visual only. Put it in the label or link it with aria-describedby so screen reader users hear it.\n"
+  },
+  "contrast": {
+    "text": "Value uses foreground; placeholder and addon text use text-muted-foreground. Both meet WCAG AA",
+    "ui": "Border uses border-input (3.9:1), which meets AA non-text contrast; focus swaps it to border-ring and adds a ring-ring/50 halo"
+  },
+  "motion": {
+    "reducedMotion": "No animations"
+  },
+  "consumerResponsibilities": [
+    "Give the control a real label via <Label htmlFor> or aria-label.",
+    "Mark decorative addon icons aria-hidden.",
+    "Give icon-only InputGroupButtons an aria-label."
+  ]
+}
