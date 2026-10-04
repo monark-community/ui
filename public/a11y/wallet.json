@@ -23,7 +23,7 @@
   },
   "screenReader": {
     "announcements": [
-      "The copy button's aria-label toggles between \"Copy address\" and \"Address copied\" so a screen reader announces the success of the copy action."
+      "The copy button's aria-label toggles between `copyLabel` (\"Copy address\") and `copiedLabel` (\"Address copied\") so a screen reader announces the success of the copy action. Pass both in the page language."
     ],
     "notes": "Use the `name` prop when possible; screen readers will read the name, then the address, which matches the visual order. When only the address is shown, consider wrapping the component in a region with a heading so the context (e.g. \"Connected wallet\") is clear.\n"
   },

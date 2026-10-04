@@ -97,8 +97,8 @@ export function SiteHeaderPreview() {
     <DemoChip label="Demo" title={locale === "fr" ? "Démo · données simulées" : "Demo · simulated data"} />
   ) : null
   const themeLabel = locale === "fr" ? "Changer de thème" : "Toggle theme"
-  const action = (className?: string) => (
-    <Button asChild className={className ?? "rounded-full px-4 font-bold"}>
+  const action = (
+    <Button asChild>
       <PreviewLink href={`/${locale}/app`}>{t.action}</PreviewLink>
     </Button>
   )
@@ -129,21 +129,9 @@ export function SiteHeaderPreview() {
               {demoChip}
               {localeSwitch}
               {values.themeToggle && <ThemeToggle label={themeLabel} />}
-              {values.action && action()}
             </>
           }
-          mobileActions={
-            <div className="flex w-full flex-col gap-4">
-              <div className="flex items-center justify-between gap-3">
-                {demoChip ?? <span />}
-                <div className="flex items-center gap-2.5">
-                  {localeSwitch}
-                  {values.themeToggle && <ThemeToggle label={themeLabel} className="size-11" />}
-                </div>
-              </div>
-              {values.action && action("h-12 w-full rounded-full font-bold")}
-            </div>
-          }
+          primaryAction={values.action ? action : undefined}
         />
         <div className="h-24 bg-background px-6 py-5 text-sm text-muted-foreground">
           Current page: <code className="font-mono">{pathname}</code>

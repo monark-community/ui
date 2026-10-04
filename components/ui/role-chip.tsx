@@ -1,7 +1,7 @@
 import * as React from "react"
 import { X } from "lucide-react"
 
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 /**
  * Role / tag pill with a tinted background derived from a hex colour.

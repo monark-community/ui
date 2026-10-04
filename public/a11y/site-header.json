@@ -4,7 +4,7 @@
   "standard": "WAI-ARIA 1.2",
   "element": "header",
   "role": "banner",
-  "delegatesTo": "@radix-ui/react-dialog",
+  "delegatesTo": "radix-ui (Dialog)",
   "description": "The page's banner landmark. On desktop it holds the brand, a labelled navigation landmark with the page links (the current page marked aria-current=\"page\"), and the actions. Below lg, a menu button opens a modal dialog (Radix Dialog) holding the same links and the actions.\n",
   "keyboard": [
     {

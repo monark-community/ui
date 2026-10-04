@@ -20,6 +20,13 @@ describe("DemoChip", () => {
     expect(chip?.textContent).toBe("Demo")
   })
 
+  it("gives screen readers the description and sighted users a tooltip", () => {
+    const { container } = render(<DemoChip description="No real funds move" />)
+    const chip = container.querySelector("[data-slot='demo-chip']")
+    expect(chip).toHaveAttribute("title", "No real funds move")
+    expect(chip?.querySelector(".sr-only")?.textContent).toBe(": No real funds move")
+  })
+
   it("forwards title and className", () => {
     const { container } = render(<DemoChip title="Demo · simulated data" className="extra" />)
     const chip = container.querySelector("[data-slot='demo-chip']")
