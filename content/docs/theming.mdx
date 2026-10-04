@@ -83,15 +83,29 @@ Monark exposes the full shadcn token set plus a few of its own:
 | `--accent` / `--accent-foreground` | Hover states, menu highlights |
 | `--destructive` / `--destructive-foreground` | Destructive button, error text |
 | `--success` / `--warning` | Status colors, always paired with a label or icon |
+| `--overlay` | Dialog and sheet backdrop (black at 45%) |
 | `--border` / `--input` / `--ring` | All borders, form inputs, focus ring |
 | `--chart-1` ... `--chart-5` | Recharts palette |
 | `--sidebar*` | Sidebar block backgrounds and borders |
-| `--radius` | All rounded utilities (`rounded-md`, `rounded-lg`) |
-| `--font-sans` / `--font-mono` | Everything |
+| `--radius` | The radius scale below |
+| `--font-sans` / `--font-heading` / `--font-mono` | Body text, headings and dialog titles, numbers and code |
 
 `--ring` is `--primary-ink` in light mode: flat orange is only 2.3:1 on cream, under the 3:1 minimum for focus indicators. In dark mode it's the primary itself.
 
 ## Changing the radius
+
+Every `rounded-*` step is a multiple of `--radius`, so one variable reshapes the whole UI:
+
+| Utility | Value | At 1rem | Used by |
+|---|---|---|---|
+| `rounded-sm` | radius × 0.5 | 8px | Small chips inside a control |
+| `rounded-md` | radius × 0.75 | 12px | Inputs, textareas, menu items |
+| `rounded-lg` | radius | 16px | Menus, popovers, tooltips |
+| `rounded-xl` | radius × 1.25 | 20px | Select and dropdown items |
+| `rounded-2xl` | radius × 1.5 | 24px | Sub-panels, stat tiles, popover content |
+| `rounded-3xl` | radius × 2 | 32px | Cards and dialogs |
+| `rounded-4xl` | radius × 2.5 | 40px | Hero media |
+| `rounded-full` | pill | — | Buttons, badges, tabs, select triggers |
 
 ```css
 :root {
@@ -101,7 +115,7 @@ Monark exposes the full shadcn token set plus a few of its own:
 
 ## Changing the font
 
-Monark uses Nunito Sans via a Google Fonts `@import`. To swap:
+Monark uses Nunito Sans. In Next.js, load it with `next/font` and put its variable first in `--font-sans` (`--font-sans: var(--font-nunito), "Nunito Sans", ui-sans-serif, ...`); elsewhere, a Google Fonts `@import` works. `--font-heading` follows `--font-sans` unless you set it. To swap:
 
 1. Replace the `@import url(...)` at the top of your globals CSS (or use `next/font`).
 2. Update `--font-sans` to match the new family.
@@ -112,6 +126,31 @@ Monark uses Nunito Sans via a Google Fonts `@import`. To swap:
 :root {
   --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
 }
+```
+
+## Base styles and utilities
+
+The theme also writes a small base layer, the same one every Monark site runs:
+
+- a 1.6 body line height, antialiased text, and `scroll-padding-top: 5.5rem` so anchor links clear a sticky header;
+- headings `h1`–`h4` at a 1.15 line height with `text-wrap: balance`;
+- a 2px `--ring` outline on every `:focus-visible` element, offset by 2px;
+- a `prefers-reduced-motion` reset that turns animations and transitions off.
+
+It lives in `@layer base`, so any utility class on an element still wins.
+
+Four utilities come with it:
+
+| Utility | Does |
+|---|---|
+| `eyebrow` | Small uppercase label above a heading: 0.75rem, bold, 0.08em tracking |
+| `tracking-display` | Tight -0.02em tracking for display headings |
+| `tnum` | Tabular figures, so amounts line up in columns |
+| `no-scrollbar` | Hides the scrollbar on a scrolling row while keeping it scrollable |
+
+```tsx
+<p className="eyebrow text-primary-ink">How it works</p>
+<h2 className="text-3xl font-extrabold tracking-display">Three steps</h2>
 ```
 
 ## Dark mode

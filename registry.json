@@ -7,12 +7,60 @@
       "name": "theme",
       "type": "registry:theme",
       "title": "Monark Theme",
-      "description": "Monark 2026 brand tokens: warm cream light mode and espresso dark mode derived from the flat orange primary (CSS relative color, scaled by --surface-tint), dark text on orange, 1rem radius, Nunito Sans. Install this first so every component inherits the Monark look. Browsers without relative color get the same colors as fixed values.",
+      "description": "Monark 2026 brand: warm cream light mode and espresso dark mode derived from the flat orange primary (CSS relative color, scaled by --surface-tint), dark text on orange, Nunito Sans, a 1rem radius with the full radius scale, and the base styles, focus outline, motion reset and typography utilities (eyebrow, tracking-display, tnum) Monark sites share. Install this first so every component inherits the Monark look. Browsers without relative color get the same colors as fixed values.",
+      "dependencies": [
+        "shadcn",
+        "tw-animate-css"
+      ],
       "cssVars": {
         "theme": {
           "radius": "1rem",
+          "radius-sm": "calc(var(--radius) * 0.5)",
+          "radius-md": "calc(var(--radius) * 0.75)",
+          "radius-lg": "var(--radius)",
+          "radius-xl": "calc(var(--radius) * 1.25)",
+          "radius-2xl": "calc(var(--radius) * 1.5)",
+          "radius-3xl": "calc(var(--radius) * 2)",
+          "radius-4xl": "calc(var(--radius) * 2.5)",
           "font-sans": "\"Nunito Sans\", ui-sans-serif, system-ui, -apple-system, sans-serif",
-          "font-mono": "ui-monospace, SFMono-Regular, Menlo, Monaco, \"Cascadia Mono\", monospace"
+          "font-heading": "var(--font-sans)",
+          "font-mono": "ui-monospace, SFMono-Regular, Menlo, Monaco, \"Cascadia Mono\", monospace",
+          "color-primary": "var(--primary)",
+          "color-background": "var(--background)",
+          "color-foreground": "var(--foreground)",
+          "color-card": "var(--card)",
+          "color-card-foreground": "var(--card-foreground)",
+          "color-popover": "var(--popover)",
+          "color-popover-foreground": "var(--popover-foreground)",
+          "color-primary-foreground": "var(--primary-foreground)",
+          "color-secondary": "var(--secondary)",
+          "color-secondary-foreground": "var(--secondary-foreground)",
+          "color-muted": "var(--muted)",
+          "color-muted-foreground": "var(--muted-foreground)",
+          "color-accent": "var(--accent)",
+          "color-accent-foreground": "var(--accent-foreground)",
+          "color-destructive": "var(--destructive)",
+          "color-destructive-foreground": "var(--destructive-foreground)",
+          "color-border": "var(--border)",
+          "color-input": "var(--input)",
+          "color-ring": "var(--ring)",
+          "color-primary-ink": "var(--primary-ink)",
+          "color-success": "var(--success)",
+          "color-warning": "var(--warning)",
+          "color-overlay": "var(--overlay)",
+          "color-chart-1": "var(--chart-1)",
+          "color-chart-2": "var(--chart-2)",
+          "color-chart-3": "var(--chart-3)",
+          "color-chart-4": "var(--chart-4)",
+          "color-chart-5": "var(--chart-5)",
+          "color-sidebar": "var(--sidebar)",
+          "color-sidebar-foreground": "var(--sidebar-foreground)",
+          "color-sidebar-primary": "var(--sidebar-primary)",
+          "color-sidebar-primary-foreground": "var(--sidebar-primary-foreground)",
+          "color-sidebar-accent": "var(--sidebar-accent)",
+          "color-sidebar-accent-foreground": "var(--sidebar-accent-foreground)",
+          "color-sidebar-border": "var(--sidebar-border)",
+          "color-sidebar-ring": "var(--sidebar-ring)"
         },
         "light": {
           "surface-tint": "1",
@@ -38,6 +86,7 @@
           "primary-ink": "#b65000",
           "success": "#2f7a4a",
           "warning": "#8a5a00",
+          "overlay": "oklch(0 0 0 / 0.45)",
           "chart-1": "var(--primary)",
           "chart-2": "#ef3620",
           "chart-3": "#7a5c3e",
@@ -88,6 +137,8 @@
         }
       },
       "css": {
+        "@import \"tw-animate-css\"": {},
+        "@import \"shadcn/tailwind.css\"": {},
         "@supports (color: oklch(from red l c h))": {
           ":root": {
             "--background": "oklch(from var(--primary) 0.985 calc(c * 0.06 * var(--surface-tint)) h)",
@@ -114,10 +165,50 @@
         },
         "@layer base": {
           "*": {
-            "@apply": "border-border outline-ring/50"
+            "@apply border-border outline-ring/50": {}
+          },
+          "html": {
+            "@apply font-sans": {},
+            "-webkit-text-size-adjust": "100%",
+            "scroll-padding-top": "5.5rem"
           },
           "body": {
-            "@apply": "bg-background text-foreground"
+            "@apply bg-background text-foreground antialiased": {},
+            "line-height": "1.6"
+          },
+          "h1, h2, h3, h4": {
+            "line-height": "1.15",
+            "text-wrap": "balance"
+          },
+          ":focus-visible": {
+            "outline": "2px solid var(--ring)",
+            "outline-offset": "2px"
+          }
+        },
+        "@utility tracking-display": {
+          "letter-spacing": "-0.02em"
+        },
+        "@utility eyebrow": {
+          "font-size": "0.75rem",
+          "font-weight": "700",
+          "letter-spacing": "0.08em",
+          "text-transform": "uppercase"
+        },
+        "@utility tnum": {
+          "font-variant-numeric": "tabular-nums"
+        },
+        "@utility no-scrollbar": {
+          "scrollbar-width": "none",
+          "&::-webkit-scrollbar": {
+            "display": "none"
+          }
+        },
+        "@media (prefers-reduced-motion: reduce)": {
+          "*, *::before, *::after": {
+            "animation-duration": "0.01ms !important",
+            "animation-iteration-count": "1 !important",
+            "transition-duration": "0.01ms !important",
+            "scroll-behavior": "auto !important"
           }
         }
       }
