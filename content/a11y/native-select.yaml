@@ -1,0 +1,51 @@
+component: NativeSelect
+wcag: AA
+standard: WAI-ARIA 1.2
+element: select
+role: combobox
+delegatesTo: null
+description: >
+  The browser's own <select>, styled as the Monark pill trigger. It keeps
+  every native behaviour (OS picker on phones, type-ahead, form submission,
+  works without JS), so there is no custom ARIA. The native arrow is hidden
+  with appearance-none and an aria-hidden chevron is drawn inside the right
+  padding instead.
+
+keyboard:
+  - key: Tab
+    action: Moves focus to and from the select.
+  - key: ArrowDown / ArrowUp
+    action: Changes the selected option (or opens the picker, depending on the platform).
+  - key: Alt + ArrowDown / Space / Enter
+    action: Opens the native picker (platform dependent).
+  - key: Type-ahead
+    action: Typing jumps to the first option starting with those characters.
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    focus-visible:ring-3 focus-visible:ring-ring/50 with focus-visible:border-ring,
+    the same ring as SelectTrigger. The control is h-10 (sm h-9) and grows to
+    h-11 (44px) on coarse pointers, since a <select> can't carry an ::after
+    hit area.
+
+screenReader:
+  announcements:
+    - Announced natively as a combo box / pop-up button with its label and current value.
+  notes: >
+    The chevron is aria-hidden; everything else is the platform's own
+    semantics. aria-invalid and aria-describedby on NativeSelect are passed to
+    the <select> itself.
+
+contrast:
+  text: "Value text uses foreground on bg-card; meets WCAG AA. Options use popover / popover-foreground where the browser honours option styling"
+  ui: "Border uses the input token (3.9:1); meets AA non-text contrast. The invalid state switches to the destructive border plus ring"
+
+motion:
+  reducedMotion: "Only a colour transition on hover; the picker itself is drawn by the OS"
+
+consumerResponsibilities:
+  - Label it with a <Label htmlFor> (or aria-label for a toolbar filter); a select without a name is announced as an unnamed combo box.
+  - Note that className goes on the wrapper (use it for width); all other props, including id and aria-*, go on the <select>.
+  - Prefer the Radix Select when options need icons, descriptions or custom rendering; the native picker shows plain text only.

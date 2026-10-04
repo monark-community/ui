@@ -1,0 +1,54 @@
+component: DemoControls
+wcag: AA
+standard: WAI-ARIA 1.2
+element: div
+role: dialog
+delegatesTo: "Dialog, Switch, Label (radix-ui)"
+description: >
+  Demo control panel. A trigger button (accessible name from openLabel,
+  plus the network name when given) opens a Dialog titled "Demo controls".
+  Each toggle is a Radix Switch (role="switch", aria-checked) labelled by a
+  Label via htmlFor and described by its hint via aria-describedby. Reset is
+  two steps: the Reset button swaps in a labelled group with a confirm
+  question, a destructive confirm (autofocused) and Cancel. Confirming calls
+  onReset and closes the dialog. The trigger's live and warning dots are
+  decorative.
+
+keyboard:
+  - key: Enter / Space (trigger)
+    action: Opens the dialog.
+  - key: Tab
+    action: Cycles through the switches, extra toggles, Reset (or confirm/cancel) and the close button.
+  - key: Space
+    action: Toggles the focused switch.
+  - key: Escape
+    action: Closes the dialog and abandons a pending reset confirmation.
+
+focus:
+  visible: true
+  trapped: true
+  notes: >
+    Radix traps focus and returns it to the trigger on close. Clicking Reset
+    moves focus to the confirm button; Cancel returns focus to Reset.
+
+screenReader:
+  announcements:
+    - Each switch is announced with its label, hint and on/off state.
+    - The reset confirmation is a group named by its question.
+  notes: >
+    The warning dot on the trigger only signals an armed fault visually. If
+    that matters, include it in openLabel (e.g. "Demo controls, failure armed").
+
+contrast:
+  text: "Labels use foreground, hints use text-muted-foreground on bg-popover; both meet WCAG AA"
+  ui: "Switch and Button use the shared ring-3 ring-ring/50 focus ring; the checked switch uses bg-primary"
+
+motion:
+  reducedMotion: >
+    Inherits Dialog's fade + zoom and Switch's thumb transition.
+
+consumerResponsibilities:
+  - Pass all labels in the page language; defaults are English.
+  - Keep slow/failNext in your own state and update them from onSlowChange/onFailNextChange.
+  - Use DemoControlsToggle for extra toggles so they get the same labelling.
+  - Confirm the reset outcome yourself (e.g. a toast) after onReset runs.

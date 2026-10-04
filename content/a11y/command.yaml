@@ -10,6 +10,9 @@ description: >
   aria-controls pointing at CommandList (role="listbox"); each CommandItem
   is role="option". CommandDialog wraps the whole thing inside a modal
   Dialog so the typical invocation is a keyboard-shortcut-opened palette.
+  It renders a visually hidden DialogTitle / DialogDescription from its
+  title / description props and hides the dialog's close button unless
+  showCloseButton is set.
 
 keyboard:
   - key: Tab
@@ -44,7 +47,7 @@ screenReader:
 
 contrast:
   text: "Item text uses foreground over bg-popover; muted-foreground for group headings and the search icon. All meet WCAG AA"
-  ui: "Selected item uses bg-accent / text-accent-foreground which meets AA"
+  ui: "Selected item uses bg-muted / text-foreground which meets AA"
 
 motion:
   reducedMotion: >
@@ -55,3 +58,4 @@ consumerResponsibilities:
   - Provide a clear placeholder on CommandInput so users understand what to type.
   - Use CommandGroup headings to organize long lists; screen reader users benefit from the structure.
   - Ensure the palette is reachable via an obvious keyboard shortcut (e.g. Cmd / Ctrl + K) and document it.
+  - Pass CommandDialog's title and description in the page language; the defaults are English.

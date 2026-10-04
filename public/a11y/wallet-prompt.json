@@ -1,0 +1,53 @@
+{
+  "component": "WalletPrompt",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "dialog",
+  "delegatesTo": "Dialog (radix-ui)",
+  "description": "Simulated wallet confirmation built on Dialog. DialogTitle names the dialog with the action being signed and DialogDescription carries the sub-heading (\"Confirm in your wallet\"). The summary is a description list (dt/dd per row, plus network and fee rows). Reject and Confirm are native buttons; Confirm receives initial focus. Dismissing the dialog (close button, Escape, outside click) calls onReject. While status=\"signing\" the dialog sets aria-busy, hides its close button, ignores dismissal and disables both actions, and Confirm shows a spinner with signingLabel.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Cycles focus through the close button, Reject and Confirm (and any links in rows)."
+    },
+    {
+      "key": "Shift+Tab",
+      "action": "Cycles focus backwards within the dialog."
+    },
+    {
+      "key": "Escape",
+      "action": "Dismisses the prompt and calls onReject (ignored while signing)."
+    },
+    {
+      "key": "Enter",
+      "action": "Activates the focused button (Confirm by default)."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": true,
+    "notes": "Radix traps focus inside the dialog and returns it to the previously focused element on close. Confirm is autofocused. While signing, the buttons are disabled, so focus may fall back to the dialog container.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The dialog is announced with its title (the action) and description.",
+      "Each summary row is read as a term/definition pair.",
+      "The network badge's status dot is decorative; the network name is the text."
+    ],
+    "notes": "When title is omitted, the description becomes the title and the description is kept sr-only so the dialog is not announced twice visually. The disclaimer's warning icon is decorative.\n"
+  },
+  "contrast": {
+    "text": "Row labels use text-muted-foreground and values use foreground on bg-popover; both meet WCAG AA",
+    "ui": "Buttons use the Button focus ring (ring-3 ring-ring/50); summary borders are decorative"
+  },
+  "motion": {
+    "reducedMotion": "Inherits Dialog's fade + zoom animation and the Loader2 spin on the Confirm button while signing. Add motion-reduce:animate-none if needed.\n"
+  },
+  "consumerResponsibilities": [
+    "Pass every label (title, description, confirmLabel, rejectLabel, signingLabel, networkLabel, feeLabel, noFeeLabel, closeLabel, disclaimer) in the page language; defaults are English.",
+    "Make onReject idempotent or cheap; it fires on Reject and on any dismissal.",
+    "Format fee and row values yourself (locale-aware numbers and units).",
+    "Set status back to \"idle\" or close the prompt when signing ends, otherwise the dialog cannot be dismissed."
+  ]
+}

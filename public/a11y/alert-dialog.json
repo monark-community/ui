@@ -4,7 +4,7 @@
   "standard": "WAI-ARIA 1.2",
   "element": "dialog",
   "role": "alertdialog",
-  "delegatesTo": "@radix-ui/react-alert-dialog",
+  "delegatesTo": "radix-ui (AlertDialog)",
   "description": "Modal confirmation dialog for high-stakes actions (delete, irreversible changes). Uses role=\"alertdialog\" so assistive tech signals the interruption more assertively than a plain dialog. AlertDialogTitle and AlertDialogDescription are wired to aria-labelledby / aria-describedby automatically.\n",
   "keyboard": [
     {
@@ -37,14 +37,14 @@
   },
   "contrast": {
     "text": "Title, description, and button labels all meet WCAG AA on the default theme",
-    "ui": "Overlay backdrop uses 80% black for clear separation from the page"
+    "ui": "Overlay backdrop uses bg-overlay (black at 45%) for clear separation from the page"
   },
   "motion": {
-    "reducedMotion": "Radix's open / close uses fade + zoom via data-[state=open]:animate-in; wire motion-reduce:animate-none in your theme if strict reduced-motion compliance matters for your audience.\n"
+    "reducedMotion": "Radix's open / close uses fade + zoom via data-open:animate-in; wire motion-reduce:animate-none in your theme if strict reduced-motion compliance matters for your audience.\n"
   },
   "consumerResponsibilities": [
     "Always render AlertDialogTitle and AlertDialogDescription; screen readers rely on them for context.",
     "Label the destructive action button with a verb that matches the consequence (\"Delete account\", not just \"OK\").",
-    "Consider which button should receive initial focus. By default Radix focuses the first interactive element; for destructive flows, focus Cancel instead via autoFocus."
+    "Consider which button should receive initial focus. By default Radix focuses AlertDialogCancel when one is rendered; keep a Cancel in destructive flows so focus never lands on the action first."
   ]
 }

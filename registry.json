@@ -219,7 +219,8 @@
       "title": "Accordion",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-accordion",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -235,7 +236,8 @@
       "title": "Alert",
       "description": "",
       "dependencies": [
-        "class-variance-authority"
+        "class-variance-authority",
+        "cn"
       ],
       "files": [
         {
@@ -250,7 +252,8 @@
       "title": "Alert Dialog",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-alert-dialog"
+        "cn",
+        "radix-ui"
       ],
       "registryDependencies": [
         "@monark/button"
@@ -268,7 +271,7 @@
       "title": "Aspect Ratio",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-aspect-ratio"
+        "radix-ui"
       ],
       "files": [
         {
@@ -283,7 +286,8 @@
       "title": "Avatar",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-avatar"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -298,8 +302,9 @@
       "title": "Badge",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-slot",
-        "class-variance-authority"
+        "class-variance-authority",
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -314,7 +319,8 @@
       "title": "Breadcrumb",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-slot",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -330,8 +336,9 @@
       "title": "Button",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-slot",
-        "class-variance-authority"
+        "class-variance-authority",
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -346,8 +353,8 @@
       "title": "Calendar",
       "description": "",
       "dependencies": [
-        "react-day-picker@^9.14.0",
-        "date-fns",
+        "cn",
+        "react-day-picker@^10.0.2",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -370,6 +377,9 @@
           "path": "components/ui/card.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -378,6 +388,7 @@
       "title": "Carousel",
       "description": "",
       "dependencies": [
+        "cn",
         "embla-carousel-react",
         "lucide-react"
       ],
@@ -397,11 +408,8 @@
       "title": "Chart",
       "description": "",
       "dependencies": [
-        "recharts@2.15.4",
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "@monark/card"
+        "cn",
+        "recharts@^3.8.0"
       ],
       "files": [
         {
@@ -416,7 +424,8 @@
       "title": "Checkbox",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-checkbox",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -432,7 +441,7 @@
       "title": "Collapsible",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-collapsible"
+        "radix-ui"
       ],
       "files": [
         {
@@ -448,11 +457,12 @@
       "description": "",
       "dependencies": [
         "cmdk",
-        "@radix-ui/react-dialog",
+        "cn",
         "lucide-react"
       ],
       "registryDependencies": [
-        "@monark/dialog"
+        "@monark/dialog",
+        "@monark/input-group"
       ],
       "files": [
         {
@@ -467,7 +477,8 @@
       "title": "Context Menu",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-context-menu",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -483,7 +494,8 @@
       "title": "Dialog",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-dialog",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -491,6 +503,9 @@
           "path": "components/ui/dialog.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "@monark/button"
       ]
     },
     {
@@ -499,8 +514,8 @@
       "title": "Drawer",
       "description": "",
       "dependencies": [
-        "vaul",
-        "@radix-ui/react-dialog"
+        "cn",
+        "vaul"
       ],
       "files": [
         {
@@ -515,7 +530,8 @@
       "title": "Dropdown Menu",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-dropdown-menu",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -531,14 +547,13 @@
       "title": "Form",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-label",
-        "@radix-ui/react-slot",
         "@hookform/resolvers",
         "zod",
+        "cn",
+        "radix-ui",
         "react-hook-form"
       ],
       "registryDependencies": [
-        "@monark/button",
         "@monark/label"
       ],
       "files": [
@@ -554,7 +569,8 @@
       "title": "Hover Card",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-hover-card"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -573,6 +589,9 @@
           "path": "components/ui/input.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -581,6 +600,7 @@
       "title": "Input Otp",
       "description": "",
       "dependencies": [
+        "cn",
         "input-otp",
         "lucide-react"
       ],
@@ -597,8 +617,8 @@
       "title": "Label",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-label",
-        "class-variance-authority"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -613,7 +633,8 @@
       "title": "Menubar",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-menubar",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -629,8 +650,9 @@
       "title": "Navigation Menu",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-navigation-menu",
         "class-variance-authority",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -646,6 +668,7 @@
       "title": "Pagination",
       "description": "",
       "dependencies": [
+        "cn",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -664,7 +687,8 @@
       "title": "Popover",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-popover"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -679,7 +703,8 @@
       "title": "Progress",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-progress"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -694,8 +719,8 @@
       "title": "Radio Group",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-radio-group",
-        "lucide-react"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -710,8 +735,8 @@
       "title": "Resizable",
       "description": "",
       "dependencies": [
-        "react-resizable-panels",
-        "lucide-react"
+        "cn",
+        "react-resizable-panels@^4.14.2"
       ],
       "files": [
         {
@@ -726,7 +751,8 @@
       "title": "Scroll Area",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-scroll-area"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -741,7 +767,8 @@
       "title": "Select",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-select",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -757,7 +784,8 @@
       "title": "Separator",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-separator"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -772,8 +800,8 @@
       "title": "Sheet",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-dialog",
-        "class-variance-authority",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -781,6 +809,9 @@
           "path": "components/ui/sheet.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "@monark/button"
       ]
     },
     {
@@ -789,18 +820,19 @@
       "title": "Sidebar",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-slot",
         "class-variance-authority",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "registryDependencies": [
+        "@monark/use-mobile",
         "@monark/button",
+        "@monark/input",
         "@monark/separator",
         "@monark/sheet",
-        "@monark/tooltip",
-        "@monark/input",
-        "@monark/use-mobile",
-        "@monark/skeleton"
+        "@monark/skeleton",
+        "@monark/tooltip"
       ],
       "files": [
         {
@@ -819,6 +851,9 @@
           "path": "components/ui/skeleton.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -827,7 +862,8 @@
       "title": "Slider",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-slider"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -842,8 +878,9 @@
       "title": "Sonner",
       "description": "",
       "dependencies": [
+        "next-themes",
         "sonner",
-        "next-themes"
+        "lucide-react"
       ],
       "files": [
         {
@@ -858,7 +895,8 @@
       "title": "Switch",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-switch"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -877,6 +915,9 @@
           "path": "components/ui/table.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -885,7 +926,9 @@
       "title": "Tabs",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-tabs"
+        "class-variance-authority",
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -904,6 +947,30 @@
           "path": "components/ui/textarea.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "An input or textarea with addons inside the field: icons, text, buttons and keyboard hints, aligned at the start, end or on their own row.",
+      "files": [
+        {
+          "path": "components/ui/input-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "cn"
+      ],
+      "registryDependencies": [
+        "@monark/button",
+        "@monark/input",
+        "@monark/textarea"
       ]
     },
     {
@@ -912,8 +979,9 @@
       "title": "Toggle",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-toggle",
-        "class-variance-authority"
+        "class-variance-authority",
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -928,7 +996,9 @@
       "title": "Toggle Group",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-toggle-group"
+        "class-variance-authority",
+        "cn",
+        "radix-ui"
       ],
       "registryDependencies": [
         "@monark/toggle"
@@ -946,7 +1016,8 @@
       "title": "Tooltip",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-tooltip"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -962,7 +1033,8 @@
       "description": "Web3 wallet identity row — MetaMask-style jazzicon avatar, optional display name, truncated address, and copy-to-clipboard button.",
       "dependencies": [
         "react-jazzicon",
-        "lucide-react"
+        "lucide-react",
+        "cn"
       ],
       "registryDependencies": [
         "@monark/button"
@@ -980,7 +1052,8 @@
       "title": "Connect Wallet",
       "description": "Presentational connect-wallet control with disconnected / connecting / connected states. Agnostic of wagmi, viem, or any specific connector — wire your own handlers.",
       "dependencies": [
-        "lucide-react"
+        "lucide-react",
+        "cn"
       ],
       "registryDependencies": [
         "@monark/button",
@@ -1004,6 +1077,9 @@
           "path": "components/ui/token-amount.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -1012,7 +1088,8 @@
       "title": "Network Badge",
       "description": "Small chain / network pill with an icon slot and a name. Agnostic of chain registries — pass the icon and name yourself.",
       "dependencies": [
-        "class-variance-authority"
+        "class-variance-authority",
+        "cn"
       ],
       "files": [
         {
@@ -1027,7 +1104,8 @@
       "title": "Tx Status",
       "description": "Transaction status row — pending / confirmed / failed icon, label, and a truncated hash that links to the block explorer of your choice.",
       "dependencies": [
-        "lucide-react"
+        "lucide-react",
+        "cn"
       ],
       "files": [
         {
@@ -1051,6 +1129,9 @@
           "path": "registry/new-york/blocks/nft-card/nft-card.tsx",
           "type": "registry:block"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -1059,14 +1140,15 @@
       "title": "Swap Form",
       "description": "Two-sided token swap UI; from / to token selects, amount fields, reverse button, rate / fee / min-received row, and a status-driven submit. Agnostic; consumer wires quotes and execution.",
       "dependencies": [
-        "lucide-react"
+        "lucide-react",
+        "cn"
       ],
       "registryDependencies": [
         "@monark/button",
         "@monark/input",
         "@monark/label",
-        "@monark/select",
-        "@monark/separator"
+        "@monark/separator",
+        "@monark/select"
       ],
       "files": [
         {
@@ -1081,7 +1163,8 @@
       "title": "Role Chip",
       "description": "Tinted pill with a colour-derived background, matching dot, and optional remove button. Use for roles, tags, labels, or any categorical badge that needs colour coding.",
       "dependencies": [
-        "lucide-react"
+        "lucide-react",
+        "cn"
       ],
       "files": [
         {
@@ -1096,7 +1179,8 @@
       "title": "Trusted Device Card",
       "description": "Device session card showing device-type icon, label, metadata (last seen, IP, country), current-device badge, and optional revoke action. Schema-agnostic; pass formatted primitives as props.",
       "dependencies": [
-        "lucide-react"
+        "lucide-react",
+        "cn"
       ],
       "files": [
         {
@@ -1115,6 +1199,9 @@
           "path": "components/ui/password-strength-meter.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -1124,7 +1211,8 @@
       "description": "Client-side image crop dialog built on react-easy-crop. Supports any aspect ratio (1:1 avatar, 3:1 banner, etc.). Outputs a cropped File preserving the source MIME type.",
       "dependencies": [
         "react-easy-crop",
-        "lucide-react"
+        "lucide-react",
+        "cn"
       ],
       "registryDependencies": [
         "@monark/button",
@@ -1148,6 +1236,9 @@
           "path": "components/ui/site-brand.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -1168,6 +1259,9 @@
           "path": "components/ui/demo-chip.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -1180,6 +1274,9 @@
           "path": "components/ui/locale-switch.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -1188,8 +1285,9 @@
       "title": "Theme Toggle",
       "description": "36px ghost icon button switching light and dark with next-themes: moon in light, sun in dark, swapped with CSS so nothing flashes on hydration. Ships a ThemeProvider with the Monark defaults.",
       "dependencies": [
+        "lucide-react",
         "next-themes",
-        "lucide-react"
+        "cn"
       ],
       "registryDependencies": [
         "@monark/button"
@@ -1207,21 +1305,301 @@
       "title": "Site Header",
       "description": "The standard Monark site header: sticky 64px bar with a translucent blurred background, brand + page links on the left and actions on the right; below lg, the brand and a menu button opening a full-height sheet. Installs site-brand, demo-chip, locale-switch and theme-toggle with it.",
       "dependencies": [
-        "@radix-ui/react-dialog",
-        "lucide-react"
+        "cn",
+        "lucide-react",
+        "radix-ui"
       ],
       "registryDependencies": [
-        "@monark/button",
-        "@monark/site-brand",
-        "@monark/demo-chip",
-        "@monark/locale-switch",
-        "@monark/theme-toggle"
+        "@monark/button"
       ],
       "files": [
         {
           "path": "components/ui/site-header.tsx",
           "type": "registry:ui"
         }
+      ]
+    },
+    {
+      "name": "info-tip",
+      "type": "registry:ui",
+      "title": "Info Tip",
+      "description": "A round \"i\" button that opens a small popover with extra context on click, tap or keyboard, in place of a hint paragraph.",
+      "files": [
+        {
+          "path": "components/ui/info-tip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "cn"
+      ],
+      "registryDependencies": [
+        "@monark/popover"
+      ]
+    },
+    {
+      "name": "stat",
+      "type": "registry:ui",
+      "title": "Stat",
+      "description": "A label over a large tabular figure, with an optional hint and delta, as a tile or plain; StatGroup lays several out as a description list.",
+      "files": [
+        {
+          "path": "components/ui/stat.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "lucide-react",
+        "cn"
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "A dashed placeholder for an empty list, table or panel, with an icon, title, description and an action slot.",
+      "files": [
+        {
+          "path": "components/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "cn"
+      ]
+    },
+    {
+      "name": "section-divider",
+      "type": "registry:ui",
+      "title": "Section Divider",
+      "description": "monark.io's branded separator: a thin orange line with an outlined ring at either or both ends, horizontal or vertical.",
+      "files": [
+        {
+          "path": "components/ui/section-divider.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn"
+      ]
+    },
+    {
+      "name": "section-heading",
+      "type": "registry:ui",
+      "title": "Section Heading",
+      "description": "A landing-section header: optional eyebrow, a display title at a configurable heading level, an optional lead and an action on the right.",
+      "files": [
+        {
+          "path": "components/ui/section-heading.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "cn"
+      ]
+    },
+    {
+      "name": "native-select",
+      "type": "registry:ui",
+      "title": "Native Select",
+      "description": "A native <select> styled as the Monark pill trigger, with an inset chevron, for OS pickers and no-JS forms.",
+      "files": [
+        {
+          "path": "components/ui/native-select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn",
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "disclosure",
+      "type": "registry:ui",
+      "title": "Disclosure",
+      "description": "A collapsible \"show details\" row that folds secondary detail behind a card header or an inline pill.",
+      "files": [
+        {
+          "path": "components/ui/disclosure.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn",
+        "radix-ui",
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "field-error",
+      "type": "registry:ui",
+      "title": "Field Error",
+      "description": "The inline form error: an alert message with an icon, referenced from its control through aria-describedby.",
+      "files": [
+        {
+          "path": "components/ui/field-error.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn",
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "site-footer",
+      "type": "registry:ui",
+      "title": "Site Footer",
+      "description": "The standard Monark three-band footer: product band, Monark band with links and socials, and a darker legal band.",
+      "files": [
+        {
+          "path": "components/ui/site-footer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "@monark/site-brand"
+      ]
+    },
+    {
+      "name": "header-action",
+      "type": "registry:ui",
+      "title": "Header Action",
+      "description": "The site header's one primary action: a Launch demo link outside the demo app, ConnectWallet inside it, with a placeholder until the wallet state loads.",
+      "files": [
+        {
+          "path": "components/ui/header-action.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "@monark/button",
+        "@monark/connect-wallet",
+        "@monark/skeleton"
+      ]
+    },
+    {
+      "name": "disclaimer",
+      "type": "registry:ui",
+      "title": "Disclaimer",
+      "description": "The \"testnet demo, not financial advice, no real funds\" notice, as a small muted line or a full-width banner.",
+      "files": [
+        {
+          "path": "components/ui/disclaimer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn",
+        "lucide-react"
+      ]
+    },
+    {
+      "name": "app-tabs",
+      "type": "registry:ui",
+      "title": "App Tabs",
+      "description": "The demo app's sub-bar: a scrollable row of pill links with aria-current on the current section, optional icons and counts, and an actions slot.",
+      "files": [
+        {
+          "path": "components/ui/app-tabs.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn"
+      ]
+    },
+    {
+      "name": "app-loading",
+      "type": "registry:ui",
+      "title": "App Loading",
+      "description": "The demo app's loading skeleton (title, stat tiles, panels) in a polite status region with a screen-reader label.",
+      "files": [
+        {
+          "path": "components/ui/app-loading.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "@monark/skeleton"
+      ]
+    },
+    {
+      "name": "wallet-prompt",
+      "type": "registry:ui",
+      "title": "Wallet Prompt",
+      "description": "A simulated wallet confirmation dialog with summary rows, network and fee, a disclaimer, confirm and reject, and a signing state.",
+      "files": [
+        {
+          "path": "components/ui/wallet-prompt.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "cn"
+      ],
+      "registryDependencies": [
+        "@monark/button",
+        "@monark/dialog",
+        "@monark/network-badge",
+        "@monark/wallet"
+      ]
+    },
+    {
+      "name": "tx-feedback",
+      "type": "registry:ui",
+      "title": "Tx Feedback",
+      "description": "Inline transaction feedback: a signing message, pending and confirmed TxStatus with an explorer link, and a failure alert with retry.",
+      "files": [
+        {
+          "path": "components/ui/tx-feedback.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "cn"
+      ],
+      "registryDependencies": [
+        "@monark/button",
+        "@monark/tx-status"
+      ]
+    },
+    {
+      "name": "demo-controls",
+      "type": "registry:ui",
+      "title": "Demo Controls",
+      "description": "The demo control panel: slow-network and fail-next switches, a slot for extra toggles, and a two-step reset.",
+      "files": [
+        {
+          "path": "components/ui/demo-controls.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "lucide-react",
+        "cn"
+      ],
+      "registryDependencies": [
+        "@monark/button",
+        "@monark/dialog",
+        "@monark/label",
+        "@monark/switch"
       ]
     },
     {

@@ -74,6 +74,8 @@ export function EthBalance({ address }: { address: `0x${string}` }) {
 
 For fiat conversion, compose your own price hook (CoinGecko, Chainlink, Pyth) and pass the result as `usdValue`; the component never fetches prices.
 
+Digits are always tabular, so columns of amounts line up. Add `mono` for the mono font (an address-heavy table, say), and `minFractionDigits={2}` to show prices as `1.50` instead of `1.5`.
+
 ## NetworkBadge from chain state
 
 ```tsx
@@ -95,6 +97,8 @@ export function ChainPill() {
   )
 }
 ```
+
+Without a chain icon, `status="live"` (or `"degraded"`, `"down"`) draws a coloured dot in its place, the way the demo sites show the connected network.
 
 ## TxStatus from a write-contract flow
 

@@ -3,12 +3,15 @@ wcag: AA
 standard: WAI-ARIA 1.2
 element: button
 role: null
-delegatesTo: "@radix-ui/react-accordion"
+delegatesTo: "radix-ui (Accordion)"
 description: >
   Vertically stacked, expandable panels. Each AccordionTrigger is a real
   <button> with aria-expanded and aria-controls wired to its AccordionContent
   region. Single-open and multi-open behaviors are supported via the type
   prop; Radix keeps aria-expanded in sync with visibility either way.
+  variant="plus" swaps the chevron for a + that rotates into an x when
+  open; every indicator icon is aria-hidden, so only aria-expanded
+  carries the state.
 
 keyboard:
   - key: Tab
@@ -28,8 +31,10 @@ focus:
   visible: true
   trapped: false
   notes: >
-    Panels and their contents share the same tab sequence as the rest of
-    the page; focus is never trapped inside an open panel.
+    Triggers show focus-visible:ring-3 focus-visible:ring-ring/50 with
+    focus-visible:border-ring. Panels and their contents share the same tab
+    sequence as the rest of the page; focus is never trapped inside an open
+    panel.
 
 screenReader:
   announcements:
@@ -42,13 +47,14 @@ screenReader:
 
 contrast:
   text: "Trigger label uses foreground; meets WCAG AA on the default theme"
-  ui: "Chevron icon uses muted-foreground; still meets WCAG AA on bg-background"
+  ui: "Chevron icon uses muted-foreground (the plus variant's icon uses foreground); both meet WCAG AA on bg-background"
 
 motion:
   reducedMotion: >
-    Expand / collapse uses a CSS height transition driven by Radix's
-    data-state attributes. Consumers can gate the transition behind
-    @media (prefers-reduced-motion: reduce) to skip the animation.
+    Expand / collapse uses the animate-accordion-down / animate-accordion-up
+    keyframes on --radix-accordion-content-height, keyed off data-open /
+    data-closed. Consumers can gate the animation behind
+    @media (prefers-reduced-motion: reduce) to skip it.
 
 consumerResponsibilities:
   - Provide a clear, descriptive label for each AccordionTrigger; it's the

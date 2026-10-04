@@ -19,18 +19,18 @@
   "focus": {
     "visible": true,
     "trapped": false,
-    "notes": "Uses focus-visible:ring-1 so the ring only shows for keyboard focus, not mouse clicks. Disabled buttons drop pointer events and dim to 50% opacity.\n"
+    "notes": "Uses focus-visible:ring-3 focus-visible:ring-ring/50 so the ring only shows for keyboard focus, not mouse clicks. Disabled buttons drop pointer events and dim to 50% opacity.\n"
   },
   "screenReader": {
     "announcements": [
       "Announces as \"button\" with the button's text content as its accessible name.",
       "When disabled, announces the disabled state."
     ],
-    "notes": "Icon-only buttons (size=\"icon\") must include an accessible name via aria-label or a visually-hidden <span>; the icon alone is not enough.\n"
+    "notes": "Icon-only buttons (size=\"icon\", \"icon-xs\", \"icon-sm\", \"icon-lg\") must include an accessible name via aria-label or a visually-hidden <span>; the icon alone is not enough.\n"
   },
   "contrast": {
-    "text": "Every variant meets WCAG AA against its background (primary, destructive, outline, secondary, ghost, link)",
-    "ui": "Focus ring uses ring-ring which meets AA non-text contrast against bg-background"
+    "text": "Every variant meets WCAG AA against its background (default, outline, secondary, ghost, destructive, link)",
+    "ui": "Focus ring uses ring-ring/50, a 3px halo in the --ring token (the orange ink in light mode, chosen because flat orange is under 3:1 on cream)"
   },
   "motion": {
     "reducedMotion": "Only a color transition on hover; no motion-based animations"

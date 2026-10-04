@@ -61,7 +61,7 @@ export default async function LocaleLayout({
 "use client"
 
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useSearchParams } from "next/navigation"
 
 import { Button } from "@/components/ui/button"
 import { DemoChip } from "@/components/ui/demo-chip"
@@ -75,8 +75,11 @@ type Locale = (typeof locales)[number]
 
 export function Header({ locale, t }: { locale: Locale; t: HeaderMessages }) {
   const pathname = usePathname() ?? `/${locale}`
-  // Same page, other locale: swap the first path segment.
-  const hrefFor = (next: Locale) => pathname.replace(/^\/[a-z]{2}(?=\/|$)/, `/${next}`)
+  const query = useSearchParams()?.toString()
+  // Same page, other locale: swap the first path segment and keep the query,
+  // so a filtered list or an open tab survives the switch.
+  const hrefFor = (next: Locale) =>
+    pathname.replace(/^\/[a-z]{2}(?=\/|$)/, `/${next}`) + (query ? `?${query}` : "")
 
   const localeSwitch = (
     <LocaleSwitch
@@ -88,8 +91,8 @@ export function Header({ locale, t }: { locale: Locale; t: HeaderMessages }) {
       linkProps={{ prefetch: false }}
     />
   )
-  const action = (className?: string) => (
-    <Button asChild className={className ?? "rounded-full px-4 font-bold"}>
+  const action = (
+    <Button asChild>
       <Link href={`/${locale}/app`}>{t.openApp}</Link>
     </Button>
   )
@@ -110,25 +113,15 @@ export function Header({ locale, t }: { locale: Locale; t: HeaderMessages }) {
           <DemoChip label={t.demo} />
           {localeSwitch}
           <ThemeToggle label={t.theme} />
-          {action()}
         </>
       }
-      mobileActions={
-        <div className="flex w-full flex-col gap-4">
-          <div className="flex items-center justify-between gap-3">
-            <DemoChip label={t.demo} />
-            <div className="flex items-center gap-2.5">
-              {localeSwitch}
-              <ThemeToggle label={t.theme} className="size-11" />
-            </div>
-          </div>
-          {action("h-12 w-full rounded-full font-bold")}
-        </div>
-      }
+      primaryAction={action}
     />
   )
 }
 ```
+
+The `#hash` never reaches the server, so `hrefFor` can't see it on the first render. If a page relies on it (an anchored FAQ entry, say), add `window.location.hash` in the link's `onClick`. `useSearchParams` also needs a `<Suspense>` boundary above the header in a statically rendered route.
 
 With `next-intl`, pass its `Link` as `LinkComponent` and build `hrefFor` with its `getPathname`; any link component that renders an `<a>` from `href` works.
 
@@ -136,6 +129,9 @@ With `next-intl`, pass its `Link` as `LinkComponent` and build `hrefFor` with it
 
 - **Brand:** mark 28px, 10px gap, product name in Nunito Sans 800 18px with `-0.02em` tracking, in `foreground`. The accessible name defaults to "{Product}, by Monark: home"; pass a translated one on other locales.
 - **Links:** at most four, 28px after the brand, Nunito Sans 600 14px in `muted-foreground`, the current page in `foreground`. Set `exact` on the home link.
-- **Actions, in order:** Demo chip, EN/FR switch, theme toggle, one primary action ("Open the app", or `connect-wallet` inside the app).
-- **Mobile (below `lg`):** only the brand and the menu button. The sheet holds the links, then `mobileActions` (or `actions` when you don't pass it). Following a link inside the sheet closes it.
+- **Actions, in order:** Demo chip, EN/FR switch, theme toggle, then `primaryAction`: one primary action ("Open the app", or `connect-wallet` inside the app).
+- **Mobile (below `lg`):** only the brand and the menu button. The sheet holds the links, then a row with `mobileActions` (or `actions` when you don't pass it), the Demo chip on the left and the rest on the right, then `primaryAction` at full width and 48px tall. Following a link inside the sheet closes it.
+- **No backdrop blur support:** the header falls back to a solid `background`.
+- **Primary action:** `header-action` picks it for you: a "Launch demo" link outside the app, `ConnectWallet` inside it (worked out from `pathname`), with a placeholder while the wallet state loads.
+- **Footer:** `site-footer` is the matching three-band footer: product, Monark, then a darker legal band with the demo notice.
 - The Demo chip's text uses `--primary-ink`, the primary darkened enough for text on light backgrounds. Installing `demo-chip` adds it; `theme-2026` defines it too.

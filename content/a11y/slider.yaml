@@ -3,12 +3,14 @@ wcag: AA
 standard: WAI-ARIA 1.2
 element: span
 role: slider
-delegatesTo: "@radix-ui/react-slider"
+delegatesTo: "radix-ui (Slider)"
 description: >
   Single or multi-thumb range input. Radix renders each SliderThumb as a
   <span role="slider"> with aria-valuemin, aria-valuemax, aria-valuenow,
-  and aria-orientation. For multi-thumb ranges, Radix adds aria-valuetext
-  so AT reads "minimum" / "maximum" context for each thumb.
+  and aria-orientation. The thumbLabel prop (a string, or a function of the
+  thumb index) sets each thumb's aria-label; without it, two-thumb ranges
+  fall back to Radix's English "Minimum" / "Maximum". The valueText prop
+  (value, index) => string sets aria-valuetext (e.g. "45%").
 
 keyboard:
   - key: Tab
@@ -30,26 +32,30 @@ focus:
   visible: true
   trapped: false
   notes: >
-    Each thumb uses focus-visible:ring-1. In multi-thumb mode, thumbs can't
-    cross each other (Radix enforces a minStepsBetweenThumbs gap, default 0).
+    Each size-5 (20px) thumb shows ring-3 ring-ring/50 on focus-visible
+    (and on hover / active), and an invisible ::after extends it to a 44px
+    hit area; the root is at least 44px tall (min-h-11). In multi-thumb
+    mode, thumbs can't cross each other (Radix enforces a
+    minStepsBetweenThumbs gap, default 0).
 
 screenReader:
   announcements:
     - Each thumb announces as a slider with its current, min, and max values.
-    - Multi-thumb sliders announce aria-valuetext ("minimum" / "maximum") so users can tell which thumb they're adjusting.
+    - Each thumb announces its thumbLabel (or Radix's "Minimum" / "Maximum" on two-thumb ranges) so users can tell which thumb they're adjusting, and its valueText when provided.
   notes: >
     The track and range are decorative; all ARIA lives on the thumbs.
-    Provide an accessible label via aria-label / aria-labelledby on the
-    SliderPrimitive.Root so AT knows what the value represents.
+    Name the thumbs with thumbLabel; an aria-label on the root does not
+    reach the role="slider" elements.
 
 contrast:
   text: "N/A; no text unless the consumer renders labels / tooltips"
-  ui: "Thumb uses border-primary/50 on bg-background; track uses bg-primary/20 with bg-primary range. All meet AA non-text contrast"
+  ui: "Thumb is bg-card with a 2px border-primary; track uses bg-muted with a bg-primary range. Flat orange is about 2.3:1 on the light surfaces, so the thumb position and a visible value carry the state"
 
 motion:
-  reducedMotion: "Thumb uses transition-colors only; no motion-based animation"
+  reducedMotion: "Thumb transitions colour and box-shadow (the ring) only; no motion-based animation"
 
 consumerResponsibilities:
-  - Provide an aria-label or aria-labelledby on the Slider root describing what the value represents (e.g. "Volume", "Price range").
+  - Pass thumbLabel describing what each thumb represents (e.g. "Volume", or "Minimum price" / "Maximum price"), in the page language.
+  - Pass valueText when the raw number needs a unit or format to make sense when spoken (e.g. "45%", "1,200 USDC").
   - For discrete sliders, pair with a visible value label or tooltip so users don't have to rely on aria-valuenow announcements.
   - Set step appropriately; very small steps with arrow-key navigation become tedious, so consider pairing with PageUp / PageDown for bigger jumps.

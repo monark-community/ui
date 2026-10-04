@@ -29,11 +29,11 @@
     "announcements": [
       "Announced as a dialog with its DrawerTitle / DrawerDescription in reading order."
     ],
-    "notes": "Vaul adds a visual drag handle (the small muted bar at the top). It's decorative; keyboard and screen reader users close the drawer via Escape or an explicit Close button. Ensure you render a DrawerClose if you don't want to rely on Escape alone.\n"
+    "notes": "Bottom drawers show a visual drag handle (the small muted bar at the top). It's decorative; keyboard and screen reader users close the drawer via Escape or an explicit Close button. Ensure you render a DrawerClose if you don't want to rely on Escape alone.\n"
   },
   "contrast": {
-    "text": "Title uses foreground, description uses muted-foreground; meets WCAG AA on bg-background",
-    "ui": "Drag handle uses bg-muted; overlay uses bg-black/80. Meets AA as visual-only cues"
+    "text": "Title uses foreground, description uses muted-foreground; meets WCAG AA on bg-popover",
+    "ui": "Drag handle uses bg-muted; overlay uses bg-overlay (black at 45%). Visual-only cues"
   },
   "motion": {
     "reducedMotion": "Vaul drives the slide / scale animation via transforms on the drawer and the page scaler. Users with prefers-reduced-motion benefit from setting shouldScaleBackground={false} and / or disabling the snap-point transition in your theme.\n"

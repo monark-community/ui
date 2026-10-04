@@ -6,7 +6,7 @@ role: null
 delegatesTo: null
 description: >
   Visual container only. Card and its sub-parts (CardHeader, CardTitle,
-  CardDescription, CardContent, CardFooter) are all plain <div>s with
+  CardDescription, CardAction, CardContent, CardFooter) are all plain <div>s with
   styling. No ARIA role, no landmarks; the accessible structure comes
   entirely from the content the consumer places inside.
 
@@ -27,7 +27,7 @@ screenReader:
 
 contrast:
   text: "Foreground over bg-card meets WCAG AA in the default theme"
-  ui: "Default border uses border token; meets AA non-text contrast against bg-background"
+  ui: "Default border uses the border token, a decorative divider below 3:1; nothing about the card's meaning depends on it"
 
 motion:
   reducedMotion: "No animations"

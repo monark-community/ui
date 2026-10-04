@@ -4,7 +4,7 @@
   "standard": "WAI-ARIA 1.2",
   "element": "button",
   "role": "combobox",
-  "delegatesTo": "@radix-ui/react-select",
+  "delegatesTo": "radix-ui (Select)",
   "description": "Custom single-select dropdown. SelectTrigger is a <button role=\"combobox\"> with aria-expanded and aria-controls; SelectContent is role=\"listbox\" in a portal, and each SelectItem is role=\"option\". Radix manages full keyboard support, type-ahead, and scrolling for long lists.\n",
   "keyboard": [
     {
@@ -39,7 +39,7 @@
   "focus": {
     "visible": true,
     "trapped": true,
-    "notes": "Focus is scoped inside the listbox while open (aria-activedescendant model) and restored to the trigger on close. Disabled options are skipped by keyboard navigation.\n"
+    "notes": "Focus is scoped inside the listbox while open (Radix moves DOM focus onto the options) and restored to the trigger on close. The pill trigger (h-10, or h-9 with size=\"sm\") shows focus-visible:border-ring plus focus-visible:ring-3 focus-visible:ring-ring/50. Disabled options are skipped by keyboard navigation.\n"
   },
   "screenReader": {
     "announcements": [
@@ -51,10 +51,10 @@
   },
   "contrast": {
     "text": "Trigger text uses foreground; placeholder uses text-muted-foreground. Option text uses foreground; focused option uses text-accent-foreground on bg-accent. All meet WCAG AA",
-    "ui": "Trigger border uses border-input; focus ring uses ring-ring. Both meet AA non-text contrast"
+    "ui": "Trigger border uses border-input (3.9:1), which meets AA non-text contrast; focus swaps it to border-ring and adds a ring-ring/50 halo"
   },
   "motion": {
-    "reducedMotion": "Content uses data-[state=open]:animate-in with fade + zoom + slide utilities. Gate with motion-reduce:animate-none if strict compliance matters.\n"
+    "reducedMotion": "With the default position=\"item-aligned\" the content does not animate (animate-none). With position=\"popper\" it uses data-open:animate-in with fade + zoom + slide utilities; gate with motion-reduce:animate-none if strict compliance matters.\n"
   },
   "consumerResponsibilities": [
     "Always provide a Label linked to the Select trigger, or an aria-label; the visual placeholder is not enough.",

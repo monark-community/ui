@@ -24,15 +24,14 @@ focus:
   trapped: false
   notes: >
     Uses the Button component's focus-visible ring (since PaginationLink
-    applies buttonVariants). Ellipsis elements are aria-hidden and not
-    focusable.
+    applies buttonVariants). Ellipsis elements are not focusable.
 
 screenReader:
   announcements:
     - The landmark announces as "pagination, navigation".
     - Each page link announces its number; the current page is marked aria-current="page".
     - Previous / Next links announce their aria-labels for context.
-    - Ellipsis items render an sr-only "More pages" so screen readers don't jump from 5 to 42 without warning.
+    - Ellipsis items announce their sr-only "More pages"; the dots icon is aria-hidden.
   notes: >
     The component does not track page state; it only renders the UI. Wire
     the active page via the isActive prop on the relevant PaginationLink.
@@ -49,3 +48,4 @@ consumerResponsibilities:
   - Provide real href values so links work without JS; if you use a router, compose via asChild / the router's Link component.
   - For long ranges, use PaginationEllipsis between non-adjacent pages; don't render all 200 page numbers.
   - Consider a visible "Page X of Y" summary nearby; the component does not generate one.
+  - Pass text and aria-label in the page language on PaginationPrevious / PaginationNext; the defaults are English.

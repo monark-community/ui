@@ -4,7 +4,7 @@
   "standard": "WAI-ARIA 1.2",
   "element": "span",
   "role": null,
-  "delegatesTo": "@radix-ui/react-avatar",
+  "delegatesTo": "radix-ui (Avatar)",
   "description": "Renders a profile image with an automatic text / initials fallback when the image fails to load or is still loading. Radix manages the load state so the DOM swaps between AvatarImage and AvatarFallback without a flash. Neither slot is interactive.\n",
   "keyboard": [],
   "focus": {
@@ -20,8 +20,8 @@
     "notes": "When the avatar is purely decorative (e.g. alongside a name that's already displayed), pass alt=\"\" on AvatarImage so screen readers skip it rather than announcing a filename.\n"
   },
   "contrast": {
-    "text": "Fallback text uses foreground over bg-muted; meets WCAG AA",
-    "ui": "The avatar itself has no border by default; contrast of the image depends on the consumer's asset"
+    "text": "Fallback text uses text-muted-foreground over bg-muted; meets WCAG AA",
+    "ui": "A decorative 1px border-border ring is drawn over the avatar; contrast of the image depends on the consumer's asset"
   },
   "motion": {
     "reducedMotion": "No animations"

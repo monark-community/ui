@@ -38,12 +38,13 @@ import * as React from "react"
 import Jazzicon, { jsNumberForAddress } from "react-jazzicon"
 import { CheckIcon, CopyIcon } from "lucide-react"
 
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 import { Button } from "@/components/ui/button"
 ```
 
 - `"use client"` because jazzicon uses SVG generated in the browser and the copy button needs `navigator.clipboard`. Non-interactive components like `NetworkBadge` omit it.
-- Imports from `@/lib/utils` and `@/components/ui/*` assume your `tsconfig.json` has the `@/*` path alias. The shadcn `init` step sets this up; if you have a different alias, the CLI prompts you to map it.
+- `cn` comes from shadcn's [`cn`](https://github.com/shadcn-ui/cn) package, which the CLI installs with each item. It replaces the `clsx` + `tailwind-merge` pair in `@/lib/utils`; if your project still has that file, both work side by side.
+- Imports from `@/components/ui/*` assume your `tsconfig.json` has the `@/*` path alias. The shadcn `init` step sets this up; if you have a different alias, the CLI prompts you to map it.
 
 ### 2. Exports
 
@@ -79,7 +80,7 @@ className={cn(
 )}
 ```
 
-Monark never spreads user `className` raw. It uses `cn()` (the standard shadcn `clsx + tailwind-merge` wrapper) so user classes win tie-breakers without duplicating utilities.
+Monark never spreads user `className` raw. It uses `cn()` (shadcn's `cn` package, which merges Tailwind classes like `tailwind-merge`) so user classes win tie-breakers without duplicating utilities.
 
 ### 5. No built-in state beyond UI ephemera
 

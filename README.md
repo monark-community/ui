@@ -30,6 +30,22 @@ It ships the full set of shadcn primitives (buttons, inputs, dialogs, data table
 - `DemoChip`: "Demo" pill for simulated demo sites
 - `LocaleSwitch`: EN/FR pill that keeps the current page
 - `ThemeToggle`: light/dark icon button for next-themes
+- `HeaderAction`: "Launch demo" outside the app, `ConnectWallet` inside it
+- `SiteFooter`: three-band footer (product, Monark, legal)
+- `SectionHeading`, `SectionDivider`: landing-section title and the branded separator
+
+**Demo app**
+
+- `AppTabs`, `AppLoading`: the app's sub-bar and loading skeleton
+- `WalletPrompt`: simulated confirm-in-wallet dialog
+- `TxFeedback`: signing, pending, confirmed and failed feedback around `TxStatus`
+- `DemoControls`: slow network, fail next, extra toggles and a two-step reset
+- `Disclaimer`: the "testnet demo, no real funds" notice
+
+**Patterns**
+
+- `InfoTip`, `Stat`, `Empty`, `Disclosure`, `FieldError`, `NativeSelect`
+- Variants on primitives: `ToggleGroup` `pill` and `chip`, `RadioGroup` `card`, `Accordion` `plus`
 
 All web3 components are presentational. They accept props, emit callbacks, and never fetch, sign, or broadcast; you wire them to wagmi, viem, RainbowKit, or whatever connector stack you already run.
 
@@ -122,7 +138,7 @@ pnpm generate:all     # regenerates props + a11y + test docs from source
 
 ```
 components/
-  ui/             component sources (mirrored from shadcn's new-york style)
+  ui/             component sources (shadcn's radix-nova style with the Monark look)
   previews/       preview wrappers rendered on each component page
 registry/
   new-york/
@@ -140,7 +156,7 @@ public/
 ## Stack
 
 - **Shell**: [`@sntlr/registry-shell`](https://www.npmjs.com/package/@sntlr/registry-shell), a static-exported Next.js app that renders the docs + preview site.
-- **Style**: shadcn `new-york`, Tailwind CSS v4, Monark 2026 theme (cream and espresso, orange primary), 1rem radius.
+- **Style**: shadcn `radix-nova` (function components, the `radix-ui` package, `cn`), Tailwind CSS v4, Monark 2026 theme (cream and espresso, orange primary), 1rem radius.
 - **Fonts**: Nunito Sans for body and headings; JetBrains Mono for code.
 - **Icons**: [Lucide](https://lucide.dev).
 - **Jazzicons**: [`react-jazzicon`](https://github.com/marcusmolchany/react-jazzicon) for wallet avatars (MetaMask's deterministic palette).

@@ -1,14 +1,15 @@
 component: Badge
 wcag: AA
 standard: WAI-ARIA 1.2
-element: div
+element: span
 role: null
 delegatesTo: null
 description: >
   Small inline label used for status, counts, and categories. Rendered as
-  a plain <div> with no ARIA role; the text content is the entire
-  accessible name. Variants (default, secondary, destructive, outline)
-  change only the visual treatment.
+  a plain pill-shaped <span> (or the asChild element) with no ARIA role;
+  the text content is the entire accessible name. Variants (default,
+  secondary, destructive, outline, ghost, link, success, warning) change
+  only the visual treatment.
 
 keyboard: []
 
@@ -16,9 +17,10 @@ focus:
   visible: false
   trapped: false
   notes: >
-    Not focusable by default. The component class includes focus:ring
-    styles in case it is rendered as a link / button via className reuse,
-    but the base <div> has no tabindex.
+    Not focusable by default. The component class includes
+    focus-visible:ring-[3px] focus-visible:ring-ring/50 and
+    focus-visible:border-ring in case it is rendered as a link / button via
+    asChild, but the base <span> has no tabindex.
 
 screenReader:
   announcements:
@@ -29,11 +31,11 @@ screenReader:
     announce color.
 
 contrast:
-  text: "All four variants meet WCAG AA against their own backgrounds in the default theme"
+  text: "All variants meet WCAG AA against their own backgrounds in the default theme"
   ui: "Outline variant uses the default border; still meets AA as a non-text UI element"
 
 motion:
-  reducedMotion: "Only the standard color transition on hover; no motion-based animations"
+  reducedMotion: "Only a color transition on hover when rendered as a link; no motion-based animations"
 
 consumerResponsibilities:
   - Keep badge text short; it's read in flow and not announced as a separate region.

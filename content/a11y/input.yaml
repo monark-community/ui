@@ -22,7 +22,8 @@ focus:
   visible: true
   trapped: false
   notes: >
-    Uses focus-visible:ring-1 for keyboard focus. Disabled inputs show
+    Uses focus-visible:ring-3 focus-visible:ring-ring/50 with
+    focus-visible:border-ring for keyboard focus. Disabled inputs show
     cursor-not-allowed and opacity-50; they remain in the accessibility
     tree but are skipped by Tab.
 
@@ -37,8 +38,8 @@ screenReader:
     or aria-label / aria-labelledby.
 
 contrast:
-  text: "Value uses foreground, placeholder uses text-muted-foreground. Both meet WCAG AA against bg-transparent"
-  ui: "Border uses border-input; focus ring uses ring-ring. Both meet AA non-text contrast"
+  text: "Value uses foreground, placeholder uses text-muted-foreground. Both meet WCAG AA against bg-card"
+  ui: "Border uses border-input (3.9:1), which meets AA non-text contrast; focus swaps it to border-ring and adds a ring-ring/50 halo"
 
 motion:
   reducedMotion: "Only a color transition on focus / blur; no motion-based animations"

@@ -4,7 +4,7 @@
   "standard": "WAI-ARIA 1.2",
   "element": "button",
   "role": null,
-  "delegatesTo": "@radix-ui/react-collapsible",
+  "delegatesTo": "radix-ui (Collapsible)",
   "description": "Generic show / hide primitive. CollapsibleTrigger is a real <button> with aria-expanded and aria-controls pointing at the CollapsibleContent region; Radix keeps them in sync. Unlike Accordion, there is no roving tabindex, arrow-key navigation, or group context.\n",
   "keyboard": [
     {

@@ -90,7 +90,7 @@ The Monark conventions that every demo applies:
 - `components/ui/amount-currency-input.tsx` and `currency-amount-input.tsx` are imported nowhere.
 - `components/ui/dropdown-menu.tsx`: the submenu content lost its `max-h` / `overflow-y-auto` guard.
 - The website is not connected to the registry (`components.json` has no `registries` entry; it uses Tailwind 3).
-- The demos import `cn` from the npm package `cn`. ui keeps `@/lib/utils` (clsx plus tailwind-merge).
+- The demos import `cn` from the `cn` package. That is shadcn's own compiled replacement for clsx plus tailwind-merge (github.com/shadcn-ui/cn), and upstream radix-nova uses it, so ui adopts it too.
 
 ## Catch-up plan
 

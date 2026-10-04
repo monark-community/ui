@@ -3,7 +3,7 @@ wcag: AA
 standard: WAI-ARIA 1.2
 element: div
 role: null
-delegatesTo: "@radix-ui/react-hover-card"
+delegatesTo: "radix-ui (HoverCard)"
 description: >
   Rich preview that opens on hover or focus of its trigger. Radix opens
   after openDelay (defaults 700ms) and closes after closeDelay. The content
@@ -36,11 +36,11 @@ screenReader:
 
 contrast:
   text: "Content uses foreground over bg-popover; meets WCAG AA on the default theme"
-  ui: "Border uses border token; meets AA non-text contrast against bg-background"
+  ui: "Edge is a decorative ring-1 ring-foreground/10 hairline plus shadow-md; the card carries no interactive chrome"
 
 motion:
   reducedMotion: >
-    Uses data-[state=open]:animate-in with fade + zoom + slide utilities.
+    Uses data-open:animate-in with fade + zoom + slide utilities.
     Gate with motion-reduce:animate-none if strict compliance matters.
 
 consumerResponsibilities:

@@ -16,7 +16,7 @@
     "announcements": [
       "Reads the label, e.g. \"Demo\"."
     ],
-    "notes": "The optional title (\"Demo · simulated data\") is a mouse tooltip only. The persistent \"Demo · simulated data\" notice belongs in the footer as visible text; don't rely on the chip's title for it.\n"
+    "notes": "Pass `description` (\"Simulated demo: no real funds move\") to give it a mouse tooltip and an sr-only line read after the label; a plain `title` is a mouse tooltip only. The persistent \"Demo · simulated data\" notice belongs in the footer as visible text; don't rely on the chip's title for it.\n"
   },
   "contrast": {
     "text": "text-primary-ink on an 8% primary tint in light mode: 4.5:1 on the Monark cream background and 4.7:1 on white (a 15% tint would drop to 4.3:1 on cream). In dark mode, the primary on a 15% tint over espresso, well above 4.5:1.",

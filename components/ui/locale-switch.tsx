@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 /**
  * Any link component that renders an anchor from `href` + anchor props:
@@ -69,7 +69,7 @@ function LocaleSwitch<L extends string>({
             aria-current={active ? "true" : undefined}
             aria-label={labels?.names?.[locale]}
             className={cn(
-              "inline-flex h-8 min-w-9 items-center justify-center rounded-full px-2 text-xs font-bold outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-ring",
+              "inline-flex h-8 min-w-9 items-center justify-center rounded-full px-2 text-xs font-bold outline-none transition-colors duration-150 focus-visible:ring-3 focus-visible:ring-ring/50",
               active
                 ? "bg-foreground text-background"
                 : "text-muted-foreground hover:text-foreground"

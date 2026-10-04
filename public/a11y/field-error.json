@@ -1,0 +1,35 @@
+{
+  "component": "FieldError",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "p",
+  "role": "alert",
+  "delegatesTo": null,
+  "description": "The inline validation message under a form control: a <p role=\"alert\"> with an aria-hidden icon and the message text. It renders nothing when there is no message, unless reserveSpace keeps an empty one-line region mounted.\n",
+  "keyboard": [],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "Not focusable. Focus stays on the field; the message reaches screen reader users through the live region and through aria-describedby on the control.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "The message is announced when it appears (role=\"alert\" is an assertive live region).",
+      "The message is read again as the control's description when the user returns to the field, if the control references it with aria-describedby."
+    ],
+    "notes": "reserveSpace keeps the live region in the DOM before any text arrives, which is the most reliable way to get the first error announced; without it the region mounts together with its text.\n"
+  },
+  "contrast": {
+    "text": "Message is font-semibold text-destructive on the page background; the destructive token meets WCAG AA for text",
+    "ui": "The icon repeats the meaning of the colour so the error doesn't rely on colour alone"
+  },
+  "motion": {
+    "reducedMotion": "No animation"
+  },
+  "consumerResponsibilities": [
+    "Give FieldError an id and set aria-describedby={id} and aria-invalid on the control while it has an error.",
+    "Write messages that say how to fix the input (\"Enter an amount above 0\"), not just \"Invalid\".",
+    "Don't show errors before the user has interacted with the field (validate on blur or submit), or the live region will announce while they type.",
+    "For many errors at once, also show a summary at the top of the form and move focus to it on submit."
+  ]
+}

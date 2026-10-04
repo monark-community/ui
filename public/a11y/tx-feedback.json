@@ -1,0 +1,48 @@
+{
+  "component": "TxFeedback",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "div",
+  "role": "status",
+  "delegatesTo": "TxStatus",
+  "description": "Inline lifecycle message for one transaction. The wrapper is a polite live region (role=\"status\", aria-live=\"polite\") so each phase change is announced: signing, pending (with a TxStatus pill and hash), confirmed (TxStatus) and failed. The failed block is role=\"alert\" and states the reason in plain language, with optional Try again and Dismiss buttons. Renders nothing while idle, and nothing once confirmed when hideConfirmed is set or there is no hash.\n",
+  "keyboard": [
+    {
+      "key": "Tab",
+      "action": "Moves focus to the explorer link (when explorerUrl or href is set) and to Try again / Dismiss."
+    },
+    {
+      "key": "Enter",
+      "action": "Activates the focused link or button."
+    },
+    {
+      "key": "Space",
+      "action": "Activates the focused button."
+    }
+  ],
+  "focus": {
+    "visible": true,
+    "trapped": false,
+    "notes": "The component never moves focus. After Dismiss unmounts the error block, move focus to the action that started the transaction if the user was on the Dismiss button.\n"
+  },
+  "screenReader": {
+    "announcements": [
+      "Phase changes are announced politely via the status region.",
+      "Failures are announced assertively via the inner role=\"alert\" block (\"Failed. <reason>\").",
+      "Icons are aria-hidden; the text carries the meaning."
+    ],
+    "notes": "Mount the component before the transaction starts (it renders null in idle) so the live region exists when the first message appears; some screen readers ignore live regions inserted with content already inside.\n"
+  },
+  "contrast": {
+    "text": "Messages use foreground or text-muted-foreground; the failure label uses text-destructive on a bg-destructive/5 tint, meeting WCAG AA",
+    "ui": "Buttons and the explorer link use the shared ring-3 ring-ring/50 focus ring"
+  },
+  "motion": {
+    "reducedMotion": "Spinner icons (pending) use animate-spin. Add motion-reduce:animate-none on the consumer side if strict reduced-motion compliance matters.\n"
+  },
+  "consumerResponsibilities": [
+    "Pass all labels and reasons in the page language; defaults are English.",
+    "Map your app's transaction state onto phase, hash and error.",
+    "Only pass onRetry when retrying is safe (no double submission)."
+  ]
+}
