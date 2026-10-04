@@ -3,7 +3,7 @@ wcag: AA
 standard: WAI-ARIA 1.2
 element: div
 role: dialog
-delegatesTo: "@radix-ui/react-dialog, react-easy-crop"
+delegatesTo: "radix-ui (Dialog), react-easy-crop"
 description: >
   Modal dialog (built on Dialog) that opens while `file` is set: title,
   description, a react-easy-crop area, a zoom slider and Cancel / Apply.

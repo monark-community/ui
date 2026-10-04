@@ -1,6 +1,6 @@
 import * as React from "react"
 
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 /**
  * Any link component that renders an anchor from `href` + anchor props:
@@ -108,7 +108,7 @@ function SiteBrand({
       aria-label={label}
       data-slot="site-brand"
       className={cn(
-        "inline-flex shrink-0 items-center gap-2.5 rounded-md py-1 pr-1 whitespace-nowrap outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        "inline-flex shrink-0 items-center gap-2.5 rounded-md py-1 pr-1 whitespace-nowrap outline-none focus-visible:ring-3 focus-visible:ring-ring/50",
         className
       )}
       {...props}

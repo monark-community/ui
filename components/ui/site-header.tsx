@@ -1,11 +1,11 @@
 "use client"
 
 import * as React from "react"
-import * as DialogPrimitive from "@radix-ui/react-dialog"
+import { cn } from "cn"
 import { MenuIcon, XIcon } from "lucide-react"
+import { Dialog as DialogPrimitive } from "radix-ui"
 
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
 
 /**
  * Any link component that renders an anchor from `href` + anchor props:
@@ -74,7 +74,7 @@ function SiteNavLinks({
               href={link.href}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "inline-flex h-9 items-center rounded-md px-2 text-sm font-semibold whitespace-nowrap outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-ring",
+                "inline-flex h-9 items-center rounded-md px-2 text-sm font-semibold whitespace-nowrap outline-none transition-colors duration-150 focus-visible:ring-3 focus-visible:ring-ring/50",
                 active ? "text-foreground" : "text-muted-foreground hover:text-foreground",
                 itemClassName
               )}
@@ -103,8 +103,16 @@ export interface SiteHeaderProps
    * `<ThemeToggle />`, then one primary action.
    */
   actions?: React.ReactNode
-  /** What the mobile sheet shows under the links. Defaults to `actions`. */
+  /**
+   * What the mobile sheet shows under the links. Defaults to `actions`.
+   * A `<DemoChip />` among them stays left and the rest go right.
+   */
   mobileActions?: React.ReactNode
+  /**
+   * The one primary action (Launch demo, ConnectWallet). Shown last in
+   * the desktop actions and full width at the bottom of the mobile sheet.
+   */
+  primaryAction?: React.ReactNode
   labels?: SiteHeaderLabels
   /** Classes for the inner row (max width, side padding). */
   containerClassName?: string
@@ -123,6 +131,7 @@ function SiteHeader({
   LinkComponent = "a",
   actions,
   mobileActions,
+  primaryAction,
   labels,
   className,
   containerClassName,
@@ -149,7 +158,7 @@ function SiteHeader({
     <header
       data-slot="site-header"
       className={cn(
-        "sticky top-0 z-40 w-full border-b bg-background/90 backdrop-blur-md",
+        "sticky top-0 z-40 w-full border-b bg-background supports-[backdrop-filter]:bg-background/90 supports-[backdrop-filter]:backdrop-blur-md",
         className
       )}
       {...props}
@@ -169,9 +178,10 @@ function SiteHeader({
           </nav>
         ) : null}
 
-        {actions ? (
+        {actions || primaryAction ? (
           <div data-slot="site-header-actions" className="ml-auto hidden items-center gap-2.5 lg:flex">
             {actions}
+            {primaryAction}
           </div>
         ) : null}
 
@@ -188,11 +198,11 @@ function SiteHeader({
             </Button>
           </DialogPrimitive.Trigger>
           <DialogPrimitive.Portal>
-            <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-black/50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 lg:hidden" />
+            <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-overlay duration-200 data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0 motion-reduce:animate-none lg:hidden" />
             <DialogPrimitive.Content
               data-slot="site-header-sheet"
               onClick={closeOnLinkClick}
-              className="fixed inset-y-0 right-0 z-50 flex h-dvh w-full max-w-sm flex-col border-l bg-background shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right duration-200 motion-reduce:animate-none lg:hidden"
+              className="fixed inset-y-0 right-0 z-50 flex h-dvh w-full max-w-sm flex-col border-l bg-background shadow-lg duration-200 data-open:animate-in data-open:fade-in-0 data-open:slide-in-from-right-10 data-closed:animate-out data-closed:fade-out-0 data-closed:slide-out-to-right-10 motion-reduce:animate-none lg:hidden"
             >
               <div className="flex h-16 shrink-0 items-center justify-between gap-3 border-b px-5">
                 <DialogPrimitive.Title className="text-base font-extrabold text-foreground">
@@ -224,12 +234,21 @@ function SiteHeader({
               ) : (
                 <div className="flex-1" />
               )}
-              {sheetActions ? (
+              {sheetActions || primaryAction ? (
                 <div
                   data-slot="site-header-sheet-actions"
-                  className="flex flex-wrap items-center gap-2.5 border-t px-5 py-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]"
+                  className="flex flex-col gap-4 border-t px-5 py-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]"
                 >
-                  {sheetActions}
+                  {sheetActions ? (
+                    <div className="flex flex-wrap items-center justify-end gap-2.5 *:data-[slot=demo-chip]:mr-auto *:data-[slot=theme-toggle]:size-11">
+                      {sheetActions}
+                    </div>
+                  ) : null}
+                  {primaryAction ? (
+                    <div className="flex *:h-12 *:w-full *:justify-center">
+                      {primaryAction}
+                    </div>
+                  ) : null}
                 </div>
               ) : null}
             </DialogPrimitive.Content>

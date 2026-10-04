@@ -4,7 +4,7 @@ import * as React from "react"
 import Cropper, { type Area } from "react-easy-crop"
 import { ZoomIn } from "lucide-react"
 
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,

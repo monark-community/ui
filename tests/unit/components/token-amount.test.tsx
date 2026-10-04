@@ -95,6 +95,21 @@ describe("formatUsd", () => {
   })
 })
 
+describe("formatBaseUnits minFractionDigits", () => {
+  it("pads the fraction with zeros", () => {
+    expect(formatBaseUnits(1_500_000n, 6, 4, "en-US", 2)).toBe("1.50")
+    expect(formatBaseUnits(2_000_000n, 6, 4, "en-US", 2)).toBe("2.00")
+  })
+
+  it("never pads past maxFractionDigits", () => {
+    expect(formatBaseUnits(1_000_000n, 6, 1, "en-US", 3)).toBe("1.0")
+  })
+
+  it("does not show -0.00 for a negative value truncated to zero", () => {
+    expect(formatBaseUnits(-1n, 6, 2, "en-US", 2)).toBe("0.00")
+  })
+})
+
 describe("TokenAmount", () => {
   it("renders amount with symbol", () => {
     render(<TokenAmount value={1_000_000_000_000_000_000n} symbol="ETH" />)
@@ -125,6 +140,13 @@ describe("TokenAmount", () => {
     )
     // The only visible text should be the formatted amount
     expect(container.textContent).toBe("1")
+  })
+
+  it("uses the mono font only when asked", () => {
+    const { container, rerender } = render(<TokenAmount value={0n} />)
+    expect(container.querySelector(".font-mono")).toBeNull()
+    rerender(<TokenAmount value={0n} mono />)
+    expect(container.querySelector(".font-mono")).not.toBeNull()
   })
 
   it("applies data-slot on the root for styling hooks", () => {

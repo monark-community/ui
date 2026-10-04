@@ -33,4 +33,5 @@ motion:
 
 consumerResponsibilities:
   - Provide the chain icon via the `icon` slot; the component ships no chain registry.
+  - The `status` dot (live / degraded / down) is colour only. Say the state in `name` or a tooltip when it matters.
   - Ensure the icon itself meets contrast requirements against the badge background.

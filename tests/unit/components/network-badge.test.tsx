@@ -38,6 +38,19 @@ describe("NetworkBadge", () => {
     }
   })
 
+  it("draws a status dot when there is no icon", () => {
+    const { container } = render(<NetworkBadge name="Base" status="live" />)
+    expect(container.querySelector("[aria-hidden='true'] .bg-success")).not.toBeNull()
+  })
+
+  it("prefers the icon over the status dot", () => {
+    const { container } = render(
+      <NetworkBadge name="Base" status="down" icon={<span data-testid="chain-icon" />} />
+    )
+    expect(screen.getByTestId("chain-icon")).toBeInTheDocument()
+    expect(container.querySelector(".bg-destructive")).toBeNull()
+  })
+
   it("does not render the icon wrapper when icon is omitted", () => {
     const { container } = render(<NetworkBadge name="Base" />)
     expect(container.querySelector("[aria-hidden='true']")).toBeNull()

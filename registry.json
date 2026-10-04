@@ -1033,7 +1033,8 @@
       "description": "Web3 wallet identity row — MetaMask-style jazzicon avatar, optional display name, truncated address, and copy-to-clipboard button.",
       "dependencies": [
         "react-jazzicon",
-        "lucide-react"
+        "lucide-react",
+        "cn"
       ],
       "registryDependencies": [
         "@monark/button"
@@ -1051,7 +1052,8 @@
       "title": "Connect Wallet",
       "description": "Presentational connect-wallet control with disconnected / connecting / connected states. Agnostic of wagmi, viem, or any specific connector — wire your own handlers.",
       "dependencies": [
-        "lucide-react"
+        "lucide-react",
+        "cn"
       ],
       "registryDependencies": [
         "@monark/button",
@@ -1075,6 +1077,9 @@
           "path": "components/ui/token-amount.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -1083,7 +1088,8 @@
       "title": "Network Badge",
       "description": "Small chain / network pill with an icon slot and a name. Agnostic of chain registries — pass the icon and name yourself.",
       "dependencies": [
-        "class-variance-authority"
+        "class-variance-authority",
+        "cn"
       ],
       "files": [
         {
@@ -1098,7 +1104,8 @@
       "title": "Tx Status",
       "description": "Transaction status row — pending / confirmed / failed icon, label, and a truncated hash that links to the block explorer of your choice.",
       "dependencies": [
-        "lucide-react"
+        "lucide-react",
+        "cn"
       ],
       "files": [
         {
@@ -1122,6 +1129,9 @@
           "path": "registry/new-york/blocks/nft-card/nft-card.tsx",
           "type": "registry:block"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -1130,14 +1140,15 @@
       "title": "Swap Form",
       "description": "Two-sided token swap UI; from / to token selects, amount fields, reverse button, rate / fee / min-received row, and a status-driven submit. Agnostic; consumer wires quotes and execution.",
       "dependencies": [
-        "lucide-react"
+        "lucide-react",
+        "cn"
       ],
       "registryDependencies": [
         "@monark/button",
         "@monark/input",
         "@monark/label",
-        "@monark/select",
-        "@monark/separator"
+        "@monark/separator",
+        "@monark/select"
       ],
       "files": [
         {
@@ -1152,7 +1163,8 @@
       "title": "Role Chip",
       "description": "Tinted pill with a colour-derived background, matching dot, and optional remove button. Use for roles, tags, labels, or any categorical badge that needs colour coding.",
       "dependencies": [
-        "lucide-react"
+        "lucide-react",
+        "cn"
       ],
       "files": [
         {
@@ -1167,7 +1179,8 @@
       "title": "Trusted Device Card",
       "description": "Device session card showing device-type icon, label, metadata (last seen, IP, country), current-device badge, and optional revoke action. Schema-agnostic; pass formatted primitives as props.",
       "dependencies": [
-        "lucide-react"
+        "lucide-react",
+        "cn"
       ],
       "files": [
         {
@@ -1186,6 +1199,9 @@
           "path": "components/ui/password-strength-meter.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -1195,7 +1211,8 @@
       "description": "Client-side image crop dialog built on react-easy-crop. Supports any aspect ratio (1:1 avatar, 3:1 banner, etc.). Outputs a cropped File preserving the source MIME type.",
       "dependencies": [
         "react-easy-crop",
-        "lucide-react"
+        "lucide-react",
+        "cn"
       ],
       "registryDependencies": [
         "@monark/button",
@@ -1219,6 +1236,9 @@
           "path": "components/ui/site-brand.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -1239,6 +1259,9 @@
           "path": "components/ui/demo-chip.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -1251,6 +1274,9 @@
           "path": "components/ui/locale-switch.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -1259,8 +1285,9 @@
       "title": "Theme Toggle",
       "description": "36px ghost icon button switching light and dark with next-themes: moon in light, sun in dark, swapped with CSS so nothing flashes on hydration. Ships a ThemeProvider with the Monark defaults.",
       "dependencies": [
+        "lucide-react",
         "next-themes",
-        "lucide-react"
+        "cn"
       ],
       "registryDependencies": [
         "@monark/button"
@@ -1278,15 +1305,12 @@
       "title": "Site Header",
       "description": "The standard Monark site header: sticky 64px bar with a translucent blurred background, brand + page links on the left and actions on the right; below lg, the brand and a menu button opening a full-height sheet. Installs site-brand, demo-chip, locale-switch and theme-toggle with it.",
       "dependencies": [
-        "@radix-ui/react-dialog",
-        "lucide-react"
+        "cn",
+        "lucide-react",
+        "radix-ui"
       ],
       "registryDependencies": [
-        "@monark/button",
-        "@monark/site-brand",
-        "@monark/demo-chip",
-        "@monark/locale-switch",
-        "@monark/theme-toggle"
+        "@monark/button"
       ],
       "files": [
         {

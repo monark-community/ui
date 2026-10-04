@@ -5,7 +5,7 @@ import { MoonIcon, SunIcon } from "lucide-react"
 import { ThemeProvider as NextThemesProvider, useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 /**
  * next-themes provider with the Monark defaults: the `.dark` class on

@@ -10,6 +10,8 @@ export function TokenAmountPreview() {
     decimals: { type: "number", default: 18, min: 0, max: 36 },
     symbol: { type: "text", default: "ETH" },
     fractionDigits: { type: "number", default: 4, min: 0, max: 20 },
+    minFractionDigits: { type: "number", default: 0, min: 0, max: 20 },
+    mono: { type: "boolean", default: false },
     locale: {
       type: "select",
       options: ["browser", "en-US", "fr-FR", "de-DE", "ja-JP"],
@@ -34,6 +36,8 @@ export function TokenAmountPreview() {
         decimals={clamp(values.decimals, 0, 36)}
         symbol={values.symbol || undefined}
         fractionDigits={clamp(values.fractionDigits, 0, 20)}
+        minFractionDigits={clamp(values.minFractionDigits, 0, 20)}
+        mono={values.mono}
         locale={values.locale === "browser" ? undefined : values.locale}
         usdValue={values.showUsd ? values.usdValue : undefined}
         usdCurrency={values.usdCurrency}

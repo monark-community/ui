@@ -19,7 +19,7 @@
   "focus": {
     "visible": true,
     "trapped": false,
-    "notes": "The link uses the default browser focus ring. Opens in a new tab via target=\"_blank\" with rel=\"noopener noreferrer\".\n"
+    "notes": "The link shows the ring-3 ring-ring/50 focus ring. Opens in a new tab via target=\"_blank\" with rel=\"noopener noreferrer\".\n"
   },
   "screenReader": {
     "announcements": [
@@ -28,7 +28,7 @@
     "notes": "Status changes (pending → confirmed) are not announced automatically; the component re-renders silently when the `status` prop changes. If you need live announcements, wrap the page-level transaction flow in an aria-live region or dispatch a toast on status transitions.\n"
   },
   "contrast": {
-    "text": "Status label uses tone-specific colors (muted-foreground / emerald-600 / destructive) all of which meet WCAG AA on the default theme",
+    "text": "Status label uses tone-specific colors (muted-foreground / success / destructive), all of which meet WCAG AA on the default theme",
     "ui": "Link underline on hover ensures the link is distinguishable beyond color"
   },
   "motion": {

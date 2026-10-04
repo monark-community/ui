@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { cn } from "@/lib/utils"
+import { cn } from "cn"
 
 // BigInt(...) rather than 0n / 10n literals: literals need a tsconfig target
 // of ES2020+, and create-next-app still defaults to ES2017.
@@ -16,13 +16,15 @@ const TEN = BigInt(10)
  * stays in bigint, so no precision is lost however large the value.
  *
  * The whole part, the decimal separator and the fraction digits all follow
- * `locale` (e.g. "1.234,5" in de-DE).
+ * `locale` (e.g. "1.234,5" in de-DE). `minFractionDigits` pads the fraction
+ * with zeros ("1.50" for a price), up to `maxFractionDigits`.
  */
 function formatBaseUnits(
   value: bigint | string | number,
   decimals: number,
   maxFractionDigits: number,
-  locale?: string
+  locale?: string,
+  minFractionDigits = 0
 ) {
   const raw = typeof value === "bigint" ? value : BigInt(value)
   const negative = raw < ZERO
@@ -44,12 +46,14 @@ function formatBaseUnits(
 
   // A value truncated to zero (e.g. -1 wei at 4 digits) must not render "-0".
   const sign = negative && (whole !== ZERO || fracStr !== "") ? "-" : ""
-  if (!fracStr) return `${sign}${wholeStr}`
+  const minDigits = Math.max(0, Math.min(minFractionDigits, maxFractionDigits))
+  const shownFrac = fracStr.padEnd(minDigits, "0")
+  if (!shownFrac) return `${sign}${wholeStr}`
 
   const decimalSeparator =
     format.formatToParts(1.5).find((part) => part.type === "decimal")?.value ??
     "."
-  const localizedFrac = fracStr.replace(/\d/g, (digit) =>
+  const localizedFrac = shownFrac.replace(/\d/g, (digit) =>
     format.format(Number(digit))
   )
   return `${sign}${wholeStr}${decimalSeparator}${localizedFrac}`
@@ -74,6 +78,8 @@ function TokenAmount({
   decimals = 18,
   symbol,
   fractionDigits = 4,
+  minFractionDigits = 0,
+  mono = false,
   locale,
   usdValue,
   usdCurrency = "USD",
@@ -84,11 +90,21 @@ function TokenAmount({
   decimals?: number
   symbol?: string
   fractionDigits?: number
+  /** Pad the fraction with zeros to at least this many digits. */
+  minFractionDigits?: number
+  /** Set the amount in the mono font. Digits are tabular either way. */
+  mono?: boolean
   locale?: string
   usdValue?: number
   usdCurrency?: string
 }) {
-  const formatted = formatBaseUnits(value, decimals, fractionDigits, locale)
+  const formatted = formatBaseUnits(
+    value,
+    decimals,
+    fractionDigits,
+    locale,
+    minFractionDigits
+  )
 
   return (
     <span
@@ -96,10 +112,15 @@ function TokenAmount({
       className={cn("inline-flex flex-col leading-tight", className)}
       {...props}
     >
-      <span className="inline-flex items-baseline gap-1 font-mono tabular-nums">
+      <span
+        className={cn(
+          "inline-flex items-baseline gap-1 tabular-nums",
+          mono && "font-mono"
+        )}
+      >
         <span>{formatted}</span>
         {symbol && (
-          <span className="text-muted-foreground text-[0.85em] font-sans">
+          <span className="font-sans text-[0.85em] text-muted-foreground">
             {symbol}
           </span>
         )}

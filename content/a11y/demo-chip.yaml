@@ -19,7 +19,9 @@ screenReader:
   announcements:
     - 'Reads the label, e.g. "Demo".'
   notes: >
-    The optional title ("Demo · simulated data") is a mouse tooltip only.
+    Pass `description` ("Simulated demo: no real funds move") to give it a
+    mouse tooltip and an sr-only line read after the label; a plain `title`
+    is a mouse tooltip only.
     The persistent "Demo · simulated data" notice belongs in the footer as
     visible text; don't rely on the chip's title for it.
 

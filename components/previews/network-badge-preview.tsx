@@ -36,6 +36,11 @@ export function NetworkBadgePreview() {
       default: "default",
     },
     showIcon: { type: "boolean", default: true },
+    status: {
+      type: "select",
+      options: ["none", "live", "degraded", "down"],
+      default: "live",
+    },
   })
 
   const chain = CHAINS[values.name as keyof typeof CHAINS]
@@ -45,6 +50,7 @@ export function NetworkBadgePreview() {
       <NetworkBadge
         name={values.name}
         variant={values.variant as "default"}
+        status={values.status === "none" ? undefined : (values.status as "live")}
         icon={
           values.showIcon ? (
             <ChainDot color={chain.color} initial={chain.initial} />
