@@ -1,0 +1,45 @@
+component: HeaderAction
+wcag: AA
+standard: WAI-ARIA 1.2
+element: a
+role: link
+delegatesTo: button, connect-wallet
+description: >
+  The site header's one primary action. Outside the demo app it is a link
+  styled as a Button ("Launch demo"). Inside the app it is ConnectWallet,
+  so it inherits that control's button, menu and keyboard behaviour. While
+  loading, it is an aria-hidden pulsing placeholder with no role.
+
+keyboard:
+  - key: Tab
+    action: Moves focus to the launch link or the wallet control (one tab stop). The loading placeholder is skipped.
+  - key: Enter
+    action: Follows the launch link, or (inside the app) operates the wallet control as ConnectWallet documents.
+
+focus:
+  visible: true
+  trapped: false
+  notes: >
+    Focus ring comes from Button / ConnectWallet. When the placeholder is
+    swapped for the wallet control after hydration, focus is not moved.
+
+screenReader:
+  announcements:
+    - 'Outside the app: a link named by launchLabel ("Launch demo").'
+    - 'Inside the app: the ConnectWallet announcements (e.g. "Connect wallet" button).'
+  notes: >
+    The loading placeholder is aria-hidden, so nothing is announced until
+    the wallet control appears; it is replaced within a frame of hydration.
+
+contrast:
+  text: "Launch link: primary-foreground on primary, as Button's default variant."
+  ui: "Placeholder uses bg-muted and is decorative."
+
+motion:
+  reducedMotion: "The placeholder's animate-pulse runs regardless; add motion-reduce:animate-none through className if your theme requires it."
+
+consumerResponsibilities:
+  - Pass pathname (usePathname()) or inApp so the right control renders.
+  - Translate launchLabel and the wallet labels (connectLabel, connectingLabel, disconnectLabel).
+  - Set loading only until the client wallet store has hydrated, so the server and first client render match.
+  - Pass it as SiteHeader's primaryAction so it sits last on desktop and full width in the mobile sheet.

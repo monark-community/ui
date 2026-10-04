@@ -9,7 +9,9 @@ description: >
   role="radiogroup" with radio items) or multi-select (type="multiple",
   role="group" with pressed buttons) semantics. Radix implements roving
   tabindex so the whole group is one tab stop and arrow keys move between
-  items.
+  items. variant="pill" draws the group as a segmented control (muted pill
+  track, active item on bg-card) and variant="chip" as separate outlined
+  pills (active item takes the primary tint); both keep the same semantics.
 
 keyboard:
   - key: Tab
@@ -28,8 +30,10 @@ focus:
   trapped: false
   notes: >
     Each item uses focus-visible:ring-[3px] focus-visible:ring-ring/50 via
-    toggleVariants. Only one item
-    in the group is a tab stop at a time (roving tabindex).
+    toggleVariants (pill / chip use focus-visible:ring-3 ring-ring/50 plus
+    border-ring). Only one item in the group is a tab stop at a time (roving
+    tabindex). Pill and chip items are h-10 (sm h-9) with an ::after hit area
+    that reaches 44px tall.
 
 screenReader:
   announcements:
@@ -41,7 +45,7 @@ screenReader:
 
 contrast:
   text: "Item text uses foreground; pressed state uses foreground on bg-muted. Both meet WCAG AA"
-  ui: "Focus ring is a 3px ring-ring/50 halo; outline variant adds border-input (3.9:1), which meets AA non-text contrast"
+  ui: "Focus ring is a 3px ring-ring/50 halo; outline and chip variants use border-input (3.9:1), which meets AA non-text contrast. The chip's selected state is a primary-ink label on a primary/10 tint with a primary/40 border; the pill's selected item is bg-card on the bg-muted track with the label going from foreground/60 to foreground and bold weight kept, so selection is carried by more than the fill"
 
 motion:
   reducedMotion: "Only a color transition on hover / state change; no motion-based animations"
@@ -49,4 +53,5 @@ motion:
 consumerResponsibilities:
   - Provide an aria-label or aria-labelledby on ToggleGroup describing what's being toggled (e.g. "Text alignment").
   - Provide aria-label on icon-only items; the variant styling alone isn't enough for AT.
+  - Use variant="pill" for 2 to 5 short mutually-exclusive views (a time range, a list filter); use variant="chip" for longer or wrapping sets of filters or options.
   - Pick type="single" for mutually-exclusive options (e.g. alignment left vs. center vs. right) and type="multiple" for independent toggles (e.g. text styling like bold, italic, underline).

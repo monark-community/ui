@@ -1,0 +1,35 @@
+{
+  "component": "Stat",
+  "wcag": "AA",
+  "standard": "WAI-ARIA 1.2",
+  "element": "dl",
+  "role": null,
+  "delegatesTo": null,
+  "description": "Label + big tabular figure, with optional hint and delta. StatGroup renders a <dl>; each Stat is a <div> grouping a <dt> (StatLabel) with one or more <dd> (StatValue, StatHint, StatDelta), so screen readers that expose description lists read the label and value as a pair. Non-interactive.\n",
+  "keyboard": [],
+  "focus": {
+    "visible": false,
+    "trapped": false,
+    "notes": "Non-interactive, not focusable. An InfoTip placed in StatLabel keeps its own focus ring."
+  },
+  "screenReader": {
+    "announcements": [
+      "Reads the label (term) followed by the value and hint (definitions).",
+      "StatDelta's arrow icon is aria-hidden; `srLabel` adds a visually hidden prefix such as \"Up from last week:\"."
+    ],
+    "notes": "The parts use dt/dd, so they must sit inside StatGroup or another <dl>; a bare Stat outside a <dl> is invalid HTML. If a value updates live and the change matters, wrap the group in an aria-live=\"polite\" region.\n"
+  },
+  "contrast": {
+    "text": "Label and hint are muted-foreground on card (6.5:1 light, 7.5:1 dark). Toned values use primary-ink (4.9:1 light), success (about 5:1 light) and warning (about 5.5:1 light); the dark-mode tokens are lighter and pass comfortably. The value is large bold text, so 3:1 would already suffice.\n",
+    "ui": "Tile border is decorative (border token, below 3:1); the stat is readable without it."
+  },
+  "motion": {
+    "reducedMotion": "Only a 200ms colour transition on the value when its tone changes."
+  },
+  "consumerResponsibilities": [
+    "Wrap Stat items in StatGroup (or your own <dl>).",
+    "Format numbers yourself (locale, currency, units); the component only sets tabular numerals.",
+    "Tone is colour only. Say \"at risk\", \"overdue\" and the like in the hint or label too.",
+    "Give StatDelta a `srLabel` or self-explanatory text so the direction is not conveyed by the arrow alone."
+  ]
+}
