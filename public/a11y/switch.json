@@ -4,8 +4,8 @@
   "standard": "WAI-ARIA 1.2",
   "element": "button",
   "role": "switch",
-  "delegatesTo": "@radix-ui/react-switch",
-  "description": "On / off toggle. Radix renders a <button role=\"switch\"> with aria-checked reflecting the current state. The visual thumb slides via data-[state=checked]:translate-x-4. Unlike Checkbox, there is no indeterminate state.\n",
+  "delegatesTo": "radix-ui (Switch)",
+  "description": "On / off toggle. Radix renders a <button role=\"switch\"> with aria-checked reflecting the current state. The visual thumb slides via data-checked:translate-x-[calc(100%-2px)]. Two sizes: default (32 x 18.4px) and sm (24 x 14px). Unlike Checkbox, there is no indeterminate state.\n",
   "keyboard": [
     {
       "key": "Tab",
@@ -19,7 +19,7 @@
   "focus": {
     "visible": true,
     "trapped": false,
-    "notes": "Uses focus-visible:ring-2 with ring-offset-2. Disabled switches show cursor-not-allowed and opacity-50 but remain in the tab order unless tabIndex={-1} is added.\n"
+    "notes": "Uses focus-visible:ring-3 focus-visible:ring-ring/50 with focus-visible:border-ring, and an invisible ::after hit area extending 12px sideways and 8px vertically. Disabled switches show cursor-not-allowed and opacity-50 but remain in the tab order unless tabIndex={-1} is added.\n"
   },
   "screenReader": {
     "announcements": [
@@ -29,7 +29,7 @@
   },
   "contrast": {
     "text": "N/A; no text",
-    "ui": "Checked state uses bg-primary; unchecked uses bg-input. Thumb uses bg-background. All meet AA non-text contrast"
+    "ui": "Checked track uses bg-primary; unchecked uses bg-input (3.9:1). Thumb uses bg-background. Flat orange is about 2.3:1 against cream, so thumb position carries the checked state"
   },
   "motion": {
     "reducedMotion": "Thumb uses transition-transform. Gate with motion-reduce:transition-none if you need strict reduced-motion compliance; the state is still conveyed by position + color.\n"

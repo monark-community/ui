@@ -3,7 +3,7 @@ wcag: AA
 standard: WAI-ARIA 1.2
 element: div
 role: separator
-delegatesTo: "@radix-ui/react-separator"
+delegatesTo: "radix-ui (Separator)"
 description: >
   Thin horizontal or vertical divider. When decorative={true} (the default),
   Radix renders role="none" so assistive tech ignores it. When
@@ -28,7 +28,7 @@ screenReader:
 
 contrast:
   text: "N/A; no text"
-  ui: "Uses bg-border; meets AA non-text contrast against bg-background"
+  ui: "Uses bg-border, a decorative divider token under 3:1; keep meaningful boundaries backed by headings or spacing"
 
 motion:
   reducedMotion: "No animations"

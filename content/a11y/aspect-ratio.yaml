@@ -3,7 +3,7 @@ wcag: AA
 standard: WAI-ARIA 1.2
 element: div
 role: null
-delegatesTo: "@radix-ui/react-aspect-ratio"
+delegatesTo: "radix-ui (AspectRatio)"
 description: >
   Purely a layout primitive. Wraps its children in a div whose padding
   reserves the requested width-to-height ratio. Carries no role, no ARIA

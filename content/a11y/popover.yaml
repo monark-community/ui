@@ -3,7 +3,7 @@ wcag: AA
 standard: WAI-ARIA 1.2
 element: div
 role: dialog
-delegatesTo: "@radix-ui/react-popover"
+delegatesTo: "radix-ui (Popover)"
 description: >
   Non-modal popup anchored to a trigger. PopoverTrigger is a real <button>
   with aria-haspopup="dialog" and aria-expanded; PopoverContent renders as
@@ -41,14 +41,14 @@ screenReader:
 
 contrast:
   text: "Content uses foreground over bg-popover; meets WCAG AA on the default theme"
-  ui: "Border uses border token; meets AA non-text contrast against bg-background"
+  ui: "Edge is a decorative ring-1 ring-foreground/10 hairline plus shadow-md; the trigger carries the interactive affordance"
 
 motion:
   reducedMotion: >
-    Uses data-[state=open]:animate-in with fade + zoom + slide utilities.
+    Uses data-open:animate-in with fade + zoom + slide utilities.
     Gate with motion-reduce:animate-none if strict compliance matters.
 
 consumerResponsibilities:
-  - Provide an accessible name for the popover content when it's a distinct section (form, date picker). Use aria-label on PopoverContent or wrap its first child in a heading.
+  - Provide an accessible name for the popover content when it's a distinct section (form, date picker). Use aria-label on PopoverContent or wrap its first child in a heading; PopoverTitle is a plain <div> and is not wired to aria-labelledby.
   - Use Popover for UI that should remain clickable alongside the rest of the page; use Dialog for interruptions that demand the user's attention.
   - Consider where initial focus should land. Radix focuses the first tabbable child by default, which may not be ideal (e.g. an "X" close button); use ref-based focus for precision.

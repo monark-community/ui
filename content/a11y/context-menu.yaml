@@ -3,7 +3,7 @@ wcag: AA
 standard: WAI-ARIA 1.2
 element: div
 role: menu
-delegatesTo: "@radix-ui/react-context-menu"
+delegatesTo: "radix-ui (ContextMenu)"
 description: >
   Right-click / long-press menu. ContextMenuTrigger wraps any element and
   opens the menu on contextmenu events; the portaled content is role="menu"
@@ -49,11 +49,11 @@ screenReader:
 
 contrast:
   text: "Item text uses foreground over bg-popover; focused item swaps to bg-accent / text-accent-foreground. Both meet WCAG AA"
-  ui: "Separator uses border token; check / dot indicators use foreground. All meet AA"
+  ui: "Separator uses border token; checkbox and radio items both show a check indicator in the item's text colour. All meet AA"
 
 motion:
   reducedMotion: >
-    Content uses data-[state=open]:animate-in / slide-in utilities. Gate
+    Content uses data-open:animate-in with fade, zoom and slide-in utilities. Gate
     with motion-reduce:animate-none in your theme if strict compliance
     matters.
 

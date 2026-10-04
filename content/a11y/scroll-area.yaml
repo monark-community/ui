@@ -3,7 +3,7 @@ wcag: AA
 standard: WAI-ARIA 1.2
 element: div
 role: null
-delegatesTo: "@radix-ui/react-scroll-area"
+delegatesTo: "radix-ui (ScrollArea)"
 description: >
   Custom-styled scroll container. Radix renders a viewport that actually
   scrolls (preserving native keyboard and wheel behavior) and overlays a
@@ -17,8 +17,11 @@ focus:
   visible: false
   trapped: false
   notes: >
-    The ScrollArea itself is not focusable by default. Interactive content
-    inside scrolls into view normally when it receives focus via Tab.
+    The ScrollArea itself is not focusable by default. If the viewport
+    does receive focus (tabIndex={0}, or a browser that makes scroll
+    containers focusable), it shows focus-visible:ring-[3px]
+    focus-visible:ring-ring/50. Interactive content inside scrolls into
+    view normally when it receives focus via Tab.
 
 screenReader:
   announcements:
@@ -31,7 +34,7 @@ screenReader:
 
 contrast:
   text: "Inherits from child content; no default text tokens"
-  ui: "Scrollbar thumb uses bg-border; meets AA non-text contrast against bg-background"
+  ui: "Scrollbar thumb uses bg-border, a decorative token under 3:1; scrolling never depends on seeing it"
 
 motion:
   reducedMotion: >

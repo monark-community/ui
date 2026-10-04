@@ -4,7 +4,7 @@
   "standard": "WAI-ARIA 1.2",
   "element": "nav",
   "role": null,
-  "delegatesTo": "@radix-ui/react-navigation-menu",
+  "delegatesTo": "radix-ui (NavigationMenu)",
   "description": "Site-level navigation with optional mega-menu content panels. Radix renders a <nav> landmark; triggers are <button>s with aria-expanded and aria-controls pointing at their content panels. NavigationMenuLink is a plain <a> you can mark as aria-current=\"page\" for the active route.\n",
   "keyboard": [
     {
@@ -35,7 +35,7 @@
   "focus": {
     "visible": true,
     "trapped": false,
-    "notes": "Unlike Menubar, focus is not scoped inside the open panel; users can Tab out of the menu at any point. Radix restores focus to the trigger when the panel is closed via Escape.\n"
+    "notes": "Triggers and links use focus-visible:ring-3 focus-visible:ring-ring/50; inside content panels the link ring is suppressed and focus shows as bg-muted. Unlike Menubar, focus is not scoped inside the open panel; users can Tab out of the menu at any point. Radix restores focus to the trigger when the panel is closed via Escape.\n"
   },
   "screenReader": {
     "announcements": [
@@ -46,11 +46,11 @@
     "notes": "The ChevronDown icon inside NavigationMenuTrigger is aria-hidden so it isn't read as \"down arrow\"; the trigger's expanded state is conveyed via aria-expanded.\n"
   },
   "contrast": {
-    "text": "Trigger text and links use foreground; hover / focus / open states swap to text-accent-foreground on bg-accent. All meet WCAG AA",
-    "ui": "Indicator arrow and viewport border use border token; meet AA non-text contrast"
+    "text": "Trigger text and links use foreground; hover / focus / open states add a bg-muted fill. All meet WCAG AA",
+    "ui": "Indicator arrow uses bg-border and the viewport edge is a ring-1 ring-foreground/10 hairline; both are decorative"
   },
   "motion": {
-    "reducedMotion": "Viewport and indicator animate with data-[motion] / data-[state] slide + fade + zoom utilities. Gate with motion-reduce:animate-none if strict compliance matters.\n"
+    "reducedMotion": "Viewport and indicator animate with data-[motion] / data-open / data-[state] slide + fade + zoom utilities. Gate with motion-reduce:animate-none if strict compliance matters.\n"
   },
   "consumerResponsibilities": [
     "Mark the active route with aria-current=\"page\" on the relevant NavigationMenuLink; Radix does not infer it.",

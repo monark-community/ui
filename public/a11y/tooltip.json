@@ -4,7 +4,7 @@
   "standard": "WAI-ARIA 1.2",
   "element": "div",
   "role": "tooltip",
-  "delegatesTo": "@radix-ui/react-tooltip",
+  "delegatesTo": "radix-ui (Tooltip)",
   "description": "Short label that appears on hover or focus. TooltipTrigger is whatever element the consumer passes (typically a button); TooltipContent is portaled and marked role=\"tooltip\". Radix wires aria-describedby from the trigger to the content so screen readers announce the tip when the trigger is focused. TooltipProvider configures delayDuration and other defaults for the whole tree.\n",
   "keyboard": [
     {
@@ -33,7 +33,7 @@
     "notes": "Tooltips must be short, non-essential supplements to an already-visible label. Never put the only description of a control inside a tooltip; touchscreen users can't hover, and screen reader behavior on hover is inconsistent.\n"
   },
   "contrast": {
-    "text": "Content uses text-primary-foreground on bg-primary; meets WCAG AA",
+    "text": "Content uses text-background on bg-foreground (inverted); meets WCAG AA",
     "ui": "No border; relies on the high-contrast solid background for separation"
   },
   "motion": {

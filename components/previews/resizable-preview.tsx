@@ -10,7 +10,7 @@ import { PreviewLayout } from "@sntlr/registry-shell/shell/components/preview-la
 
 export function ResizablePreview() {
   const { values, entries } = useControls({
-    direction: {
+    orientation: {
       type: "select",
       options: ["horizontal", "vertical"],
       default: "horizontal",
@@ -21,14 +21,14 @@ export function ResizablePreview() {
   return (
     <PreviewLayout controls={entries}>
       <ResizablePanelGroup
-        direction={values.direction as "horizontal" | "vertical"}
+        orientation={values.orientation as "horizontal" | "vertical"}
         className="max-w-md rounded-lg border h-48"
       >
-        <ResizablePanel defaultSize={50}>
+        <ResizablePanel defaultSize="50%">
           <div className="flex h-full items-center justify-center p-6 text-sm">One</div>
         </ResizablePanel>
         <ResizableHandle withHandle={values.withHandle} />
-        <ResizablePanel defaultSize={50}>
+        <ResizablePanel defaultSize="50%">
           <div className="flex h-full items-center justify-center p-6 text-sm">Two</div>
         </ResizablePanel>
       </ResizablePanelGroup>

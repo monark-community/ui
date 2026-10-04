@@ -4,7 +4,7 @@
   "standard": "WAI-ARIA 1.2",
   "element": "div",
   "role": "progressbar",
-  "delegatesTo": "@radix-ui/react-progress",
+  "delegatesTo": "radix-ui (Progress)",
   "description": "Determinate progress bar. Radix renders a <div role=\"progressbar\"> with aria-valuemin / aria-valuemax / aria-valuenow reflecting the current value (0–100). The visual bar is a child <div> whose translateX is animated based on value.\n",
   "keyboard": [],
   "focus": {
@@ -20,7 +20,7 @@
   },
   "contrast": {
     "text": "N/A; progress bar has no text unless the consumer overlays a label",
-    "ui": "Fill uses bg-primary, track uses bg-primary/20; meets AA non-text contrast"
+    "ui": "4px (h-1) bar: fill uses bg-primary on a bg-muted track. Flat orange is about 2.3:1 on the light surfaces, under 3:1, so pair the bar with a text value"
   },
   "motion": {
     "reducedMotion": "The fill uses transition-all. Gate with motion-reduce:transition-none if you need strict reduced-motion compliance; the end value is visible immediately either way.\n"

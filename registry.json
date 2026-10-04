@@ -219,7 +219,8 @@
       "title": "Accordion",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-accordion",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -235,7 +236,8 @@
       "title": "Alert",
       "description": "",
       "dependencies": [
-        "class-variance-authority"
+        "class-variance-authority",
+        "cn"
       ],
       "files": [
         {
@@ -250,7 +252,8 @@
       "title": "Alert Dialog",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-alert-dialog"
+        "cn",
+        "radix-ui"
       ],
       "registryDependencies": [
         "@monark/button"
@@ -268,7 +271,7 @@
       "title": "Aspect Ratio",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-aspect-ratio"
+        "radix-ui"
       ],
       "files": [
         {
@@ -283,7 +286,8 @@
       "title": "Avatar",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-avatar"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -298,8 +302,9 @@
       "title": "Badge",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-slot",
-        "class-variance-authority"
+        "class-variance-authority",
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -314,7 +319,8 @@
       "title": "Breadcrumb",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-slot",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -330,8 +336,9 @@
       "title": "Button",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-slot",
-        "class-variance-authority"
+        "class-variance-authority",
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -346,8 +353,8 @@
       "title": "Calendar",
       "description": "",
       "dependencies": [
-        "react-day-picker@^9.14.0",
-        "date-fns",
+        "cn",
+        "react-day-picker@^10.0.2",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -370,6 +377,9 @@
           "path": "components/ui/card.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -378,6 +388,7 @@
       "title": "Carousel",
       "description": "",
       "dependencies": [
+        "cn",
         "embla-carousel-react",
         "lucide-react"
       ],
@@ -397,11 +408,8 @@
       "title": "Chart",
       "description": "",
       "dependencies": [
-        "recharts@2.15.4",
-        "lucide-react"
-      ],
-      "registryDependencies": [
-        "@monark/card"
+        "cn",
+        "recharts@^3.8.0"
       ],
       "files": [
         {
@@ -416,7 +424,8 @@
       "title": "Checkbox",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-checkbox",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -432,7 +441,7 @@
       "title": "Collapsible",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-collapsible"
+        "radix-ui"
       ],
       "files": [
         {
@@ -448,11 +457,12 @@
       "description": "",
       "dependencies": [
         "cmdk",
-        "@radix-ui/react-dialog",
+        "cn",
         "lucide-react"
       ],
       "registryDependencies": [
-        "@monark/dialog"
+        "@monark/dialog",
+        "@monark/input-group"
       ],
       "files": [
         {
@@ -467,7 +477,8 @@
       "title": "Context Menu",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-context-menu",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -483,7 +494,8 @@
       "title": "Dialog",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-dialog",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -491,6 +503,9 @@
           "path": "components/ui/dialog.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "@monark/button"
       ]
     },
     {
@@ -499,8 +514,8 @@
       "title": "Drawer",
       "description": "",
       "dependencies": [
-        "vaul",
-        "@radix-ui/react-dialog"
+        "cn",
+        "vaul"
       ],
       "files": [
         {
@@ -515,7 +530,8 @@
       "title": "Dropdown Menu",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-dropdown-menu",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -531,14 +547,13 @@
       "title": "Form",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-label",
-        "@radix-ui/react-slot",
         "@hookform/resolvers",
         "zod",
+        "cn",
+        "radix-ui",
         "react-hook-form"
       ],
       "registryDependencies": [
-        "@monark/button",
         "@monark/label"
       ],
       "files": [
@@ -554,7 +569,8 @@
       "title": "Hover Card",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-hover-card"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -573,6 +589,9 @@
           "path": "components/ui/input.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -581,6 +600,7 @@
       "title": "Input Otp",
       "description": "",
       "dependencies": [
+        "cn",
         "input-otp",
         "lucide-react"
       ],
@@ -597,8 +617,8 @@
       "title": "Label",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-label",
-        "class-variance-authority"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -613,7 +633,8 @@
       "title": "Menubar",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-menubar",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -629,8 +650,9 @@
       "title": "Navigation Menu",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-navigation-menu",
         "class-variance-authority",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -646,6 +668,7 @@
       "title": "Pagination",
       "description": "",
       "dependencies": [
+        "cn",
         "lucide-react"
       ],
       "registryDependencies": [
@@ -664,7 +687,8 @@
       "title": "Popover",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-popover"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -679,7 +703,8 @@
       "title": "Progress",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-progress"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -694,8 +719,8 @@
       "title": "Radio Group",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-radio-group",
-        "lucide-react"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -710,8 +735,8 @@
       "title": "Resizable",
       "description": "",
       "dependencies": [
-        "react-resizable-panels",
-        "lucide-react"
+        "cn",
+        "react-resizable-panels@^4.14.2"
       ],
       "files": [
         {
@@ -726,7 +751,8 @@
       "title": "Scroll Area",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-scroll-area"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -741,7 +767,8 @@
       "title": "Select",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-select",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -757,7 +784,8 @@
       "title": "Separator",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-separator"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -772,8 +800,8 @@
       "title": "Sheet",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-dialog",
-        "class-variance-authority",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "files": [
@@ -781,6 +809,9 @@
           "path": "components/ui/sheet.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "@monark/button"
       ]
     },
     {
@@ -789,18 +820,19 @@
       "title": "Sidebar",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-slot",
         "class-variance-authority",
+        "cn",
+        "radix-ui",
         "lucide-react"
       ],
       "registryDependencies": [
+        "@monark/use-mobile",
         "@monark/button",
+        "@monark/input",
         "@monark/separator",
         "@monark/sheet",
-        "@monark/tooltip",
-        "@monark/input",
-        "@monark/use-mobile",
-        "@monark/skeleton"
+        "@monark/skeleton",
+        "@monark/tooltip"
       ],
       "files": [
         {
@@ -819,6 +851,9 @@
           "path": "components/ui/skeleton.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -827,7 +862,8 @@
       "title": "Slider",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-slider"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -842,8 +878,9 @@
       "title": "Sonner",
       "description": "",
       "dependencies": [
+        "next-themes",
         "sonner",
-        "next-themes"
+        "lucide-react"
       ],
       "files": [
         {
@@ -858,7 +895,8 @@
       "title": "Switch",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-switch"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -877,6 +915,9 @@
           "path": "components/ui/table.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
       ]
     },
     {
@@ -885,7 +926,9 @@
       "title": "Tabs",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-tabs"
+        "class-variance-authority",
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -904,6 +947,30 @@
           "path": "components/ui/textarea.tsx",
           "type": "registry:ui"
         }
+      ],
+      "dependencies": [
+        "cn"
+      ]
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "description": "An input or textarea with addons inside the field: icons, text, buttons and keyboard hints, aligned at the start, end or on their own row.",
+      "files": [
+        {
+          "path": "components/ui/input-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "cn"
+      ],
+      "registryDependencies": [
+        "@monark/button",
+        "@monark/input",
+        "@monark/textarea"
       ]
     },
     {
@@ -912,8 +979,9 @@
       "title": "Toggle",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-toggle",
-        "class-variance-authority"
+        "class-variance-authority",
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {
@@ -928,7 +996,9 @@
       "title": "Toggle Group",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-toggle-group"
+        "class-variance-authority",
+        "cn",
+        "radix-ui"
       ],
       "registryDependencies": [
         "@monark/toggle"
@@ -946,7 +1016,8 @@
       "title": "Tooltip",
       "description": "",
       "dependencies": [
-        "@radix-ui/react-tooltip"
+        "cn",
+        "radix-ui"
       ],
       "files": [
         {

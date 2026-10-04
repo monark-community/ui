@@ -20,7 +20,7 @@
   },
   "contrast": {
     "text": "N/A; no text",
-    "ui": "Uses bg-primary/10; visually subtle by design, so it may fall below 3:1 non-text contrast. This is acceptable for transient loading UI but not a substitute for real content contrast"
+    "ui": "Uses bg-muted; visually subtle by design, so it may fall below 3:1 non-text contrast. This is acceptable for transient loading UI but not a substitute for real content contrast"
   },
   "motion": {
     "reducedMotion": "animate-pulse is always on. For strict reduced-motion compliance, override the animation in your theme: motion-reduce:animate-none on the Skeleton utility or globally.\n"

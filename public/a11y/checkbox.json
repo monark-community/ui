@@ -4,7 +4,7 @@
   "standard": "WAI-ARIA 1.2",
   "element": "button",
   "role": "checkbox",
-  "delegatesTo": "@radix-ui/react-checkbox",
+  "delegatesTo": "radix-ui (Checkbox)",
   "description": "Tri-state checkbox (checked / unchecked / indeterminate). Radix renders a <button role=\"checkbox\"> with aria-checked reflecting the current state, plus a hidden native input for form integration. The Check icon inside CheckboxPrimitive.Indicator only renders when state is \"checked\" or \"indeterminate\".\n",
   "keyboard": [
     {
@@ -19,7 +19,7 @@
   "focus": {
     "visible": true,
     "trapped": false,
-    "notes": "Uses focus-visible:ring-1. Disabled checkboxes show cursor-not-allowed and opacity-50 but remain focusable for screen reader review unless the consumer adds tabIndex={-1}.\n"
+    "notes": "Uses focus-visible:ring-3 focus-visible:ring-ring/50 with focus-visible:border-ring. The box is size-5 (20px) with an invisible ::after hit area extending 12px sideways and 8px vertically. Disabled checkboxes show cursor-not-allowed and opacity-50 but remain focusable for screen reader review unless the consumer adds tabIndex={-1}.\n"
   },
   "screenReader": {
     "announcements": [
@@ -30,7 +30,7 @@
   },
   "contrast": {
     "text": "The Check icon uses primary-foreground on primary bg when checked; meets WCAG AA",
-    "ui": "Unchecked border uses primary token; meets AA non-text contrast against bg-background"
+    "ui": "Unchecked border uses the input token (3.9:1) over bg-card; meets AA non-text contrast"
   },
   "motion": {
     "reducedMotion": "No motion animation; only a color swap between states"
