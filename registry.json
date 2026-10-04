@@ -8,6 +8,10 @@
       "type": "registry:theme",
       "title": "Monark Theme",
       "description": "Monark 2026 brand: warm cream light mode and espresso dark mode derived from the flat orange primary (CSS relative color, scaled by --surface-tint), dark text on orange, Nunito Sans, a 1rem radius with the full radius scale, and the base styles, focus outline, motion reset and typography utilities (eyebrow, tracking-display, tnum) Monark sites share. Install this first so every component inherits the Monark look. Browsers without relative color get the same colors as fixed values.",
+      "dependencies": [
+        "shadcn",
+        "tw-animate-css"
+      ],
       "cssVars": {
         "theme": {
           "radius": "1rem",
@@ -133,6 +137,8 @@
         }
       },
       "css": {
+        "@import \"tw-animate-css\"": {},
+        "@import \"shadcn/tailwind.css\"": {},
         "@supports (color: oklch(from red l c h))": {
           ":root": {
             "--background": "oklch(from var(--primary) 0.985 calc(c * 0.06 * var(--surface-tint)) h)",

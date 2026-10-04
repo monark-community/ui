@@ -63,3 +63,17 @@ describe("theme item", () => {
     expect(offenders).toEqual([])
   })
 })
+
+describe("theme item imports", () => {
+  // The components use shadcn's data-open / data-checked / data-horizontal
+  // variants and tw-animate-css's animate-in classes. Without these imports
+  // tabs, sliders, checkboxes and every overlay render half-styled.
+  it("brings in tw-animate-css and shadcn/tailwind.css", () => {
+    expect(Object.keys(theme.css)).toEqual(
+      expect.arrayContaining(['@import "tw-animate-css"', '@import "shadcn/tailwind.css"'])
+    )
+    expect((theme as unknown as { dependencies: string[] }).dependencies).toEqual(
+      expect.arrayContaining(["shadcn", "tw-animate-css"])
+    )
+  })
+})
