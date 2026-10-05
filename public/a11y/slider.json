@@ -50,7 +50,7 @@
   },
   "contrast": {
     "text": "N/A; no text unless the consumer renders labels / tooltips",
-    "ui": "Thumb is bg-card with a 2px border-primary; track uses bg-muted with a bg-primary range. Flat orange is about 2.3:1 on the light surfaces, so the thumb position and a visible value carry the state"
+    "ui": "Thumb is bg-card with a 2px border-primary-ink ring (5.0:1 on cards, 4.4:1 on the bg-muted track), so the thumb and its position meet 3:1. The orange range fill (about 2.1:1 on the track) is decorative; the value is carried by the thumb. In dark mode primary-ink is the orange, at about 8:1"
   },
   "motion": {
     "reducedMotion": "Thumb transitions colour and box-shadow (the ring) only; no motion-based animation"

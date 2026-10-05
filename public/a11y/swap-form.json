@@ -27,12 +27,14 @@
   "focus": {
     "visible": true,
     "trapped": false,
-    "notes": "Focus order matches the visual reading order (from field, reverse, to field, submit). The reverse button is a single Tab stop; the native form submission is triggered on Enter from any input when status is \"ready\".\n"
+    "notes": "Focus order matches the visual reading order (from field, reverse, to field, submit). The reverse button is a single Tab stop; the native form submission is triggered on Enter from any input when status is \"ready\". The amount inputs are borderless, so the whole field panel shows the ring-3 ring-ring/50 focus ring while one has focus. The settings button only renders when onOpenSettings is set.\n"
   },
   "screenReader": {
     "announcements": [
-      "Each amount input is labelled by its \"You pay\" / \"You receive\" <Label>.",
+      "The form is named by its title (aria-labelledby). Field ids come from useId, so several forms on one page don't collide.",
+      "Each amount input is labelled by its \"You pay\" / \"You receive\" <Label>; each token picker is named \"You pay, token\" / \"You receive, token\".",
       "The reverse button has aria-label \"Reverse swap direction\"; the settings button has aria-label \"Swap settings\".",
+      "While quoting or confirming, the submit button is aria-busy and shows a spinner next to its label.",
       "Rate / network fee / minimum received appear in a definition list (dt / dd) so the relationship is announced.",
       "Error messages are rendered with role=\"alert\" and announced when status transitions to \"error\"."
     ],
@@ -50,6 +52,9 @@
     "Always provide a meaningful `errorMessage` when status=\"error\"; screen readers read it via role=\"alert\".",
     "Slippage is displayed in basis points (divide by 100 for a percentage). Expose a real slippage editor in `onOpenSettings`; the form only reflects the current value.",
     "Validate amounts before setting status=\"ready\". Native inputMode=\"decimal\" hints at a numeric keypad on mobile but does not reject invalid input.",
+    {
+      "Pass every string through `labels` on non-English pages": "the title, field and token labels, the summary row labels, the status labels and the button names."
+    },
     "Don't build execution logic into the block. Keep the form presentational and let your handler in `onSwap` do the signing / broadcasting."
   ]
 }
