@@ -87,10 +87,10 @@
           "success": "#2f7a4a",
           "warning": "#8a5a00",
           "overlay": "oklch(0 0 0 / 0.45)",
-          "chart-1": "var(--primary)",
+          "chart-1": "#cd6600",
           "chart-2": "#ef3620",
           "chart-3": "#7a5c3e",
-          "chart-4": "#c8a27a",
+          "chart-4": "#9c8a52",
           "chart-5": "#424242",
           "sidebar": "#fdf5efd9",
           "sidebar-foreground": "var(--foreground)",
@@ -123,6 +123,7 @@
           "primary-ink": "var(--primary)",
           "success": "#7cc79a",
           "warning": "#e9b949",
+          "chart-1": "var(--primary)",
           "chart-2": "#fc452f",
           "chart-3": "#c8a27a",
           "chart-4": "#8a7a66",
@@ -149,6 +150,7 @@
             "--border": "oklch(from var(--primary) 0.91 calc(c * 0.09 * var(--surface-tint)) h)",
             "--input": "oklch(from var(--primary) 0.6 calc(c * 0.06 * var(--surface-tint)) h)",
             "--primary-ink": "oklch(from var(--primary) min(l, 0.55) c h)",
+            "--chart-1": "oklch(from var(--primary) min(l, 0.62) c h)",
             "--sidebar": "oklch(from var(--primary) 0.975 calc(c * 0.07 * var(--surface-tint)) h / 0.85)"
           },
           ".dark": {
@@ -160,6 +162,7 @@
             "--border": "oklch(from var(--primary) 0.34 calc(c * 0.17 * var(--surface-tint)) h)",
             "--input": "oklch(from var(--primary) 0.52 calc(c * 0.16 * var(--surface-tint)) h)",
             "--primary-ink": "var(--primary)",
+            "--chart-1": "var(--primary)",
             "--sidebar": "oklch(from var(--primary) 0.22 calc(c * 0.19 * var(--surface-tint)) h / 0.85)"
           }
         },

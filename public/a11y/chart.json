@@ -34,7 +34,7 @@
   },
   "contrast": {
     "text": "Axis tick text uses fill-muted-foreground; still meets AA on bg-background",
-    "ui": "Series colors come from the consumer's ChartConfig, normally pointed at the --chart-1 to --chart-5 tokens. In dark mode all five meet 3:1 on the background. In light mode --chart-1 (orange) and --chart-4 (tan) are about 2.3:1 on cream, so series in those colors need a label, stroke or other non-color cue. The wrapper does nothing to enforce contrast between adjacent series.\n"
+    "ui": "Series colors come from the consumer's ChartConfig, normally pointed at the --chart-1 to --chart-5 tokens. All five meet 3:1 on the background and on cards in both modes (light mode: --chart-1 #cd6600 at 3.7:1 and --chart-4 #9c8a52 at 3.3:1, the lowest). Adjacent series can still look alike to some viewers, so pair colour with a label, legend or line style. The wrapper does nothing to enforce contrast between adjacent series.\n"
   },
   "motion": {
     "reducedMotion": "Recharts animates data entry / updates. Pass `isAnimationActive={false}` on the chart primitives (Line, Bar, etc.) to disable animations, or gate it on a prefers-reduced-motion check.\n"

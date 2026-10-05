@@ -179,15 +179,15 @@ Toggle dark mode with the `.dark` class on `<html>`. Monark's components don't c
 
 ## Chart palette
 
-The five `--chart-*` tokens drive the Chart block's default color ramp. `--chart-1` is the primary; the other four are fixed warm tones (red, brown, tan, and a neutral) so they stay distinguishable from it. Remap if you want a cooler palette:
+The five `--chart-*` tokens drive the Chart block's default color ramp. `--chart-1` follows the primary, capped at oklch lightness 0.62 in light mode (`#cd6600` for the default orange) because flat orange is only 2.3:1 on cream. The other four are fixed warm tones (red, brown, khaki tan, and a neutral) so they stay distinguishable from it. Every token meets the 3:1 contrast that chart marks need against the background and cards. Remap if you want a cooler palette, and check the light-mode values keep that 3:1:
 
 ```css
 :root {
-  --chart-1: oklch(0.75 0.15 220); /* blue */
-  --chart-2: oklch(0.7 0.18 280);  /* purple */
-  --chart-3: oklch(0.75 0.12 160); /* mint */
-  --chart-4: oklch(0.85 0.1 90);   /* yellow */
-  --chart-5: oklch(0.65 0.2 0);    /* red */
+  --chart-1: oklch(0.55 0.15 240); /* blue */
+  --chart-2: oklch(0.5 0.18 290);  /* purple */
+  --chart-3: oklch(0.55 0.12 165); /* teal */
+  --chart-4: oklch(0.6 0.12 85);   /* ochre */
+  --chart-5: oklch(0.55 0.2 25);   /* red */
 }
 ```
 
