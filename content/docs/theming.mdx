@@ -135,11 +135,12 @@ The theme also writes a small base layer, the same one every Monark site runs:
 - a 1.6 body line height, antialiased text, and `scroll-padding-top: 5.5rem` so anchor links clear a sticky header;
 - headings `h1`–`h4` at a 1.15 line height with `text-wrap: balance`;
 - a 2px `--ring` outline on every `:focus-visible` element, offset by 2px;
+- a pointer cursor on every enabled control (buttons, `select`, `summary`, `label[for]`, checkbox, radio, range, file and color inputs, and the `button`, `checkbox`, `switch`, `radio`, `tab`, `option`, `menuitem*` and non-input `combobox` roles), and `not-allowed` on anything `:disabled`, `aria-disabled="true"` or `data-disabled`;
 - a `prefers-reduced-motion` reset that turns animations and transitions off.
 
-It lives in `@layer base`, so any utility class on an element still wins.
+It lives in `@layer base`, so any utility class on an element still wins. The cursor rules are wrapped in `:where()` as well, so `cursor-default` on a component overrides them.
 
-Four utilities come with it:
+Five utilities come with it:
 
 | Utility | Does |
 |---|---|
@@ -147,11 +148,30 @@ Four utilities come with it:
 | `tracking-display` | Tight -0.02em tracking for display headings |
 | `tnum` | Tabular figures, so amounts line up in columns |
 | `no-scrollbar` | Hides the scrollbar on a scrolling row while keeping it scrollable |
+| `animate-expand` | Height animation for a Radix Collapsible or Accordion panel |
 
 ```tsx
 <p className="eyebrow text-primary-ink">How it works</p>
 <h2 className="text-3xl font-extrabold tracking-display">Three steps</h2>
 ```
+
+### Expanding panels
+
+`animate-expand` clips the element (`overflow: clip`, with a 4px `overflow-clip-margin` so a child's focus ring at the edge stays visible) and animates its height over 0.2s ease-out: open on `data-state="open"`, closed on `data-state="closed"`. The keyframes come from `tw-animate-css` and read `--radix-collapsible-content-height`, which Radix sets on both Collapsible and Accordion content. Under `prefers-reduced-motion` the panel opens and closes instantly. Accordion, Collapsible and Disclosure already use it; reach for it when you build your own panel:
+
+```tsx
+import { Collapsible as CollapsiblePrimitive } from "radix-ui"
+
+<CollapsiblePrimitive.Root>
+  <CollapsiblePrimitive.Trigger>Fee breakdown</CollapsiblePrimitive.Trigger>
+  {/* Animate the element Radix gives data-state; pad an inner div */}
+  <CollapsiblePrimitive.Content className="animate-expand">
+    <div className="px-4 py-3 text-sm">Network fee, protocol fee, total.</div>
+  </CollapsiblePrimitive.Content>
+</CollapsiblePrimitive.Root>
+```
+
+Put padding, margins and borders on an inner element, not on the animated one: the animation runs the height from 0, and padding on the same element would show before it starts and snap away when it ends. Closing animates too, because Radix keeps the content mounted until the exit animation finishes. Safari doesn't support `overflow-clip-margin` yet and clips at the edge, so leave a little inner padding there if a child's focus ring sits right at the edge.
 
 ## Dark mode
 

@@ -32,13 +32,14 @@ screenReader:
     - 'The social links are a list named by labels.socials ("Monark on social media").'
     - 'The Monark logo link is announced by labels.monarkHome ("Monark home page").'
   notes: >
-    The default logo is the butterfly mark (aria-hidden) and the word
-    "Monark"; the link's aria-label replaces both. A custom monarkLogo
+    The default logo is MonarkLogo, the official horizontal logo with the
+    wordmark outlined in the artwork (an SVG with role="img" and the title
+    "Monark"); the link's aria-label replaces its name. A custom monarkLogo
     image needs no alt text of its own for the same reason.
 
 contrast:
   text: "Product name, page links and resource links in foreground; description, tagline and legal text in muted-foreground, which keeps 4.5:1 on secondary in light mode and on the background 5% darker in dark mode."
-  ui: "Band borders are decorative. Social icons use foreground at 24px, above 3:1 on both band surfaces."
+  ui: "Band borders are decorative. Social icons use foreground at 24px, above 3:1 on both band surfaces. The logo's wordmark is drawn in currentColor (foreground), so it keeps the brand kit's on-light / on-dark contrast."
 
 motion:
   reducedMotion: "No animation; hover only changes colour and underline."

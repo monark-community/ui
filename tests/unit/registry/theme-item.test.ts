@@ -77,3 +77,81 @@ describe("theme item imports", () => {
     )
   })
 })
+
+describe("theme item motion and cursor", () => {
+  const siteCss = fs.readFileSync(path.join(ROOT, "styles/theme.css"), "utf-8")
+  const flat = (css: string) => css.replace(/\s+/g, " ")
+
+  // Accordion, Collapsible and Disclosure panels put animate-expand on the
+  // element Radix gives data-state, so a fresh install needs the utility.
+  it("ships the animate-expand utility", () => {
+    const expand = theme.css["@utility animate-expand"] as CssTree
+    expect(expand).toBeDefined()
+    expect(expand.overflow).toBe("clip")
+    expect(expand["overflow-clip-margin"]).toBe("4px")
+    expect(expand["&[data-state=open]"]).toEqual({
+      animation: "var(--animate-collapsible-down)",
+    })
+    expect(expand["&[data-state=closed]"]).toEqual({
+      animation: "var(--animate-collapsible-up)",
+    })
+    const reduced = theme.css["@media (prefers-reduced-motion: reduce)"] as CssTree
+    expect(reduced[".animate-expand"]).toEqual({ animation: "none !important" })
+  })
+
+  it("keeps the docs site's theme.css in sync for animate-expand", () => {
+    const css = flat(siteCss)
+    expect(css).toContain("@utility animate-expand { overflow: clip; overflow-clip-margin: 4px;")
+    expect(css).toContain("&[data-state=open] { animation: var(--animate-collapsible-down); }")
+    expect(css).toContain("&[data-state=closed] { animation: var(--animate-collapsible-up); }")
+    expect(css).toContain(".animate-expand { animation: none !important; }")
+  })
+
+  // shadcn v4 dropped pointer cursors; Monark wants them on every control.
+  it("puts a pointer on enabled controls and not-allowed on disabled ones", () => {
+    const base = theme.css["@layer base"] as CssTree
+    const pointer = Object.entries(base).find(
+      ([, rule]) => typeof rule === "object" && rule.cursor === "pointer"
+    )
+    const disabled = Object.entries(base).find(
+      ([, rule]) => typeof rule === "object" && rule.cursor === "not-allowed"
+    )
+    expect(pointer).toBeDefined()
+    expect(disabled).toBeDefined()
+    const [pointerSelector] = pointer!
+    const [disabledSelector] = disabled!
+    // Zero specificity, so a cursor-* class on a component still wins.
+    expect(pointerSelector.startsWith(":where(")).toBe(true)
+    expect(disabledSelector.startsWith(":where(")).toBe(true)
+    for (const target of [
+      "button",
+      "[role=button]",
+      "[role=checkbox]",
+      "[role=switch]",
+      "[role=radio]",
+      "[role=tab]",
+      "[role=option]",
+      "[role=menuitem]",
+      "[role=menuitemcheckbox]",
+      "[role=menuitemradio]",
+      "[role=combobox]",
+      "select",
+      "summary",
+      "label[for]",
+      "input[type=checkbox]",
+      "input[type=radio]",
+      "input[type=range]",
+      "input[type=file]",
+      "input[type=color]",
+    ]) {
+      expect(pointerSelector).toContain(target)
+    }
+    for (const target of [":disabled", "[aria-disabled=true]", "[data-disabled]"]) {
+      expect(disabledSelector).toContain(target)
+    }
+
+    const css = flat(siteCss)
+    expect(css).toContain(`${pointerSelector} { cursor: pointer; }`)
+    expect(css).toContain(`${disabledSelector} { cursor: not-allowed; }`)
+  })
+})

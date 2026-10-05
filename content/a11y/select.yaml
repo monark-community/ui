@@ -52,10 +52,11 @@ contrast:
 
 motion:
   reducedMotion: >
-    With the default position="item-aligned" the content does not animate
-    (animate-none). With position="popper" it uses data-open:animate-in
-    with fade + zoom + slide utilities; gate with motion-reduce:animate-none
-    if strict compliance matters.
+    With the default position="popper" the listbox opens below the trigger,
+    at least as wide as it, using data-open:animate-in with fade + zoom +
+    slide utilities; gate with motion-reduce:animate-none if strict
+    compliance matters. position="item-aligned" does not animate
+    (animate-none).
 
 consumerResponsibilities:
   - Always provide a Label linked to the Select trigger, or an aria-label; the visual placeholder is not enough.

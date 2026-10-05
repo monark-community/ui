@@ -1,7 +1,7 @@
 import * as React from "react"
 import { describe, it, expect } from "vitest"
 import { render, screen } from "@testing-library/react"
-import { MonarkMark, SiteBrand } from "@/components/ui/site-brand"
+import { MonarkLogo, MonarkMark, SiteBrand } from "@/components/ui/site-brand"
 
 describe("SiteBrand", () => {
   it("links home with the product name and the default accessible label", () => {
@@ -54,5 +54,47 @@ describe("MonarkMark", () => {
   it("becomes an image with a title when one is given", () => {
     render(<MonarkMark title="Monark" />)
     expect(screen.getByRole("img", { name: "Monark" })).toBeInTheDocument()
+  })
+})
+
+describe("MonarkLogo", () => {
+  it("is an image named Monark by default", () => {
+    render(<MonarkLogo />)
+    const logo = screen.getByRole("img", { name: "Monark" })
+    expect(logo).toHaveAttribute("data-slot", "monark-logo")
+  })
+
+  it("accepts a translated title", () => {
+    render(<MonarkLogo title="Logo de Monark" />)
+    expect(screen.getByRole("img", { name: "Logo de Monark" })).toBeInTheDocument()
+  })
+
+  it("draws the wordmark in currentColor and keeps the butterfly gradient", () => {
+    const { container } = render(<MonarkLogo />)
+    const paths = Array.from(container.querySelectorAll("path"))
+    expect(paths.filter((p) => p.getAttribute("fill") === "currentColor")).toHaveLength(1)
+    expect(paths.filter((p) => p.getAttribute("fill")?.startsWith("url(#"))).toHaveLength(3)
+    expect(container.querySelector("svg")).toHaveClass("text-foreground")
+  })
+
+  it("gives each instance its own gradient ids", () => {
+    const { container } = render(
+      <>
+        <MonarkLogo />
+        <MonarkLogo />
+      </>
+    )
+    const ids = Array.from(container.querySelectorAll("linearGradient")).map((g) => g.id)
+    expect(ids).toHaveLength(6)
+    expect(new Set(ids).size).toBe(6)
+    for (const path of Array.from(container.querySelectorAll("path[fill^='url(#']"))) {
+      const ref = path.getAttribute("fill")!.slice(5, -1)
+      expect(ids).toContain(ref)
+    }
+  })
+
+  it("merges a custom className", () => {
+    const { container } = render(<MonarkLogo className="h-12" />)
+    expect(container.querySelector("svg")).toHaveClass("h-12", "w-auto")
   })
 })

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { cn } from "cn"
 
-import { MonarkMark } from "@/components/ui/site-brand"
+import { MonarkLogo } from "@/components/ui/site-brand"
 
 /**
  * Any link component that renders an anchor from `href` + anchor props:
@@ -121,7 +121,10 @@ export interface SiteFooterProps
   socials?: SiteFooterSocial[]
   /** Monark's home page. Default "https://www.monark.io". */
   monarkHref?: string
-  /** Replaces the default Monark logo (butterfly + wordmark), e.g. with the brand-kit SVG. */
+  /**
+   * Replaces the default Monark logo (`MonarkLogo`: the official horizontal
+   * logo, with the outlined wordmark drawn in `currentColor`).
+   */
   monarkLogo?: React.ReactNode
   /** Copyright line. Default `© {year} Monark · Open source`. */
   copyright?: React.ReactNode
@@ -220,14 +223,7 @@ function SiteFooter({
               aria-label={labels?.monarkHome ?? "Monark home page"}
               className="-m-2 w-fit rounded-md p-2 outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
             >
-              {monarkLogo ?? (
-                <span className="inline-flex items-center gap-2">
-                  <MonarkMark className="size-9" />
-                  <span className="text-2xl leading-none font-extrabold tracking-[-0.02em] text-foreground">
-                    Monark
-                  </span>
-                </span>
-              )}
+              {monarkLogo ?? <MonarkLogo className="h-9" />}
             </a>
             <p className="text-sm text-muted-foreground">
               {labels?.tagline ?? "Fostering Collaboration within the Web3 Community"}

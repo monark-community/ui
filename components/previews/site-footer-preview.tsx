@@ -45,7 +45,7 @@ export function SiteFooterPreview() {
 
   return (
     <PreviewLayout controls={entries}>
-      <div className="w-[calc(100vw-2rem)] max-w-6xl overflow-hidden rounded-xl border">
+      <div className="w-[min(72rem,calc(100vw-4rem))] overflow-hidden rounded-xl border">
         <div className="h-24 bg-background px-6 py-5 text-sm text-muted-foreground">Page content</div>
         <SiteFooter
           product={product}

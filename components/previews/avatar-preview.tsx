@@ -12,11 +12,16 @@ const SIZES: Record<string, string | undefined> = {
 
 export function AvatarPreview() {
   const { values, entries } = useControls({
-    fallback: { type: "text", default: "SC" },
+    fallback: { type: "text", default: "MK" },
     src: {
       type: "select",
-      options: ["none", "https://api.dicebear.com/9.x/notionists/svg?seed=Scintillar"],
-      default: "https://api.dicebear.com/9.x/notionists/svg?seed=Scintillar",
+      options: [
+        "none",
+        "https://api.dicebear.com/9.x/notionists/svg?seed=Monarch",
+        "https://api.dicebear.com/9.x/notionists/svg?seed=Chrysalis",
+        "https://api.dicebear.com/9.x/notionists/svg?seed=Milkweed",
+      ],
+      default: "https://api.dicebear.com/9.x/notionists/svg?seed=Monarch",
     },
     size: {
       type: "select",
@@ -30,7 +35,7 @@ export function AvatarPreview() {
   return (
     <PreviewLayout controls={entries}>
       <Avatar key={values.src} className={SIZES[values.size]}>
-        {showImage && <AvatarImage src={values.src} alt="User" />}
+        {showImage && <AvatarImage src={values.src} alt="Monark member" />}
         <AvatarFallback>{values.fallback}</AvatarFallback>
       </Avatar>
     </PreviewLayout>

@@ -22,7 +22,7 @@ export function DisclosurePreview() {
         summary={values.summary || "Show details"}
         icon={values.icon ? <CalculatorIcon /> : undefined}
         defaultOpen={values.defaultOpen}
-        className="w-full max-w-md"
+        className="w-[min(28rem,calc(100vw-4rem))]"
       >
         <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5">
           <dt className="text-muted-foreground">Reviews</dt>

@@ -43,7 +43,7 @@ screenReader:
     that confirms the current selection.
 
 contrast:
-  text: "Day numbers use foreground; muted-foreground on outside / disabled days. Selected days use primary-foreground on primary; all meet WCAG AA"
+  text: "Day numbers use foreground; muted-foreground on outside / disabled days. Selected days use primary-foreground on primary; all meet WCAG AA. In single mode a selected day is always a full circle (week-edge rounding applies only to range-middle days), so a selected weekend day is not mistaken for a range end"
   ui: "Focus ring uses ring-ring at 3px with 50% opacity; meets AA as a non-text indicator"
 
 motion:

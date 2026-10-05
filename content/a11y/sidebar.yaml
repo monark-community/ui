@@ -52,6 +52,8 @@ motion:
 
 consumerResponsibilities:
   - Set aria-current="page" on the active SidebarMenuButton / SidebarMenuSubButton; the isActive prop only drives styling, not semantics.
+  - Render SidebarMenuBadge as a sibling of SidebarMenuButton (inside SidebarMenuItem), not inside it; it is aria-visible text, so keep the count meaningful ("3") or add sr-only context.
+  - Give a SidebarInput search an accessible name (aria-label or a visually hidden label); the placeholder is not a label.
   - Provide tooltip text on SidebarMenuButton when using collapsible="icon" mode so icon-only buttons have an accessible name even when the label is hidden.
   - For the mobile Sheet variant, users expect Escape to close; don't override onEscapeKeyDown unintentionally.
   - The Ctrl/Cmd+B shortcut is global. Document it in your app's keyboard shortcuts help surface so users can discover it.

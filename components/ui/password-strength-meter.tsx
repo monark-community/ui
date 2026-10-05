@@ -6,12 +6,23 @@ import { cn } from "cn"
 
 type Score = 0 | 1 | 2 | 3 | 4
 
+// Monotonic red -> amber -> green scale built from the status tokens. The
+// segment count and the text label carry the level; colour reinforces it.
 const SEGMENT_COLOR: Record<Score, string> = {
-  0: "bg-destructive/60",
-  1: "bg-destructive/80",
-  2: "bg-chart-3",
-  3: "bg-chart-4",
-  4: "bg-primary",
+  0: "bg-destructive",
+  1: "bg-[color-mix(in_oklch,var(--destructive),var(--warning))]",
+  2: "bg-warning",
+  3: "bg-success",
+  4: "bg-success",
+}
+
+// Level text colours; each meets 4.5:1 on background and card in both themes.
+const LEVEL_TEXT: Record<Score, string> = {
+  0: "text-destructive",
+  1: "text-destructive",
+  2: "text-warning",
+  3: "text-success",
+  4: "text-success",
 }
 
 const DEFAULT_LEVELS: Record<Score, string> = {
@@ -61,13 +72,36 @@ function PasswordStrengthMeter({
     : (
         <span>
           Strength:{" "}
-          <span className="text-foreground">{level}</span>
+          <span
+            data-slot="password-strength-level"
+            className={cn(
+              "inline-flex items-center gap-0.5 font-semibold",
+              LEVEL_TEXT[score]
+            )}
+          >
+            {level}
+            {score === 4 ? (
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={3}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="size-3"
+              >
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            ) : null}
+          </span>
         </span>
       )
 
   return (
     <div
       data-slot="password-strength-meter"
+      data-score={score}
       className={cn("space-y-1", className)}
       aria-live="polite"
       {...props}

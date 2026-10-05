@@ -8,44 +8,22 @@ Web3-native components for React, copy-paste installable via the [shadcn CLI](ht
 
 `@monark/ui` is a shadcn-compatible component registry. Every piece is a plain React file you copy into your codebase and own; there is no runtime dependency on Monark, no black-box wrapper, no lock-in.
 
-It ships the full set of shadcn primitives (buttons, inputs, dialogs, data tables, 46 in total) alongside five web3-first components and three composed blocks built for on-chain product surfaces:
+It ships 77 components and two blocks, grouped the same way as the [docs sidebar](https://ui.monark.io):
 
-**Primitives (web3)**
+| Group | Components |
+|---|---|
+| Actions | `button`, `toggle`, `toggle-group` (`pill` and `chip` variants) |
+| Forms | `input`, `input-group`, `input-otp`, `textarea`, `label`, `checkbox`, `radio-group` (`card` variant), `switch`, `slider`, `select`, `native-select`, `calendar`, `form`, `field-error`, `password-strength-meter` |
+| Overlays | `dialog`, `alert-dialog`, `sheet`, `drawer`, `popover`, `hover-card`, `tooltip`, `info-tip`, `dropdown-menu`, `context-menu`, `command`, `image-crop-dialog` |
+| Navigation | `tabs`, `breadcrumb`, `pagination`, `menubar`, `navigation-menu`, `sidebar` |
+| Layout | `card`, `separator`, `aspect-ratio`, `resizable`, `scroll-area`, `accordion` (`plus` variant), `collapsible`, `disclosure`, `carousel`, `section-heading`, `section-divider` |
+| Data display | `table`, `chart`, `stat`, `badge`, `avatar`, `role-chip`, `trusted-device-card` |
+| Feedback | `alert`, `sonner`, `progress`, `skeleton`, `empty` |
+| Web3 | `wallet`, `connect-wallet`, `token-amount`, `network-badge`, `tx-status`, `tx-feedback`, `wallet-prompt` |
+| Site shell | `site-header`, `site-brand`, `site-footer`, `header-action`, `demo-chip`, `locale-switch`, `theme-toggle`, `disclaimer` ([Site Shell guide](https://ui.monark.io/docs/site-shell)) |
+| Demo app | `app-tabs`, `app-loading`, `demo-controls` |
 
-- `Wallet`: MetaMask-style jazzicon avatar, optional name, truncated address, copy button
-- `ConnectWallet`: three-state connection control (disconnected / connecting / connected)
-- `TokenAmount`: formats a `bigint` of base units with optional symbol + fiat line
-- `NetworkBadge`: chain pill with icon slot and three variants
-- `TxStatus`: pending / confirmed / failed row with explorer link
-
-**Blocks**
-
-- `SwapForm`: two-sided token swap UI with reverse, slippage, and a status-driven submit
-- `NftCard`: NFT tile with image, collection tag, trait grid, price, and action slot
-
-**Site shell** (the standard header of Monark-branded product sites; see the [Site Shell guide](https://ui.monark.io/docs/site-shell))
-
-- `SiteHeader`: sticky 64px header with brand, page links and actions; a full-height menu sheet below `lg`
-- `SiteBrand`: the colour Monark butterfly plus the product name, linking home
-- `DemoChip`: "Demo" pill for simulated demo sites
-- `LocaleSwitch`: EN/FR pill that keeps the current page
-- `ThemeToggle`: light/dark icon button for next-themes
-- `HeaderAction`: "Launch demo" outside the app, `ConnectWallet` inside it
-- `SiteFooter`: three-band footer (product, Monark, legal)
-- `SectionHeading`, `SectionDivider`: landing-section title and the branded separator
-
-**Demo app**
-
-- `AppTabs`, `AppLoading`: the app's sub-bar and loading skeleton
-- `WalletPrompt`: simulated confirm-in-wallet dialog
-- `TxFeedback`: signing, pending, confirmed and failed feedback around `TxStatus`
-- `DemoControls`: slow network, fail next, extra toggles and a two-step reset
-- `Disclaimer`: the "testnet demo, no real funds" notice
-
-**Patterns**
-
-- `InfoTip`, `Stat`, `Empty`, `Disclosure`, `FieldError`, `NativeSelect`
-- Variants on primitives: `ToggleGroup` `pill` and `chip`, `RadioGroup` `card`, `Accordion` `plus`
+**Blocks:** `swap-form` (two-sided token swap with reverse, slippage and a status-driven submit) and `nft-card` (image, collection tag, traits, price and an action slot).
 
 All web3 components are presentational. They accept props, emit callbacks, and never fetch, sign, or broadcast; you wire them to wagmi, viem, RainbowKit, or whatever connector stack you already run.
 

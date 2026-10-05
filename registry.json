@@ -7,7 +7,7 @@
       "name": "theme",
       "type": "registry:theme",
       "title": "Monark Theme",
-      "description": "Monark 2026 brand: warm cream light mode and espresso dark mode derived from the flat orange primary (CSS relative color, scaled by --surface-tint), dark text on orange, Nunito Sans, a 1rem radius with the full radius scale, and the base styles, focus outline, motion reset and typography utilities (eyebrow, tracking-display, tnum) Monark sites share. Install this first so every component inherits the Monark look. Browsers without relative color get the same colors as fixed values.",
+      "description": "Monark 2026 brand: warm cream light mode and espresso dark mode derived from the flat orange primary (CSS relative color, scaled by --surface-tint), dark text on orange, Nunito Sans, a 1rem radius with the full radius scale, and the base styles, focus outline, pointer cursors on controls, motion reset, the animate-expand panel animation and typography utilities (eyebrow, tracking-display, tnum) Monark sites share. Install this first so every component inherits the Monark look. Browsers without relative color get the same colors as fixed values.",
       "dependencies": [
         "shadcn",
         "tw-animate-css"
@@ -183,6 +183,12 @@
           ":focus-visible": {
             "outline": "2px solid var(--ring)",
             "outline-offset": "2px"
+          },
+          ":where(button, [role=button], [role=checkbox], [role=switch], [role=radio], [role=tab], [role=option], [role=menuitem], [role=menuitemcheckbox], [role=menuitemradio], [role=combobox]:not(input), select, summary, label[for], input[type=checkbox], input[type=radio], input[type=range], input[type=file], input[type=color])": {
+            "cursor": "pointer"
+          },
+          ":where(:disabled, [aria-disabled=true], [data-disabled])": {
+            "cursor": "not-allowed"
           }
         },
         "@utility tracking-display": {
@@ -203,12 +209,25 @@
             "display": "none"
           }
         },
+        "@utility animate-expand": {
+          "overflow": "clip",
+          "overflow-clip-margin": "4px",
+          "&[data-state=open]": {
+            "animation": "var(--animate-collapsible-down)"
+          },
+          "&[data-state=closed]": {
+            "animation": "var(--animate-collapsible-up)"
+          }
+        },
         "@media (prefers-reduced-motion: reduce)": {
           "*, *::before, *::after": {
             "animation-duration": "0.01ms !important",
             "animation-iteration-count": "1 !important",
             "transition-duration": "0.01ms !important",
             "scroll-behavior": "auto !important"
+          },
+          ".animate-expand": {
+            "animation": "none !important"
           }
         }
       }

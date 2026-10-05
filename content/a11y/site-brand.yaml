@@ -9,6 +9,9 @@ description: >
   name. The mark is an inline SVG marked aria-hidden (it is decorative next
   to the name), so the link has one accessible name: by default
   "{Product}, by Monark: home", which starts with the visible product name.
+  The file also exports MonarkLogo, the official horizontal logo (butterfly
+  + outlined wordmark) as one inline SVG with role="img" and a <title>
+  (default "Monark"), used for Monark's own logo in SiteFooter.
 
 keyboard:
   - key: Tab
@@ -29,11 +32,13 @@ screenReader:
   notes: >
     The product name stays real text, so it is translatable, selectable and
     read correctly. MonarkMark on its own becomes role="img" when you pass a
-    title; without one it is hidden from assistive tech.
+    title; without one it is hidden from assistive tech. MonarkLogo is always
+    role="img", named by its title prop ("Monark"); inside a link with its
+    own aria-label the link's label wins.
 
 contrast:
   text: "The product name uses text-foreground (18:1 on the Monark cream background, 17:1 on espresso)."
-  ui: "The butterfly is decorative; its red-to-orange gradient is fixed by the brand."
+  ui: "The butterfly is decorative; its red-to-orange gradient is fixed by the brand. MonarkLogo draws its wordmark in currentColor (text-foreground by default), matching the brand kit's on-light (#141414) and on-dark (white) variants."
 
 motion:
   reducedMotion: "No animation."
@@ -42,3 +47,5 @@ consumerResponsibilities:
   - Pass a translated aria-label on non-English pages (e.g. "Splitflow, par Monark : accueil").
   - Point href at the locale root on localised sites (/fr, not /).
   - Keep clear space around the mark; don't place other logos or text inside the brand link.
+  - Pass a translated title to MonarkLogo on non-English pages when it stands alone (not inside a labelled link).
+  - Keep MonarkLogo on a surface where text-foreground has contrast; don't recolour the butterfly.

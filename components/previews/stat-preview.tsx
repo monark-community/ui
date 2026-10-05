@@ -30,7 +30,7 @@ export function StatPreview() {
 
   return (
     <PreviewLayout controls={entries}>
-      <StatGroup className="w-full max-w-2xl sm:grid-cols-2 lg:grid-cols-2">
+      <StatGroup className="w-[min(42rem,calc(100vw-4rem))] sm:grid-cols-2 lg:grid-cols-2">
         <Stat
           variant={values.variant as "tile"}
           tone={values.tone as "default"}

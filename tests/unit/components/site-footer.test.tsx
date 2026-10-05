@@ -72,6 +72,22 @@ describe("SiteFooter", () => {
     )
   })
 
+  it("uses the official Monark logo (wordmark in the artwork, not set in text) by default", () => {
+    renderFooter()
+    const link = screen.getByRole("link", { name: "Monark home page" })
+    const logo = link.querySelector("[data-slot='monark-logo']")
+    expect(logo).not.toBeNull()
+    expect(link.querySelector("[data-slot='monark-mark']")).toBeNull()
+    expect(link.querySelector("span")).toBeNull()
+  })
+
+  it("replaces the default logo with monarkLogo", () => {
+    renderFooter({ monarkLogo: <img src="/monark.svg" alt="" data-testid="custom-logo" /> })
+    const link = screen.getByRole("link", { name: "Monark home page" })
+    expect(within(link).getByTestId("custom-logo")).toBeInTheDocument()
+    expect(link.querySelector("[data-slot='monark-logo']")).toBeNull()
+  })
+
   it("renders the legal band with the demo notice and credits", () => {
     renderFooter()
     expect(screen.getByText("© 2026 Monark · Open source")).toBeInTheDocument()

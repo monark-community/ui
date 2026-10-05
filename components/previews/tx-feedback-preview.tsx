@@ -32,7 +32,7 @@ export function TxFeedbackPreview() {
 
   return (
     <PreviewLayout controls={entries}>
-      <div className="flex w-full max-w-sm flex-col gap-3">
+      <div className="flex w-[min(24rem,calc(100vw-4rem))] flex-col gap-3">
         <TxFeedback
           phase={phase}
           hash={values.withHash ? HASH : undefined}

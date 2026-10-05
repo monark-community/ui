@@ -49,4 +49,21 @@ describe("Disclosure", () => {
       "min-h-11"
     )
   })
+
+  it("animates an unpadded panel and pads an inner wrapper", () => {
+    const { container } = render(
+      <Disclosure summary="Details" defaultOpen contentClassName="text-muted-foreground">
+        Shown
+      </Disclosure>
+    )
+    const content = container.querySelector("[data-slot='disclosure-content']")
+    expect(content).toHaveClass("animate-expand")
+    expect(content!.className).not.toMatch(/(p[xytb]?|m[xytb]?)-/)
+    expect(content!.firstElementChild).toHaveClass(
+      "border-t",
+      "px-4",
+      "py-3",
+      "text-muted-foreground"
+    )
+  })
 })

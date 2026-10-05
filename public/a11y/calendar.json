@@ -46,7 +46,7 @@
     "notes": "Today's date gets a subtle background but no ARIA marker; if your users rely on \"today\" specifically, pair the calendar with a live region that confirms the current selection.\n"
   },
   "contrast": {
-    "text": "Day numbers use foreground; muted-foreground on outside / disabled days. Selected days use primary-foreground on primary; all meet WCAG AA",
+    "text": "Day numbers use foreground; muted-foreground on outside / disabled days. Selected days use primary-foreground on primary; all meet WCAG AA. In single mode a selected day is always a full circle (week-edge rounding applies only to range-middle days), so a selected weekend day is not mistaken for a range end",
     "ui": "Focus ring uses ring-ring at 3px with 50% opacity; meets AA as a non-text indicator"
   },
   "motion": {

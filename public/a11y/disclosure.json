@@ -32,7 +32,7 @@
     "ui": "The card and pill borders are decorative (the button's text is the affordance); the focus ring is a 3px ring-ring/50 halo"
   },
   "motion": {
-    "reducedMotion": "The chevron rotation uses a 200ms transform that is disabled under prefers-reduced-motion; content appears without animation"
+    "reducedMotion": "The chevron rotates over 200ms and the content expands and collapses with the theme's animate-expand utility (0.2s height animation); both are off under prefers-reduced-motion"
   },
   "consumerResponsibilities": [
     "Write a summary that says what is inside (\"How this score is calculated\"), not just \"More\".",

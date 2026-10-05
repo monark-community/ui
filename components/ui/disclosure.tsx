@@ -69,15 +69,21 @@ function Disclosure({
           className="text-muted-foreground transition-transform duration-200 group-data-[state=open]/disclosure-trigger:rotate-180 motion-reduce:transition-none"
         />
       </CollapsiblePrimitive.Trigger>
+      {/* The animated element carries no padding or margin, so the height
+          animation runs from 0 without a jump; spacing lives on the inner div. */}
       <CollapsiblePrimitive.Content
         data-slot="disclosure-content"
-        className={cn(
-          "text-sm",
-          variant === "card" ? "border-t px-4 py-3" : "mt-4",
-          contentClassName
-        )}
+        className="animate-expand"
       >
-        {children}
+        <div
+          className={cn(
+            "text-sm",
+            variant === "card" ? "border-t px-4 py-3" : "pt-4",
+            contentClassName
+          )}
+        >
+          {children}
+        </div>
       </CollapsiblePrimitive.Content>
     </CollapsiblePrimitive.Root>
   )
