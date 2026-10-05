@@ -118,6 +118,12 @@ export default defineConfig({
     "Demo app": ["app-tabs", "app-loading", "demo-controls"],
   },
 
+  // Default preview heights (px) for components that need more room than the
+  // 384px default. A height the visitor drags still wins for the session.
+  previewHeight: {
+    sidebar: 640,
+  },
+
   // Versioned docs: every v* tag gets a frozen site at /v/<version>/ and
   // frozen registry JSON at /r/v<version>/; the latest stays at / and /r/.
   // Each tag is built with its own registry:build (check + shadcn build).
