@@ -35,7 +35,7 @@ const config = {
 <Bar dataKey="eth" fill="var(--color-eth)" />
 ```
 
-The theme ships five chart tokens, `--chart-1` to `--chart-5`. `--chart-1` is the primary (Monark orange), so it follows a remapped `--primary`. The other four are a red, two browns and a neutral, with lighter values in dark mode. Point your config at these tokens and the chart switches with the theme.
+The theme ships five chart tokens, `--chart-1` to `--chart-5`. `--chart-1` is the primary (Monark orange), darkened in light mode to `#cd6600` so it stays readable on cream, and it follows a remapped `--primary`. The other four are a red, a brown, a khaki tan and a neutral, with lighter values in dark mode. All five meet 3:1 against the background and cards in both modes. Point your config at these tokens and the chart switches with the theme.
 
 If a series needs a color outside the tokens, give it one per mode instead of `color`:
 
@@ -167,5 +167,5 @@ A chart is a picture of data. Some people can't see it, and some can't tell its 
 - **Keep `accessibilityLayer` on.** Recharts 3 turns it on by default; we pass it explicitly so it is obvious. It makes the chart a single tab stop. Once focused, the left and right arrow keys move the tooltip between data points, so keyboard users can read every value. Don't turn it off on a chart that has a tooltip.
 - **Always give a text alternative.** Add a one-line summary next to the chart ("ETH volume peaked in February at $305M"). For data people need to compare, add a table with the same numbers, visible or behind a "Show data" toggle. Link the summary with `aria-describedby` on the container if it isn't next to it.
 - **Don't rely on color alone.** Show a legend or label the series directly. For pie and donut charts, label the slices or list the values in the legend. When two series sit close together, tell them apart with something besides color: a dashed `strokeDasharray` line, a different dot shape, or a pattern fill.
-- **Check contrast.** Graphics need 3:1 against the background. In dark mode every chart token passes. In light mode `--chart-1` (orange) and `--chart-4` (tan) sit near 2.3:1 on cream, so give those series a visible stroke, a label, or a darker neighbour, and never let a thin line in either color carry meaning on its own.
+- **Check contrast.** Graphics need 3:1 against the background. Every chart token passes in both modes (the lowest is `--chart-4` at 3.3:1 on cream). If you remap the palette, keep that floor, and don't let colour alone tell two series apart: add labels, a legend or different line styles.
 - **Respect reduced motion.** Recharts animates on mount and on data changes. Pass `isAnimationActive={false}` on each series when `prefers-reduced-motion` is set.
