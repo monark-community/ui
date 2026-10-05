@@ -27,7 +27,7 @@ screenReader:
 
 contrast:
   text: "N/A; progress bar has no text unless the consumer overlays a label"
-  ui: "4px (h-1) bar: fill uses bg-primary on a bg-muted track. Flat orange is about 2.3:1 on the light surfaces, under 3:1, so pair the bar with a text value"
+  ui: "4px (h-1) bar: the fill is bg-primary-ink, 4.4:1 against the bg-muted track and 4.9:1 against the cream background, so the filled length meets 3:1. In dark mode primary-ink is the orange, at about 8:1. Still pair the bar with a text value for precision"
 
 motion:
   reducedMotion: >

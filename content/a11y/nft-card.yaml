@@ -42,5 +42,6 @@ motion:
 consumerResponsibilities:
   - Always provide a meaningful `imageAlt` when the image itself conveys information beyond the name (e.g. trait artwork).
   - Use the `action` slot to expose purchase / bid / view affordances; don't make the whole card a link, as that hides the traits from screen readers behind a single accessible name.
+  - On non-English pages pass `rarityLabel` and `moreTraitsLabel`; they default to "12.5% have this" and "+3 more traits".
   - If you render a grid of cards, keep their heights consistent by passing the same `maxTraits` value; otherwise taller cards reflow the grid unpredictably.
   - Traits sit inside the card as plain divs. If you need them to be independently focusable (e.g. filter by trait), wrap each trait in a button and expose a separate `onTraitClick` prop in your own variant.

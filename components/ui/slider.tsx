@@ -63,7 +63,7 @@ function Slider({
               ? valueText(_values[index], index)
               : undefined
           }
-          className="relative block size-5 shrink-0 rounded-full border-2 border-primary bg-card ring-ring/50 transition-[color,box-shadow] select-none after:absolute after:-inset-3 hover:ring-3 focus-visible:ring-3 focus-visible:outline-hidden active:ring-3 disabled:pointer-events-none disabled:opacity-50"
+          className="relative block size-5 shrink-0 rounded-full border-2 border-primary-ink bg-card ring-ring/50 transition-[color,box-shadow] select-none after:absolute after:-inset-3 hover:ring-3 focus-visible:ring-3 focus-visible:outline-hidden active:ring-3 disabled:pointer-events-none disabled:opacity-50"
         />
       ))}
     </SliderPrimitive.Root>

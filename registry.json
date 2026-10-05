@@ -1145,9 +1145,8 @@
       ],
       "registryDependencies": [
         "@monark/button",
-        "@monark/input",
+        "@monark/field-error",
         "@monark/label",
-        "@monark/separator",
         "@monark/select"
       ],
       "files": [

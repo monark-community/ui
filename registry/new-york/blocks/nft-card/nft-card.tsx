@@ -43,6 +43,10 @@ export interface NftCardProps extends React.HTMLAttributes<HTMLDivElement> {
   traits?: NftTrait[]
   /** Cap on the number of traits shown before truncating with "+N more". Default: 4. */
   maxTraits?: number
+  /** Text under a trait's value. Default: "12.5% have this". */
+  rarityLabel?: (percent: string) => string
+  /** Text for the hidden-trait count. Default: "+3 more traits". */
+  moreTraitsLabel?: (count: number) => string
 }
 
 function NftCard({
@@ -57,6 +61,8 @@ function NftCard({
   action,
   traits,
   maxTraits = 4,
+  rarityLabel = (percent) => `${percent}% have this`,
+  moreTraitsLabel = (count) => `+${count} more trait${count === 1 ? "" : "s"}`,
   className,
   ...props
 }: NftCardProps) {
@@ -66,7 +72,8 @@ function NftCard({
   return (
     <Card
       data-slot="nft-card"
-      className={cn("overflow-hidden w-full max-w-sm", className)}
+      size="sm"
+      className={cn("w-full max-w-sm pt-0", className)}
       {...props}
     >
       <div className="relative">
@@ -83,7 +90,7 @@ function NftCard({
           />
         </AspectRatio>
         {collectionBadge && (
-          <div className="absolute top-2 left-2">
+          <div className="absolute top-3 left-3">
             {typeof collectionBadge === "string" ? (
               <Badge variant="secondary">{collectionBadge}</Badge>
             ) : (
@@ -93,44 +100,46 @@ function NftCard({
         )}
       </div>
 
-      <CardHeader className="gap-1 p-4 pb-2">
+      <CardHeader className="gap-0.5">
         {collection && (
-          <p className="text-xs text-muted-foreground truncate">{collection}</p>
+          <p className="truncate text-xs font-semibold text-muted-foreground">
+            {collection}
+          </p>
         )}
-        <h3 className="text-base font-semibold leading-tight truncate">{name}</h3>
+        <h3 className="truncate text-base leading-tight font-extrabold">{name}</h3>
       </CardHeader>
 
       {visibleTraits.length > 0 && (
-        <CardContent className="grid grid-cols-2 gap-2 p-4 pt-0">
+        <CardContent className="grid grid-cols-2 gap-2">
           {visibleTraits.map((t, i) => (
             <div
               key={`${t.type}-${i}`}
-              className="rounded-md border border-border bg-muted/40 px-2 py-1.5"
+              className="min-w-0 rounded-xl bg-muted px-3 py-2"
             >
-              <p className="text-[0.65rem] uppercase tracking-wide text-muted-foreground">
+              <p className="truncate text-[0.6875rem] font-bold tracking-wide text-muted-foreground uppercase">
                 {t.type}
               </p>
-              <p className="text-sm font-medium truncate">{t.value}</p>
+              <p className="truncate text-sm font-bold">{t.value}</p>
               {typeof t.rarity === "number" && (
-                <p className="text-[0.65rem] text-muted-foreground tabular-nums">
-                  {t.rarity.toFixed(1)}% have this
+                <p className="text-xs text-muted-foreground tabular-nums">
+                  {rarityLabel(t.rarity.toFixed(1))}
                 </p>
               )}
             </div>
           ))}
           {hiddenTraitCount > 0 && (
-            <div className="col-span-2 text-center text-xs text-muted-foreground">
-              +{hiddenTraitCount} more trait{hiddenTraitCount === 1 ? "" : "s"}
+            <div className="col-span-2 text-center text-xs font-semibold text-muted-foreground">
+              {moreTraitsLabel(hiddenTraitCount)}
             </div>
           )}
         </CardContent>
       )}
 
       {(price || action) && (
-        <CardFooter className="flex items-center justify-between gap-3 p-4 pt-2">
+        <CardFooter className="justify-between gap-3">
           {price && (
             <div className="flex flex-col leading-tight">
-              <span className="text-sm font-semibold tabular-nums">{price}</span>
+              <span className="text-base font-extrabold tabular-nums">{price}</span>
               {priceSecondary && (
                 <span className="text-xs text-muted-foreground tabular-nums">
                   {priceSecondary}
