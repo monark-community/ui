@@ -33,7 +33,7 @@ screenReader:
     aria-label or a visually-hidden <span>; the icon alone is not enough.
 
 contrast:
-  text: "Every variant meets WCAG AA against its background (default, outline, secondary, ghost, destructive, link)"
+  text: "Every variant meets WCAG AA against its background (default, outline, secondary, ghost, destructive, destructive-solid, link). destructive-solid uses text-destructive-foreground on bg-destructive: white on #c81e0b is 5.8:1 in light mode; in dark mode the label is espresso on #fc452f, 5.5:1 (white there would only be 3.5:1)"
   ui: "Focus ring uses ring-ring/50, a 3px halo in the --ring token (the orange ink in light mode, chosen because flat orange is under 3:1 on cream)"
 
 motion:

@@ -9,9 +9,9 @@ description: >
   <button> with aria-expanded and aria-controls wired to its AccordionContent
   region. Single-open and multi-open behaviors are supported via the type
   prop; Radix keeps aria-expanded in sync with visibility either way.
-  variant="plus" swaps the chevron for a + that rotates into an x when
-  open; every indicator icon is aria-hidden, so only aria-expanded
-  carries the state.
+  variant="plus" is the monark.io FAQ style: larger bold questions and a
+  + that rotates into an x when open. Every indicator icon is aria-hidden,
+  so only aria-expanded carries the state.
 
 keyboard:
   - key: Tab
@@ -31,8 +31,8 @@ focus:
   visible: true
   trapped: false
   notes: >
-    Triggers show focus-visible:ring-3 focus-visible:ring-ring/50 with
-    focus-visible:border-ring. Panels and their contents share the same tab
+    Triggers show focus-visible:ring-3 focus-visible:ring-ring/50 (the
+    default variant adds focus-visible:border-ring). Panels and their contents share the same tab
     sequence as the rest of the page; focus is never trapped inside an open
     panel.
 
@@ -47,14 +47,15 @@ screenReader:
 
 contrast:
   text: "Trigger label uses foreground; meets WCAG AA on the default theme"
-  ui: "Chevron icon uses muted-foreground (the plus variant's icon uses foreground); both meet WCAG AA on bg-background"
+  ui: "Chevron icon uses muted-foreground and meets WCAG AA on bg-background. The plus variant's + is flat primary orange (about 2.3:1 on cream, as on monark.io); it is decorative and aria-hidden, and the open state is also conveyed by the icon's rotation and the revealed panel"
 
 motion:
   reducedMotion: >
-    Expand / collapse uses the animate-accordion-down / animate-accordion-up
-    keyframes on --radix-accordion-content-height, keyed off data-open /
-    data-closed. Consumers can gate the animation behind
-    @media (prefers-reduced-motion: reduce) to skip it.
+    Panels expand and collapse with the theme's animate-expand utility
+    (0.2s ease-out height animation on --radix-collapsible-content-height,
+    keyed off data-state). The theme turns it off under
+    prefers-reduced-motion, so panels open and close instantly; the plus
+    icon's rotation is motion-reduce:transition-none too.
 
 consumerResponsibilities:
   - Provide a clear, descriptive label for each AccordionTrigger; it's the

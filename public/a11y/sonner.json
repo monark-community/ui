@@ -33,8 +33,8 @@
     "notes": "Sonner's default announcements are concise. For long messages, provide a description that keeps the primary message short, since live regions can be interrupted if the user acts quickly.\n"
   },
   "contrast": {
-    "text": "Toasts use the popover / popover-foreground tokens (via --normal-bg / --normal-text). Meets WCAG AA",
-    "ui": "Border uses the border token (via --normal-border), which is decorative; status icons (success, info, warning, error, loading) are lucide icons in the text colour"
+    "text": "Toasts use the popover / popover-foreground tokens (via --normal-bg / --normal-text) and the theme font; descriptions use muted-foreground instead of sonner's hard-coded grey. Meets WCAG AA",
+    "ui": "Border uses the border token (via --normal-border), which is decorative. Status icons are lucide icons in the semantic tokens (success, warning, destructive; info in the text colour, loading in muted-foreground); the toast text carries the meaning, so colour is never the only signal"
   },
   "motion": {
     "reducedMotion": "Sonner animates enter / exit with slide + fade. The library respects prefers-reduced-motion natively, collapsing animations to a plain fade when the user opts out.\n"
@@ -43,6 +43,7 @@
     "Use toast.error for destructive / error states so the assertive live region is used.",
     "Keep messages short; toasts auto-dismiss, so long text gets cut off before AT finishes reading.",
     "For actions that require a decision (not a confirmation), use a Dialog / AlertDialog instead; toasts can be missed.",
-    "Mount <Toaster /> once at the app root; additional Toasters will double-render toasts."
+    "Mount <Toaster /> once at the app root; additional Toasters will double-render toasts.",
+    "Don't mount the Toaster inside a transformed or filtered ancestor; it is position fixed and would be positioned against that ancestor instead of the viewport."
   ]
 }

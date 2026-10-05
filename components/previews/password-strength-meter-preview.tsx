@@ -16,7 +16,7 @@ export function PasswordStrengthMeterPreview() {
 
   return (
     <PreviewLayout controls={entries}>
-      <PasswordStrengthMeter score={score} className="w-[320px] max-w-full" />
+      <PasswordStrengthMeter score={score} className="w-[min(20rem,calc(100vw-4rem))]" />
     </PreviewLayout>
   )
 }

@@ -7,9 +7,9 @@ delegatesTo: "radix-ui (Switch)"
 description: >
   On / off toggle. Radix renders a <button role="switch"> with
   aria-checked reflecting the current state. The visual thumb slides via
-  data-checked:translate-x-[calc(100%-2px)]. Two sizes: default (32 x
-  18.4px) and sm (24 x 14px). Unlike Checkbox, there is no indeterminate
-  state.
+  data-checked:translate-x. Three sizes: sm (32 x 18.4px, 16px thumb),
+  default (44 x 24px, 20px thumb inset 2px) and lg (52 x 28px, 24px thumb
+  inset 2px). Unlike Checkbox, there is no indeterminate state.
 
 keyboard:
   - key: Tab
@@ -23,7 +23,8 @@ focus:
   notes: >
     Uses focus-visible:ring-3 focus-visible:ring-ring/50 with
     focus-visible:border-ring, and an invisible ::after hit area extending
-    12px sideways and 8px vertically. Disabled switches show
+    8px sideways and vertically to at least 44px tall on every size (sm
+    46.4 x 48px, default 44 x 60px, lg 44 x 68px). Disabled switches show
     cursor-not-allowed and opacity-50 but remain in the tab order unless
     tabIndex={-1} is added.
 

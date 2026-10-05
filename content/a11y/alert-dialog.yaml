@@ -9,7 +9,10 @@ description: >
   changes). Uses role="alertdialog" so assistive tech signals the
   interruption more assertively than a plain dialog. AlertDialogTitle and
   AlertDialogDescription are wired to aria-labelledby / aria-describedby
-  automatically.
+  automatically. variant="destructive" on AlertDialogContent tints
+  AlertDialogMedia red and makes AlertDialogAction a solid red CTA
+  (Button variant "destructive-solid") unless the action sets its own
+  variant.
 
 keyboard:
   - key: Tab
@@ -38,7 +41,7 @@ screenReader:
     for routine flows.
 
 contrast:
-  text: "Title, description, and button labels all meet WCAG AA on the default theme"
+  text: "Title, description, and button labels all meet WCAG AA on the default theme. The destructive action is text-destructive-foreground on bg-destructive: 5.8:1 in light mode (white on #c81e0b) and 5.5:1 in dark mode (espresso on #fc452f). The destructive media icon is text-destructive on a 10% red tint (4.8:1 light, 4.4:1 dark), above the 3:1 non-text minimum"
   ui: "Overlay backdrop uses bg-overlay (black at 45%) for clear separation from the page"
 
 motion:
@@ -51,7 +54,9 @@ consumerResponsibilities:
   - Always render AlertDialogTitle and AlertDialogDescription; screen readers
     rely on them for context.
   - Label the destructive action button with a verb that matches the
-    consequence ("Delete account", not just "OK").
+    consequence ("Delete account", not just "OK"). Red is not the only cue;
+    the verb and the title carry the warning.
+  - Use variant="destructive" only for irreversible or data-losing actions.
   - Consider which button should receive initial focus. By default Radix
     focuses AlertDialogCancel when one is rendered; keep a Cancel in
     destructive flows so focus never lands on the action first.

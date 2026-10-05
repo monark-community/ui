@@ -5,35 +5,54 @@ element: div
 role: null
 delegatesTo: recharts
 description: >
-  Wrapper around recharts that injects a theme-aware CSS variable map and
-  a ResponsiveContainer. The chart itself is an SVG drawn by recharts,
-  which is not a keyboard-navigable structure by default. ChartTooltipContent
-  and ChartLegendContent are presentational <div>s that recharts positions
-  over hovered data points.
+  Wrapper around Recharts 3 that injects a theme-aware CSS variable map and
+  a ResponsiveContainer. The chart itself is an SVG drawn by Recharts.
+  Recharts 3 enables its accessibilityLayer by default (the Monark examples
+  also pass it explicitly), which makes the SVG surface a single tab stop
+  with role="application" and lets arrow keys drive the tooltip.
+  ChartTooltipContent and ChartLegendContent are presentational <div>s that
+  Recharts positions over the active data point.
 
-keyboard: []
+keyboard:
+  - key: Tab
+    action: Moves focus to the chart surface (one tab stop per chart).
+  - key: ArrowRight / ArrowLeft
+    action: Moves the active tooltip to the next / previous data point.
+  - key: Enter
+    action: Toggles the tooltip at the current data point.
 
 focus:
-  visible: false
+  visible: true
   trapped: false
   notes: >
-    Not focusable out of the box. Recharts SVG shapes are inert to the
-    keyboard unless the consumer enables its accessibilityLayer prop, which
-    this wrapper does not set by default.
+    The SVG surface gets tabIndex=0 from accessibilityLayer. The wrapper replaces
+    the browser outline with the theme's ring-3 ring-ring/50 focus ring on
+    the surface when it is focused from the keyboard, and the tooltip then
+    follows arrow-key navigation.
+    Keyboard navigation follows the tooltip axis, so it works best on
+    category charts (bar, line, area); pie, radar and radial charts expose
+    less through the keyboard. Setting accessibilityLayer={false} removes the
+    tab stop and the arrow-key handling.
 
 screenReader:
   announcements:
-    - The SVG is not announced as a structured region; individual shapes have no accessible name.
+    - The surface is announced as an application region; individual shapes have no accessible name.
+    - Tooltip text is not a live region, so arrow-key moves are not announced automatically.
   notes: >
     Charts are inherently visual. Pair every Chart with a textual summary
-    (e.g. "Revenue grew 12% month over month") and/or a <table> containing
-    the underlying data so assistive tech users get the same information.
+    (e.g. "ETH volume peaked in February at $305M") and/or a <table>
+    containing the underlying data so assistive tech users get the same
+    information. Recharts' title and desc props on the chart add <title> and
+    <desc> to the SVG.
 
 contrast:
   text: "Axis tick text uses fill-muted-foreground; still meets AA on bg-background"
   ui: >
-    Series colors come from the consumer's ChartConfig; contrast depends on
-    the palette. The wrapper does nothing to enforce contrast between
+    Series colors come from the consumer's ChartConfig, normally pointed at
+    the --chart-1 to --chart-5 tokens. In dark mode all five meet 3:1 on the
+    background. In light mode --chart-1 (orange) and --chart-4 (tan) are
+    about 2.3:1 on cream, so series in those colors need a label, stroke or
+    other non-color cue. The wrapper does nothing to enforce contrast between
     adjacent series.
 
 motion:
@@ -44,5 +63,6 @@ motion:
 
 consumerResponsibilities:
   - Provide a text alternative for every chart (summary paragraph, data table, or aria-describedby).
+  - Don't rely on color alone; label series or slices, show a legend, or vary dash/shape/pattern.
   - Pick series colors with sufficient contrast against each other and the background; the ChartConfig schema does not validate this.
-  - Consider passing recharts' accessibilityLayer prop for richer keyboard / screen reader support if the chart is interactive.
+  - Keep accessibilityLayer on (the Recharts 3 default) for any chart with a tooltip.

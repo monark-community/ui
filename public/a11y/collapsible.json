@@ -33,7 +33,7 @@
     "ui": "No chrome; consumer supplies all visuals"
   },
   "motion": {
-    "reducedMotion": "Radix exposes --radix-collapsible-content-height / -width CSS variables but does not animate by default. Any transition is authored by the consumer and should be gated behind prefers-reduced-motion.\n"
+    "reducedMotion": "CollapsibleContent animates its height with the theme's animate-expand utility (0.2s ease-out, both opening and closing). The theme turns it off under prefers-reduced-motion, so content appears and disappears instantly.\n"
   },
   "consumerResponsibilities": [
     "Style the trigger as a real button; pair it with an icon (chevron) whose rotation mirrors the open state.",

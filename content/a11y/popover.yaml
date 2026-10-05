@@ -34,6 +34,7 @@ screenReader:
   announcements:
     - Trigger announces as a button with the "dialog" popup affordance and its expanded state.
     - Popover content is read as a dialog; consumers should provide an aria-label / aria-labelledby for the dialog if it contains a form or meaningful section.
+    - Transient feedback inside the popover (e.g. "Copied") should also go to a polite live region, since the button label change alone may not be announced.
   notes: >
     Because Popover is non-modal, screen reader users may not realize the
     popover is open if they swipe past the trigger. Pair with a visible
@@ -49,6 +50,6 @@ motion:
     Gate with motion-reduce:animate-none if strict compliance matters.
 
 consumerResponsibilities:
-  - Provide an accessible name for the popover content when it's a distinct section (form, date picker). Use aria-label on PopoverContent or wrap its first child in a heading; PopoverTitle is a plain <div> and is not wired to aria-labelledby.
+  - Provide an accessible name for the popover content when it's a distinct section (form, date picker, share panel). Give PopoverTitle an id and pass it as aria-labelledby on PopoverContent (the preview does this), or use aria-label. PopoverTitle is a plain <div> and is not wired automatically.
   - Use Popover for UI that should remain clickable alongside the rest of the page; use Dialog for interruptions that demand the user's attention.
   - Consider where initial focus should land. Radix focuses the first tabbable child by default, which may not be ideal (e.g. an "X" close button); use ref-based focus for precision.

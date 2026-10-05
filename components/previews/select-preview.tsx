@@ -13,6 +13,11 @@ import { PreviewLayout } from "@sntlr/registry-shell/shell/components/preview-la
 export function SelectPreview() {
   const { values, entries } = useControls({
     placeholder: { type: "text", default: "Select a fruit" },
+    position: {
+      type: "select",
+      options: ["popper", "item-aligned"],
+      default: "popper",
+    },
     disabled: { type: "boolean", default: false },
   })
 
@@ -22,7 +27,7 @@ export function SelectPreview() {
         <SelectTrigger className="w-48">
           <SelectValue placeholder={values.placeholder} />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent position={values.position as "popper"}>
           <SelectItem value="apple">Apple</SelectItem>
           <SelectItem value="banana">Banana</SelectItem>
           <SelectItem value="cherry">Cherry</SelectItem>

@@ -27,24 +27,101 @@ export default defineConfig({
     globalCss: "./styles/theme.css",
   },
 
-  // Sidebar grouping for the components section. Web3-specific primitives get
-  // their own collapsible sub-section; everything else renders flat below.
+  // Sidebar grouping for the components section, in display order. Every
+  // component belongs to exactly one group (tests/unit/registry/categories
+  // checks this), so nothing falls back into the shell's catch-all "Base".
   categories: {
+    Actions: ["button", "toggle", "toggle-group"],
+    Forms: [
+      "input",
+      "input-group",
+      "input-otp",
+      "textarea",
+      "label",
+      "checkbox",
+      "radio-group",
+      "switch",
+      "slider",
+      "select",
+      "native-select",
+      "calendar",
+      "form",
+      "field-error",
+      "password-strength-meter",
+    ],
+    Overlays: [
+      "dialog",
+      "alert-dialog",
+      "sheet",
+      "drawer",
+      "popover",
+      "hover-card",
+      "tooltip",
+      "info-tip",
+      "dropdown-menu",
+      "context-menu",
+      "command",
+      "image-crop-dialog",
+    ],
+    Navigation: [
+      "tabs",
+      "breadcrumb",
+      "pagination",
+      "menubar",
+      "navigation-menu",
+      "sidebar",
+    ],
+    Layout: [
+      "card",
+      "separator",
+      "aspect-ratio",
+      "resizable",
+      "scroll-area",
+      "accordion",
+      "collapsible",
+      "disclosure",
+      "carousel",
+      "section-heading",
+      "section-divider",
+    ],
+    "Data display": [
+      "table",
+      "chart",
+      "stat",
+      "badge",
+      "avatar",
+      "role-chip",
+      "trusted-device-card",
+    ],
+    Feedback: ["alert", "sonner", "progress", "skeleton", "empty"],
     Web3: [
       "wallet",
       "connect-wallet",
       "token-amount",
       "network-badge",
       "tx-status",
+      "tx-feedback",
+      "wallet-prompt",
     ],
-    // The standard header pieces every Monark-branded site shares.
+    // The standard chrome every Monark-branded site shares.
     "Site shell": [
       "site-header",
       "site-brand",
+      "site-footer",
+      "header-action",
       "demo-chip",
       "locale-switch",
       "theme-toggle",
+      "disclaimer",
     ],
+    // Pieces of the demo apps behind "Launch demo".
+    "Demo app": ["app-tabs", "app-loading", "demo-controls"],
+  },
+
+  // Default preview heights (px) for components that need more room than the
+  // 384px default. A height the visitor drags still wins for the session.
+  previewHeight: {
+    sidebar: 640,
   },
 
   // Versioned docs: every v* tag gets a frozen site at /v/<version>/ and

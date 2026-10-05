@@ -17,7 +17,11 @@
  */
 
 /* The data-open/data-checked/data-horizontal variants and accordion
-   keyframes the components use. */
+   keyframes the components use. tw-animate-css (animate-in/out and the
+   collapsible keyframes behind animate-expand) is not imported here: the
+   shell's globals.css and preview.css already import it, and pnpm doesn't
+   hoist it, so it wouldn't resolve from this folder. The theme item
+   imports both. */
 @import "shadcn/tailwind.css";
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
 
@@ -191,6 +195,16 @@ body {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
   }
+  /* Pointer on every enabled control (shadcn v4 dropped it), not-allowed
+     once disabled. :where() keeps both at zero specificity, so a cursor-*
+     class on a component still wins. A text input with role=combobox keeps
+     its text cursor. */
+  :where(button, [role=button], [role=checkbox], [role=switch], [role=radio], [role=tab], [role=option], [role=menuitem], [role=menuitemcheckbox], [role=menuitemradio], [role=combobox]:not(input), select, summary, label[for], input[type=checkbox], input[type=radio], input[type=range], input[type=file], input[type=color]) {
+    cursor: pointer;
+  }
+  :where(:disabled, [aria-disabled=true], [data-disabled]) {
+    cursor: not-allowed;
+  }
 }
 
 @utility tracking-display {
@@ -211,6 +225,22 @@ body {
     display: none;
   }
 }
+/* Height animation for a Radix Collapsible or Accordion panel: slides open
+   on data-state=open and closed on data-state=closed (0.2s ease-out, from
+   tw-animate-css). Put it on the element that carries data-state and keep
+   padding on an inner wrapper. Off under prefers-reduced-motion. */
+/* clip, not hidden: the margin keeps a child's 3px focus ring visible at the
+   panel's edge. Browsers without overflow-clip-margin still clip it. */
+@utility animate-expand {
+  overflow: clip;
+  overflow-clip-margin: 4px;
+  &[data-state=open] {
+    animation: var(--animate-collapsible-down);
+  }
+  &[data-state=closed] {
+    animation: var(--animate-collapsible-up);
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -220,5 +250,8 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+  .animate-expand {
+    animation: none !important;
   }
 }

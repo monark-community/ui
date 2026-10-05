@@ -6,6 +6,12 @@ import { AlertDialog as AlertDialogPrimitive } from "radix-ui"
 
 import { Button } from "@/components/ui/button"
 
+type AlertDialogVariant = "default" | "destructive"
+
+/** Lets AlertDialogAction pick the solid red CTA inside a destructive dialog. */
+const AlertDialogVariantContext =
+  React.createContext<AlertDialogVariant>("default")
+
 function AlertDialog({
   ...props
 }: React.ComponentProps<typeof AlertDialogPrimitive.Root>) {
@@ -47,23 +53,32 @@ function AlertDialogOverlay({
 function AlertDialogContent({
   className,
   size = "default",
+  variant = "default",
   ...props
 }: React.ComponentProps<typeof AlertDialogPrimitive.Content> & {
   size?: "default" | "sm"
+  /**
+   * `destructive` tints AlertDialogMedia red and makes AlertDialogAction a
+   * solid red CTA (unless the action passes its own `variant`).
+   */
+  variant?: AlertDialogVariant
 }) {
   return (
-    <AlertDialogPortal>
-      <AlertDialogOverlay />
-      <AlertDialogPrimitive.Content
-        data-slot="alert-dialog-content"
-        data-size={size}
-        className={cn(
-          "group/alert-dialog-content fixed top-1/2 left-1/2 z-50 grid w-full -translate-x-1/2 -translate-y-1/2 gap-4 rounded-3xl border bg-popover p-6 text-popover-foreground shadow-lg duration-150 outline-none max-w-[calc(100%-2rem)] data-[size=sm]:sm:max-w-xs data-[size=default]:sm:max-w-md data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
-          className
-        )}
-        {...props}
-      />
-    </AlertDialogPortal>
+    <AlertDialogVariantContext.Provider value={variant}>
+      <AlertDialogPortal>
+        <AlertDialogOverlay />
+        <AlertDialogPrimitive.Content
+          data-slot="alert-dialog-content"
+          data-size={size}
+          data-variant={variant}
+          className={cn(
+            "group/alert-dialog-content fixed top-1/2 left-1/2 z-50 grid w-full -translate-x-1/2 -translate-y-1/2 gap-4 rounded-3xl border bg-popover p-6 text-popover-foreground shadow-lg duration-150 outline-none max-w-[calc(100%-2rem)] data-[size=sm]:sm:max-w-xs data-[size=default]:sm:max-w-md data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+            className
+          )}
+          {...props}
+        />
+      </AlertDialogPortal>
+    </AlertDialogVariantContext.Provider>
   )
 }
 
@@ -107,7 +122,7 @@ function AlertDialogMedia({
     <div
       data-slot="alert-dialog-media"
       className={cn(
-        "mb-2 inline-flex size-10 items-center justify-center rounded-full bg-muted sm:group-data-[size=default]/alert-dialog-content:row-span-2 *:[svg:not([class*='size-'])]:size-6",
+        "mb-2 inline-flex size-10 items-center justify-center rounded-full bg-muted group-data-[variant=destructive]/alert-dialog-content:bg-destructive/10 group-data-[variant=destructive]/alert-dialog-content:text-destructive sm:group-data-[size=default]/alert-dialog-content:row-span-2 *:[svg:not([class*='size-'])]:size-6",
         className
       )}
       {...props}
@@ -149,13 +164,16 @@ function AlertDialogDescription({
 
 function AlertDialogAction({
   className,
-  variant = "default",
+  variant,
   size = "default",
   ...props
 }: React.ComponentProps<typeof AlertDialogPrimitive.Action> &
   Pick<React.ComponentProps<typeof Button>, "variant" | "size">) {
+  const dialogVariant = React.useContext(AlertDialogVariantContext)
+  const resolvedVariant =
+    variant ?? (dialogVariant === "destructive" ? "destructive-solid" : "default")
   return (
-    <Button variant={variant} size={size} asChild>
+    <Button variant={resolvedVariant} size={size} asChild>
       <AlertDialogPrimitive.Action
         data-slot="alert-dialog-action"
         className={cn(className)}
@@ -196,4 +214,5 @@ export {
   AlertDialogPortal,
   AlertDialogTitle,
   AlertDialogTrigger,
+  type AlertDialogVariant,
 }

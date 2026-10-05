@@ -19,12 +19,17 @@ function CollapsibleTrigger({
   )
 }
 
+// Height-animated with the theme's `animate-expand` utility (which also
+// clips overflow while it runs). Put padding and spacing on a child, not on
+// the content itself, so nothing jumps at the start or end of the animation.
 function CollapsibleContent({
+  className,
   ...props
 }: React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleContent>) {
   return (
     <CollapsiblePrimitive.CollapsibleContent
       data-slot="collapsible-content"
+      className={className ? `animate-expand ${className}` : "animate-expand"}
       {...props}
     />
   )

@@ -40,7 +40,7 @@ function Calendar({
       locale={locale}
       formatters={{
         formatMonthDropdown: (date) =>
-          date.toLocaleString(locale?.code, { month: "short" }),
+          date.toLocaleString(locale?.code ?? "en-US", { month: "short" }),
         ...formatters,
       }}
       classNames={{
@@ -102,11 +102,14 @@ function Calendar({
           "text-[0.8rem] text-muted-foreground select-none",
           defaultClassNames.week_number
         ),
+        // A range that wraps across weeks rounds its middle days at the row
+        // edges. Scoped to data-range-middle so a single-mode selected
+        // weekend day stays a full circle instead of looking like a range end.
         day: cn(
-          "group/day relative aspect-square h-full w-full rounded-(--cell-radius) p-0 text-center select-none [&:last-child[data-selected=true]_button]:rounded-r-(--cell-radius)",
+          "group/day relative aspect-square h-full w-full rounded-(--cell-radius) p-0 text-center select-none [&:last-child[data-selected=true]_button[data-range-middle=true]]:rounded-r-(--cell-radius)",
           props.showWeekNumber
-            ? "[&:nth-child(2)[data-selected=true]_button]:rounded-l-(--cell-radius)"
-            : "[&:first-child[data-selected=true]_button]:rounded-l-(--cell-radius)",
+            ? "[&:nth-child(2)[data-selected=true]_button[data-range-middle=true]]:rounded-l-(--cell-radius)"
+            : "[&:first-child[data-selected=true]_button[data-range-middle=true]]:rounded-l-(--cell-radius)",
           defaultClassNames.day
         ),
         range_start: cn(
@@ -119,7 +122,7 @@ function Calendar({
           defaultClassNames.range_end
         ),
         today: cn(
-          "rounded-(--cell-radius) bg-muted text-foreground data-[selected=true]:rounded-none",
+          "rounded-(--cell-radius) bg-muted text-foreground data-[selected=true]:rounded-none has-data-[selected-single=true]:bg-transparent",
           defaultClassNames.today
         ),
         outside: cn(
@@ -180,6 +183,11 @@ function Calendar({
   )
 }
 
+function isoDay(date: Date) {
+  const pad = (n: number) => String(n).padStart(2, "0")
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+}
+
 function CalendarDayButton({
   className,
   day,
@@ -199,7 +207,9 @@ function CalendarDayButton({
       ref={ref}
       variant="ghost"
       size="icon"
-      data-day={day.date.toLocaleDateString(locale?.code)}
+      // A fixed yyyy-mm-dd, not toLocaleDateString: the server and the browser
+      // can format dates differently, which breaks hydration.
+      data-day={isoDay(day.date)}
       data-selected-single={
         modifiers.selected &&
         !modifiers.range_start &&

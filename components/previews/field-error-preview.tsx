@@ -17,7 +17,7 @@ export function FieldErrorPreview() {
 
   return (
     <PreviewLayout controls={entries}>
-      <div className="flex w-full max-w-sm flex-col gap-2">
+      <div className="flex w-[min(24rem,calc(100vw-4rem))] flex-col gap-2">
         <Label htmlFor="field-error-address">Wallet address</Label>
         <Input
           id="field-error-address"
