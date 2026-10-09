@@ -101,7 +101,7 @@ export function Header({ locale, t }: { locale: Locale; t: HeaderMessages }) {
     <SiteHeader
       pathname={pathname}
       LinkComponent={Link}
-      brand={<SiteBrand name="Splitflow" href={`/${locale}`} aria-label={t.homeLabel} LinkComponent={Link} />}
+      brand={<SiteBrand name="Acme" href={`/${locale}`} aria-label={t.homeLabel} LinkComponent={Link} />}
       links={[
         { href: `/${locale}`, label: t.overview, exact: true },
         { href: `/${locale}/how-it-works`, label: t.howItWorks },

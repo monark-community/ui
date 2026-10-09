@@ -10,14 +10,14 @@ function TestLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement> & { href:
 function renderFooter(extra: Partial<React.ComponentProps<typeof SiteFooter>> = {}) {
   return render(
     <SiteFooter
-      product="LedgerLift"
+      product="Acme"
       description="Wallet history turned into books."
       links={[
         { href: "/en", label: "Overview" },
         { href: "/en/app", label: "Demo" },
       ]}
       resources={[
-        { href: "https://www.monark.io/en/project/x", label: "Project page on monark.io" },
+        { href: "https://example.com/project", label: "Project page" },
         { href: "https://github.com/monark-community/demo-x", label: "Source on GitHub" },
       ]}
       legalLinks={[{ href: "/en/credits", label: "Photo credits" }]}
@@ -32,7 +32,7 @@ describe("SiteFooter", () => {
   it("renders a contentinfo landmark with the three bands", () => {
     const { container } = renderFooter()
     const footer = screen.getByRole("contentinfo")
-    expect(within(footer).getByText("LedgerLift")).toBeInTheDocument()
+    expect(within(footer).getByText("Acme")).toBeInTheDocument()
     expect(within(footer).getByText("Wallet history turned into books.")).toBeInTheDocument()
     for (const slot of ["site-footer-product", "site-footer-monark", "site-footer-legal"]) {
       expect(container.querySelector(`[data-slot="${slot}"]`)).not.toBeNull()
@@ -64,8 +64,8 @@ describe("SiteFooter", () => {
   })
 
   it("links the Monark logo home and shows the built-by line", () => {
-    renderFooter({ labels: { builtBy: "LedgerLift is built by Monark" } })
-    expect(screen.getByText("LedgerLift is built by Monark")).toBeInTheDocument()
+    renderFooter({ labels: { builtBy: "Acme is built by Monark" } })
+    expect(screen.getByText("Acme is built by Monark")).toBeInTheDocument()
     expect(screen.getByRole("link", { name: "Monark home page" })).toHaveAttribute(
       "href",
       "https://www.monark.io"
@@ -101,7 +101,7 @@ describe("SiteFooter", () => {
   })
 
   it("renders extra product-band content", () => {
-    renderFooter({ children: <p>The Monark DeFi family</p> })
-    expect(screen.getByText("The Monark DeFi family")).toBeInTheDocument()
+    renderFooter({ children: <p>Related products</p> })
+    expect(screen.getByText("Related products")).toBeInTheDocument()
   })
 })

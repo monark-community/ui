@@ -6,7 +6,7 @@
  * Monark 2026 brand: warm cream light mode, espresso dark mode, flat orange
  * primary with dark text on it, 1rem radius, Nunito Sans.
  *
- * Two layers, like monark.io's app/theme.css:
+ * Two layers:
  *   1. Fixed hex values, precomputed from the formulas, for browsers
  *      without CSS relative color.
  *   2. The formulas, inside @supports: every surface, border and text token

@@ -1396,7 +1396,7 @@
       "name": "section-divider",
       "type": "registry:ui",
       "title": "Section Divider",
-      "description": "monark.io's branded separator: a thin orange line with an outlined ring at either or both ends, horizontal or vertical.",
+      "description": "Monark's branded separator: a thin orange line with an outlined ring at either or both ends, horizontal or vertical.",
       "files": [
         {
           "path": "components/ui/section-divider.tsx",

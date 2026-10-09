@@ -48,4 +48,4 @@ consumerResponsibilities:
   - Render one SiteFooter per page, outside <main>, so there is a single contentinfo landmark.
   - Translate labels (productNav, builtBy, monarkHome, tagline, socials), the social labels (map over MONARK_SOCIALS) and demoNotice.
   - Keep the visible "Demo · simulated data" notice while the site is a demo; drop it (demoNotice={null}) once the product is live.
-  - Give any extra navigation passed as children its own aria-label (e.g. "The Monark DeFi family").
+  - Give any extra navigation passed as children its own aria-label (e.g. "Related products").

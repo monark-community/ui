@@ -141,7 +141,7 @@ function MonarkLogo({ title = "Monark", className, ...props }: MonarkLogoProps) 
 
 export interface SiteBrandProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> {
-  /** The product name, e.g. "Splitflow". Set in text, never as an image. */
+  /** The product name, e.g. "Acme". Set in text, never as an image. */
   name: React.ReactNode
   /** The site's home page. Default `/`; pass the locale root (`/fr`) on localised sites. */
   href?: string

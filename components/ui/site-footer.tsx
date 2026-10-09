@@ -98,13 +98,13 @@ const MONARK_SOCIALS: SiteFooterSocial[] = [
 
 const isExternal = (href: string) => /^[a-z][a-z0-9+.-]*:/i.test(href)
 
-// Bands 2 and 3 sit on a darker surface, like monark.io's lowest band: the
+// Bands 2 and 3 sit on a darker surface, like the lowest band of the Monark brand: the
 // secondary tint in light mode, the background 5% darker in dark mode.
 const LOW_BAND = "border-t bg-secondary dark:bg-[oklch(from_var(--background)_calc(l-0.05)_c_h)]"
 
 export interface SiteFooterProps
   extends Omit<React.HTMLAttributes<HTMLElement>, "children"> {
-  /** The product name, set in text (e.g. "Splitflow"). */
+  /** The product name, set in text (e.g. "Acme"). */
   product: React.ReactNode
   /** One sentence on what the product does. */
   description?: React.ReactNode
@@ -112,7 +112,7 @@ export interface SiteFooterProps
   links?: SiteFooterLink[]
   /**
    * Extra product-band content under the name and links, e.g. a row of
-   * sibling demos ("The Monark DeFi family").
+   * related products ("Related products").
    */
   children?: React.ReactNode
   /** Underlined links in the Monark band: the project page, the source repo. */
