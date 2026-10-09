@@ -1,0 +1,107 @@
+---
+title: Component Guidelines
+description: What belongs in Monark UI and what stays in the site that uses it, and how to decide.
+order: 7
+---
+
+# Component Guidelines
+
+Monark UI exists so the Monark sites (the demo sites, monark.io and the app) stop building the same thing twice. Every item in it is also a promise: it gets docs, accessibility notes, tests, a changelog entry and a migration path when it changes. That cost is worth paying only for things more than one site needs.
+
+This page draws the line. Read it before you propose a new item, a new variant or a new prop.
+
+## The short version
+
+An item belongs in Monark UI when all five are true:
+
+1. **Two consumers.** At least two Monark sites use it, or will in a change that is already planned. One site is a local component.
+2. **No product knowledge.** It doesn't know what a vault, a ballot or a referral is. The product meaning comes in through props and children.
+3. **Plain props.** It doesn't import an i18n library, a store, a router, a wallet library or a data client, and it makes no network requests.
+4. **The Monark look, not a product's look.** It's styled with the theme tokens. A product's own visual identity stays in that product.
+5. **It can be documented and tested in isolation.** A preview with fake props shows everything it does.
+
+If any of these fails, the component stays in the site. That isn't a judgement on its quality, only on where it lives.
+
+## The layers
+
+Each item sits in one layer, and each layer has its own rules. The sidebar groups follow the layers.
+
+| Layer | Examples | Rule |
+|-|-|-|
+| **Theme** | `theme` | Tokens, the base layer and a few utilities (`eyebrow`, `tnum`). Something every site adds by hand goes here; something one site wants goes in that site's CSS. |
+| **Primitives** | `button`, `dialog`, `select` | shadcn's components with the Monark look. Keep shadcn's API: restyle, and add props or variants, but never rename or remove anything shadcn has. |
+| **Patterns** | `stat`, `empty`, `info-tip`, `section-heading` | Small, generic building blocks that two or more sites were hand-rolling. |
+| **Web3** | `wallet`, `token-amount`, `tx-status` | Display and input for on-chain concepts. Adapters of your connector, never wrappers around one: address, chain and status come in as props. |
+| **Site shell** | `site-header`, `site-footer`, `demo-chip` | The chrome every Monark-branded site shares. Links, locale and labels come in as props (`LinkComponent`, `hrefFor`, `pathname`). |
+| **Demo app** | `app-tabs`, `demo-controls`, `wallet-prompt` | The pieces of the simulated demo apps behind "Launch demo". Only demos need them, so they can assume a demo context, but not a product. |
+| **Blocks** | `swap-form`, `nft-card` | Compositions of the items above into a whole pattern. A block needs the same two consumers; one site's feature is not a block. |
+
+## What stays in the site
+
+These never move into Monark UI, however polished they are:
+
+- **Product visuals.** Diagrams, gauges, dials, tallies, seals, timelines and any illustration of how a product works (FlexGas's fee-route cascade, TrustRate's score dial, GovChain's ballot tally).
+- **Adapters.** The thin file that passes a site's translations, routes and store into a registry item (`site/header.tsx` wrapping `SiteHeader`). Every site has one; it is the boundary, not a duplicate.
+- **Page composition.** Heroes, closing call-to-action cards, landing sections. They are arrangements of items, and the arrangement is the product's.
+- **Anything that fetches, stores or decides.** Business state, validation rules, pricing, permissions. Items render what they're given and call back when the user acts.
+- **A one-site variant of an existing item.** Style it at the call site, or wrap it locally. If a second site needs the same variant, propose it then.
+
+## Extend before you add
+
+Most "new component" requests are really a missing option on an existing one. Prefer, in this order:
+
+1. **Nothing.** The item already does it with `className`, `asChild` or composition. Check the docs and the examples first.
+2. **A slot.** A `children` region, a render prop or a named slot (`primaryAction`, `trigger`). Slots let sites add what the item can't anticipate, without growing the API for everyone.
+3. **A prop or variant.** One that changes behaviour or look in a way at least two sites need. Name it after what it means (`tone="destructive"`), not how it looks (`red`), and keep it on theme tokens.
+4. **A new item.** Only when the thing has its own structure, accessibility contract and docs page.
+
+Avoid boolean props that only make sense together, and variants that exist for one site. Every option is something the next person has to read, test and keep working.
+
+## Rules every item follows
+
+These come from [Anatomy](/docs/anatomy) and are checked in review:
+
+- **Strings are props with English defaults.** Every visible or accessible string (button labels, `aria-label`, sr-only text) can be replaced, so sites pass their translations in. No item imports an i18n library.
+- **Links are injected.** Take `href`, `LinkComponent` or a render prop; never import `next/link` or a router.
+- **State is only UI ephemera.** A "copied" flash or an open/closed panel can live inside the item. Anything the site cares about is controlled through props.
+- **Accessible by default.** Keyboard reachable, named controls, a visible focus ring, 3:1 contrast for non-text and 4.5:1 for text, 44px touch targets on coarse pointers. Each item has a `content/a11y/<item>.yaml` entry.
+- **Clean in the consumer's lint.** Items ship into other repos as source, so they must pass `eslint-config-next`'s recommended rules (including the React hooks rules) without a disable comment. If a consumer has to turn a rule off for a registry file, that's a bug in the registry.
+- **Server-rendered content stays in the HTML.** Collapsed content that matters for search, like FAQ answers, should still be in the server-rendered page.
+- **Declared dependencies.** Every npm import and every registry item it uses is declared and namespaced (`@monark/button`). `pnpm registry:check` enforces this.
+
+## Proposing an item
+
+Open an issue, or a PR description, that answers:
+
+1. **Consumers:** which sites need it, with links to the code they hand-roll today. Two at least.
+2. **Layer:** which one it belongs to, and why it can't be a slot or prop on an existing item.
+3. **API sketch:** props, slots and the strings it needs.
+4. **What stays local:** the product-specific part each consumer keeps.
+
+The PR that adds it then includes the item and its registry entry, a preview, the a11y entry, unit tests, its sidebar category in `registry-shell.config.ts`, a docs mention where a guide covers it, and a [changeset](https://github.com/monark-community/ui/blob/main/CONTRIBUTING.md#3-releases).
+
+## When a site diverges from the registry
+
+Sites install items as source, so they can edit them. Don't. A site that changes `components/ui/*` loses clean `--overwrite` updates and drifts from every other site.
+
+- **The registry has a bug:** fix it upstream, then re-add the item. Until the fix ships, work around it outside the vendored file (a call-site class, a wrapper, a scoped lint override with a comment pointing at the issue).
+- **The registry is missing an option:** wrap the item locally and propose the option here. Once it lands, delete the wrapper.
+- **The site really is different:** it's a local component, not a modified registry item. Give it its own file and name.
+
+## Examples
+
+How these rules apply to patterns the demo sites still hand-roll (October 2026):
+
+| Pattern | Seen in | Decision |
+|-|-|-|
+| Connect-wallet gate screen | FlexGas, TaskFlow, TimeVault, Splitflow, GovChain | **New item** in Demo app: same structure everywhere, product wording through props. |
+| App sub-bar with no tabs | Splitflow, Yieldmine, MilestoneMint | **Extend** `app-tabs`: an actions-only mode with no empty `nav`. |
+| Several figures joined in one card | LedgerLift, BorrowX, Yieldmine | **Extend** `stat`: a group that joins tiles. |
+| Content above the demo-controls switches | GovChain, VaultLend | **Slot** on `demo-controls`. |
+| Disclosure whose summary is a heading | GovChain, Yieldmine | **Extend** `disclosure` so the trigger can hold a heading. |
+| Toggle group that can't be deselected | TrustRate, and every pill toggle | **Prop** on `toggle-group`. |
+| Copy button named after its address | TrustList | **Fix** in `wallet`: a patch to its accessible name and announcement, not a new item. |
+| Swap form with Max, balances and a quote slot | Fluidswap only | **Stays local** until a second swap surface needs it; then slots on `swap-form`. |
+| Numbered transaction steps | BorrowX only | **Stays local** for now. |
+| Fee-route cascade, score dial, ballot tally | One product each | **Never**: product visuals. |
+| Landing hero and closing CTA card | Most demos | **Never**: page composition. |

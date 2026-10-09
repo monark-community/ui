@@ -34,6 +34,12 @@ git push origin feature/my-feature
 
 ---
 
+### What belongs here
+
+Before you add a component, variant or prop, read the [Component Guidelines](https://ui.monark.io/docs/component-guidelines). In short: an item needs at least two Monark sites that use it, no product-specific knowledge, and plain props (no i18n library, router, store or network calls). Product visuals, page sections and the adapters that wire a site's state into an item stay in that site. Prefer a slot or prop on an existing item over a new one.
+
+---
+
 ## 2. Code Style
 
 - Follow the existing project code style.
