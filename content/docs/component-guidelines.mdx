@@ -6,7 +6,7 @@ order: 7
 
 # Component Guidelines
 
-Monark UI exists so the Monark sites (the demo sites, monark.io and the app) stop building the same thing twice. Every item in it is also a promise: it gets docs, accessibility notes, tests, a changelog entry and a migration path when it changes. That cost is worth paying only for things more than one site needs.
+Monark UI exists so Monark's sites and products stop building the same thing twice. Every item in it is also a promise: it gets docs, accessibility notes, tests, a changelog entry and a migration path when it changes. That cost is worth paying only for things more than one site needs.
 
 This page draws the line. Read it before you propose a new item, a new variant or a new prop.
 
@@ -40,7 +40,7 @@ Each item sits in one layer, and each layer has its own rules. The sidebar group
 
 These never move into Monark UI, however polished they are:
 
-- **Product visuals.** Diagrams, gauges, dials, tallies, seals, timelines and any illustration of how a product works (FlexGas's fee-route cascade, TrustRate's score dial, GovChain's ballot tally).
+- **Product visuals.** Diagrams, gauges, dials, tallies, seals, timelines and any illustration of how a product works, such as a fee-route diagram, a score dial or a vote tally.
 - **Adapters.** The thin file that passes a site's translations, routes and store into a registry item (`site/header.tsx` wrapping `SiteHeader`). Every site has one; it is the boundary, not a duplicate.
 - **Page composition.** Heroes, closing call-to-action cards, landing sections. They are arrangements of items, and the arrangement is the product's.
 - **Anything that fetches, stores or decides.** Business state, validation rules, pricing, permissions. Items render what they're given and call back when the user acts.
@@ -67,6 +67,7 @@ These come from [Anatomy](/docs/anatomy) and are checked in review:
 - **Accessible by default.** Keyboard reachable, named controls, a visible focus ring, 3:1 contrast for non-text and 4.5:1 for text, 44px touch targets on coarse pointers. Each item has a `content/a11y/<item>.yaml` entry.
 - **Clean in the consumer's lint.** Items ship into other repos as source, so they must pass `eslint-config-next`'s recommended rules (including the React hooks rules) without a disable comment. If a consumer has to turn a rule off for a registry file, that's a bug in the registry.
 - **Server-rendered content stays in the HTML.** Collapsed content that matters for search, like FAQ answers, should still be in the server-rendered page.
+- **No names.** Docs, previews, examples, accessibility notes, code comments and changesets never name a Monark product, demo or website. Use neutral placeholders: `Acme` for a product name and `example.com` for URLs.
 - **Declared dependencies.** Every npm import and every registry item it uses is declared and namespaced (`@monark/button`). `pnpm registry:check` enforces this.
 
 ## Proposing an item
@@ -90,18 +91,18 @@ Sites install items as source, so they can edit them. Don't. A site that changes
 
 ## Examples
 
-How these rules apply to patterns the demo sites still hand-roll (October 2026):
+How these rules apply to patterns that Monark sites still hand-roll (October 2026):
 
-| Pattern | Seen in | Decision |
+| Pattern | Sites | Decision |
 |-|-|-|
-| Connect-wallet gate screen | FlexGas, TaskFlow, TimeVault, Splitflow, GovChain | **New item** in Demo app: same structure everywhere, product wording through props. |
-| App sub-bar with no tabs | Splitflow, Yieldmine, MilestoneMint | **Extend** `app-tabs`: an actions-only mode with no empty `nav`. |
-| Several figures joined in one card | LedgerLift, BorrowX, Yieldmine | **Extend** `stat`: a group that joins tiles. |
-| Content above the demo-controls switches | GovChain, VaultLend | **Slot** on `demo-controls`. |
-| Disclosure whose summary is a heading | GovChain, Yieldmine | **Extend** `disclosure` so the trigger can hold a heading. |
-| Toggle group that can't be deselected | TrustRate, and every pill toggle | **Prop** on `toggle-group`. |
-| Copy button named after its address | TrustList | **Fix** in `wallet`: a patch to its accessible name and announcement, not a new item. |
-| Swap form with Max, balances and a quote slot | Fluidswap only | **Stays local** until a second swap surface needs it; then slots on `swap-form`. |
-| Numbered transaction steps | BorrowX only | **Stays local** for now. |
-| Fee-route cascade, score dial, ballot tally | One product each | **Never**: product visuals. |
-| Landing hero and closing CTA card | Most demos | **Never**: page composition. |
+| Connect-wallet gate screen | 5 | **New item** in Demo app: same structure everywhere, product wording through props. |
+| App sub-bar with no tabs | 3 | **Extend** `app-tabs`: an actions-only mode with no empty `nav`. |
+| Several figures joined in one card | 3 | **Extend** `stat`: a group that joins tiles. |
+| Content above the demo-controls switches | 2 | **Slot** on `demo-controls`. |
+| Disclosure whose summary is a heading | 2 | **Extend** `disclosure` so the trigger can hold a heading. |
+| Single-choice toggle group that can't be deselected | Every pill toggle | **Prop** on `toggle-group`. |
+| Copy button named after its address | 1 | **Fix** in `wallet`: an accessibility patch to its name and announcement, not a new item. |
+| Swap form with Max, balances and a quote slot | 1 | **Stays local** until a second swap surface needs it; then slots on `swap-form`. |
+| Numbered transaction steps | 1 | **Stays local** for now. |
+| Fee-route diagram, score dial, vote tally | 1 each | **Never**: product visuals. |
+| Landing hero and closing CTA card | Most | **Never**: page composition. |
