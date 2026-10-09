@@ -8,7 +8,7 @@
         "type": "ReactNode",
         "required": true,
         "defaultValue": null,
-        "description": "The product name, e.g. \"Splitflow\". Set in text, never as an image."
+        "description": "The product name, e.g. \"Acme\". Set in text, never as an image."
       },
       {
         "name": "href",
@@ -43,6 +43,19 @@
         "required": false,
         "defaultValue": null,
         "description": "Accessible name. Omit it (the default) when the mark sits next to text\nthat already names the product: the mark is then decorative."
+      }
+    ]
+  },
+  {
+    "displayName": "MonarkLogo",
+    "description": "The official horizontal Monark logo (butterfly + wordmark) as one inline\nSVG. The butterfly keeps its brand gradient; the wordmark is drawn in\n`currentColor`, so it follows `text-foreground` and serves both the\non-light (#141414) and on-dark (white) brand-kit variants. Size it by\nheight (`h-9` by default); the width follows the aspect ratio.",
+    "props": [
+      {
+        "name": "title",
+        "type": "string",
+        "required": false,
+        "defaultValue": "Monark",
+        "description": "Accessible name. Default \"Monark\"."
       }
     ]
   }

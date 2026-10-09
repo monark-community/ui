@@ -23,7 +23,7 @@
   },
   "screenReader": {
     "announcements": [
-      "Reads \"Splitflow, by Monark: home, link\"."
+      "Reads \"Acme, by Monark: home, link\"."
     ],
     "notes": "The product name stays real text, so it is translatable, selectable and read correctly. MonarkMark on its own becomes role=\"img\" when you pass a title; without one it is hidden from assistive tech. MonarkLogo is always role=\"img\", named by its title prop (\"Monark\"); inside a link with its own aria-label the link's label wins.\n"
   },
@@ -36,7 +36,7 @@
   },
   "consumerResponsibilities": [
     {
-      "Pass a translated aria-label on non-English pages (e.g. \"Splitflow, par Monark": "accueil\")."
+      "Pass a translated aria-label on non-English pages (e.g. \"Acme, par Monark": "accueil\")."
     },
     "Point href at the locale root on localised sites (/fr, not /).",
     "Keep clear space around the mark; don't place other logos or text inside the brand link.",

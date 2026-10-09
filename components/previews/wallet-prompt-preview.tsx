@@ -41,7 +41,7 @@ export function WalletPromptPreview() {
         open={open}
         onOpenChange={setOpen}
         title={values.title || undefined}
-        site="taskflow.monark.io"
+        site="app.example.com"
         account={
           values.showAccount
             ? {

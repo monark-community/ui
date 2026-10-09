@@ -39,7 +39,7 @@ const copy = {
 
 export function SiteHeaderPreview() {
   const { values, entries } = useControls({
-    product: { type: "text", default: "Splitflow" },
+    product: { type: "text", default: "Acme" },
     links: { type: "number", default: 4, min: 0, max: 4 },
     page: {
       type: "select",
@@ -58,7 +58,7 @@ export function SiteHeaderPreview() {
   useEffect(() => setPathname(values.page), [values.page])
   const locale: Locale = pathname.startsWith("/fr") ? "fr" : "en"
   const t = copy[locale]
-  const product = values.product || "Splitflow"
+  const product = values.product || "Acme"
 
   const PreviewLink = React.useCallback(
     function PreviewLink({

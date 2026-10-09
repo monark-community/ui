@@ -23,7 +23,7 @@ function PreviewLink({
 
 export function SiteFooterPreview() {
   const { values, entries } = useControls({
-    product: { type: "text", default: "LedgerLift" },
+    product: { type: "text", default: "Acme" },
     description: {
       type: "text",
       default: "Wallet history turned into books your accountant can read.",
@@ -35,7 +35,7 @@ export function SiteFooterPreview() {
     family: { type: "boolean", default: false },
   })
 
-  const product = values.product || "LedgerLift"
+  const product = values.product || "Acme"
   const links = [
     { href: "/en", label: "Overview" },
     { href: "/en/how-it-works", label: "How it works" },
@@ -56,7 +56,7 @@ export function SiteFooterPreview() {
           resources={
             values.resources
               ? [
-                  { href: "https://www.monark.io", label: "Project page on monark.io" },
+                  { href: "https://example.com", label: "Project page" },
                   { href: "https://github.com/monark-community", label: "Source on GitHub" },
                 ]
               : []
@@ -67,11 +67,11 @@ export function SiteFooterPreview() {
         >
           {values.family ? (
             <nav
-              aria-label="The Monark DeFi family"
+              aria-label="Related products"
               className="flex flex-col gap-3 rounded-2xl border border-dashed p-4 sm:flex-row sm:items-center sm:gap-6"
             >
               <p className="shrink-0 text-xs font-bold tracking-wide text-muted-foreground uppercase">
-                The Monark DeFi family
+                Related products
               </p>
               <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
                 {["Swaps", "Lending", "Loans"].map((name) => (

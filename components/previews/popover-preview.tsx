@@ -98,7 +98,7 @@ function ProfileExample({ titleId }: { titleId: string }) {
 
 function ShareExample({ titleId }: { titleId: string }) {
   const id = React.useId()
-  const url = "https://demo.monark.io/proposals/42"
+  const url = "https://example.com/proposals/42"
   const [copied, setCopied] = React.useState(false)
 
   React.useEffect(() => {

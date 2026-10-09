@@ -5,7 +5,7 @@
   "element": "button",
   "role": null,
   "delegatesTo": "radix-ui (Accordion)",
-  "description": "Vertically stacked, expandable panels. Each AccordionTrigger is a real <button> with aria-expanded and aria-controls wired to its AccordionContent region. Single-open and multi-open behaviors are supported via the type prop; Radix keeps aria-expanded in sync with visibility either way. variant=\"plus\" is the monark.io FAQ style: larger bold questions and a + that rotates into an x when open. Every indicator icon is aria-hidden, so only aria-expanded carries the state.\n",
+  "description": "Vertically stacked, expandable panels. Each AccordionTrigger is a real <button> with aria-expanded and aria-controls wired to its AccordionContent region. Single-open and multi-open behaviors are supported via the type prop; Radix keeps aria-expanded in sync with visibility either way. variant=\"plus\" is the Monark FAQ style: larger bold questions and a + that rotates into an x when open. Every indicator icon is aria-hidden, so only aria-expanded carries the state.\n",
   "keyboard": [
     {
       "key": "Tab",
@@ -46,7 +46,7 @@
   },
   "contrast": {
     "text": "Trigger label uses foreground; meets WCAG AA on the default theme",
-    "ui": "Chevron icon uses muted-foreground and meets WCAG AA on bg-background. The plus variant's + is flat primary orange (about 2.3:1 on cream, as on monark.io); it is decorative and aria-hidden, and the open state is also conveyed by the icon's rotation and the revealed panel"
+    "ui": "Chevron icon uses muted-foreground and meets WCAG AA on bg-background. The plus variant's + is flat primary orange (about 2.3:1 on cream, as in the Monark brand); it is decorative and aria-hidden, and the open state is also conveyed by the icon's rotation and the revealed panel"
   },
   "motion": {
     "reducedMotion": "Panels expand and collapse with the theme's animate-expand utility (0.2s ease-out height animation on --radix-collapsible-content-height, keyed off data-state). The theme turns it off under prefers-reduced-motion, so panels open and close instantly; the plus icon's rotation is motion-reduce:transition-none too.\n"

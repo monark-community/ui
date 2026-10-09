@@ -12,7 +12,7 @@ const links: SiteNavLink[] = [
 function renderHeader(pathname = "/en/how-it-works/fees") {
   return render(
     <SiteHeader
-      brand={<a href="/en">Splitflow</a>}
+      brand={<a href="/en">Acme</a>}
       links={links}
       pathname={pathname}
       actions={<button type="button">Open the app</button>}
@@ -24,7 +24,7 @@ describe("SiteHeader", () => {
   it("renders a banner landmark with the brand, links and actions", () => {
     renderHeader()
     const header = screen.getByRole("banner")
-    expect(within(header).getByRole("link", { name: "Splitflow" })).toBeInTheDocument()
+    expect(within(header).getByRole("link", { name: "Acme" })).toBeInTheDocument()
     expect(within(header).getByRole("navigation", { name: "Main" })).toBeInTheDocument()
     expect(within(header).getByRole("button", { name: "Open the app" })).toBeInTheDocument()
   })
@@ -69,7 +69,7 @@ describe("SiteHeader", () => {
   it("uses mobileActions in the sheet when given", async () => {
     render(
       <SiteHeader
-        brand={<span>Splitflow</span>}
+        brand={<span>Acme</span>}
         actions={<span>desktop-only</span>}
         mobileActions={<span>mobile-only</span>}
       />
@@ -83,7 +83,7 @@ describe("SiteHeader", () => {
   it("accepts translated labels", async () => {
     render(
       <SiteHeader
-        brand={<span>Splitflow</span>}
+        brand={<span>Acme</span>}
         links={links}
         labels={{ nav: "Principal", openMenu: "Ouvrir le menu", closeMenu: "Fermer le menu", menu: "Menu" }}
       />

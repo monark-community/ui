@@ -13,11 +13,11 @@ function Ring() {
 }
 
 /**
- * monark.io's branded separator: a thin flat orange line with an outlined
+ * Monark's branded separator: a thin flat orange line with an outlined
  * ring at each end. Decorative by default (aria-hidden); pass
  * `decorative={false}` to expose it as a `separator` to assistive tech.
- * `contained` centres it in the standard max-w-6xl page gutter, as the demo
- * sites place it between landing sections.
+ * `contained` centres it in the standard max-w-6xl page gutter, for use between
+ * landing sections.
  */
 function SectionDivider({
   className,

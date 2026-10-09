@@ -5,20 +5,20 @@ import { MonarkLogo, MonarkMark, SiteBrand } from "@/components/ui/site-brand"
 
 describe("SiteBrand", () => {
   it("links home with the product name and the default accessible label", () => {
-    render(<SiteBrand name="Splitflow" />)
-    const link = screen.getByRole("link", { name: "Splitflow, by Monark: home" })
+    render(<SiteBrand name="Acme" />)
+    const link = screen.getByRole("link", { name: "Acme, by Monark: home" })
     expect(link).toHaveAttribute("href", "/")
-    expect(link).toHaveTextContent("Splitflow")
+    expect(link).toHaveTextContent("Acme")
   })
 
   it("does not render 'by Monark' as visible text", () => {
-    render(<SiteBrand name="Splitflow" />)
+    render(<SiteBrand name="Acme" />)
     expect(screen.queryByText(/by Monark/)).toBeNull()
   })
 
   it("accepts a custom href and a translated aria-label", () => {
-    render(<SiteBrand name="Splitflow" href="/fr" aria-label="Splitflow, par Monark : accueil" />)
-    const link = screen.getByRole("link", { name: "Splitflow, par Monark : accueil" })
+    render(<SiteBrand name="Acme" href="/fr" aria-label="Acme, par Monark : accueil" />)
+    const link = screen.getByRole("link", { name: "Acme, par Monark : accueil" })
     expect(link).toHaveAttribute("href", "/fr")
   })
 
@@ -26,12 +26,12 @@ describe("SiteBrand", () => {
     function CustomLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }) {
       return <a data-custom="yes" {...props} />
     }
-    render(<SiteBrand name="Splitflow" LinkComponent={CustomLink} />)
+    render(<SiteBrand name="Acme" LinkComponent={CustomLink} />)
     expect(screen.getByRole("link")).toHaveAttribute("data-custom", "yes")
   })
 
   it("renders the mark as a decorative SVG", () => {
-    const { container } = render(<SiteBrand name="Splitflow" />)
+    const { container } = render(<SiteBrand name="Acme" />)
     const svg = container.querySelector("[data-slot='monark-mark']")
     expect(svg).not.toBeNull()
     expect(svg).toHaveAttribute("aria-hidden", "true")

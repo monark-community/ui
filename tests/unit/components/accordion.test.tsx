@@ -66,7 +66,7 @@ describe("Accordion", () => {
     )
   })
 
-  it("renders the plus variant like the monark.io FAQ", async () => {
+  it("renders the plus variant as the Monark FAQ style", async () => {
     const user = userEvent.setup()
     const { container } = render(<Faq variant="plus" />)
     expect(container.querySelector("[data-slot='accordion']")).toHaveAttribute(

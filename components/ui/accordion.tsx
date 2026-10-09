@@ -9,7 +9,7 @@ type AccordionVariant = "default" | "plus"
 
 const AccordionVariantContext = React.createContext<AccordionVariant>("default")
 
-// `variant="plus"` is the Monark FAQ style from monark.io's homepage: rows
+// `variant="plus"` is the Monark FAQ style: rows
 // divided by hairlines, large bold questions, an orange + that turns 45° into
 // an × when open, and muted answers kept to a readable line length. Wrap it
 // in `className="border-y"` for the framed list; items draw the lines between

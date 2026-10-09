@@ -5,7 +5,7 @@
   "element": "div",
   "role": null,
   "delegatesTo": null,
-  "description": "monark.io's branded separator: a 1px flat orange line with an outlined ring at either or both ends, horizontal or vertical. Decorative by default (aria-hidden=\"true\"). With decorative={false} it renders role=\"separator\" with aria-orientation instead.\n",
+  "description": "Monark's branded separator: a 1px flat orange line with an outlined ring at either or both ends, horizontal or vertical. Decorative by default (aria-hidden=\"true\"). With decorative={false} it renders role=\"separator\" with aria-orientation instead.\n",
   "keyboard": [],
   "focus": {
     "visible": false,
